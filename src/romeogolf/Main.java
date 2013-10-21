@@ -18,6 +18,13 @@ import javafx.geometry.*;
 
 public class Main extends Application {
 	public TextField userTextField;
+	EventHandler<ActionEvent> eh = new EventHandler<ActionEvent>() {
+		    @Override
+		    public void handle(ActionEvent e) {
+			userTextField.setText(Integer.toString(Integer.valueOf(userTextField.getText()) + 1));
+		    };
+	};
+
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -42,6 +49,13 @@ public class Main extends Application {
 		grid.add(btUp1, 1, 0);
 		Button btDown1 = new Button();
 		grid.add(btDown1, 1, 1);
+//		btUp1.setOnAction(new EventHandler<ActionEvent>() {
+//		    @Override
+//		    public void handle(ActionEvent e) {
+//			userTextField.setText(Integer.toString(Integer.valueOf(userTextField.getText()) + 1));
+//		    }
+//		});
+		btUp1.setOnAction(eh);
 
 
 //		final Text actiontarget = new Text();
