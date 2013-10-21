@@ -38,11 +38,10 @@ public class Main extends Application {
 		userTextField.setPrefColumnCount(1);
 		grid.add(userTextField, 0, 0, 1, 2);
 
-		Button btn1 = new Button();
-		grid.add(btn1, 1, 0);
-
-		Button btn2 = new Button();
-		grid.add(btn2, 1, 1);
+		Button btUp1 = new Button();
+		grid.add(btUp1, 1, 0);
+		Button btDown1 = new Button();
+		grid.add(btDown1, 1, 1);
 
 
 //		final Text actiontarget = new Text();
