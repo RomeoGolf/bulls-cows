@@ -33,6 +33,7 @@ public class Main extends Application {
 		grid.setGridLinesVisible(true);
 
 		TextField userTextField = new TextField();
+		userTextField.setPrefColumnCount(1);
 		grid.add(userTextField, 0, 0, 1, 2);
 
 		Button btn1 = new Button();
