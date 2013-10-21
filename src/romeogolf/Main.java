@@ -58,19 +58,6 @@ public class Main extends Application {
 		btUp1.setOnAction(eh);
 
 
-//		final Text actiontarget = new Text();
-//		grid.add(actiontarget, 1, 6);
-//
-//		btn.setOnAction(new EventHandler<ActionEvent>() {
-// 
-//		    @Override
-//		    public void handle(ActionEvent e) {
-//			actiontarget.setFill(Color.FIREBRICK);
-//
-//			actiontarget.setText("Sign in button pressed");
-//		    }
-//		});
-
 		Scene scene = new Scene(grid, 300, 275);
 		primaryStage.setScene(scene); 
 
