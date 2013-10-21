@@ -17,6 +17,7 @@ import javafx.scene.paint.*;
 import javafx.geometry.*;
 
 public class Main extends Application {
+	public TextField userTextField;
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -32,7 +33,8 @@ public class Main extends Application {
 		grid.setPadding(new Insets(25, 25, 25, 25));
 		grid.setGridLinesVisible(true);
 
-		TextField userTextField = new TextField();
+//		final TextField userTextField = new TextField("1");
+		userTextField = new TextField("1");
 		userTextField.setPrefColumnCount(1);
 		grid.add(userTextField, 0, 0, 1, 2);
 
