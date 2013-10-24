@@ -16,7 +16,6 @@ import javafx.scene.text.*;
 import javafx.scene.paint.*;
 import javafx.geometry.*;
 import java.util.*;
-import javax.swing.JOptionPane;
 
 public class Main extends Application {
     Integer[] Digits = new Integer[4];
@@ -39,8 +38,7 @@ public class Main extends Application {
     EventHandler<ActionEvent> eh = new EventHandler<ActionEvent>() {
 	@Override
 	public void handle(ActionEvent e) {
-//	    JOptionPane.showMessageDialog(null, e.getSource() /*df.get(btUp1)*/, "qwerty", JOptionPane.INFORMATION_MESSAGE);
-		};
+	};
     };
 
     public static void main(String[] args) {
