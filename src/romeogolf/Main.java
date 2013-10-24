@@ -57,6 +57,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
 	for(int i = 0; i <= 3; i++){
 	    Digits[i] = rg.nextInt(9);
+	    atfDigits[i] = new TextField(Integer.toString(Digits[i]));
+	    atfDigits[i].setPrefColumnCount(1);
 	}
 
 	primaryStage.setTitle("CheckOut");
@@ -69,8 +71,6 @@ public class Main extends Application {
 	grid.setPadding(new Insets(25, 25, 25, 25));
 //	grid.setGridLinesVisible(true);
 
-	atfDigits[0] = new TextField(Integer.toString(Digits[0]));
-	atfDigits[0].setPrefColumnCount(1);
 	btUp1 = new Button();
 	btUp1.setId("11");
 	btDown1 = new Button();
@@ -85,8 +85,6 @@ public class Main extends Application {
 	vb1.getChildren().add(btDown1);
 	grid.add(vb1, 0, 0);
 
-	atfDigits[1] = new TextField(Integer.toString(Digits[1]));
-	atfDigits[1].setPrefColumnCount(1);
 	btUp2 = new Button();
 	btUp2.setId("21");
 	btDown2 = new Button();
@@ -102,8 +100,6 @@ public class Main extends Application {
 	vb2.getChildren().add(btDown2);
 	grid.add(vb2, 1, 0);
 
-	atfDigits[2] = new TextField(Integer.toString(Digits[2]));
-	atfDigits[2].setPrefColumnCount(1);
 	btUp3 = new Button();
 	btUp3.setId("31");
 	btDown3 = new Button();
@@ -118,8 +114,6 @@ public class Main extends Application {
 	vb3.getChildren().add(btDown3);
 	grid.add(vb3, 2, 0);
 
-	atfDigits[3] = new TextField(Integer.toString(Digits[3]));
-	atfDigits[3].setPrefColumnCount(1);
 	btUp4 = new Button();
 	btUp4.setId("41");
 	btDown4 = new Button();
