@@ -19,10 +19,7 @@ import java.util.*;
 import javax.swing.JOptionPane;
 
 public class Main extends Application {
-	public TextField tfDigit1;
-	public TextField tfDigit2;
-	public TextField tfDigit3;
-	public TextField tfDigit4;
+	TextField[] atfDigits = new TextField[4];
 
 	public Button btUp1;
 	public Button btUp2;
@@ -60,8 +57,8 @@ public class Main extends Application {
 		grid.setPadding(new Insets(25, 25, 25, 25));
 //		grid.setGridLinesVisible(true);
 
-		tfDigit1 = new TextField("1");
-		tfDigit1.setPrefColumnCount(1);
+		atfDigits[0] = new TextField("1");
+		atfDigits[0].setPrefColumnCount(1);
 		btUp1 = new Button();
 		btUp1.setId("11");
 		btDown1 = new Button();
@@ -72,12 +69,12 @@ public class Main extends Application {
 		VBox vb1 = new VBox();
 		vb1.setAlignment(Pos.CENTER);
 		vb1.getChildren().add(btUp1);
-		vb1.getChildren().add(tfDigit1);
+		vb1.getChildren().add(atfDigits[0]);
 		vb1.getChildren().add(btDown1);
 		grid.add(vb1, 0, 0);
 
-		tfDigit2 = new TextField("1");
-		tfDigit2.setPrefColumnCount(1);
+		atfDigits[1] = new TextField();
+		atfDigits[1].setPrefColumnCount(1);
 		btUp2 = new Button();
 		btUp2.setId("21");
 		btDown2 = new Button();
@@ -89,12 +86,12 @@ public class Main extends Application {
 		VBox vb2 = new VBox();
 		vb2.setAlignment(Pos.CENTER);
 		vb2.getChildren().add(btUp2);
-		vb2.getChildren().add(tfDigit2);
+		vb2.getChildren().add(atfDigits[1]);
 		vb2.getChildren().add(btDown2);
 		grid.add(vb2, 1, 0);
 
-		tfDigit3 = new TextField("1");
-		tfDigit3.setPrefColumnCount(1);
+		atfDigits[2] = new TextField();
+		atfDigits[2].setPrefColumnCount(1);
 		btUp3 = new Button();
 		btUp3.setId("31");
 		btDown3 = new Button();
@@ -105,12 +102,12 @@ public class Main extends Application {
 		VBox vb3 = new VBox();
 		vb3.setAlignment(Pos.CENTER);
 		vb3.getChildren().add(btUp3);
-		vb3.getChildren().add(tfDigit3);
+		vb3.getChildren().add(atfDigits[2]);
 		vb3.getChildren().add(btDown3);
 		grid.add(vb3, 2, 0);
 
-		tfDigit4 = new TextField("1");
-		tfDigit4.setPrefColumnCount(1);
+		atfDigits[3] = new TextField();
+		atfDigits[3].setPrefColumnCount(1);
 		btUp4 = new Button();
 		btUp4.setId("41");
 		btDown4 = new Button();
@@ -121,7 +118,7 @@ public class Main extends Application {
 		VBox vb4 = new VBox();
 		vb4.setAlignment(Pos.CENTER);
 		vb4.getChildren().add(btUp4);
-		vb4.getChildren().add(tfDigit4);
+		vb4.getChildren().add(atfDigits[3]);
 		vb4.getChildren().add(btDown4);
 		grid.add(vb4, 3, 0);
 
