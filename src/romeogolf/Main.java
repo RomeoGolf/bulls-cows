@@ -38,6 +38,15 @@ public class Main extends Application {
     EventHandler<ActionEvent> eh = new EventHandler<ActionEvent>() {
 	@Override
 	public void handle(ActionEvent e) {
+	    int Num = df.get(e.getSource());
+	    if (sUp.contains(e.getSource())){
+		Digits[Num]++;
+	    } else {
+		Digits[Num]--;
+	    }
+	    if (Digits[Num] < 0){Digits[Num] = 9;}
+	    if (Digits[Num] > 9){Digits[Num] = 0;}
+	    atfDigits[Num].setText(Integer.toString(Digits[Num]));
 	};
     };
 
