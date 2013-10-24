@@ -72,9 +72,7 @@ public class Main extends Application {
 //	grid.setGridLinesVisible(true);
 
 	btUp1 = new Button();
-	btUp1.setId("11");
 	btDown1 = new Button();
-	btDown1.setId("12");
 	btUp1.setOnAction(eh);
 	btDown1.setOnAction(eh);
 
@@ -86,9 +84,7 @@ public class Main extends Application {
 	grid.add(vb1, 0, 0);
 
 	btUp2 = new Button();
-	btUp2.setId("21");
 	btDown2 = new Button();
-	btDown2.setId("22");
 	btUp2.setAlignment(Pos.CENTER);
 	btUp2.setOnAction(eh);
 	btDown2.setOnAction(eh);
@@ -101,9 +97,7 @@ public class Main extends Application {
 	grid.add(vb2, 1, 0);
 
 	btUp3 = new Button();
-	btUp3.setId("31");
 	btDown3 = new Button();
-	btDown3.setId("32");
 	btUp3.setOnAction(eh);
 	btDown3.setOnAction(eh);
 
@@ -115,9 +109,7 @@ public class Main extends Application {
 	grid.add(vb3, 2, 0);
 
 	btUp4 = new Button();
-	btUp4.setId("41");
 	btDown4 = new Button();
-	btDown4.setId("42");
 	btUp4.setOnAction(eh);
 	btDown4.setOnAction(eh);
 
