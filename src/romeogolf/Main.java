@@ -15,6 +15,7 @@ import javafx.scene.*;
 import javafx.scene.text.*;
 import javafx.scene.paint.*;
 import javafx.geometry.*;
+import java.util.*;
 import javax.swing.JOptionPane;
 
 public class Main extends Application {
@@ -32,6 +33,10 @@ public class Main extends Application {
 	public Button btDown2;
 	public Button btDown3;
 	public Button btDown4;
+
+	public Map<Button, Integer> df;
+	public Set<Button> sUp;
+
 	EventHandler<ActionEvent> eh = new EventHandler<ActionEvent>() {
 		    @Override
 		    public void handle(ActionEvent e) {
@@ -120,6 +125,20 @@ public class Main extends Application {
 		vb4.getChildren().add(btDown4);
 		grid.add(vb4, 3, 0);
 
+		df = new HashMap<Button, Integer>();
+		df.put(btUp1, 0);
+		df.put(btDown1, 0);
+		df.put(btUp2, 1);
+		df.put(btDown2, 1);
+		df.put(btUp3, 2);
+		df.put(btDown3, 2);
+		df.put(btUp4, 3);
+		df.put(btDown4, 3);
+		sUp = new HashSet<Button>();
+		sUp.add(btUp1);
+		sUp.add(btUp2);
+		sUp.add(btUp3);
+		sUp.add(btUp4);
 
 		Scene scene = new Scene(grid, 300, 275);
 		primaryStage.setScene(scene); 
