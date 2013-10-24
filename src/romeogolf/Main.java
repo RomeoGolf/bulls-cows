@@ -38,7 +38,7 @@ public class Main extends Application {
 	EventHandler<ActionEvent> eh = new EventHandler<ActionEvent>() {
 		    @Override
 		    public void handle(ActionEvent e) {
-			JOptionPane.showMessageDialog(null, e.getSource() /*df.get(btUp1)*/, "qwerty", JOptionPane.INFORMATION_MESSAGE);
+//			JOptionPane.showMessageDialog(null, e.getSource() /*df.get(btUp1)*/, "qwerty", JOptionPane.INFORMATION_MESSAGE);
 		    };
 	};
 
