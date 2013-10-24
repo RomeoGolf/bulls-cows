@@ -15,6 +15,7 @@ import javafx.scene.*;
 import javafx.scene.text.*;
 import javafx.scene.paint.*;
 import javafx.geometry.*;
+import javax.swing.JOptionPane;
 
 public class Main extends Application {
 	public TextField tfDigit1;
@@ -35,6 +36,7 @@ public class Main extends Application {
 		    @Override
 		    public void handle(ActionEvent e) {
 			tfDigit1.setText(Integer.toString(Integer.valueOf(tfDigit1.getText()) + 1));
+			JOptionPane.showMessageDialog(null, e.getSource() /*df.get(btUp1)*/, "qwerty", JOptionPane.INFORMATION_MESSAGE);
 		    };
 	};
 
