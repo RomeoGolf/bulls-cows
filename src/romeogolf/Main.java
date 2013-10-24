@@ -19,6 +19,7 @@ import java.util.*;
 import javax.swing.JOptionPane;
 
 public class Main extends Application {
+	Integer[] Digits = new Integer[4];
 	TextField[] atfDigits = new TextField[4];
 
 	public Button btUp1;
