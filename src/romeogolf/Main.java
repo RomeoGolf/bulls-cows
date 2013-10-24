@@ -38,7 +38,6 @@ public class Main extends Application {
 	EventHandler<ActionEvent> eh = new EventHandler<ActionEvent>() {
 		    @Override
 		    public void handle(ActionEvent e) {
-			tfDigit1.setText(Integer.toString(Integer.valueOf(tfDigit1.getText()) + 1));
 			JOptionPane.showMessageDialog(null, e.getSource() /*df.get(btUp1)*/, "qwerty", JOptionPane.INFORMATION_MESSAGE);
 		    };
 	};
