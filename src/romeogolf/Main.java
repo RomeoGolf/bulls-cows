@@ -21,7 +21,7 @@ public class Main extends Application {
     Integer[] Digits = new Integer[4];			// Цифры, вводимые пользователем
     TextField[] atfDigits = new TextField[4];		// Поля ввода цифр
     Random rg = new Random(System.currentTimeMillis());	// Генератор ПСП, инициализируемый временем
-    Integer[] RandDigits = new Integer[10];		// для перемешанного массива цифр
+    Integer[] RndAllDigits = new Integer[10];		// для перемешанного массива цифр
     // кнопки увеличения цифры
     public Button btUp1;
     public Button btUp2;
@@ -60,9 +60,9 @@ public class Main extends Application {
 	    int n, buf;
 	    while(i > 0){
 		n = rg.nextInt(i);
-		buf = RandDigits[n];
-		RandDigits[n] = RandDigits[9];
-		RandDigits[9] = buf;
+		buf = RndAllDigits[n];
+		RndAllDigits[n] = RndAllDigits[9];
+		RndAllDigits[9] = buf;
 		i--;
 	    }
 	}
@@ -98,7 +98,7 @@ public class Main extends Application {
 	    atfDigits[i].setEditable(false);
 	}
 	for(int i = 0; i <= 9; i++){
-	    RandDigits[i] = i;
+	    RndAllDigits[i] = i;
 	}
 	DigitMixer();
 
