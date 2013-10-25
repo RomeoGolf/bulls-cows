@@ -26,6 +26,7 @@ public class Main extends Application {
     Integer[] RndAllDigits = new Integer[10];		// для перемешанного массива цифр
     int bulls;
     int cows;
+    int trying;
     // кнопки увеличения цифры
     public Button btUp1;
     public Button btUp2;
@@ -122,6 +123,8 @@ public class Main extends Application {
     }
     @Override
     public void start(Stage primaryStage) {
+	trying = 0;
+
 	for(int i = 0; i <= 3; i++){		// инициализация цифр, создание полей ввода
 	    Digits[i] = i; //rg.nextInt(9);
 	    atfDigits[i] = new TextField(Integer.toString(Digits[i]));
@@ -224,9 +227,11 @@ public class Main extends Application {
 	btEnter.setOnAction(new EventHandler<ActionEvent>() {
 	    @Override public void handle(ActionEvent e) {
 		if(IsDifferent()){return;}
+		trying++;
 		CalcBullCow();
 		String s = new String(Arrays.toString(Digits));
-		s = s + ":   " + Integer.toString(bulls) + " Б, " + Integer.toString(cows) + " К";
+		s = Integer.toString(trying) + ": " + s;
+		s = s + " -   " + Integer.toString(bulls) + " Б, " + Integer.toString(cows) + " К";
 		HBox hb = new HBox();
 		hb.setAlignment(Pos.CENTER);
 		Text t = new Text(s);
