@@ -52,6 +52,20 @@ public class Main extends Application {
 	};
     };
 
+    void DigitMixer() {		// перемешивание массива цифр
+	for(int j = rg.nextInt(10) + 3; j > 0; j--) {
+	    int i = 9;
+	    int n, buf;
+	    while(i > 0){
+		n = rg.nextInt(i);
+		buf = RandDigits[n];
+		RandDigits[n] = RandDigits[9];
+		RandDigits[9] = buf;
+		i--;
+	    }
+	}
+    };
+
     public static void main(String[] args) {
 	launch(args);
     }
@@ -66,17 +80,7 @@ public class Main extends Application {
 	for(int i = 0; i <= 9; i++){
 	    RandDigits[i] = i;
 	}
-	// перемешивание массива цифр
-	int i = 9;
-	int n = 0;
-	int buf = 0;
-	while(i > 0){
-	    n = rg.nextInt(i);
-	    buf = RandDigits[n];
-	    RandDigits[n] = RandDigits[9];
-	    RandDigits[9] = buf;
-	    i--;
-	}
+	DigitMixer();
 
 	// сцена на основе BorderPane
 	BorderPane bp = new BorderPane();
@@ -149,6 +153,7 @@ public class Main extends Application {
 	hbBottom.getChildren().addAll(tfBottom, btBottom);
 	btBottom.setOnAction(new EventHandler<ActionEvent>() {
 	    @Override public void handle(ActionEvent e) {
+		DigitMixer();
 		String s = "";
 		for(int i = 0; i <= 9; i++){
 		    s = s + Integer.toString(RandDigits[i]) + " ";
