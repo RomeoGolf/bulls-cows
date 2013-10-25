@@ -19,6 +19,7 @@ import java.util.*;
 
 public class Main extends Application {
     Integer[] Digits = new Integer[4];			// Цифры, вводимые пользователем
+    Integer[] RndDigits = new Integer[4];		// "загаданные" цифры
     TextField[] atfDigits = new TextField[4];		// Поля ввода цифр
     Random rg = new Random(System.currentTimeMillis());	// Генератор ПСП, инициализируемый временем
     Integer[] RndAllDigits = new Integer[10];		// для перемешанного массива цифр
@@ -86,6 +87,13 @@ public class Main extends Application {
 
     };
 
+    void MakeRndDigits() {
+	int n = rg.nextInt(5);
+	for(int i = 0; i < 4; i++) {
+	    RndDigits[i] = RndAllDigits[i + n];
+	}
+    };
+
     public static void main(String[] args) {
 	launch(args);
     }
@@ -101,6 +109,8 @@ public class Main extends Application {
 	    RndAllDigits[i] = i;
 	}
 	DigitMixer();
+	MakeRndDigits();
+
 
 	primaryStage.setTitle("CheckOut");
 	BorderPane bp = new BorderPane();
