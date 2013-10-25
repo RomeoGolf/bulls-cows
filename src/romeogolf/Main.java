@@ -134,7 +134,7 @@ public class Main extends Application {
 	bp.setCenter(spCenter);
 	final VBox vbCenter = new VBox();
 	vbCenter.setAlignment(Pos.TOP_CENTER);
-	vbCenter.setSpacing(10);
+	vbCenter.setSpacing(3);
 	spCenter.setContent(vbCenter);
 	spCenter.setFitToWidth(true);
 
