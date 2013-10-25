@@ -49,6 +49,8 @@ public class Main extends Application {
 	    if (Digits[Num] < 0){Digits[Num] = 9;}	// проверка выхода цифры за пределы
 	    if (Digits[Num] > 9){Digits[Num] = 0;}	// и соответствующее изменение
 	    atfDigits[Num].setText(Integer.toString(Digits[Num]));  // отображение цифры
+
+	    IsDifferent();
 	};
     };
 
@@ -64,6 +66,24 @@ public class Main extends Application {
 		i--;
 	    }
 	}
+    };
+
+    boolean IsDifferent() {
+
+	for(int i = 0; i < 4; i++) {
+	    atfDigits[i].setStyle("-fx-text-fill: #000000;");
+	}
+	for(int i = 0; i < 3; i++) {
+	    for(int j = i + 1; j < 4; j++) {
+		if(Digits[i] == Digits[j]) {
+		    atfDigits[i].setStyle("-fx-text-fill: #FF0000;");
+		    atfDigits[j].setStyle("-fx-text-fill: #FF0000;");
+		    return true;
+		}
+	    }
+	}
+	return false;
+
     };
 
     public static void main(String[] args) {
