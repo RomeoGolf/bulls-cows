@@ -88,6 +88,10 @@ public class Main extends Application {
 	HBox hbTop = new HBox();
 	hbTop.setAlignment(Pos.CENTER);
 	hbTop.setPadding(new Insets(15, 12, 15, 12));
+	VBox vbForTop = new VBox();
+	vbForTop.setAlignment(Pos.CENTER);
+	vbForTop.setSpacing(10);
+	hbTop.getChildren().add(vbForTop);
 
 	HBox hbBottom = new HBox();
 	hbTop.setStyle("-fx-background-color: #336699;");
@@ -145,7 +149,16 @@ public class Main extends Application {
 	HBox hbDigits = new HBox();
 	hbDigits.setSpacing(5);
 	hbDigits.getChildren().addAll(vb1, vb2, vb3, vb4);
-	hbTop.getChildren().add(hbDigits);
+	vbForTop.getChildren().add(hbDigits);
+
+	Button btEnter = new Button("Enter");
+	vbForTop.getChildren().add(btEnter);
+	btEnter.setOnAction(new EventHandler<ActionEvent>() {
+	    @Override public void handle(ActionEvent e) {
+		//
+	    }
+	});
+
 	// -------- конец прорисовки --------------
 
 	// ----- нижняя панель ----------
