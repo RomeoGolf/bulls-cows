@@ -23,6 +23,8 @@ public class Main extends Application {
     TextField[] atfDigits = new TextField[4];		// Поля ввода цифр
     Random rg = new Random(System.currentTimeMillis());	// Генератор ПСП, инициализируемый временем
     Integer[] RndAllDigits = new Integer[10];		// для перемешанного массива цифр
+    int bulls;
+    int cows;
     // кнопки увеличения цифры
     public Button btUp1;
     public Button btUp2;
@@ -92,6 +94,26 @@ public class Main extends Application {
 	for(int i = 0; i < 4; i++) {
 	    RndDigits[i] = RndAllDigits[i + n];
 	}
+    };
+
+    void CalcBullCow() {
+	bulls = 0;
+	cows = 0;
+	for(int i = 0; i < 4; i++) {
+	    if (Digits[i] == RndDigits[i]) {
+		bulls++;
+	    }
+	}
+	Set<Integer> s = new HashSet();
+	for(int i = 0; i < 4; i++) {
+	    s.add(RndDigits[i]);
+	}
+	for(int i = 0; i < 4; i++) {
+	    if(s.contains(Digits[i])){
+		cows++;
+	    }
+	}
+	cows = cows - bulls;
     };
 
     public static void main(String[] args) {
@@ -194,11 +216,16 @@ public class Main extends Application {
 	vbForTop.getChildren().add(btEnter);
 	btEnter.setOnAction(new EventHandler<ActionEvent>() {
 	    @Override public void handle(ActionEvent e) {
+		if(IsDifferent()){return;}
+		CalcBullCow();
+		String s = new String(Arrays.toString(Digits));
+		s = s + ":   " + Integer.toString(bulls) + " Б, " + Integer.toString(cows) + " К";
 		HBox hb = new HBox();
 		hb.setAlignment(Pos.CENTER);
-		Text t = new Text(Arrays.toString(Digits));
+		Text t = new Text(s);
 		t.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
 		hb.getChildren().add(t);
+//		hb.setStyle("-fx-background-color: #336699;");
 		vbCenter.getChildren().add(hb);
 	    }
 	});
