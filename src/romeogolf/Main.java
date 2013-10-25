@@ -143,6 +143,7 @@ public class Main extends Application {
 	vb4.getChildren().add(btDown4);
 
 	HBox hbDigits = new HBox();
+	hbDigits.setSpacing(5);
 	hbDigits.getChildren().addAll(vb1, vb2, vb3, vb4);
 	hbTop.getChildren().add(hbDigits);
 	// -------- конец прорисовки --------------
