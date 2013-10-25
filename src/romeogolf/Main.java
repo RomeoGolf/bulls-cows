@@ -72,7 +72,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
 	for(int i = 0; i <= 3; i++){		// инициализация цифр, создание полей ввода
-	    Digits[i] = rg.nextInt(9);
+	    Digits[i] = i; //rg.nextInt(9);
 	    atfDigits[i] = new TextField(Integer.toString(Digits[i]));
 	    atfDigits[i].setPrefColumnCount(1);
 	    atfDigits[i].setEditable(false);
