@@ -60,6 +60,7 @@ public class Main extends Application {
 	    Digits[i] = rg.nextInt(9);
 	    atfDigits[i] = new TextField(Integer.toString(Digits[i]));
 	    atfDigits[i].setPrefColumnCount(1);
+	    atfDigits[i].setEditable(false);
 	}
 
 
