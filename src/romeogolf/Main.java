@@ -164,7 +164,12 @@ public class Main extends Application {
 	vbForTop.getChildren().add(btEnter);
 	btEnter.setOnAction(new EventHandler<ActionEvent>() {
 	    @Override public void handle(ActionEvent e) {
-		//
+		HBox hb = new HBox();
+		hb.setAlignment(Pos.CENTER);
+		Text t = new Text(Arrays.toString(Digits));
+		t.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
+		hb.getChildren().add(t);
+		vbCenter.getChildren().add(hb);
 	    }
 	});
 
