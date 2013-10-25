@@ -82,8 +82,9 @@ public class Main extends Application {
 	}
 	DigitMixer();
 
-	// сцена на основе BorderPane
+	primaryStage.setTitle("CheckOut");
 	BorderPane bp = new BorderPane();
+	Scene scene = new Scene(bp, 300, 375);
 
 	HBox hbTop = new HBox();
 	hbTop.setAlignment(Pos.CENTER);
@@ -98,6 +99,14 @@ public class Main extends Application {
 	bp.setTop(hbTop);
 	hbBottom.setAlignment(Pos.CENTER);
 	bp.setBottom(hbBottom);
+
+	final ScrollPane spCenter = new ScrollPane();
+	bp.setCenter(spCenter);
+	final VBox vbCenter = new VBox();
+	vbCenter.setAlignment(Pos.TOP_CENTER);
+	vbCenter.setSpacing(10);
+	spCenter.setContent(vbCenter);
+	spCenter.setFitToWidth(true);
 
 
 	// ------ прорисовка кнопок и полей ввода цифр --------
@@ -193,9 +202,6 @@ public class Main extends Application {
 	sUp.add(btUp2);
 	sUp.add(btUp3);
 	sUp.add(btUp4);
-
-	primaryStage.setTitle("CheckOut");
-	Scene scene = new Scene(bp, 300, 275);
 
 	primaryStage.setScene(scene); 
 	primaryStage.show();
