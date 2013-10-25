@@ -213,9 +213,10 @@ public class Main extends Application {
 	    @Override public void handle(ActionEvent e) {
 		DigitMixer();
 		String s = "";
-		for(int i = 0; i <= 9; i++){
-		    s = s + Integer.toString(RandDigits[i]) + " ";
-		}
+//		for(int i = 0; i <= 9; i++){
+//		    s = s + Integer.toString(RndAllDigits[i]) + " ";
+//		}
+		s = Arrays.toString(RndDigits);
 		tfBottom.setText(s);
 	    }
 	});
