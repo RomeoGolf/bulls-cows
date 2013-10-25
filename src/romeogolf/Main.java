@@ -18,35 +18,36 @@ import javafx.geometry.*;
 import java.util.*;
 
 public class Main extends Application {
-    Integer[] Digits = new Integer[4];
-    TextField[] atfDigits = new TextField[4];
-    Random rg = new Random(System.currentTimeMillis());
-
+    Integer[] Digits = new Integer[4];			// Цифры, вводимые пользователем
+    TextField[] atfDigits = new TextField[4];		// Поля ввода цифр
+    Random rg = new Random(System.currentTimeMillis());	// Генератор ПСП, инициализируемый временем
+    // кнопки увеличения цифры
     public Button btUp1;
     public Button btUp2;
     public Button btUp3;
     public Button btUp4;
-
+    // кнопки уменьшения цифры
     public Button btDown1;
     public Button btDown2;
     public Button btDown3;
     public Button btDown4;
 
-    public Map<Button, Integer> df;
-    public Set<Button> sUp;
+    public Map<Button, Integer> df;	// карта соответствия кнопок цифрам
+    public Set<Button> sUp;		// множество кнопок увеличения
 
+    // общий обработчик для всех кнопок
     EventHandler<ActionEvent> eh = new EventHandler<ActionEvent>() {
 	@Override
 	public void handle(ActionEvent e) {
-	    int Num = df.get(e.getSource());
-	    if (sUp.contains(e.getSource())){
+	    int Num = df.get(e.getSource());		// получение номера цифры, чью кнопку нажали
+	    if (sUp.contains(e.getSource())){		// изменение цифры
 		Digits[Num]++;
 	    } else {
 		Digits[Num]--;
 	    }
-	    if (Digits[Num] < 0){Digits[Num] = 9;}
-	    if (Digits[Num] > 9){Digits[Num] = 0;}
-	    atfDigits[Num].setText(Integer.toString(Digits[Num]));
+	    if (Digits[Num] < 0){Digits[Num] = 9;}	// проверка выхода цифры за пределы
+	    if (Digits[Num] > 9){Digits[Num] = 0;}	// и соответствующее изменение
+	    atfDigits[Num].setText(Integer.toString(Digits[Num]));  // отображение цифры
 	};
     };
 
@@ -55,14 +56,15 @@ public class Main extends Application {
     }
     @Override
     public void start(Stage primaryStage) {
-	for(int i = 0; i <= 3; i++){
+	for(int i = 0; i <= 3; i++){		// инициализация цифр, создание полей ввода
 	    Digits[i] = rg.nextInt(9);
 	    atfDigits[i] = new TextField(Integer.toString(Digits[i]));
 	    atfDigits[i].setPrefColumnCount(1);
 	}
 
-	primaryStage.setTitle("CheckOut");
 
+	// создание сцены
+	primaryStage.setTitle("CheckOut");
 	GridPane grid = new GridPane();
 
 	grid.setAlignment(Pos.CENTER);
@@ -71,6 +73,7 @@ public class Main extends Application {
 	grid.setPadding(new Insets(25, 25, 25, 25));
 //	grid.setGridLinesVisible(true);
 
+	// ------ прорисовка кнопок и полей ввода цифр --------
 	btUp1 = new Button();
 	btDown1 = new Button();
 	btUp1.setOnAction(eh);
@@ -119,7 +122,9 @@ public class Main extends Application {
 	vb4.getChildren().add(atfDigits[3]);
 	vb4.getChildren().add(btDown4);
 	grid.add(vb4, 3, 0);
+	// -------- конец прорисовки --------------
 
+	// заполнение карты кнопка-номер и множества кнопок увеличения
 	df = new HashMap<Button, Integer>();
 	df.put(btUp1, 0);
 	df.put(btDown1, 0);
@@ -137,9 +142,7 @@ public class Main extends Application {
 
 	Scene scene = new Scene(grid, 300, 275);
 	primaryStage.setScene(scene); 
-
 	primaryStage.show();
-
     }
 }
 
