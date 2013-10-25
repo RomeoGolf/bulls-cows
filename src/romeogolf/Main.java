@@ -78,16 +78,19 @@ public class Main extends Application {
 	    i--;
 	}
 
+	// сцена на основе BorderPane
+	BorderPane bp = new BorderPane();
 
-	// создание сцены
-	primaryStage.setTitle("CheckOut");
-	GridPane grid = new GridPane();
+	HBox hbTop = new HBox();
+	hbTop.setAlignment(Pos.CENTER);
+	hbTop.setPadding(new Insets(15, 12, 15, 12));
 
-	grid.setAlignment(Pos.CENTER);
-	grid.setHgap(5);
-//	grid.setVgap(10);
-	grid.setPadding(new Insets(25, 25, 25, 25));
-//	grid.setGridLinesVisible(true);
+	HBox hbBottom = new HBox();
+	hbTop.setStyle("-fx-background-color: #336699;");
+	bp.setTop(hbTop);
+	hbBottom.setAlignment(Pos.CENTER);
+	bp.setBottom(hbBottom);
+
 
 	// ------ прорисовка кнопок и полей ввода цифр --------
 	btUp1 = new Button();
@@ -100,7 +103,6 @@ public class Main extends Application {
 	vb1.getChildren().add(btUp1);
 	vb1.getChildren().add(atfDigits[0]);
 	vb1.getChildren().add(btDown1);
-	grid.add(vb1, 0, 0);
 
 	btUp2 = new Button();
 	btDown2 = new Button();
@@ -113,7 +115,6 @@ public class Main extends Application {
 	vb2.getChildren().add(btUp2);
 	vb2.getChildren().add(atfDigits[1]);
 	vb2.getChildren().add(btDown2);
-	grid.add(vb2, 1, 0);
 
 	btUp3 = new Button();
 	btDown3 = new Button();
@@ -125,7 +126,6 @@ public class Main extends Application {
 	vb3.getChildren().add(btUp3);
 	vb3.getChildren().add(atfDigits[2]);
 	vb3.getChildren().add(btDown3);
-	grid.add(vb3, 2, 0);
 
 	btUp4 = new Button();
 	btDown4 = new Button();
@@ -137,8 +137,27 @@ public class Main extends Application {
 	vb4.getChildren().add(btUp4);
 	vb4.getChildren().add(atfDigits[3]);
 	vb4.getChildren().add(btDown4);
-	grid.add(vb4, 3, 0);
+
+	HBox hbDigits = new HBox();
+	hbDigits.getChildren().addAll(vb1, vb2, vb3, vb4);
+	hbTop.getChildren().add(hbDigits);
 	// -------- конец прорисовки --------------
+
+	// ----- нижн€€ панель ----------
+	final TextField tfBottom = new TextField();
+	Button btBottom = new Button("Test");
+	hbBottom.getChildren().addAll(tfBottom, btBottom);
+	btBottom.setOnAction(new EventHandler<ActionEvent>() {
+	    @Override public void handle(ActionEvent e) {
+		String s = "";
+		for(int i = 0; i <= 9; i++){
+		    s = s + Integer.toString(RandDigits[i]) + " ";
+		}
+		tfBottom.setText(s);
+	    }
+	});
+
+	// ------------------------------
 
 	// заполнение карты кнопка-номер и множества кнопок увеличени€
 	df = new HashMap<Button, Integer>();
@@ -156,7 +175,9 @@ public class Main extends Application {
 	sUp.add(btUp3);
 	sUp.add(btUp4);
 
-	Scene scene = new Scene(grid, 300, 275);
+	primaryStage.setTitle("CheckOut");
+	Scene scene = new Scene(bp, 300, 275);
+
 	primaryStage.setScene(scene); 
 	primaryStage.show();
     }
