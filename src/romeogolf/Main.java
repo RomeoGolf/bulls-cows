@@ -16,6 +16,7 @@ import javafx.scene.text.*;
 import javafx.scene.paint.*;
 import javafx.geometry.*;
 import java.util.*;
+import javafx.beans.value.*;
 
 public class Main extends Application {
     Integer[] Digits = new Integer[4];			// Цифры, вводимые пользователем
@@ -160,6 +161,12 @@ public class Main extends Application {
 	spCenter.setContent(vbCenter);
 	spCenter.setFitToWidth(true);
 
+	vbCenter.heightProperty().addListener(new ChangeListener() {
+	    @Override
+	    public void changed(ObservableValue observable, Object oldvalue, Object newValue) {
+		spCenter.setVvalue((Double)newValue );
+            }
+        });
 
 	// ------ прорисовка кнопок и полей ввода цифр --------
 	btUp1 = new Button();
@@ -227,6 +234,7 @@ public class Main extends Application {
 		hb.getChildren().add(t);
 //		hb.setStyle("-fx-background-color: #336699;");
 		vbCenter.getChildren().add(hb);
+		spCenter.setVvalue(spCenter.getVmax());
 	    }
 	});
 
