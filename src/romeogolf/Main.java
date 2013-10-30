@@ -301,19 +301,19 @@ public class Main extends Application {
     }
 
     // ========= заготовка самостоятельной отгадки ======
-    ArrayList<Integer[]> Shots_digits = new ArrayList<Integer[]>();
-    ArrayList<Integer> Shots_bulls = new ArrayList<Integer>();
-    ArrayList<Integer> Shots_cows = new ArrayList<Integer>();
-    ArrayList<Integer> DigitsForAnswer = new ArrayList<Integer>();
-    Integer[] NextShot;
-    Integer[] ShotDigitInDigits_index = new Integer[4];
+    ArrayList<Integer[]> Shots_digits = new ArrayList<Integer[]>();	// массивы цифр попыток
+    ArrayList<Integer> Shots_bulls = new ArrayList<Integer>();		// быки попыток
+    ArrayList<Integer> Shots_cows = new ArrayList<Integer>();		// коровы попыток
+    ArrayList<Integer> DigitsForAnswer = new ArrayList<Integer>();	// набор цифр для отгадки
+    Integer[] NextShot;							// массив очередной попытки
+    Integer[] ShotDigitInDigits_index = new Integer[4];			// индекс цифры попытки в наборе цифр
 
-    boolean IsSuitable(Integer[] a, int length) {
-	int BullCow = 0;
-	int Intersection = 0;
+    boolean IsSuitable(Integer[] a, int length) {   // проверка допустимости подмассива по результатам предыдущих попыток
+	int BullCow = 0;	// сумма быков и коров попытки
+	int Intersection = 0;	// мощность пересечения цифр старой попытки и цифр подмассива очередной попытки
 	for (int i = 0; i <= (Shots_digits.size() - 1); i++) {
 	    BullCow = Shots_bulls.get(i) + Shots_cows.get(i);
-	    for (int j = 0; j <= 3; j++) {
+	    for (int j = 0; j <= 3; j++) {	// подсчет мощности пересечения
 		for (int k = 0; k <= length; k++) {
 		    if (a[k] == Shots_digits.get(i)[j]){Intersection++;}
 		}
@@ -324,53 +324,53 @@ public class Main extends Application {
 	return true;
     }
 
-    void SelfAnswer() {
-	int ShotDigitIndex = 0;
-	int DigitsForAnswerIndex = 0;
+    void SelfAnswer() {	    // отгадка
+	int ShotDigitIndex = 0;		// индекс массива цифр очередной попытки
+	int DigitsForAnswerIndex = 0;	// индекс в наборе цифр
 
-	DigitMixer();
+	DigitMixer();			// перемешать цифры подготовить набор цифр
 	for(int i = 0; i < 10; i++) {
 //	    DigitsForAnswer.add(RndAllDigits[i]);
 	    DigitsForAnswer.add(i);
 	}
 	
-//	for(int limit = 0; limit < 10; limit++) {
-	while(bulls + cows < 4) {
-	    NextShot = new Integer[4];
+	while(bulls + cows < 4) {		// цикл до отгадки всех цифр
+	    NextShot = new Integer[4];		// формирование очередной попытки
 	    while (ShotDigitIndex < 4) {
-		NextShot[ShotDigitIndex] = DigitsForAnswer.get(DigitsForAnswerIndex);
-		ShotDigitInDigits_index[ShotDigitIndex] = DigitsForAnswerIndex;
+		NextShot[ShotDigitIndex] = DigitsForAnswer.get(DigitsForAnswerIndex);	// подстановка очередной цмфры
+		ShotDigitInDigits_index[ShotDigitIndex] = DigitsForAnswerIndex;		// запоминание индекса цифры в наборе
 
-		if (!IsSuitable(NextShot, ShotDigitIndex)) {
-		    DigitsForAnswerIndex++;
-		    if (DigitsForAnswerIndex > (DigitsForAnswer.size() - 1)) {
+		if (!IsSuitable(NextShot, ShotDigitIndex)) {		    // проверка набранного подмассива попытки на допустимость
+		    DigitsForAnswerIndex++;	// если очередная цифра не подошла - берем следующую
+		    if (DigitsForAnswerIndex > (DigitsForAnswer.size() - 1)) {  // проверка выхода за пределы набора
 //			Info("Первый перебор!");
-			ShotDigitIndex--;
-			if (ShotDigitIndex < 0) {
+			ShotDigitIndex--;   // если вышли - возврат в попытке на одну цифру назад
+			if (ShotDigitIndex < 0) {  // если слишком назад - ошибка в быках и коровах
 			    Info("Error");
 			    return;
 			}
-			DigitsForAnswerIndex = ShotDigitInDigits_index[ShotDigitIndex] + 1;
+			DigitsForAnswerIndex = ShotDigitInDigits_index[ShotDigitIndex] + 1; // для первого элемента отгадки берем слеюующую цифру из набора
 		    }
-		    if (ShotDigitIndex == 0) {
-			DigitsForAnswer.remove(0);
-			ShotDigitIndex = 0;
+		    if (ShotDigitIndex == 0) {		// если вернулись к младшему элементу - младшая цифра точно не верна, 
+			DigitsForAnswer.remove(0);	// ее нужно выкинуть из набора
+			ShotDigitIndex = 0;		// и обнулить индексы
 			DigitsForAnswerIndex = 0;
 		    }
 		    continue;
 
 		}
-		ShotDigitIndex++;
-		DigitsForAnswerIndex++;
+		ShotDigitIndex++;	    // переход к следующему элементу отгадки
+		DigitsForAnswerIndex++;	    // и следующей цифре набора
+		// если вышли за пределы набора, когда массив еще не кончился
 		if ((DigitsForAnswerIndex > DigitsForAnswer.size() - 1) && (ShotDigitIndex <= 3)) {
 //		    Info("Второй перебор!");
-		    ShotDigitIndex--;
+		    ShotDigitIndex--;	    // надо опять вернуться назад
 		    ShotDigitIndex--;
 		    if (ShotDigitIndex < 0) {
 			Info("Error");
 			return;
 		    }
-		    DigitsForAnswerIndex = ShotDigitInDigits_index[ShotDigitIndex] + 1;
+		    DigitsForAnswerIndex = ShotDigitInDigits_index[ShotDigitIndex] + 1;	    // и подставить другую цифру на спорное место
 		    if (ShotDigitIndex == 0) {
 			DigitsForAnswer.remove(0);
 //			Info(Integer.toString(DigitsForAnswer.size()));
@@ -380,15 +380,15 @@ public class Main extends Application {
 		    continue;
 		}
 	    }
-	    Digits = NextShot.clone();
-	    CalcBullCow();
-	    Shots_digits.add(NextShot);
+	    Digits = NextShot.clone();	    // подстановка свойства для вычисления быков и коров
+	    CalcBullCow();		    // вычисление
+	    Shots_digits.add(NextShot);	    // заполнение списков попыток очередной попыткой (цифры, быки, коровы)
 	    Shots_bulls.add(bulls);
 	    Shots_cows.add(cows);
 
-	    ShowNextShot(Shots_digits.size());
+	    ShowNextShot(Shots_digits.size());	// отображение
 
-	    ShotDigitIndex = 0;
+	    ShotDigitIndex = 0;		// обнуление индексов
 	    DigitsForAnswerIndex = 0;
 	}
     }
