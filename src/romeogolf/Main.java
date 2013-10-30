@@ -304,7 +304,7 @@ public class Main extends Application {
     ArrayList<Integer[]> Shots_digits = new ArrayList<Integer[]>();
     ArrayList<Integer> Shots_bulls = new ArrayList<Integer>();
     ArrayList<Integer> Shots_cows = new ArrayList<Integer>();
-    Integer[] DigitsForAnswer = new Integer[10];
+    ArrayList<Integer> DigitsForAnswer = new ArrayList<Integer>();
     Integer[] NextShot;
 
     boolean IsSuitable(Integer[] a, int length) {
