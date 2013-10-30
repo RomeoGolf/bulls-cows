@@ -334,7 +334,8 @@ public class Main extends Application {
 	    DigitsForAnswer.add(i);
 	}
 	
-	for(int limit = 0; limit < 10; limit++) {
+//	for(int limit = 0; limit < 10; limit++) {
+	while(bulls + cows < 4) {
 	    NextShot = new Integer[4];
 	    while (ShotDigitIndex < 4) {
 		NextShot[ShotDigitIndex] = DigitsForAnswer.get(DigitsForAnswerIndex);
