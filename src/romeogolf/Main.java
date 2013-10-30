@@ -338,26 +338,58 @@ public class Main extends Application {
 	    NextShot = new Integer[4];
 	    while (ShotDigitIndex < 4) {
 		NextShot[ShotDigitIndex] = DigitsForAnswer.get(DigitsForAnswerIndex);
+		ShotDigitInDigits_index[ShotDigitIndex] = DigitsForAnswerIndex;
+
 		if (!IsSuitable(NextShot, ShotDigitIndex)) {
+		    DigitsForAnswerIndex++;
+		    if (DigitsForAnswerIndex > (DigitsForAnswer.size() - 1)) {
+//			Info("Первый перебор!");
+			ShotDigitIndex--;
+			if (ShotDigitIndex < 0) {
+			    Info("Error");
+			    return;
+			}
+			DigitsForAnswerIndex = ShotDigitInDigits_index[ShotDigitIndex] + 1;
+		    }
+		    if (ShotDigitIndex == 0) {
+			DigitsForAnswer.remove(0);
+			ShotDigitIndex = 0;
+			DigitsForAnswerIndex = 0;
+		    }
+		    continue;
 
 		}
 		ShotDigitIndex++;
 		DigitsForAnswerIndex++;
-
-
+		if ((DigitsForAnswerIndex > DigitsForAnswer.size() - 1) && (ShotDigitIndex <= 3)) {
+//		    Info("Второй перебор!");
+		    ShotDigitIndex--;
+		    ShotDigitIndex--;
+		    if (ShotDigitIndex < 0) {
+			Info("Error");
+			return;
+		    }
+		    DigitsForAnswerIndex = ShotDigitInDigits_index[ShotDigitIndex] + 1;
+		    if (ShotDigitIndex == 0) {
+			DigitsForAnswer.remove(0);
+//			Info(Integer.toString(DigitsForAnswer.size()));
+			ShotDigitIndex = 0;
+			DigitsForAnswerIndex = 0;
+		    }
+		    continue;
+		}
 	    }
 	    Digits = NextShot.clone();
 	    CalcBullCow();
 	    Shots_digits.add(NextShot);
 	    Shots_bulls.add(bulls);
 	    Shots_cows.add(cows);
+
 	    ShowNextShot(Shots_digits.size());
 
 	    ShotDigitIndex = 0;
 	    DigitsForAnswerIndex = 0;
-
 	}
-	
     }
 }
 
