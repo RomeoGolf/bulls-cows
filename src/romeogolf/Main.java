@@ -17,6 +17,8 @@ import javafx.scene.paint.*;
 import javafx.geometry.*;
 import java.util.*;
 import javafx.beans.value.*;
+import javax.swing.JOptionPane;
+
 
 public class Main extends Application {
     Integer[] Digits = new Integer[4];			// Цифры, вводимые пользователем
@@ -40,6 +42,10 @@ public class Main extends Application {
 
     public Map<Button, Integer> df;	// карта соответствия кнопок цифрам
     public Set<Button> sUp;		// множество кнопок увеличения
+    public void Info(String s) {
+	JOptionPane.showMessageDialog(null, s, "Info", JOptionPane.INFORMATION_MESSAGE);
+    };
+
 
     // общий обработчик для всех кнопок
     EventHandler<ActionEvent> eh = new EventHandler<ActionEvent>() {
@@ -258,6 +264,7 @@ public class Main extends Application {
 //		}
 		s = Arrays.toString(RndDigits);
 		tfBottom.setText(s);
+		Info(s);
 	    }
 	});
 
