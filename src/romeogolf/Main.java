@@ -40,6 +40,9 @@ public class Main extends Application {
     public Button btDown3;
     public Button btDown4;
 
+    VBox vbCenter = new VBox();
+    ScrollPane spCenter = new ScrollPane();
+
     public Map<Button, Integer> df;	// карта соответствия кнопок цифрам
     public Set<Button> sUp;		// множество кнопок увеличения
     public void Info(String s) {
@@ -162,9 +165,7 @@ public class Main extends Application {
 	hbBottom.setAlignment(Pos.CENTER);
 	bp.setBottom(hbBottom);
 
-	final ScrollPane spCenter = new ScrollPane();
 	bp.setCenter(spCenter);
-	final VBox vbCenter = new VBox();
 	vbCenter.setAlignment(Pos.TOP_CENTER);
 	vbCenter.setSpacing(3);
 	spCenter.setContent(vbCenter);
