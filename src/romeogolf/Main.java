@@ -301,9 +301,9 @@ public class Main extends Application {
     }
 
     // ========= заготовка самостоятельной отгадки ======
-    ArrayList Shots_digits = new ArrayList();
-    ArrayList Shots_bulls = new ArrayList();
-    ArrayList Shots_cows = new ArrayList();
+    ArrayList<Integer[]> Shots_digits = new ArrayList<Integer[]>();
+    ArrayList<Integer> Shots_bulls = new ArrayList<Integer>();
+    ArrayList<Integer> Shots_cows = new ArrayList<Integer>();
     Integer[] DigitsForAnswer = new Integer[10];
     Integer[] NextShot;
 
