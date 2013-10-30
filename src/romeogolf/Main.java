@@ -236,17 +236,7 @@ public class Main extends Application {
 		if(IsDifferent()){return;}
 		trying++;
 		CalcBullCow();
-		String s = new String(Arrays.toString(Digits));
-		s = Integer.toString(trying) + ": " + s;
-		s = s + " -   " + Integer.toString(bulls) + " Á, " + Integer.toString(cows) + " Ê";
-		HBox hb = new HBox();
-		hb.setAlignment(Pos.CENTER);
-		Text t = new Text(s);
-		t.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
-		hb.getChildren().add(t);
-//		hb.setStyle("-fx-background-color: #336699;");
-		vbCenter.getChildren().add(hb);
-		spCenter.setVvalue(spCenter.getVmax());
+		ShowNextShot();
 	    }
 	});
 	Button btSelf = new Button("Self");
@@ -296,6 +286,19 @@ public class Main extends Application {
 	primaryStage.show();
     }
 
+    void ShowNextShot() {
+		String s = new String(Arrays.toString(Digits));
+		s = Integer.toString(trying) + ": " + s;
+		s = s + " -   " + Integer.toString(bulls) + " Á, " + Integer.toString(cows) + " Ê";
+		HBox hb = new HBox();
+		hb.setAlignment(Pos.CENTER);
+		Text t = new Text(s);
+		t.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
+		hb.getChildren().add(t);
+//		hb.setStyle("-fx-background-color: #336699;");
+		vbCenter.getChildren().add(hb);
+		spCenter.setVvalue(spCenter.getVmax());
+    }
     void SelfAnswer() {
 	
     }
