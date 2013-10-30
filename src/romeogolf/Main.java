@@ -319,6 +319,27 @@ public class Main extends Application {
 	DigitMixer();
 	DigitsForAnswer = RndAllDigits.clone();
 	
+	for(int limit = 0; limit < 10; limit++) {
+	    NextShot = new Integer[4];
+	    while (ShotDigitIndex < 4) {
+		NextShot[ShotDigitIndex] = DigitsForAnswer[DigitsForAnswerIndex];
+		if (!IsSuitable(NextShot, ShotDigitIndex)) {
+
+		}
+		ShotDigitIndex++;
+		DigitsForAnswerIndex++;
+
+
+	    }
+	    Digits = NextShot.clone();
+	    CalcBullCow();
+	    ShowNextShot();
+
+	    ShotDigitIndex = 0;
+	    DigitsForAnswerIndex = 0;
+
+	}
+	
     }
 }
 
