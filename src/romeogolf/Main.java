@@ -316,9 +316,9 @@ public class Main extends Application {
 	    for (int j = 0; j <= 3; j++) {
 		for (int k = 0; k <= length; k++) {
 		    if (a[k] == Shots_digits.get(i)[j]){Intersection++;}
-		    if (Intersection > BullCow) {return false;}
 		}
 	    }
+	    if (Intersection > BullCow) {return false;} // если пересечение больше числа угаданных - есть лишнее в отгадке
 	    Intersection = 0;
 	}
 	return true;
