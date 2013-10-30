@@ -309,7 +309,18 @@ public class Main extends Application {
     Integer[] ShotDigitInDigits_index = new Integer[4];
 
     boolean IsSuitable(Integer[] a, int length) {
-
+	int BullCow = 0;
+	int Intersection = 0;
+	for (int i = 0; i <= (Shots_digits.size() - 1); i++) {
+	    BullCow = Shots_bulls.get(i) + Shots_cows.get(i);
+	    for (int j = 0; j <= 3; j++) {
+		for (int k = 0; k <= length; k++) {
+		    if (a[k] == Shots_digits.get(i)[j]){Intersection++;}
+		    if (Intersection > BullCow) {return false;}
+		}
+	    }
+	    Intersection = 0;
+	}
 	return true;
     }
 
