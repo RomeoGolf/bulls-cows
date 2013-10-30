@@ -248,7 +248,13 @@ public class Main extends Application {
 		spCenter.setVvalue(spCenter.getVmax());
 	    }
 	});
-
+	Button btSelf = new Button("Self");
+	vbForTop.getChildren().add(btSelf);
+	btSelf.setOnAction(new EventHandler<ActionEvent>() {
+	    @Override public void handle(ActionEvent e) {
+		SelfAnswer();
+	    }
+	});
 	// -------- конец прорисовки --------------
 
 	// ----- нижняя панель ----------
@@ -264,7 +270,6 @@ public class Main extends Application {
 //		}
 		s = Arrays.toString(RndDigits);
 		tfBottom.setText(s);
-		Info(s);
 	    }
 	});
 
@@ -288,6 +293,10 @@ public class Main extends Application {
 
 	primaryStage.setScene(scene); 
 	primaryStage.show();
+    }
+
+    void SelfAnswer() {
+	
     }
 }
 
