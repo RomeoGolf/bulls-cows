@@ -112,7 +112,7 @@ public class Main extends Application {
 		bulls++;
 	    }
 	}
-	Set<Integer> s = new HashSet();
+	Set<Integer> s = new HashSet<Integer>();
 	for(int i = 0; i < 4; i++) {
 	    s.add(RndDigits[i]);
 	}
@@ -170,7 +170,7 @@ public class Main extends Application {
 	spCenter.setContent(vbCenter);
 	spCenter.setFitToWidth(true);
 
-	vbCenter.heightProperty().addListener(new ChangeListener() {
+	vbCenter.heightProperty().addListener(new ChangeListener<Object>() {
 	    @Override
 	    public void changed(ObservableValue observable, Object oldvalue, Object newValue) {
 		spCenter.setVvalue((Double)newValue );
