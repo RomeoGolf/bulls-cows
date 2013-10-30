@@ -348,6 +348,9 @@ public class Main extends Application {
 	    }
 	    Digits = NextShot.clone();
 	    CalcBullCow();
+	    Shots_digits.add(NextShot);
+	    Shots_bulls.add(bulls);
+	    Shots_cows.add(cows);
 	    ShowNextShot(Shots_digits.size());
 
 	    ShotDigitIndex = 0;
