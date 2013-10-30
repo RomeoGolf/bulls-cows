@@ -329,7 +329,10 @@ public class Main extends Application {
 	int DigitsForAnswerIndex = 0;
 
 	DigitMixer();
-	DigitsForAnswer = RndAllDigits.clone();
+	for(int i = 0; i < 10; i++) {
+//	    DigitsForAnswer.add(RndAllDigits[i]);
+	    DigitsForAnswer.add(i);
+	}
 	
 	for(int limit = 0; limit < 10; limit++) {
 	    NextShot = new Integer[4];
