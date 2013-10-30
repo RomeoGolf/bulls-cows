@@ -313,6 +313,9 @@ public class Main extends Application {
     }
 
     void SelfAnswer() {
+	int ShotDigitIndex = 0;
+	int DigitsForAnswerIndex = 0;
+
 	DigitMixer();
 	DigitsForAnswer = RndAllDigits.clone();
 	
