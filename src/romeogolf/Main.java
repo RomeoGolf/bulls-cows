@@ -337,7 +337,7 @@ public class Main extends Application {
 	for(int limit = 0; limit < 10; limit++) {
 	    NextShot = new Integer[4];
 	    while (ShotDigitIndex < 4) {
-		NextShot[ShotDigitIndex] = DigitsForAnswer[DigitsForAnswerIndex];
+		NextShot[ShotDigitIndex] = DigitsForAnswer.get(DigitsForAnswerIndex);
 		if (!IsSuitable(NextShot, ShotDigitIndex)) {
 
 		}
