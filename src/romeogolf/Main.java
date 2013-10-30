@@ -299,6 +299,13 @@ public class Main extends Application {
 		vbCenter.getChildren().add(hb);
 		spCenter.setVvalue(spCenter.getVmax());
     }
+
+    // ========= заготовка самостоятельной отгадки ======
+    ArrayList Shots_digits = new ArrayList();
+    ArrayList Shots_bulls = new ArrayList();
+    ArrayList Shots_cows = new ArrayList();
+    Integer[] DigitsForAnswer = new Integer[10];
+    Integer[] NextShot;
     void SelfAnswer() {
 	
     }
