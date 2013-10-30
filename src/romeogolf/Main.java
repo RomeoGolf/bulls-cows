@@ -306,6 +306,12 @@ public class Main extends Application {
     ArrayList Shots_cows = new ArrayList();
     Integer[] DigitsForAnswer = new Integer[10];
     Integer[] NextShot;
+
+    boolean IsSuitable(Integer[] a, int length) {
+
+	return true;
+    }
+
     void SelfAnswer() {
 	
     }
