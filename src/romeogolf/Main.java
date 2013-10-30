@@ -236,7 +236,7 @@ public class Main extends Application {
 		if(IsDifferent()){return;}
 		trying++;
 		CalcBullCow();
-		ShowNextShot();
+		ShowNextShot(trying);
 	    }
 	});
 	Button btSelf = new Button("Self");
@@ -286,7 +286,7 @@ public class Main extends Application {
 	primaryStage.show();
     }
 
-    void ShowNextShot() {
+    void ShowNextShot(int trying) {
 		String s = new String(Arrays.toString(Digits));
 		s = Integer.toString(trying) + ": " + s;
 		s = s + " -   " + Integer.toString(bulls) + " Á, " + Integer.toString(cows) + " Ê";
@@ -333,7 +333,7 @@ public class Main extends Application {
 	    }
 	    Digits = NextShot.clone();
 	    CalcBullCow();
-	    ShowNextShot();
+	    ShowNextShot(Shots_digits.size());
 
 	    ShotDigitIndex = 0;
 	    DigitsForAnswerIndex = 0;
