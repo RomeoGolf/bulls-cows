@@ -324,6 +324,17 @@ public class Main extends Application {
 	return true;
     }
 
+    boolean IsSuitableBullws(Integer[] Digits, Integer[] Indexes, int Num) {	// проверка на допустимость подмассива быков
+	int coincidence = 0;
+	for (int i = 0; i <= (Shots_digits.size() - 1); i++) {
+	    for(int j = 0; j < Num; j++) {
+		if (Digits[j] == Shots_digits.get(i)[Indexes[j]]) {coincidence++;}
+	    }
+	    if (coincidence > Shots_bulls.get(i)) {return false;}
+	}
+	return true;
+    }
+
     void SelfAnswer() {	    // отгадка
 	int ShotDigitIndex = 0;		// индекс массива цифр очередной попытки
 	int DigitsForAnswerIndex = 0;	// индекс в наборе цифр
