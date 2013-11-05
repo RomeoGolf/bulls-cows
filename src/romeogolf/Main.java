@@ -470,7 +470,8 @@ public class Main extends Application {
 	    }
 	    Digits = NextShot.clone();	    // подстановка свойства для вычисления быков и коров
 	    CalcBullCow();		    // вычисление
-	    Shots_digits.add(NextShot);	    // заполнение списков попыток очередной попыткой (цифры, быки, коровы)
+	    Shots_digits.add(NextShot);	    // заполнение списков попыток очередной попыткой
+					    // (цифры, быки, коровы)
 	    Shots_bulls.add(bulls);
 	    Shots_cows.add(cows);
 
