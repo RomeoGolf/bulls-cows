@@ -381,6 +381,7 @@ public class Main extends Application {
 	    if(IsIndexValid(i)) {
 		if(IsSuitableBulls(i)) {
 		    i++;
+		    if(i > 3) {break;}
 		    Indexes.set(i, -1);
 		    continue;
 		} else {
