@@ -346,7 +346,7 @@ public class Main extends Application {
     ArrayList<Integer> Indexes = new ArrayList<Integer>();
 
     // проверка на допустимость подмассива быков
-    boolean IsSuitableBullws(int Max) {
+    boolean IsSuitableBulls(int Max) {
 	int coincidence = 0;
 	for (int i = 0; i <= (Shots_digits.size() - 1); i++) {
 	    for(int j = 0; j <= Max; j++) {
