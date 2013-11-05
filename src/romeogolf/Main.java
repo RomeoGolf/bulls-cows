@@ -373,8 +373,29 @@ public class Main extends Application {
 
     // попытка расстановки быков
     boolean TrySetBulls() {
+	for(int i = 0; i < 4; i++) {ShotDigits.set(i, NextShot[i]);}
 	int i = 0;
-
+	Indexes.set(i, -1);
+	while (i < 4) {
+	    Indexes.set(i, Indexes.get(i) + 1);
+	    if(IsIndexValid(i)) {
+		if(IsSuitableBulls(i)) {
+		    i++;
+		    Indexes.set(i, -1);
+		    continue;
+		} else {
+		    continue;
+		}
+	    } else {
+		i--;
+		if(i < 0) {
+		    // error
+		    return false;
+		} else {
+		    continue;
+		}
+	    }
+	}
 	return true;
     }
 
