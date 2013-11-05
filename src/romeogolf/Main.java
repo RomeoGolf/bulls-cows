@@ -295,7 +295,7 @@ public class Main extends Application {
 		Text t = new Text(s);
 		t.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
 		hb.getChildren().add(t);
-//		hb.setStyle("-fx-background-color: #336699;");
+		hb.setStyle("-fx-background-color: #33FFFF;");
 		vbCenter.getChildren().add(hb);
 		spCenter.setVvalue(spCenter.getVmax());
     }
