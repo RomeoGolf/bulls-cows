@@ -411,8 +411,8 @@ public class Main extends Application {
 
 	DigitMixer();			// перемешать цифры подготовить набор цифр
 	for(int i = 0; i < 10; i++) {
-//	    DigitsForAnswer.add(RndAllDigits[i]);
-	    DigitsForAnswer.add(i);
+	    DigitsForAnswer.add(RndAllDigits[i]);
+//	    DigitsForAnswer.add(i);
 	}
 	
 	while(bulls + cows < 4) {		// цикл до отгадки всех цифр
