@@ -134,7 +134,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
 	trying = 0;
 
-	for(int i = 0; i <= 3; i++){		// инициализация цифр, создание полей ввода
+	// инициализация цифр, создание полей ввода
+	for(int i = 0; i <= 3; i++){
 	    Digits[i] = i; //rg.nextInt(9);
 	    atfDigits[i] = new TextField(Integer.toString(Digits[i]));
 	    atfDigits[i].setPrefColumnCount(1);
@@ -289,7 +290,8 @@ public class Main extends Application {
     void ShowNextShot(int trying) {
 		String s = new String(Arrays.toString(Digits));
 		s = Integer.toString(trying) + ": " + s;
-		s = s + " -   " + Integer.toString(bulls) + " Б, " + Integer.toString(cows) + " К";
+		s = s + " -   " + Integer.toString(bulls) + " Б, " +
+		    Integer.toString(cows) + " К";
 		HBox hb = new HBox();
 		hb.setAlignment(Pos.CENTER);
 		Text t = new Text(s);
@@ -317,12 +319,14 @@ public class Main extends Application {
     ArrayList<Integer> Shots_bulls = new ArrayList<Integer>();		// быки попыток
     ArrayList<Integer> Shots_cows = new ArrayList<Integer>();		// коровы попыток
     ArrayList<Integer> DigitsForAnswer = new ArrayList<Integer>();	// набор цифр для отгадки
-    Integer[] NextShot;							// массив очередной попытки
-    Integer[] ShotDigitInDigits_index = new Integer[4];			// индекс цифры попытки в наборе цифр
+    Integer[] NextShot;					// массив очередной попытки
+    Integer[] ShotDigitInDigits_index = new Integer[4];	// индекс цифры попытки в наборе цифр
 
-    boolean IsSuitable(Integer[] a, int length) {   // проверка допустимости подмассива по результатам предыдущих попыток
+    // проверка допустимости подмассива по результатам предыдущих попыток
+    boolean IsSuitable(Integer[] a, int length) {
 	int BullCow = 0;	// сумма быков и коров попытки
-	int Intersection = 0;	// мощность пересечения цифр старой попытки и цифр подмассива очередной попытки
+	int Intersection = 0;	// мощность пересечения цифр старой попытки
+				//      и цифр подмассива очередной попытки
 	for (int i = 0; i <= (Shots_digits.size() - 1); i++) {
 	    BullCow = Shots_bulls.get(i) + Shots_cows.get(i);
 	    for (int j = 0; j <= 3; j++) {	// подсчет мощности пересечения
@@ -330,13 +334,15 @@ public class Main extends Application {
 		    if (a[k] == Shots_digits.get(i)[j]){Intersection++;}
 		}
 	    }
-	    if (Intersection > BullCow) {return false;} // если пересечение больше числа угаданных - есть лишнее в отгадке
+	    // если пересечение больше числа угаданных - есть лишнее в отгадке
+	    if (Intersection > BullCow) {return false;}
 	    Intersection = 0;
 	}
 	return true;
     }
 
-    boolean IsSuitableBullws(Integer[] Digits, Integer[] Indexes, int Num) {	// проверка на допустимость подмассива быков
+    // проверка на допустимость подмассива быков
+    boolean IsSuitableBullws(Integer[] Digits, Integer[] Indexes, int Num) {
 	int coincidence = 0;
 	for (int i = 0; i <= (Shots_digits.size() - 1); i++) {
 	    for(int j = 0; j < Num; j++) {
@@ -360,21 +366,29 @@ public class Main extends Application {
 	while(bulls + cows < 4) {		// цикл до отгадки всех цифр
 	    NextShot = new Integer[4];		// формирование очередной попытки
 	    while (ShotDigitIndex < 4) {
-		NextShot[ShotDigitIndex] = DigitsForAnswer.get(DigitsForAnswerIndex);	// подстановка очередной цмфры
-		ShotDigitInDigits_index[ShotDigitIndex] = DigitsForAnswerIndex;		// запоминание индекса цифры в наборе
-
-		if (!IsSuitable(NextShot, ShotDigitIndex)) {		    // проверка набранного подмассива попытки на допустимость
-		    DigitsForAnswerIndex++;	// если очередная цифра не подошла - берем следующую
-		    if (DigitsForAnswerIndex > (DigitsForAnswer.size() - 1)) {  // проверка выхода за пределы набора
+		// подстановка очередной цмфры
+		NextShot[ShotDigitIndex] = DigitsForAnswer.get(DigitsForAnswerIndex);
+		// запоминание индекса цифры в наборе
+		ShotDigitInDigits_index[ShotDigitIndex] = DigitsForAnswerIndex;
+		// проверка набранного подмассива попытки на допустимость
+		if (!IsSuitable(NextShot, ShotDigitIndex)) {
+		    // если очередная цифра не подошла - берем следующую
+		    DigitsForAnswerIndex++;
+		     // проверка выхода за пределы набора
+		    if (DigitsForAnswerIndex > (DigitsForAnswer.size() - 1)) {
 //			Info("Первый перебор!");
-			ShotDigitIndex--;   // если вышли - возврат в попытке на одну цифру назад
-			if (ShotDigitIndex < 0) {  // если слишком назад - ошибка в быках и коровах
+			// если вышли - возврат в попытке на одну цифру назад
+			ShotDigitIndex--;
+			// если слишком назад - ошибка в быках и коровах
+			if (ShotDigitIndex < 0) {
 			    Info("Error");
 			    return;
 			}
-			DigitsForAnswerIndex = ShotDigitInDigits_index[ShotDigitIndex] + 1; // для первого элемента отгадки берем слеюующую цифру из набора
+			// для первого элемента отгадки берем слеюующую цифру из набора
+			DigitsForAnswerIndex = ShotDigitInDigits_index[ShotDigitIndex] + 1;
 		    }
-		    if (ShotDigitIndex == 0) {		// если вернулись к младшему элементу - младшая цифра точно не верна, 
+		    // если вернулись к младшему элементу - младшая цифра точно не верна,
+		    if (ShotDigitIndex == 0) {
 			DigitsForAnswer.remove(0);	// ее нужно выкинуть из набора
 			ShotDigitIndex = 0;		// и обнулить индексы
 			DigitsForAnswerIndex = 0;
@@ -385,7 +399,8 @@ public class Main extends Application {
 		ShotDigitIndex++;	    // переход к следующему элементу отгадки
 		DigitsForAnswerIndex++;	    // и следующей цифре набора
 		// если вышли за пределы набора, когда массив еще не кончился
-		if ((DigitsForAnswerIndex > DigitsForAnswer.size() - 1) && (ShotDigitIndex <= 3)) {
+		if ((DigitsForAnswerIndex > DigitsForAnswer.size() - 1) &&
+			(ShotDigitIndex <= 3)) {
 //		    Info("Второй перебор!");
 		    ShotDigitIndex--;	    // надо опять вернуться назад
 		    ShotDigitIndex--;
@@ -393,7 +408,8 @@ public class Main extends Application {
 			Info("Error");
 			return;
 		    }
-		    DigitsForAnswerIndex = ShotDigitInDigits_index[ShotDigitIndex] + 1;	    // и подставить другую цифру на спорное место
+		    // и подставить другую цифру на спорное место
+		    DigitsForAnswerIndex = ShotDigitInDigits_index[ShotDigitIndex] + 1;
 		    if (ShotDigitIndex == 0) {
 			DigitsForAnswer.remove(0);
 //			Info(Integer.toString(DigitsForAnswer.size()));
