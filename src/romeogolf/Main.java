@@ -54,8 +54,8 @@ public class Main extends Application {
     EventHandler<ActionEvent> eh = new EventHandler<ActionEvent>() {
 	@Override
 	public void handle(ActionEvent e) {
-	    int Num = df.get(e.getSource());		// получение номера цифры, чью кнопку нажали
-	    if (sUp.contains(e.getSource())){		// изменение цифры
+	    int Num = df.get(e.getSource());	// получение номера цифры, чью кнопку нажали
+	    if (sUp.contains(e.getSource())){	// изменение цифры
 		Digits[Num]++;
 	    } else {
 		Digits[Num]--;
