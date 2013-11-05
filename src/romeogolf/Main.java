@@ -341,12 +341,16 @@ public class Main extends Application {
 	return true;
     }
 
+    // Цифры и индексы текущей попытки для проверки на соответствие быкам
+    ArrayList<Integer> ShotDigits = new ArrayList<Integer>();
+    ArrayList<Integer> Indexes = new ArrayList<Integer>();
+
     // проверка на допустимость подмассива быков
-    boolean IsSuitableBullws(Integer[] Digits, Integer[] Indexes, int Num) {
+    boolean IsSuitableBullws(int Max) {
 	int coincidence = 0;
 	for (int i = 0; i <= (Shots_digits.size() - 1); i++) {
-	    for(int j = 0; j < Num; j++) {
-		if (Digits[j] == Shots_digits.get(i)[Indexes[j]]) {coincidence++;}
+	    for(int j = 0; j <= Max; j++) {
+		if (ShotDigits.get(j) == Shots_digits.get(i)[Indexes.get(j)]) {coincidence++;}
 	    }
 	    if (coincidence > Shots_bulls.get(i)) {return false;}
 	}
