@@ -379,6 +379,11 @@ public class Main extends Application {
     }
 
     void SelfAnswer() {	    // отгадка
+	Indexes.clear();
+	for(int i = 0; i < 4; i++) {Indexes.add(i);}
+	ShotDigits.clear();
+	ShotDigits.addAll(Indexes);
+
 	int ShotDigitIndex = 0;		// индекс массива цифр очередной попытки
 	int DigitsForAnswerIndex = 0;	// индекс в наборе цифр
 
