@@ -479,8 +479,28 @@ public class Main extends Application {
 	    ShotDigitIndex = 0;		// обнуление индексов
 	    DigitsForAnswerIndex = 0;
 	}
+	ShowStepInfo("Цифры получены.");
+	while(bulls < 4) {
 	    for(int i = 0; i < 4; i++) {ShotDigits.set(i, NextShot[i]);}
 	    for(int i = 0; i < 4; i++) {Indexes.set(i, -1);}
+
+	    if(TrySetBulls()) {
+		for(int n = 0; n < 4; n++) {
+		    Digits[Indexes.get(n)] = ShotDigits.get(n);
+		}
+	    } else {
+		ShowStepInfo("bull error");
+		Digits = NextShot.clone();
+	    }
+	    CalcBullCow();
+	    Integer[] NextShot2 = new Integer[4];
+	    NextShot2 = Digits.clone();
+	    Shots_digits.add(NextShot2);
+	    Shots_bulls.add(bulls);
+	    Shots_cows.add(cows);
+	    ShowNextShot(Shots_digits.size());	// отображение
+
+	}
     }
 }
 
