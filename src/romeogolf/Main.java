@@ -357,6 +357,22 @@ public class Main extends Application {
 	return true;
     }
 
+    // Проверка пересечения индексов с коррекцией
+    boolean IsIndexValid(int max) {
+	Set<Integer> Ind = new HashSet<Integer>();
+	while(Indexes.get(max) < 4) {
+	    for(int i = 0; i < max; i++) {Ind.add(Indexes.get(i));}
+	    if(Ind.contains(Indexes.get(max))) {
+		Indexes.set(max, Indexes.get(max) + 1);
+	    } else {
+		return true;
+	    }
+	}
+	return false;
+    }
+
+
+
     void SelfAnswer() {	    // отгадка
 	int ShotDigitIndex = 0;		// индекс массива цифр очередной попытки
 	int DigitsForAnswerIndex = 0;	// индекс в наборе цифр
