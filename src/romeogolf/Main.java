@@ -361,7 +361,7 @@ public class Main extends Application {
     boolean IsIndexValid(int max) {
 	Set<Integer> Ind = new HashSet<Integer>();
 	while(Indexes.get(max) < 4) {
-	    for(int i = 0; i < max; i++) {Ind.add(Indexes.get(i));}
+	    Ind.addAll(Indexes);
 	    if(Ind.contains(Indexes.get(max))) {
 		Indexes.set(max, Indexes.get(max) + 1);
 	    } else {
@@ -371,7 +371,12 @@ public class Main extends Application {
 	return false;
     }
 
+    // попытка расстановки быков
+    boolean TrySetBulls() {
+	int i = 0;
 
+	return true;
+    }
 
     void SelfAnswer() {	    // отгадка
 	int ShotDigitIndex = 0;		// индекс массива цифр очередной попытки
