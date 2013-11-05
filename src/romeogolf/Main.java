@@ -374,7 +374,6 @@ public class Main extends Application {
 
     // попытка расстановки быков
     boolean TrySetBulls() {
-	for(int i = 0; i < 4; i++) {ShotDigits.set(i, NextShot[i]);}
 	int i = 0;
 	Indexes.set(i, -1);
 	while (i < 4) {
@@ -482,6 +481,8 @@ public class Main extends Application {
 	    ShotDigitIndex = 0;		// обнуление индексов
 	    DigitsForAnswerIndex = 0;
 	}
+	    for(int i = 0; i < 4; i++) {ShotDigits.set(i, NextShot[i]);}
+	    for(int i = 0; i < 4; i++) {Indexes.set(i, -1);}
     }
 }
 
