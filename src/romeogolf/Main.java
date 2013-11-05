@@ -360,10 +360,11 @@ public class Main extends Application {
     // Проверка пересечения индексов с коррекцией
     boolean IsIndexValid(int max) {
 	Set<Integer> Ind = new HashSet<Integer>();
+	for(int i = 0; i < max; i++) {Ind.add(Indexes.get(i));}
 	while(Indexes.get(max) < 4) {
-	    Ind.addAll(Indexes);
 	    if(Ind.contains(Indexes.get(max))) {
 		Indexes.set(max, Indexes.get(max) + 1);
+		continue;
 	    } else {
 		return true;
 	    }
