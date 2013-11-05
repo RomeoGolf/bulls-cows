@@ -432,7 +432,7 @@ public class Main extends Application {
 			ShotDigitIndex--;
 			// если слишком назад - ошибка в быках и коровах
 			if (ShotDigitIndex < 0) {
-			    Info("Error");
+			    // есть ошибка в переданных ранее быках и коровах // Info("Error");
 			    return;
 			}
 			// для первого элемента отгадки берем слеюующую цифру из набора
@@ -455,7 +455,7 @@ public class Main extends Application {
 		    ShotDigitIndex--;	    // надо опять вернуться назад
 		    ShotDigitIndex--;
 		    if (ShotDigitIndex < 0) {
-			Info("Error");
+			// есть ошибка в ранее переданных быках и коровах // Info("Error");
 			return;
 		    }
 		    // и подставить другую цифру на спорное место
@@ -477,7 +477,7 @@ public class Main extends Application {
 		    Digits[Indexes.get(n)] = ShotDigits.get(n);
 		}
 	    } else {
-		ShowStepInfo("bull error");
+		// есть несочетаемый вариант быков в цифрах // ShowStepInfo("bull error");
 		Digits = NextShot.clone();
 	    }
 
@@ -497,7 +497,7 @@ public class Main extends Application {
 	    ShotDigitIndex = 0;		// обнуление индексов
 	    DigitsForAnswerIndex = 0;
 	}
-	ShowStepInfo("Цифры получены.");
+//	ShowStepInfo("Цифры получены.");
 	while(bulls < 4) {
 	    for(int i = 0; i < 4; i++) {ShotDigits.set(i, NextShot[i]);}
 	    for(int i = 0; i < 4; i++) {Indexes.set(i, -1);}
@@ -507,7 +507,7 @@ public class Main extends Application {
 		    Digits[Indexes.get(n)] = ShotDigits.get(n);
 		}
 	    } else {
-		ShowStepInfo("bull error");
+		// есть несочетаемый вариант быков в цифрах // ShowStepInfo("bull error");
 		Digits = NextShot.clone();
 	    }
 	    CalcBullCow();
