@@ -428,7 +428,6 @@ public class Main extends Application {
 		    DigitsForAnswerIndex++;
 		     // проверка выхода за пределы набора
 		    if (DigitsForAnswerIndex > (DigitsForAnswer.size() - 1)) {
-//			Info("ѕервый перебор!");
 			// если вышли - возврат в попытке на одну цифру назад
 			ShotDigitIndex--;
 			// если слишком назад - ошибка в быках и коровах
@@ -453,7 +452,6 @@ public class Main extends Application {
 		// если вышли за пределы набора, когда массив еще не кончилс€
 		if ((DigitsForAnswerIndex > DigitsForAnswer.size() - 1) &&
 			(ShotDigitIndex <= 3)) {
-//		    Info("¬торой перебор!");
 		    ShotDigitIndex--;	    // надо оп€ть вернутьс€ назад
 		    ShotDigitIndex--;
 		    if (ShotDigitIndex < 0) {
@@ -464,7 +462,6 @@ public class Main extends Application {
 		    DigitsForAnswerIndex = ShotDigitInDigits_index[ShotDigitIndex] + 1;
 		    if (ShotDigitIndex == 0) {
 			DigitsForAnswer.remove(0);
-//			Info(Integer.toString(DigitsForAnswer.size()));
 			ShotDigitIndex = 0;
 			DigitsForAnswerIndex = 0;
 		    }
