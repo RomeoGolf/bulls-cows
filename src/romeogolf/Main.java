@@ -300,6 +300,18 @@ public class Main extends Application {
 		spCenter.setVvalue(spCenter.getVmax());
     }
 
+    void ShowStepInfo(String s) {
+	HBox hb = new HBox();
+	hb.setAlignment(Pos.CENTER);
+	Text t = new Text(s);
+	t.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
+	hb.getChildren().add(t);
+//	hb.setStyle("-fx-background-color: #336699;");
+	vbCenter.getChildren().add(hb);
+	spCenter.setVvalue(spCenter.getVmax());
+    }
+
+
     // ========= заготовка самостоятельной отгадки ======
     ArrayList<Integer[]> Shots_digits = new ArrayList<Integer[]>();	// массивы цифр попыток
     ArrayList<Integer> Shots_bulls = new ArrayList<Integer>();		// быки попыток
