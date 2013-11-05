@@ -347,8 +347,8 @@ public class Main extends Application {
 
     // проверка на допустимость подмассива быков
     boolean IsSuitableBulls(int Max) {
-	int coincidence = 0;
 	for (int i = 0; i <= (Shots_digits.size() - 1); i++) {
+	    int coincidence = 0;
 	    for(int j = 0; j <= Max; j++) {
 		if (ShotDigits.get(j) == Shots_digits.get(i)[Indexes.get(j)]) {coincidence++;}
 	    }
