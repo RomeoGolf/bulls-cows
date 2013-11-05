@@ -468,9 +468,26 @@ public class Main extends Application {
 		    continue;
 		}
 	    }
-	    Digits = NextShot.clone();	    // подстановка свойства для вычисления быков и коров
+
+	    for(int i = 0; i < 4; i++) {ShotDigits.set(i, NextShot[i]);}
+	    for(int i = 0; i < 4; i++) {Indexes.set(i, -1);}
+
+	    if(TrySetBulls()) {
+		for(int n = 0; n < 4; n++) {
+		    Digits[Indexes.get(n)] = ShotDigits.get(n);
+		}
+	    } else {
+		ShowStepInfo("bull error");
+		Digits = NextShot.clone();
+	    }
+
+
+//	    Digits = NextShot.clone();	    // подстановка свойства для вычисления быков и коров
 	    CalcBullCow();		    // вычисление
-	    Shots_digits.add(NextShot);	    // заполнение списков попыток очередной попыткой
+	    Integer[] TmpBufI = new Integer[4];
+	    for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
+	    Shots_digits.add(TmpBufI);	    // заполнение списков попыток очередной попыткой
+//	    Shots_digits.add(NextShot);	    // заполнение списков попыток очередной попыткой
 					    // (цифры, быки, коровы)
 	    Shots_bulls.add(bulls);
 	    Shots_cows.add(cows);
