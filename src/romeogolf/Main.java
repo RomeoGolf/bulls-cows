@@ -6,14 +6,9 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.*;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.stage.*;
-import javafx.scene.*;
 import javafx.scene.text.*;
-import javafx.scene.paint.*;
 import javafx.geometry.*;
 import java.util.*;
 import javafx.beans.value.*;
@@ -174,7 +169,7 @@ public class Main extends Application {
 
 	vbCenter.heightProperty().addListener(new ChangeListener<Object>() {
 	    @Override
-	    public void changed(ObservableValue observable, Object oldvalue, Object newValue) {
+	    public void changed(ObservableValue<?> observable, Object oldvalue, Object newValue) {
 		spCenter.setVvalue((Double)newValue );
             }
         });
