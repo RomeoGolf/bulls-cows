@@ -37,6 +37,7 @@ public class DigitCurator {
     	for(int i = 0; i <= 9; i++){
     		RndAllDigits[i] = i;
     	}
+    	this.Init();
 	}
 
 }
