@@ -61,7 +61,6 @@ public class Main extends Application {
     	};
     };
 
-
     boolean IsDifferent() {
     	for(int i = 0; i < 4; i++) {
     		atfDigits[i].setStyle("-fx-text-fill: #000000;");
@@ -77,8 +76,6 @@ public class Main extends Application {
     	}
     	return false;
     };
-
-
 
     void CalcBullCow() {
     	bulls = 0;
@@ -235,7 +232,6 @@ public class Main extends Application {
     			tfBottom.setText(s);
     		}
     	});
-
     	// ------------------------------
 
     	// заполнение карты кнопка-номер и множества кнопок увеличения
@@ -283,7 +279,6 @@ public class Main extends Application {
     	vbCenter.getChildren().add(hb);
     	spCenter.setVvalue(spCenter.getVmax());
     }
-
 
     // ========= заготовка самостоятельной отгадки ======
     ArrayList<Integer[]> Shots_digits = new ArrayList<Integer[]>();	// массивы цифр попыток
@@ -486,7 +481,6 @@ public class Main extends Application {
     		Shots_bulls.add(bulls);
     		Shots_cows.add(cows);
     		ShowNextShot(Shots_digits.size());	// отображение
-
     	}
     }
 }
