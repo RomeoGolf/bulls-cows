@@ -19,7 +19,7 @@ import romeogolf.DigitCurator;
 public class Main extends Application {
 	DigitCurator curator = new DigitCurator();
     Integer[] Digits = new Integer[4];			// Цифры, вводимые пользователем
-    TextField[] atfDigits = new TextField[4];		// Поля ввода цифр
+    TextField[] atfDigits = new TextField[4];	// Поля ввода цифр
     int bulls;
     int cows;
     int trying;
@@ -38,7 +38,7 @@ public class Main extends Application {
     ScrollPane spCenter = new ScrollPane();
 
     public Map<Button, Integer> df;	// карта соответствия кнопок цифрам
-    public Set<Button> sUp;		// множество кнопок увеличения
+    public Set<Button> sUp;			// множество кнопок увеличения
     public void Info(String s) {
     	JOptionPane.showMessageDialog(null, s, "Info", JOptionPane.INFORMATION_MESSAGE);
     };
@@ -225,9 +225,6 @@ public class Main extends Application {
     		public void handle(ActionEvent e) {
     			curator.DigitMixer();
     			String s = "";
-//		for(int i = 0; i <= 9; i++){
-//		    s = s + Integer.toString(RndAllDigits[i]) + " ";
-//		}
     			s = Arrays.toString(curator.RndDigits);
     			tfBottom.setText(s);
     		}
@@ -275,7 +272,7 @@ public class Main extends Application {
     	Text t = new Text(s);
     	t.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
     	hb.getChildren().add(t);
-//	hb.setStyle("-fx-background-color: #336699;");
+//		hb.setStyle("-fx-background-color: #336699;");
     	vbCenter.getChildren().add(hb);
     	spCenter.setVvalue(spCenter.getVmax());
     }
@@ -378,7 +375,6 @@ public class Main extends Application {
     	curator.DigitMixer();			// перемешать цифры подготовить набор цифр
     	for(int i = 0; i < 10; i++) {
     		DigitsForAnswer.add(curator.RndAllDigits[i]);
-//	    DigitsForAnswer.add(i);
     	}
 
     	while(bulls + cows < 4) {		// цикл до отгадки всех цифр
@@ -446,13 +442,10 @@ public class Main extends Application {
     			Digits = NextShot.clone();
     		}
 
-//	    Digits = NextShot.clone();	    // подстановка свойства для вычисления быков и коров
     		CalcBullCow();		    // вычисление
     		Integer[] TmpBufI = new Integer[4];
     		for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
     		Shots_digits.add(TmpBufI);	    // заполнение списков попыток очередной попыткой
-//	    Shots_digits.add(NextShot);	    // заполнение списков попыток очередной попыткой
-					    // (цифры, быки, коровы)
     		Shots_bulls.add(bulls);
     		Shots_cows.add(cows);
 
@@ -461,7 +454,6 @@ public class Main extends Application {
     		ShotDigitIndex = 0;		// обнуление индексов
     		DigitsForAnswerIndex = 0;
     	}
-//	ShowStepInfo("Цифры получены.");
     	while(bulls < 4) {
     		for(int i = 0; i < 4; i++) {ShotDigits.set(i, NextShot[i]);}
     		for(int i = 0; i < 4; i++) {Indexes.set(i, -1);}
@@ -471,7 +463,8 @@ public class Main extends Application {
     				Digits[Indexes.get(n)] = ShotDigits.get(n);
     			}
     		} else {
-    			// есть несочетаемый вариант быков в цифрах // ShowStepInfo("bull error");
+    			// есть несочетаемый вариант быков в цифрах
+    			// ShowStepInfo("bull error");
     			Digits = NextShot.clone();
     		}
     		CalcBullCow();
