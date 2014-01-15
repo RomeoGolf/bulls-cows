@@ -13,14 +13,13 @@ import javafx.geometry.*;
 import java.util.*;
 import javafx.beans.value.*;
 import javax.swing.JOptionPane;
+import romeogolf.DigitCurator;
 
 
 public class Main extends Application {
+	DigitCurator curator = new DigitCurator();
     Integer[] Digits = new Integer[4];			// Цифры, вводимые пользователем
-    Integer[] RndDigits = new Integer[4];		// "загаданные" цифры
     TextField[] atfDigits = new TextField[4];		// Поля ввода цифр
-    Random rg = new Random(System.currentTimeMillis());	// Генератор ПСП, инициализируемый временем
-    Integer[] RndAllDigits = new Integer[10];		// для перемешанного массива цифр
     int bulls;
     int cows;
     int trying;
@@ -41,9 +40,8 @@ public class Main extends Application {
     public Map<Button, Integer> df;	// карта соответствия кнопок цифрам
     public Set<Button> sUp;		// множество кнопок увеличения
     public void Info(String s) {
-	JOptionPane.showMessageDialog(null, s, "Info", JOptionPane.INFORMATION_MESSAGE);
+    	JOptionPane.showMessageDialog(null, s, "Info", JOptionPane.INFORMATION_MESSAGE);
     };
-
 
     // общий обработчик для всех кнопок
     EventHandler<ActionEvent> eh = new EventHandler<ActionEvent>() {
@@ -63,19 +61,6 @@ public class Main extends Application {
     	};
     };
 
-    void DigitMixer() {		// перемешивание массива цифр
-    	for(int j = rg.nextInt(10) + 3; j > 0; j--) {
-    		int i = 9;
-    		int n, buf;
-    		while(i > 0){
-    			n = rg.nextInt(i);
-    			buf = RndAllDigits[n];
-    			RndAllDigits[n] = RndAllDigits[9];
-    			RndAllDigits[9] = buf;
-    			i--;
-    		}
-    	}
-    };
 
     boolean IsDifferent() {
     	for(int i = 0; i < 4; i++) {
@@ -93,24 +78,19 @@ public class Main extends Application {
     	return false;
     };
 
-    void MakeRndDigits() {
-    	int n = rg.nextInt(5);
-    	for(int i = 0; i < 4; i++) {
-    		RndDigits[i] = RndAllDigits[i + n];
-    	}
-    };
+
 
     void CalcBullCow() {
     	bulls = 0;
     	cows = 0;
     	for(int i = 0; i < 4; i++) {
-    		if (Digits[i] == RndDigits[i]) {
+    		if (Digits[i] == curator.RndDigits[i]) {
     			bulls++;
     		}
     	}
     	Set<Integer> s = new HashSet<Integer>();
     	for(int i = 0; i < 4; i++) {
-    		s.add(RndDigits[i]);
+    		s.add(curator.RndDigits[i]);
     	}
     	for(int i = 0; i < 4; i++) {
     		if(s.contains(Digits[i])){
@@ -133,11 +113,8 @@ public class Main extends Application {
     		atfDigits[i].setPrefColumnCount(1);
     		atfDigits[i].setEditable(false);
     	}
-    	for(int i = 0; i <= 9; i++){
-    		RndAllDigits[i] = i;
-    	}
-    	DigitMixer();
-    	MakeRndDigits();
+
+    	curator.Init();
 
     	primaryStage.setTitle("CheckOut");
     	BorderPane bp = new BorderPane();
@@ -249,12 +226,12 @@ public class Main extends Application {
     	btBottom.setOnAction(new EventHandler<ActionEvent>() {
     		@Override 
     		public void handle(ActionEvent e) {
-    			DigitMixer();
+    			curator.DigitMixer();
     			String s = "";
 //		for(int i = 0; i <= 9; i++){
 //		    s = s + Integer.toString(RndAllDigits[i]) + " ";
 //		}
-    			s = Arrays.toString(RndDigits);
+    			s = Arrays.toString(curator.RndDigits);
     			tfBottom.setText(s);
     		}
     	});
@@ -403,9 +380,9 @@ public class Main extends Application {
     	int ShotDigitIndex = 0;		// индекс массива цифр очередной попытки
     	int DigitsForAnswerIndex = 0;	// индекс в наборе цифр
 
-    	DigitMixer();			// перемешать цифры подготовить набор цифр
+    	curator.DigitMixer();			// перемешать цифры подготовить набор цифр
     	for(int i = 0; i < 10; i++) {
-    		DigitsForAnswer.add(RndAllDigits[i]);
+    		DigitsForAnswer.add(curator.RndAllDigits[i]);
 //	    DigitsForAnswer.add(i);
     	}
 
