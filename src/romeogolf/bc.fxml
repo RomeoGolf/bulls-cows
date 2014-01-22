@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<GridPane alignment="CENTER" prefHeight="400.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="romeogolf.MainController">
+  <children>
+    <Pane styleClass="common_panel" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.vgrow="ALWAYS" />
+    <Pane prefHeight="200.0" prefWidth="200.0" styleClass="common_panel" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
+      <children>
+	  <TextField fx:id="indicator" layoutX="14.0" layoutY="50.0" prefWidth="75.0" />
+      </children>
+    </Pane>
+    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+      <children>
+        <Pane prefHeight="50.0" prefWidth="261.0" styleClass="common_panel" />
+        <ScrollPane content="$null" fitToHeight="true" fitToWidth="true" />
+      </children>
+    </VBox>
+    <Pane minHeight="50.0" prefHeight="80.0" prefWidth="375.0" styleClass="common_panel" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="NEVER" />
+    <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS">
+      <children>
+        <Pane prefHeight="46.0" prefWidth="101.0" style="" styleClass="common_panel" VBox.vgrow="NEVER" />
+        <ScrollPane content="$null" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
+      </children>
+    </VBox>
+    <Pane minHeight="25.0" prefHeight="200.0" prefWidth="200.0" styleClass="common_panel" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="NEVER" />
+    <HBox alignment="CENTER" minHeight="90.0" prefHeight="79.0" prefWidth="195.0" style="" styleClass="common_panel" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <children>
+        <VBox alignment="CENTER" minWidth="23.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
+          <children>
+            <Button fx:id="btUp_1" onAction="#onUpDown" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+              <VBox.margin>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
+              </VBox.margin>
+            </Button>
+            <TextField fx:id="charsell_1" alignment="CENTER" editable="true" focusTraversable="true" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" prefColumnCount="20" prefHeight="20.0" prefWidth="20.0" text="5" VBox.vgrow="NEVER">
+              <VBox.margin>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
+              </VBox.margin>
+            </TextField>
+            <Button fx:id="btDown_1" onAction="#onUpDown" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+              <VBox.margin>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
+              </VBox.margin>
+            </Button>
+          </children>
+        </VBox>
+        <VBox alignment="CENTER" minWidth="23.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
+          <children>
+            <Button fx:id="btUp_2"  onAction="#onUpDown" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+              <VBox.margin>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
+              </VBox.margin>
+            </Button>
+            <TextField fx:id="charsell_2" alignment="CENTER" editable="true" focusTraversable="true" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" prefColumnCount="20" prefHeight="20.0" prefWidth="20.0" text="6" VBox.vgrow="NEVER">
+              <VBox.margin>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
+              </VBox.margin>
+            </TextField>
+            <Button fx:id="btDown_2"  onAction="#onUpDown" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+              <VBox.margin>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
+              </VBox.margin>
+            </Button>
+          </children>
+        </VBox>
+        <VBox alignment="CENTER" minWidth="23.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
+          <children>
+            <Button fx:id="btUp_3"  onAction="#onUpDown" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+              <VBox.margin>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
+              </VBox.margin>
+            </Button>
+            <TextField fx:id="charsell_3" alignment="CENTER" editable="true" focusTraversable="true" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" prefColumnCount="20" prefHeight="20.0" prefWidth="20.0" text="7" VBox.vgrow="NEVER">
+              <VBox.margin>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
+              </VBox.margin>
+            </TextField>
+            <Button fx:id="btDown_3"  onAction="#onUpDown" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+              <VBox.margin>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
+              </VBox.margin>
+            </Button>
+          </children>
+        </VBox>
+        <VBox alignment="CENTER" minWidth="23.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
+          <children>
+            <Button fx:id="btUp_4"  onAction="#onUpDown" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+              <VBox.margin>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
+              </VBox.margin>
+            </Button>
+            <TextField fx:id="charsell_4" alignment="CENTER" editable="true" focusTraversable="true" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" prefColumnCount="20" prefHeight="20.0" prefWidth="20.0" text="8" VBox.vgrow="NEVER">
+              <VBox.margin>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
+              </VBox.margin>
+            </TextField>
+            <Button fx:id="btDown_4"  onAction="#onUpDown" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+              <VBox.margin>
+                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
+              </VBox.margin>
+            </Button>
+          </children>
+        </VBox>
+      </children>
+    </HBox>
+    <Pane prefHeight="111.0" prefWidth="263.0" snapToPixel="true" style="" styleClass="common_panel" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <children>
+        <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefWidth="75.0" text="старт" />
+        <Button layoutX="14.0" layoutY="40.0" mnemonicParsing="false" prefWidth="75.0" text="загадать" />
+        <Button layoutX="14.0" layoutY="64.0" mnemonicParsing="false" prefWidth="75.0" text="сгенерить" />
+        <Button layoutX="104.0" layoutY="16.0" mnemonicParsing="false" prefWidth="67.0" text="попытка" />
+        <Button layoutX="104.0" layoutY="41.0" mnemonicParsing="false" prefWidth="67.0" text="стоп" />
+        <Button fx:id="btTest" onAction="#onTest" layoutX="104.0" layoutY="65.0" mnemonicParsing="false" prefWidth="67.0" text="Тест" />
+      </children>
+    </Pane>
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="100.0" prefWidth="108.0" />
+    <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="40.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="100.0" prefWidth="101.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="24.0" vgrow="NEVER" />
+    <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
+    <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="98.0" vgrow="NEVER" />
+    <RowConstraints maxHeight="-1.0" minHeight="10.0" prefHeight="471.0" vgrow="ALWAYS" />
+    <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="49.0" vgrow="NEVER" />
+  </rowConstraints>
+  <stylesheets>
+    <URL value="@bc.css" />
+  </stylesheets>
+</GridPane>
