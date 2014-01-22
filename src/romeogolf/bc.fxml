@@ -19,14 +19,22 @@
     <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
       <children>
         <Pane prefHeight="50.0" prefWidth="261.0" styleClass="common_panel" />
-        <ScrollPane content="$null" fitToHeight="true" fitToWidth="true" />
+        <ScrollPane fx:id="spPlayer1" fitToWidth="true" fitToHeight="true" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
+          <content>
+            <VBox fx:id="vbPlayer1" styleClass="common_panel" />
+          </content>
+        </ScrollPane>
       </children>
     </VBox>
     <Pane minHeight="50.0" prefHeight="80.0" prefWidth="375.0" styleClass="common_panel" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="NEVER" />
     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS">
       <children>
         <Pane prefHeight="46.0" prefWidth="101.0" style="" styleClass="common_panel" VBox.vgrow="NEVER" />
-        <ScrollPane content="$null" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
+        <ScrollPane fx:id="spPlayer2" hbarPolicy="AS_NEEDED" prefHeight="-1.0" prefWidth="-1.0" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS" fitToHeight="true" fitToWidth="true">
+          <content>
+            <VBox fx:id="vbPlayer2" prefHeight="267.0" prefWidth="196.0" styleClass="common_panel" />
+          </content>
+        </ScrollPane>
       </children>
     </VBox>
     <Pane minHeight="25.0" prefHeight="200.0" prefWidth="200.0" styleClass="common_panel" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="NEVER" />

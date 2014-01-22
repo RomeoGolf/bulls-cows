@@ -7,11 +7,21 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 public class MainController implements Initializable{
 	@FXML private TextField charsell_1;
@@ -29,6 +39,12 @@ public class MainController implements Initializable{
 	@FXML private Button btDown_3;
 	@FXML private Button btUp_4;
 	@FXML private Button btDown_4;
+	
+	@FXML private VBox vbPlayer1;
+	@FXML private ScrollPane spPlayer1;
+
+	@FXML private VBox vbPlayer2;
+	@FXML private ScrollPane spPlayer2;
 
     Integer[] DigitsForShow = new Integer[4];			// Цифры, вводимые пользователем
     ArrayList<TextField> atfDigits = new ArrayList<TextField>();
@@ -40,6 +56,7 @@ public class MainController implements Initializable{
 
     @FXML protected void onTest(ActionEvent event) {
     	indicator.setText("qwerty");
+    	this.ShowStepInfo("zxcvbn");
     };
 
     // общий обработчик для всех кнопок Up & Down
@@ -75,6 +92,26 @@ public class MainController implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+
+		vbPlayer1.setSpacing(3);
+		vbPlayer1.heightProperty().addListener(new ChangeListener<Object>() {
+    		@Override
+    		public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+    			if (vbPlayer1.getHeight() > spPlayer1.getHeight()) {
+    				spPlayer1.setVvalue((Double)newValue );
+    			}
+            }
+        });
+		vbPlayer2.setSpacing(3);
+		vbPlayer2.heightProperty().addListener(new ChangeListener<Object>() {
+    		@Override
+    		public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+    			if (vbPlayer2.getHeight() > spPlayer2.getHeight()) {
+    				spPlayer2.setVvalue((Double)newValue );
+    			}
+            }
+        });
+		
     	df.put(btUp_1, 0);
     	df.put(btDown_1, 0);
     	df.put(btUp_2, 1);
@@ -99,5 +136,15 @@ public class MainController implements Initializable{
     		atfDigits.get(i).setText(Integer.toString(i));
     	}
 	}
+	
+    void ShowStepInfo(String s) {
+    	HBox hb = new HBox();
+    	hb.setAlignment(Pos.CENTER);
+    	Text t = new Text(s);
+    	t.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
+    	hb.getChildren().add(t);
+		hb.setStyle("-fx-background-color: #336699;");
+    	vbPlayer1.getChildren().add(hb);
+    }
 
 }
