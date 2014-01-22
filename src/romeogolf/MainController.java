@@ -24,13 +24,14 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class MainController implements Initializable{
+	// знакоместа пользовательских цифр
 	@FXML private TextField charsell_1;
 	@FXML private TextField charsell_2;
 	@FXML private TextField charsell_3;
 	@FXML private TextField charsell_4;
-
+	// поле отображения загаданной последовательности
 	@FXML private TextField indicator;
-
+	// кнопки для изменения цифр
 	@FXML private Button btUp_1;
 	@FXML private Button btDown_1;
 	@FXML private Button btUp_2;
@@ -39,21 +40,21 @@ public class MainController implements Initializable{
 	@FXML private Button btDown_3;
 	@FXML private Button btUp_4;
 	@FXML private Button btDown_4;
-	
+	// поля для отображения ходов игроков 1 и 2
 	@FXML private VBox vbPlayer1;
 	@FXML private ScrollPane spPlayer1;
-
 	@FXML private VBox vbPlayer2;
 	@FXML private ScrollPane spPlayer2;
-
-    Integer[] DigitsForShow = new Integer[4];			// Цифры, вводимые пользователем
+	// Цифры, вводимые пользователем
+    Integer[] DigitsForShow = new Integer[4];
+    // массив знакомест для пользовательских цифр
     ArrayList<TextField> atfDigits = new ArrayList<TextField>();
-
     // карта соответствия кнопок цифрам	
     public Map<Button, Integer> df = new HashMap<Button, Integer>();
     // множество кнопок увеличения
     public Set<Button> sUp = new HashSet<Button>();;
 
+    // тестовая кнопка - тестовый обработчик
     @FXML protected void onTest(ActionEvent event) {
     	indicator.setText("qwerty");
     	this.ShowStepInfo("zxcvbn");
@@ -67,14 +68,17 @@ public class MainController implements Initializable{
     		} else {
     			DigitsForShow[Num]--;
     		}
-    		if (DigitsForShow[Num] < 0){DigitsForShow[Num] = 9;}	// проверка выхода цифры за пределы
-    		if (DigitsForShow[Num] > 9){DigitsForShow[Num] = 0;}	// и соответствующее изменение
-    		atfDigits.get(Num).setText(Integer.toString(DigitsForShow[Num]));  // отображение цифры
-
+    		// проверка выхода цифры за пределы
+    		if (DigitsForShow[Num] < 0){DigitsForShow[Num] = 9;}
+    			// и соответствующее изменение
+    		if (DigitsForShow[Num] > 9){DigitsForShow[Num] = 0;}
+    		atfDigits.get(Num).setText(Integer.toString(DigitsForShow[Num]));
     		IsDifferent();
     };
 
+    // проверка цифр на совпадение
     boolean IsDifferent() {
+    	//TODO: обрабатывать не только пары?
     	for(int i = 0; i < 4; i++) {
     		atfDigits.get(i).setStyle("-fx-text-fill: #000000;");
     	}
@@ -90,9 +94,11 @@ public class MainController implements Initializable{
     	return false;
     };
 
+    // инициализация интерфейса
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		// добавление обработчика изменения размера панели на ScrollPane
+		// для прокрутки до упора
 		vbPlayer1.setSpacing(3);
 		vbPlayer1.heightProperty().addListener(new ChangeListener<Object>() {
     		@Override
@@ -111,7 +117,7 @@ public class MainController implements Initializable{
     			}
             }
         });
-		
+		// заполнение карты соответствия кнопок их номерам
     	df.put(btUp_1, 0);
     	df.put(btDown_1, 0);
     	df.put(btUp_2, 1);
@@ -120,23 +126,24 @@ public class MainController implements Initializable{
     	df.put(btDown_3, 2);
     	df.put(btUp_4, 3);
     	df.put(btDown_4, 3);
-
+    	// множество кнопок "вверх"
     	sUp.add(btUp_1);
     	sUp.add(btUp_2);
     	sUp.add(btUp_3);
     	sUp.add(btUp_4);
-
+    	// множество знакомест для цифр
     	atfDigits.add(charsell_1);
     	atfDigits.add(charsell_2);
     	atfDigits.add(charsell_3);
     	atfDigits.add(charsell_4);
-
+    	// начальное заполнение массива цифр и его отображение
     	for(int i = 0; i < 4; i++){
     		this.DigitsForShow[i] = i;
     		atfDigits.get(i).setText(Integer.toString(i));
     	}
 	}
-	
+
+	// вывод строки текста в ScrollPane
     void ShowStepInfo(String s) {
     	HBox hb = new HBox();
     	hb.setAlignment(Pos.CENTER);
