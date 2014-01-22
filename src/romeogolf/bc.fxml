@@ -13,7 +13,7 @@
     <Pane styleClass="common_panel" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.vgrow="ALWAYS" />
     <Pane prefHeight="200.0" prefWidth="200.0" styleClass="common_panel" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
       <children>
-	  <TextField fx:id="indicator" layoutX="14.0" layoutY="50.0" prefWidth="75.0" />
+        <TextField fx:id="indicator" layoutX="14.0" layoutY="50.0" prefWidth="75.0" />
       </children>
     </Pane>
     <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
@@ -42,7 +42,7 @@
       <children>
         <VBox alignment="CENTER" minWidth="23.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
           <children>
-            <Button fx:id="btUp_1" onAction="#onUpDown" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+            <Button fx:id="btUp_1" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
@@ -52,7 +52,7 @@
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
             </TextField>
-            <Button fx:id="btDown_1" onAction="#onUpDown" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+            <Button fx:id="btDown_1" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
@@ -61,7 +61,7 @@
         </VBox>
         <VBox alignment="CENTER" minWidth="23.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
           <children>
-            <Button fx:id="btUp_2"  onAction="#onUpDown" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+            <Button fx:id="btUp_2" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
@@ -71,7 +71,7 @@
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
             </TextField>
-            <Button fx:id="btDown_2"  onAction="#onUpDown" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+            <Button fx:id="btDown_2" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
@@ -80,7 +80,7 @@
         </VBox>
         <VBox alignment="CENTER" minWidth="23.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
           <children>
-            <Button fx:id="btUp_3"  onAction="#onUpDown" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+            <Button fx:id="btUp_3" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
@@ -90,7 +90,7 @@
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
             </TextField>
-            <Button fx:id="btDown_3"  onAction="#onUpDown" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+            <Button fx:id="btDown_3" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
@@ -99,7 +99,7 @@
         </VBox>
         <VBox alignment="CENTER" minWidth="23.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
           <children>
-            <Button fx:id="btUp_4"  onAction="#onUpDown" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+            <Button fx:id="btUp_4" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
@@ -109,7 +109,7 @@
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
             </TextField>
-            <Button fx:id="btDown_4"  onAction="#onUpDown" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+            <Button fx:id="btDown_4" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
@@ -125,7 +125,7 @@
         <Button layoutX="14.0" layoutY="64.0" mnemonicParsing="false" prefWidth="75.0" text="сгенерить" />
         <Button layoutX="104.0" layoutY="16.0" mnemonicParsing="false" prefWidth="67.0" text="попытка" />
         <Button layoutX="104.0" layoutY="41.0" mnemonicParsing="false" prefWidth="67.0" text="стоп" />
-        <Button fx:id="btTest" onAction="#onTest" layoutX="104.0" layoutY="65.0" mnemonicParsing="false" prefWidth="67.0" text="Тест" />
+        <Button fx:id="btTest" layoutX="104.0" layoutY="65.0" mnemonicParsing="false" onAction="#onTest" prefWidth="67.0" text="Тест" />
       </children>
     </Pane>
   </children>
