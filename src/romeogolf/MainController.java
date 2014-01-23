@@ -57,7 +57,8 @@ public class MainController implements Initializable{
     // тестовая кнопка - тестовый обработчик
     @FXML protected void onTest(ActionEvent event) {
     	indicator.setText("qwerty");
-    	this.ShowStepInfo("zxcvbn");
+    	this.ShowStepInfo("zxcvbn", true);
+    	this.ShowStepInfo("asdfgh", false);
     };
 
     // общий обработчик для всех кнопок Up & Down
@@ -144,14 +145,18 @@ public class MainController implements Initializable{
 	}
 
 	// вывод строки текста в ScrollPane
-    void ShowStepInfo(String s) {
+    void ShowStepInfo(String s, boolean Player1) {
     	HBox hb = new HBox();
     	hb.setAlignment(Pos.CENTER);
     	Text t = new Text(s);
     	t.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
     	hb.getChildren().add(t);
 		hb.setStyle("-fx-background-color: #336699;");
-    	vbPlayer1.getChildren().add(hb);
+		if (Player1) {
+			vbPlayer1.getChildren().add(hb);
+		} else {
+			vbPlayer2.getChildren().add(hb);
+		}
     }
 
 }
