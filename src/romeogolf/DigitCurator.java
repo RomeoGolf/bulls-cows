@@ -7,6 +7,16 @@ public class DigitCurator {
     Random rg = new Random(System.currentTimeMillis());	// Генератор ПСП, инициализируемый временем
     public Integer[] RndAllDigits = new Integer[10];		// для перемешанного массива цифр
 
+    public Integer[] getQwad(){
+    	return RndDigits;
+    }
+
+    public void setQwad(Integer[] Qwad){
+    	for(int i = 0; i < 4; i++){
+    		this.RndDigits[i] = Qwad[i];
+    	}
+    }
+
     public void DigitMixer() {		// перемешивание массива цифр
     	for(int j = rg.nextInt(10) + 3; j > 0; j--) {
     		int i = 9;
