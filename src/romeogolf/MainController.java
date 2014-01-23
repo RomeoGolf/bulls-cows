@@ -2,6 +2,7 @@ package romeogolf;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -77,6 +78,10 @@ public class MainController implements Initializable{
     		IsDifferent();
     };
 
+    @FXML protected void Shot(ActionEvent e) {
+    	SelfAnswer();
+    }
+
     // проверка цифр на совпадение
     boolean IsDifferent() {
     	//TODO: обрабатывать не только пары?
@@ -141,6 +146,8 @@ public class MainController implements Initializable{
     	for(int i = 0; i < 4; i++){
     		this.DigitsForShow[i] = i;
     		atfDigits.get(i).setText(Integer.toString(i));
+    		
+        curator.Init();
     	}
 	}
 
@@ -151,7 +158,7 @@ public class MainController implements Initializable{
     	Text t = new Text(s);
     	t.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
     	hb.getChildren().add(t);
-		hb.setStyle("-fx-background-color: #336699;");
+		hb.setStyle("-fx-background-color: #33FFFF;");
 		if (Player1) {
 			vbPlayer1.getChildren().add(hb);
 		} else {
@@ -159,4 +166,75 @@ public class MainController implements Initializable{
 		}
     }
 
+
+	DigitCurator curator = new DigitCurator();
+	Solver solver = new Solver();
+    Integer[] Digits = new Integer[4];			// Цифры, вводимые пользователем
+    int bulls;
+    int cows;
+    int trying;
+
+    // вывод результатов попытки
+    void ShowNextShot(int trying) {
+		String s = new String(Arrays.toString(Digits));
+		s = Integer.toString(trying) + ": " + s;
+		s = s + " -   " + Integer.toString(bulls) + " Б, " +
+		    Integer.toString(cows) + " К";
+		ShowStepInfo(s, true);
+    }
+
+    // ========= заготовка самостоятельной отгадки ======
+    void SelfAnswer() {	    // отгадка
+    	curator.Init();
+    	solver.Init(curator.RndAllDigits);
+    	//curator.DigitMixer();			// перемешать цифры подготовить набор цифр
+
+    	while(bulls + cows < 4) {		// цикл до отгадки всех цифр
+
+    		Digits = solver.ToFindDigits(Digits);
+
+    		CalcBullCow();		    // вычисление
+    		Integer[] TmpBufI = new Integer[4];
+    		for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
+    		solver.Shots_digits.add(TmpBufI);	    // заполнение списков попыток очередной попыткой
+    		solver.Shots_bulls.add(bulls);
+    		solver.Shots_cows.add(cows);
+
+    		ShowNextShot(solver.Shots_digits.size());	// отображение
+
+    		solver.ShotDigitIndex = 0;		// обнуление индексов
+    		solver.DigitsForAnswerIndex = 0;
+    	}
+    	while(bulls < 4) {
+    		solver.ToFindBulls(Digits);
+
+    		CalcBullCow();
+    		Integer[] NextShot2 = new Integer[4];
+    		NextShot2 = Digits.clone();
+    		solver.Shots_digits.add(NextShot2);
+    		solver.Shots_bulls.add(bulls);
+    		solver.Shots_cows.add(cows);
+    		ShowNextShot(solver.Shots_digits.size());	// отображение
+    	}
+    }
+
+    void CalcBullCow() {
+    	bulls = 0;
+    	cows = 0;
+    	for(int i = 0; i < 4; i++) {
+    		if (Digits[i] == curator.RndDigits[i]) {
+    			bulls++;
+    		}
+    	}
+    	Set<Integer> s = new HashSet<Integer>();
+    	for(int i = 0; i < 4; i++) {
+    		s.add(curator.RndDigits[i]);
+    	}
+    	for(int i = 0; i < 4; i++) {
+    		if(s.contains(Digits[i])){
+    			cows++;
+    		}
+    	}
+    	cows = cows - bulls;
+    };
 }
