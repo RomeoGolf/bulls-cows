@@ -82,6 +82,12 @@ public class MainController implements Initializable{
     	SelfAnswer();
     }
 
+    @FXML protected void onSetQwad(ActionEvent e) {
+    	if (!this.IsDifferent()){
+    		curator.setQwad(this.DigitsForShow);
+    	}
+    }
+
     // проверка цифр на совпадение
     boolean IsDifferent() {
     	//TODO: обрабатывать не только пары?
@@ -146,8 +152,6 @@ public class MainController implements Initializable{
     	for(int i = 0; i < 4; i++){
     		this.DigitsForShow[i] = i;
     		atfDigits.get(i).setText(Integer.toString(i));
-    		
-        curator.Init();
     	}
 	}
 
@@ -185,7 +189,7 @@ public class MainController implements Initializable{
 
     // ========= заготовка самостоятельной отгадки ======
     void SelfAnswer() {	    // отгадка
-    	curator.Init();
+    	//curator.Init();
     	solver.Init(curator.RndAllDigits);
     	//curator.DigitMixer();			// перемешать цифры подготовить набор цифр
 
