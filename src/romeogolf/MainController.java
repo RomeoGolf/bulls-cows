@@ -57,9 +57,12 @@ public class MainController implements Initializable{
 
     // тестовая кнопка - тестовый обработчик
     @FXML protected void onTest(ActionEvent event) {
-    	indicator.setText("qwerty");
-    	this.ShowStepInfo("zxcvbn", true);
-    	this.ShowStepInfo("asdfgh", false);
+    	//indicator.setText("qwerty");
+    	//this.ShowStepInfo("zxcvbn", true);
+    	//this.ShowStepInfo("asdfgh", false);
+    	//String s = new String(Arrays.toString(DigitsForShow));
+    	String s = new String(Arrays.toString(curator.RndDigits));
+    	indicator.setText(s);
     };
 
     // общий обработчик для всех кнопок Up & Down
@@ -169,7 +172,6 @@ public class MainController implements Initializable{
 			vbPlayer2.getChildren().add(hb);
 		}
     }
-
 
 	DigitCurator curator = new DigitCurator();
 	Solver solver = new Solver();
