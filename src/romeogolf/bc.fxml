@@ -8,18 +8,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<GridPane alignment="CENTER" prefHeight="400.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="romeogolf.MainController">
+<GridPane alignment="CENTER" maxHeight="-1.0" maxWidth="1.7976931348623157E308" minHeight="-1.0" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="romeogolf.MainController">
   <children>
     <Pane styleClass="common_panel" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.vgrow="ALWAYS" />
     <Pane prefHeight="200.0" prefWidth="200.0" styleClass="common_panel" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
       <children>
-        <TextField fx:id="indicator" layoutX="14.0" layoutY="50.0" prefWidth="75.0" />
+        <TextField fx:id="indicator" layoutX="88.0" layoutY="40.0" prefWidth="75.0" />
       </children>
     </Pane>
     <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
       <children>
         <Pane prefHeight="50.0" prefWidth="261.0" styleClass="common_panel" />
-        <ScrollPane fx:id="spPlayer1" fitToWidth="true" fitToHeight="true" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
+        <ScrollPane fx:id="spPlayer1" fitToHeight="true" fitToWidth="true" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
           <content>
             <VBox fx:id="vbPlayer1" styleClass="common_panel" />
           </content>
@@ -30,7 +30,7 @@
     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS">
       <children>
         <Pane prefHeight="46.0" prefWidth="101.0" style="" styleClass="common_panel" VBox.vgrow="NEVER" />
-        <ScrollPane fx:id="spPlayer2" hbarPolicy="AS_NEEDED" prefHeight="-1.0" prefWidth="-1.0" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS" fitToHeight="true" fitToWidth="true">
+        <ScrollPane fx:id="spPlayer2" fitToHeight="true" fitToWidth="true" hbarPolicy="AS_NEEDED" prefHeight="-1.0" prefWidth="-1.0" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
           <content>
             <VBox fx:id="vbPlayer2" prefHeight="267.0" prefWidth="196.0" styleClass="common_panel" />
           </content>
@@ -121,18 +121,18 @@
     <Pane prefHeight="111.0" prefWidth="263.0" snapToPixel="true" style="" styleClass="common_panel" GridPane.columnIndex="1" GridPane.rowIndex="2">
       <children>
         <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefWidth="75.0" text="старт" />
-        <Button layoutX="14.0" layoutY="40.0" mnemonicParsing="false" prefWidth="75.0" text="загадать" />
+        <Button layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#onSetQwad" prefWidth="75.0" text="загадать" />
         <Button layoutX="14.0" layoutY="64.0" mnemonicParsing="false" prefWidth="75.0" text="сгенерить" />
-        <Button onAction="#Shot" layoutX="104.0" layoutY="16.0" mnemonicParsing="false" prefWidth="67.0" text="попытка" />
-        <Button layoutX="104.0" layoutY="41.0" mnemonicParsing="false" prefWidth="67.0" text="стоп" />
-        <Button fx:id="btTest" layoutX="104.0" layoutY="65.0" mnemonicParsing="false" onAction="#onTest" prefWidth="67.0" text="Тест" />
+        <Button layoutX="157.0" layoutY="16.0" mnemonicParsing="false" onAction="#onShot" prefWidth="67.0" text="попытка" />
+        <Button layoutX="157.0" layoutY="41.0" mnemonicParsing="false" prefWidth="67.0" text="стоп" />
+        <Button fx:id="btTest" layoutX="157.0" layoutY="65.0" mnemonicParsing="false" onAction="#onTest" prefWidth="67.0" text="Тест" />
       </children>
     </Pane>
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="100.0" prefWidth="108.0" />
-    <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="40.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="100.0" prefWidth="101.0" />
+    <ColumnConstraints hgrow="NEVER" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" />
+    <ColumnConstraints hgrow="NEVER" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="24.0" vgrow="NEVER" />

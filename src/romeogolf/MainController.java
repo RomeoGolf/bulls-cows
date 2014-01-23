@@ -78,7 +78,7 @@ public class MainController implements Initializable{
     		IsDifferent();
     };
 
-    @FXML protected void Shot(ActionEvent e) {
+    @FXML protected void onShot(ActionEvent e) {
     	SelfAnswer();
     }
 
