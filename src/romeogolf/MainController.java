@@ -222,6 +222,11 @@ public class MainController implements Initializable{
     		solver.Shots_cows.add(cows);
     		ShowNextShot(solver.Shots_digits.size());	// отображение
     	}
+    	solver.Shots_bulls.clear();
+    	solver.Shots_cows.clear();
+    	solver.Shots_digits.clear();
+    	bulls = 0;
+    	cows = 0;
     }
 
     void CalcBullCow() {
