@@ -196,54 +196,27 @@ public class MainController implements Initializable{
     	//curator.DigitMixer();			// перемешать цифры подготовить набор цифр
 
     	while(bulls + cows < 4) {		// цикл до отгадки всех цифр
-
     		Digits = solver.ToFindDigits(Digits);
-
-    		CalcBullCow();		    // вычисление
     		Integer[] TmpBufI = new Integer[4];
     		for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
-    		ShotData shot_data = new ShotData(bulls, cows, TmpBufI);
+    		ShotData shot_data = curator.checkQuad(Digits, 2);
+    		bulls = shot_data.getBulls();
+    		cows = shot_data.getCows();
     		solver.shots_data.add(shot_data);
-
     		ShowNextShot(solver.shots_data.size());	// отображение
-
     		solver.ShotDigitIndex = 0;		// обнуление индексов
     		solver.DigitsForAnswerIndex = 0;
     	}
     	while(bulls < 4) {
     		solver.ToFindBulls(Digits);
-
-    		CalcBullCow();
-    		Integer[] NextShot2 = new Integer[4];
-    		NextShot2 = Digits.clone();
-
-    		ShotData shot_data = new ShotData(bulls, cows, NextShot2);
+    		ShotData shot_data = curator.checkQuad(Digits, 2);
+    		bulls = shot_data.getBulls();
+    		cows = shot_data.getCows();
     		solver.shots_data.add(shot_data);
     		ShowNextShot(solver.shots_data.size());	// отображение
     	}
-
     	solver.shots_data.clear();
     	bulls = 0;
     	cows = 0;
     }
-
-    void CalcBullCow() {
-    	bulls = 0;
-    	cows = 0;
-    	for(int i = 0; i < 4; i++) {
-    		if (Digits[i] == curator.getQuad(2)[i]) {
-    			bulls++;
-    		}
-    	}
-    	Set<Integer> s = new HashSet<Integer>();
-    	for(int i = 0; i < 4; i++) {
-    		s.add(curator.getQuad(2)[i]);
-    	}
-    	for(int i = 0; i < 4; i++) {
-    		if(s.contains(Digits[i])){
-    			cows++;
-    		}
-    	}
-    	cows = cows - bulls;
-    };
 }
