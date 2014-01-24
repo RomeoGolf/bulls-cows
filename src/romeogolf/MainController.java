@@ -61,7 +61,7 @@ public class MainController implements Initializable{
     	//this.ShowStepInfo("zxcvbn", true);
     	//this.ShowStepInfo("asdfgh", false);
     	//String s = new String(Arrays.toString(DigitsForShow));
-    	String s = new String(Arrays.toString(curator.RndDigits));
+    	String s = new String(Arrays.toString(curator.getQuad(2)));
     	indicator.setText(s);
     };
 
@@ -87,7 +87,7 @@ public class MainController implements Initializable{
 
     @FXML protected void onSetQwad(ActionEvent e) {
     	if (!this.IsDifferent()){
-    		curator.setQwad(this.DigitsForShow);
+    		curator.setQuad(this.DigitsForShow, 2);
     	}
     }
 
@@ -231,13 +231,13 @@ public class MainController implements Initializable{
     	bulls = 0;
     	cows = 0;
     	for(int i = 0; i < 4; i++) {
-    		if (Digits[i] == curator.RndDigits[i]) {
+    		if (Digits[i] == curator.getQuad(2)[i]) {
     			bulls++;
     		}
     	}
     	Set<Integer> s = new HashSet<Integer>();
     	for(int i = 0; i < 4; i++) {
-    		s.add(curator.RndDigits[i]);
+    		s.add(curator.getQuad(2)[i]);
     	}
     	for(int i = 0; i < 4; i++) {
     		if(s.contains(Digits[i])){
