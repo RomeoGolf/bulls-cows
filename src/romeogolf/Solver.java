@@ -5,9 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Solver {
-    ArrayList<Integer[]> Shots_digits = new ArrayList<Integer[]>();	// массивы цифр попыток
-    ArrayList<Integer> Shots_bulls = new ArrayList<Integer>();		// быки попыток
-    ArrayList<Integer> Shots_cows = new ArrayList<Integer>();		// коровы попыток
+	ArrayList<ShotData> shots_data = new ArrayList<ShotData>(); // массив данных попыток
     ArrayList<Integer> DigitsForAnswer = new ArrayList<Integer>();	// набор цифр для отгадки
     Integer[] NextShot;					// массив очередной попытки
     Integer[] ShotDigitInDigits_index = new Integer[4];	// индекс цифры попытки в наборе цифр
@@ -20,11 +18,11 @@ public class Solver {
     	int BullCow = 0;	// сумма быков и коров попытки
     	int Intersection = 0;	// мощность пересечения цифр старой попытки
 				//      и цифр подмассива очередной попытки
-    	for (int i = 0; i <= (Shots_digits.size() - 1); i++) {
-    		BullCow = Shots_bulls.get(i) + Shots_cows.get(i);
+    	for (int i = 0; i <= (shots_data.size() - 1); i++) {
+    		BullCow = shots_data.get(i).getBulls() + shots_data.get(i).getCows();
     		for (int j = 0; j <= 3; j++) {	// подсчет мощности пересечения
     			for (int k = 0; k <= length; k++) {
-    				if (a[k] == Shots_digits.get(i)[j]){Intersection++;}
+    				if (a[k] == shots_data.get(i).getQwad()[j]){Intersection++;}
     			}
     		}
     		// если пересечение больше числа угаданных - есть лишнее в отгадке
@@ -40,12 +38,12 @@ public class Solver {
 
     // проверка на допустимость подмассива быков
     boolean IsSuitableBulls(int Max) {
-    	for (int i = 0; i <= (Shots_digits.size() - 1); i++) {
+    	for (int i = 0; i <= (shots_data.size() - 1); i++) {
     		int coincidence = 0;
     		for(int j = 0; j <= Max; j++) {
-    			if (ShotDigits.get(j) == Shots_digits.get(i)[Indexes.get(j)]) {coincidence++;}
+    			if (ShotDigits.get(j) == shots_data.get(i).getQwad()[Indexes.get(j)]) {coincidence++;}
     		}
-    		if (coincidence > Shots_bulls.get(i)) {return false;}
+    		if (coincidence > shots_data.get(i).getBulls()) {return false;}
     	}
     	return true;
     }

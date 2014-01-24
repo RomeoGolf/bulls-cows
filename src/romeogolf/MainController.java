@@ -202,11 +202,10 @@ public class MainController implements Initializable{
     		CalcBullCow();		    // вычисление
     		Integer[] TmpBufI = new Integer[4];
     		for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
-    		solver.Shots_digits.add(TmpBufI);	    // заполнение списков попыток очередной попыткой
-    		solver.Shots_bulls.add(bulls);
-    		solver.Shots_cows.add(cows);
+    		ShotData shot_data = new ShotData(bulls, cows, TmpBufI);
+    		solver.shots_data.add(shot_data);
 
-    		ShowNextShot(solver.Shots_digits.size());	// отображение
+    		ShowNextShot(solver.shots_data.size());	// отображение
 
     		solver.ShotDigitIndex = 0;		// обнуление индексов
     		solver.DigitsForAnswerIndex = 0;
@@ -217,14 +216,13 @@ public class MainController implements Initializable{
     		CalcBullCow();
     		Integer[] NextShot2 = new Integer[4];
     		NextShot2 = Digits.clone();
-    		solver.Shots_digits.add(NextShot2);
-    		solver.Shots_bulls.add(bulls);
-    		solver.Shots_cows.add(cows);
-    		ShowNextShot(solver.Shots_digits.size());	// отображение
+
+    		ShotData shot_data = new ShotData(bulls, cows, NextShot2);
+    		solver.shots_data.add(shot_data);
+    		ShowNextShot(solver.shots_data.size());	// отображение
     	}
-    	solver.Shots_bulls.clear();
-    	solver.Shots_cows.clear();
-    	solver.Shots_digits.clear();
+
+    	solver.shots_data.clear();
     	bulls = 0;
     	cows = 0;
     }
