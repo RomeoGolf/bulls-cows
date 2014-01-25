@@ -91,6 +91,11 @@ public class MainController implements Initializable{
     	}
     }
 
+    @FXML protected void onReset(ActionEvent e) {
+    	vbPlayer1.getChildren().removeAll(vbPlayer1.getChildren());
+    	
+    }
+
     // проверка цифр на совпадение
     boolean IsDifferent() {
     	//TODO: обрабатывать не только пары?
