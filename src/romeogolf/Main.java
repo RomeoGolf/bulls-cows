@@ -19,6 +19,7 @@ public class Main extends Application {
 		    stage.setTitle("FXML Welcome");
 		    stage.setScene(scene); 
 		    stage.show();
-
+		    stage.setMaxWidth(stage.getWidth());
+		    stage.setMinWidth(stage.getWidth());
 		}
 	}
