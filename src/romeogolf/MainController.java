@@ -78,6 +78,10 @@ public class MainController implements Initializable{
 		}
 	}
 
+	Integer getMode(){
+		return this.mode;
+	}
+
 	// Цифры, вводимые пользователем
     Integer[] DigitsForShow = new Integer[4];
     // массив знакомест для пользовательских цифр
