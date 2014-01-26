@@ -272,19 +272,19 @@ public class MainController implements Initializable{
     int trying;
 
     // вывод результатов попытки
-    void ShowNextShot(int trying) {
+    void ShowNextShot(int trying, boolean Player1) {
 		String s = new String(Arrays.toString(Digits));
 		s = Integer.toString(trying) + ": " + s;
 		s = s + " -   " + Integer.toString(bulls) + " Б, " +
 		    Integer.toString(cows) + " К";
-		ShowStepInfo(s, true);
+		ShowStepInfo(s, Player1);
     }
 
-    // ========= заготовка самостоятельной отгадки ======
+    // ========= машинная отгадка ======
     void SelfAnswer() {	    // отгадка
     	//curator.Init();
-    	solver.Init(curator.RndAllDigits);
-    	//curator.DigitMixer();			// перемешать цифры подготовить набор цифр
+    	curator.DigitMixer();			// перемешать цифры подготовить набор цифр
+    	solver.Init(curator.getDecade());
 
     	while(bulls + cows < 4) {		// цикл до отгадки всех цифр
     		Digits = solver.ToFindDigits(Digits);
@@ -294,7 +294,7 @@ public class MainController implements Initializable{
     		bulls = shot_data.getBulls();
     		cows = shot_data.getCows();
     		solver.shots_data.add(shot_data);
-    		ShowNextShot(solver.shots_data.size());	// отображение
+    		ShowNextShot(solver.shots_data.size(), false);	// отображение
     		solver.ShotDigitIndex = 0;		// обнуление индексов
     		solver.DigitsForAnswerIndex = 0;
     	}
@@ -304,7 +304,7 @@ public class MainController implements Initializable{
     		bulls = shot_data.getBulls();
     		cows = shot_data.getCows();
     		solver.shots_data.add(shot_data);
-    		ShowNextShot(solver.shots_data.size());	// отображение
+    		ShowNextShot(solver.shots_data.size(), false);	// отображение
     	}
     	solver.shots_data.clear();
     	bulls = 0;
