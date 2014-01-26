@@ -130,7 +130,23 @@ public class MainController implements Initializable{
     };
 
     @FXML protected void onShot(ActionEvent e) {
-    	SelfAnswer();
+		switch(mode){
+		case 0 :	// режим "человек угадывает"
+			this.ShotMode0();
+			break;
+		case 1 :	// режим "человек и машина угадывают друг у друга"
+			this.ShotMode1();
+			break;
+		case 2 :	// режим "человек и машина угадвают одно наперегонки"
+			this.ShotMode2();
+			break;
+		case 3 :	// режим "машина угадывает (тестовый)"
+			this.Reset();
+			SelfAnswer();
+			break;
+		default :	// режим "’«"
+			indicator.setText("режим ’«");
+		}
     }
 
     @FXML protected void onSetQwad(ActionEvent e) {
