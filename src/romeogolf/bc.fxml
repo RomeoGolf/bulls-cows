@@ -29,9 +29,9 @@
             <RadioButton mnemonicParsing="false" text="м -&gt; м" toggleGroup="$tgMode" userData="3" VBox.margin="$x2" />
           </children>
         </VBox>
-        <Button mnemonicParsing="false" onAction="#onSetQwad" prefWidth="75.0" text="загадать" />
-        <Button mnemonicParsing="false" onAction="#onGenerateQwad" prefWidth="75.0" text="сгенерить" />
-        <Button mnemonicParsing="false" onAction="#onReset" prefWidth="67.0" text="сброс" />
+        <Button fx:id="btSetQuad" mnemonicParsing="false" onAction="#onSetQwad" prefWidth="75.0" text="загадать" />
+        <Button fx:id="btGenerateQuad" mnemonicParsing="false" onAction="#onGenerateQwad" prefWidth="75.0" text="сгенерить" />
+        <Button fx:id="btReset" mnemonicParsing="false" onAction="#onReset" prefWidth="67.0" text="сброс" />
         <Button fx:id="btTest" mnemonicParsing="false" onAction="#onTest" prefWidth="67.0" text="Тест" />
       </children>
     </VBox>
