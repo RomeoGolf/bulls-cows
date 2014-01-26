@@ -8,7 +8,10 @@ public class DigitCurator {
     private Integer[] quad1 = new Integer[4];		// "загаданные" цифры для первого игрока
     private Integer[] quad2 = new Integer[4];		// "загаданные" цифры для второго игрока
     Random rg = new Random(System.currentTimeMillis());	// Генератор ПСП, инициализируемый временем
-    public Integer[] RndAllDigits = new Integer[10];		// для перемешанного массива цифр
+    private Integer[] RndAllDigits = new Integer[10];		// для перемешанного массива цифр
+    public Integer[] getDecade(){
+    	return this.RndAllDigits;
+    }
 
     public Integer[] getQuad(int num){
     	if (num == 1){
