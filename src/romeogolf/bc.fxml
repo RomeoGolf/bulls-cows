@@ -120,9 +120,8 @@
     </HBox>
     <Pane prefHeight="111.0" prefWidth="263.0" snapToPixel="true" style="" styleClass="common_panel" GridPane.columnIndex="1" GridPane.rowIndex="2">
       <children>
-        <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefWidth="75.0" text="старт" />
-        <Button layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#onSetQwad" prefWidth="75.0" text="загадать" />
-        <Button layoutX="14.0" layoutY="64.0" mnemonicParsing="false" prefWidth="75.0" text="сгенерить" />
+        <Button layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#onSetQwad" prefWidth="75.0" text="загадать" />
+        <Button layoutX="14.0" layoutY="41.0" mnemonicParsing="false" prefWidth="75.0" text="сгенерить" />
         <Button layoutX="157.0" layoutY="16.0" mnemonicParsing="false" onAction="#onShot" prefWidth="67.0" text="попытка" />
         <Button layoutX="157.0" layoutY="41.0" mnemonicParsing="false" onAction="#onReset" prefWidth="67.0" text="сброс" />
         <Button fx:id="btTest" layoutX="157.0" layoutY="65.0" mnemonicParsing="false" onAction="#onTest" prefWidth="67.0" text="Тест" />
