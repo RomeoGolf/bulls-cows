@@ -56,24 +56,32 @@ public class MainController implements Initializable{
 	@FXML private ScrollPane spPlayer2;
 	// переключение режима
 	@FXML private ToggleGroup tgMode;
+	// кнопки управлени€
+	@FXML private Button btSetQuad;
+	@FXML private Button btGenerateQuad;
+	@FXML private Button btReset;
 
 	private Integer mode = 0;
 	void setMode(Integer m){
 		this.mode = m;
 		switch(mode){
-		case 0 :
-			indicator.setText("режим 0");
+		case 0 :	// режим "человек угадывает"
+			this.btSetQuad.setDisable(true);
+			this.btGenerateQuad.setDisable(false);
 			break;
-		case 1 :
-			indicator.setText("режим 1");
+		case 1 :	// режим "человек и машина угадывают друг у друга"
+			this.btSetQuad.setDisable(false);
+			this.btGenerateQuad.setDisable(false);
 			break;
-		case 2 :
-			indicator.setText("режим 2");
+		case 2 :	// режим "человек и машина угадвают одно наперегонки"
+			this.btSetQuad.setDisable(true);
+			this.btGenerateQuad.setDisable(false);
 			break;
-		case 3 :
-			indicator.setText("режим 3");
+		case 3 :	// режим "машина угадывает (тестовый)"
+			this.btSetQuad.setDisable(false);
+			this.btGenerateQuad.setDisable(false);
 			break;
-		default :
+		default :	// режим "’«"
 			indicator.setText("режим ’«");
 		}
 	}
@@ -222,6 +230,7 @@ public class MainController implements Initializable{
     		aQuad1.get(i).setText(Integer.toString(i));
     	}
 
+    	this.setMode(0);
         tgMode.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
         	public void changed(ObservableValue<? extends Toggle> ov,
         			Toggle old_toggle, Toggle new_toggle) {
