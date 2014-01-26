@@ -18,6 +18,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -46,6 +48,30 @@ public class MainController implements Initializable{
 	@FXML private ScrollPane spPlayer1;
 	@FXML private VBox vbPlayer2;
 	@FXML private ScrollPane spPlayer2;
+	// переключение режима
+	@FXML private ToggleGroup tgMode;
+
+	private Integer mode = 0;
+	void setMode(Integer m){
+		this.mode = m;
+		switch(mode){
+		case 0 :
+			indicator.setText("режим 0");
+			break;
+		case 1 :
+			indicator.setText("режим 1");
+			break;
+		case 2 :
+			indicator.setText("режим 2");
+			break;
+		case 3 :
+			indicator.setText("режим 3");
+			break;
+		default :
+			indicator.setText("режим ХЗ");
+		}
+	}
+
 	// Цифры, вводимые пользователем
     Integer[] DigitsForShow = new Integer[4];
     // массив знакомест для пользовательских цифр
@@ -93,7 +119,7 @@ public class MainController implements Initializable{
 
     @FXML protected void onReset(ActionEvent e) {
     	vbPlayer1.getChildren().removeAll(vbPlayer1.getChildren());
-    	
+
     }
 
     // проверка цифр на совпадение
@@ -161,6 +187,15 @@ public class MainController implements Initializable{
     		this.DigitsForShow[i] = i;
     		atfDigits.get(i).setText(Integer.toString(i));
     	}
+
+        tgMode.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+        	public void changed(ObservableValue<? extends Toggle> ov,
+        			Toggle old_toggle, Toggle new_toggle) {
+        		if (tgMode.getSelectedToggle() != null) {
+        			setMode(Integer.decode(tgMode.getSelectedToggle().getUserData().toString()));
+        		}
+        	}
+        });
 	}
 
 	// вывод строки текста в ScrollPane
