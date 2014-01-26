@@ -144,6 +144,13 @@ public class MainController implements Initializable{
 
     }
 
+    protected void onModeToggle(){
+		if (tgMode.getSelectedToggle() != null) {
+			setMode(Integer.decode(tgMode.getSelectedToggle().getUserData().toString()));
+		}
+    }
+
+
     // проверка цифр на совпадение
     boolean IsDifferent() {
     	//TODO: обрабатывать не только пары?
@@ -218,9 +225,7 @@ public class MainController implements Initializable{
         tgMode.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
         	public void changed(ObservableValue<? extends Toggle> ov,
         			Toggle old_toggle, Toggle new_toggle) {
-        		if (tgMode.getSelectedToggle() != null) {
-        			setMode(Integer.decode(tgMode.getSelectedToggle().getUserData().toString()));
-        		}
+        		onModeToggle();
         	}
         });
 	}
