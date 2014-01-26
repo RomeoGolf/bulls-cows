@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
@@ -32,6 +33,11 @@ public class MainController implements Initializable{
 	@FXML private TextField charsell_2;
 	@FXML private TextField charsell_3;
 	@FXML private TextField charsell_4;
+	// знакоместа цифр 2 игрока
+	@FXML private Label charsell_2_1;
+	@FXML private Label charsell_2_2;
+	@FXML private Label charsell_2_3;
+	@FXML private Label charsell_2_4;
 	// поле отображения загаданной последовательности
 	@FXML private TextField indicator;
 	// кнопки для изменения цифр
@@ -76,6 +82,8 @@ public class MainController implements Initializable{
     Integer[] DigitsForShow = new Integer[4];
     // массив знакомест для пользовательских цифр
     ArrayList<TextField> atfDigits = new ArrayList<TextField>();
+    // массив знакомест для загаданных цифр
+    ArrayList<Label> aQuad2 = new ArrayList<Label>();
     // карта соответствия кнопок цифрам	
     public Map<Button, Integer> df = new HashMap<Button, Integer>();
     // множество кнопок увеличения
@@ -114,6 +122,11 @@ public class MainController implements Initializable{
     @FXML protected void onSetQwad(ActionEvent e) {
     	if (!this.IsDifferent()){
     		curator.setQuad(this.DigitsForShow, 2);
+    		for(int i = 0; i < 4; i++){
+    			aQuad2.get(i).setText(curator.getQuad(2)[i].toString());
+    		}
+    	}
+    }
     	}
     }
 
@@ -182,6 +195,11 @@ public class MainController implements Initializable{
     	atfDigits.add(charsell_2);
     	atfDigits.add(charsell_3);
     	atfDigits.add(charsell_4);
+    	// множество знакомест для загаданных цифр
+    	aQuad2.add(charsell_2_1);
+    	aQuad2.add(charsell_2_2);
+    	aQuad2.add(charsell_2_3);
+    	aQuad2.add(charsell_2_4);
     	// начальное заполнение массива цифр и его отображение
     	for(int i = 0; i < 4; i++){
     		this.DigitsForShow[i] = i;

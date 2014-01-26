@@ -12,3 +12,9 @@
     -fx-border-color: rgb(49, 89, 23);
     -fx-border-radius: 5;
 }
+
+.digit_sell {
+	-fx-padding: 5;
+    -fx-border-color: rgb(49, 89, 23);
+    -fx-border-radius: 5;
+}
