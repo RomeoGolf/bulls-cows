@@ -312,4 +312,25 @@ public class MainController implements Initializable{
     	bulls = 0;
     	cows = 0;
     }
+
+    void ShotMode0(){
+    	if (!this.IsDifferent()){
+    		Player1ShotNum++;
+    		ShotData shot_data = curator.checkQuad(this.DigitsForShow, 1);
+    		String s = new String(Arrays.toString(DigitsForShow));
+    		s = Integer.toString(Player1ShotNum) + ": " + s;
+    		s = s + " -   " + Integer.toString(shot_data.getBulls()) + " Á, " +
+    		    Integer.toString(shot_data.getCows()) + " Ê";
+    		ShowStepInfo(s, true);
+    	}
+    }
+
+    void ShotMode1(){
+    	
+    }
+
+    void ShotMode2(){
+    	
+    }
+
 }
