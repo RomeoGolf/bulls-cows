@@ -61,6 +61,8 @@ public class MainController implements Initializable{
 	@FXML private Button btGenerateQuad;
 	@FXML private Button btReset;
 
+	private Integer Player1ShotNum = 0;
+
 	private Integer mode = 0;
 	void setMode(Integer m){
 		this.mode = m;
