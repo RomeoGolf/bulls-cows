@@ -109,7 +109,9 @@ public class MainController implements Initializable{
     	//this.ShowStepInfo("zxcvbn", true);
     	//this.ShowStepInfo("asdfgh", false);
     	//String s = new String(Arrays.toString(DigitsForShow));
-    	String s = new String(Arrays.toString(curator.getQuad(2)));
+    	String s = new String("q1= ");
+    	s = s +	Arrays.toString(curator.getQuad(1));
+    	s = s +	"; q2= " + Arrays.toString(curator.getQuad(2));
     	indicator.setText(s);
     };
 
