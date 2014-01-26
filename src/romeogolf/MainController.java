@@ -151,9 +151,15 @@ public class MainController implements Initializable{
     	//indicator.setText(Arrays.toString(curator.getQuad(1)));
     }
 
-    @FXML protected void onReset(ActionEvent e) {
+    void Reset(){
     	vbPlayer1.getChildren().removeAll(vbPlayer1.getChildren());
+    	vbPlayer2.getChildren().removeAll(vbPlayer2.getChildren());
+    	solver.Init(curator.getDecade());
+    	Player1ShotNum = 0;
+    }
 
+    @FXML protected void onReset(ActionEvent e) {
+    	this.Reset();
     }
 
     protected void onModeToggle(){
