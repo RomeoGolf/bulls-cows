@@ -347,7 +347,26 @@ public class MainController implements Initializable{
     }
 
     void ShotMode1(){
-    	
+    	if (!this.IsDifferent()){
+    		Player1ShotNum++;
+    		ShotData shot_data = curator.checkQuad(this.DigitsForShow, 1);
+    		String s = new String(Arrays.toString(DigitsForShow));
+    		s = Integer.toString(Player1ShotNum) + ": " + s;
+    		s = s + " -   " + Integer.toString(shot_data.getBulls()) + " Б, " +
+    		    Integer.toString(shot_data.getCows()) + " К";
+    		ShowStepInfo(s, true);
+
+    		Digits = solver.ToFindDigits(Digits);
+    		Integer[] TmpBufI = new Integer[4];
+    		for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
+    		ShotData shot_data2 = curator.checkQuad(Digits, 2);
+    		bulls = shot_data2.getBulls();
+    		cows = shot_data2.getCows();
+    		solver.shots_data.add(shot_data2);
+    		ShowNextShot(solver.shots_data.size(), false);	// отображение
+    		solver.ShotDigitIndex = 0;		// обнуление индексов
+    		solver.DigitsForAnswerIndex = 0;
+    	}
     }
 
     void ShotMode2(){
