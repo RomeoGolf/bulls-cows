@@ -78,18 +78,14 @@
     <Pane minHeight="25.0" prefHeight="200.0" prefWidth="200.0" styleClass="common_panel" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="NEVER" />
     <HBox alignment="CENTER" minHeight="90.0" prefHeight="79.0" prefWidth="195.0" style="" styleClass="common_panel" GridPane.columnIndex="1" GridPane.rowIndex="1">
       <children>
-        <VBox alignment="CENTER" minWidth="23.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
+        <VBox alignment="CENTER" minWidth="-1.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
           <children>
-            <Button fx:id="btUp_1" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+            <Button fx:id="btUp_1" ellipsisString="" maxHeight="20.0" maxWidth="-1.0" minHeight="20.0" minWidth="-1.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="-1.0" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
             </Button>
-            <TextField fx:id="charsell_1" alignment="CENTER" editable="false" focusTraversable="true" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" prefColumnCount="20" prefHeight="20.0" prefWidth="20.0" text="5" VBox.vgrow="NEVER">
-              <VBox.margin>
-                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
-              </VBox.margin>
-            </TextField>
+            <Label fx:id="charsell_1_1" font="$x3" styleClass="digit_sell" text="X" />
             <Button fx:id="btDown_1" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
@@ -97,18 +93,14 @@
             </Button>
           </children>
         </VBox>
-        <VBox alignment="CENTER" minWidth="23.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
+        <VBox alignment="CENTER" minWidth="-1.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
           <children>
             <Button fx:id="btUp_2" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
             </Button>
-            <TextField fx:id="charsell_2" alignment="CENTER" editable="false" focusTraversable="true" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" prefColumnCount="20" prefHeight="20.0" prefWidth="20.0" text="6" VBox.vgrow="NEVER">
-              <VBox.margin>
-                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
-              </VBox.margin>
-            </TextField>
+            <Label fx:id="charsell_1_2" font="$x3" styleClass="digit_sell" text="X" />
             <Button fx:id="btDown_2" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
@@ -116,18 +108,14 @@
             </Button>
           </children>
         </VBox>
-        <VBox alignment="CENTER" minWidth="23.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
+        <VBox alignment="CENTER" minWidth="-1.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
           <children>
             <Button fx:id="btUp_3" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
             </Button>
-            <TextField fx:id="charsell_3" alignment="CENTER" editable="false" focusTraversable="true" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" prefColumnCount="20" prefHeight="20.0" prefWidth="20.0" text="7" VBox.vgrow="NEVER">
-              <VBox.margin>
-                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
-              </VBox.margin>
-            </TextField>
+            <Label fx:id="charsell_1_3" font="$x3" styleClass="digit_sell" text="X" />
             <Button fx:id="btDown_3" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
@@ -135,18 +123,14 @@
             </Button>
           </children>
         </VBox>
-        <VBox alignment="CENTER" minWidth="23.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
+        <VBox alignment="CENTER" minWidth="-1.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
           <children>
             <Button fx:id="btUp_4" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
             </Button>
-            <TextField fx:id="charsell_4" alignment="CENTER" editable="false" focusTraversable="true" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" prefColumnCount="20" prefHeight="20.0" prefWidth="20.0" text="8" VBox.vgrow="NEVER">
-              <VBox.margin>
-                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
-              </VBox.margin>
-            </TextField>
+            <Label fx:id="charsell_1_4" font="$x3" styleClass="digit_sell" text="X" />
             <Button fx:id="btDown_4" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
@@ -169,8 +153,8 @@
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="NEVER" />
-    <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
-    <RowConstraints maxHeight="100.0" minHeight="46.0" prefHeight="61.0" vgrow="NEVER" />
+    <RowConstraints maxHeight="116.0" minHeight="100.0" prefHeight="116.0" vgrow="NEVER" />
+    <RowConstraints maxHeight="100.0" minHeight="45.0" prefHeight="45.0" vgrow="NEVER" />
     <RowConstraints maxHeight="479.0" minHeight="10.0" prefHeight="464.0" vgrow="ALWAYS" />
     <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
   </rowConstraints>

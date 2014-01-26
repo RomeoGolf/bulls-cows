@@ -29,10 +29,10 @@ import javafx.scene.text.Text;
 
 public class MainController implements Initializable{
 	// знакоместа пользовательских цифр
-	@FXML private TextField charsell_1;
-	@FXML private TextField charsell_2;
-	@FXML private TextField charsell_3;
-	@FXML private TextField charsell_4;
+	@FXML private Label charsell_1_1;
+	@FXML private Label charsell_1_2;
+	@FXML private Label charsell_1_3;
+	@FXML private Label charsell_1_4;
 	// знакоместа цифр 2 игрока
 	@FXML private Label charsell_2_1;
 	@FXML private Label charsell_2_2;
@@ -81,7 +81,7 @@ public class MainController implements Initializable{
 	// Цифры, вводимые пользователем
     Integer[] DigitsForShow = new Integer[4];
     // массив знакомест для пользовательских цифр
-    ArrayList<TextField> atfDigits = new ArrayList<TextField>();
+    ArrayList<Label> aQuad1 = new ArrayList<Label>();
     // массив знакомест для загаданных цифр
     ArrayList<Label> aQuad2 = new ArrayList<Label>();
     // карта соответствия кнопок цифрам	
@@ -111,7 +111,7 @@ public class MainController implements Initializable{
     		if (DigitsForShow[Num] < 0){DigitsForShow[Num] = 9;}
     			// и соответствующее изменение
     		if (DigitsForShow[Num] > 9){DigitsForShow[Num] = 0;}
-    		atfDigits.get(Num).setText(Integer.toString(DigitsForShow[Num]));
+    		aQuad1.get(Num).setText(Integer.toString(DigitsForShow[Num]));
     		IsDifferent();
     };
 
@@ -144,13 +144,13 @@ public class MainController implements Initializable{
     boolean IsDifferent() {
     	//TODO: обрабатывать не только пары?
     	for(int i = 0; i < 4; i++) {
-    		atfDigits.get(i).setStyle("-fx-text-fill: #000000;");
+    		aQuad1.get(i).setStyle("-fx-text-fill: #000000;");
     	}
     	for(int i = 0; i < 3; i++) {
     		for(int j = i + 1; j < 4; j++) {
     			if(DigitsForShow[i] == DigitsForShow[j]) {
-    				atfDigits.get(i).setStyle("-fx-text-fill: #FF0000;");
-    				atfDigits.get(j).setStyle("-fx-text-fill: #FF0000;");
+    				aQuad1.get(i).setStyle("-fx-text-fill: #FF0000;");
+    				aQuad1.get(j).setStyle("-fx-text-fill: #FF0000;");
     				return true;
     			}
     		}
@@ -196,10 +196,10 @@ public class MainController implements Initializable{
     	sUp.add(btUp_3);
     	sUp.add(btUp_4);
     	// множество знакомест для цифр
-    	atfDigits.add(charsell_1);
-    	atfDigits.add(charsell_2);
-    	atfDigits.add(charsell_3);
-    	atfDigits.add(charsell_4);
+    	aQuad1.add(charsell_1_1);
+    	aQuad1.add(charsell_1_2);
+    	aQuad1.add(charsell_1_3);
+    	aQuad1.add(charsell_1_4);
     	// множество знакомест для загаданных цифр
     	aQuad2.add(charsell_2_1);
     	aQuad2.add(charsell_2_2);
@@ -208,7 +208,7 @@ public class MainController implements Initializable{
     	// начальное заполнение массива цифр и его отображение
     	for(int i = 0; i < 4; i++){
     		this.DigitsForShow[i] = i;
-    		atfDigits.get(i).setText(Integer.toString(i));
+    		aQuad1.get(i).setText(Integer.toString(i));
     	}
 
         tgMode.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
