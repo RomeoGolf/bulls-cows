@@ -174,8 +174,11 @@ public class MainController implements Initializable{
     void Reset(){
     	vbPlayer1.getChildren().removeAll(vbPlayer1.getChildren());
     	vbPlayer2.getChildren().removeAll(vbPlayer2.getChildren());
+    	curator.DigitMixer();			// ןונולוראעü צטפנû ןמהדמעמגטעü םאבמנ צטפנ
     	solver.Init(curator.getDecade());
     	Player1ShotNum = 0;
+    	bulls = 0;
+    	cows = 0;
     }
 
     @FXML protected void onReset(ActionEvent e) {
