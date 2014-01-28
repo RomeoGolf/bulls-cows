@@ -10,7 +10,18 @@ public class DigitCurator {
     Random rg = new Random(System.currentTimeMillis());	// Генератор ПСП, инициализируемый временем
     private Integer[] RndAllDigits = new Integer[10];		// для перемешанного массива цифр
     public Integer[] getDecade(){
-    	return this.RndAllDigits;
+    	Integer[] Result = RndAllDigits.clone();
+    	int i, n, buf;
+    	i = 9;
+    	while(i > 0){
+    		n = rg.nextInt(i);
+    		buf = Result[n];
+    		Result[n] = Result[i];
+    		Result[i] = buf;
+    		i--;
+    	}
+    	RndAllDigits = Result.clone();
+    	return Result;
     }
 
     public Integer[] getQuad(int num){
