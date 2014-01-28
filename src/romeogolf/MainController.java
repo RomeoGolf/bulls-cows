@@ -112,6 +112,7 @@ public class MainController implements Initializable{
     	String s = new String("q1= ");
     	s = s +	Arrays.toString(curator.getQuad(1));
     	s = s +	"; q2= " + Arrays.toString(curator.getQuad(2));
+    	s = s + "; dec=" + Arrays.toString(curator.getDecade());
     	indicator.setText(s);
     };
 
