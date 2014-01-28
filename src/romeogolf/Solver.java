@@ -182,6 +182,7 @@ public class Solver {
     	ShotDigitIndex = 0;		// индекс массива цифр очередной попытки
     	DigitsForAnswerIndex = 0;	// индекс в наборе цифр
 
+    	DigitsForAnswer.clear();
     	for(int i = 0; i < 10; i++) {
     		DigitsForAnswer.add(InitArray[i]);
     	}
