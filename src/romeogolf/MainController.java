@@ -155,6 +155,7 @@ public class MainController implements Initializable{
     @FXML protected void onSetQwad(ActionEvent e) {
     	if (!this.IsDifferent()){
     		curator.setQuad(this.DigitsForShow, 2);
+    		solver.Init(curator.getDecade());
     		for(int i = 0; i < 4; i++){
     			aQuad2.get(i).setText(curator.getQuad(2)[i].toString());
     		}
@@ -169,6 +170,7 @@ public class MainController implements Initializable{
     		}
     	}
     	curator.generateQuad(1);
+		solver.Init(curator.getDecade());
     	//indicator.setText(Arrays.toString(curator.getQuad(1)));
     }
 
@@ -180,6 +182,7 @@ public class MainController implements Initializable{
     	Player1ShotNum = 0;
     	bulls = 0;
     	cows = 0;
+		solver.Init(curator.getDecade());
     }
 
     @FXML protected void onReset(ActionEvent e) {
@@ -190,6 +193,7 @@ public class MainController implements Initializable{
 		if (tgMode.getSelectedToggle() != null) {
 			setMode(Integer.decode(tgMode.getSelectedToggle().getUserData().toString()));
 		}
+		solver.Init(curator.getDecade());
     }
 
 
