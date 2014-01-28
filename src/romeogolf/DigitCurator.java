@@ -45,15 +45,17 @@ public class DigitCurator {
     }
 
     public void generateQuad(int num){
-    	int n = rg.nextInt(5);
+    	this.getDecade();
+    	Integer[] Result = new Integer[4];
+    	int ind = rg.nextInt(6);
+    	for(int i = 0; i < 4; i++){
+    		Result[i] = this.RndAllDigits[ind + i];
+    	}
+
     	if (num == 1){
-    		for(int i = 0; i < 4; i++){
-    			this.quad1[i] = RndAllDigits[i + n];
-    		}
+   			this.quad1 = Result.clone();
     	}else{
-    		for(int i = 0; i < 4; i++){
-    			this.quad2[i] = RndAllDigits[i + n];
-    		}
+   			this.quad2 = Result.clone();
     	}
     }
 
