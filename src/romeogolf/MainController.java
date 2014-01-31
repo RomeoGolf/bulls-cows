@@ -21,6 +21,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -60,6 +62,7 @@ public class MainController implements Initializable{
 	@FXML private Button btSetQuad;
 	@FXML private Button btGenerateQuad;
 	@FXML private Button btReset;
+	@FXML private Button btTest;
 
 	private Integer Player1ShotNum = 0;
 
@@ -218,6 +221,7 @@ public class MainController implements Initializable{
     // инициализация интерфейса
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		getImages();
 		// добавление обработчика изменения размера панели на ScrollPane
 		// для прокрутки до упора
 		vbPlayer1.setSpacing(3);
@@ -279,6 +283,12 @@ public class MainController implements Initializable{
     	aQuad2.add(charsell_2_2);
     	aQuad2.add(charsell_2_3);
     	aQuad2.add(charsell_2_4);
+	}
+
+	private void getImages(){
+		Image iTest = new Image(this.getClass().getResourceAsStream("/res/img/test.png"));
+		this.btTest.setGraphic(new ImageView(iTest));
+		this.btTest.setGraphicTextGap(5);
 	}
 
 	// вывод строки текста в ScrollPane
