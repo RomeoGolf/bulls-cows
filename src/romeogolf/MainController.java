@@ -295,7 +295,6 @@ public class MainController implements Initializable{
 	private void getImages(){
 		Image iTest = new Image(this.getClass().getResourceAsStream("/res/img/test.png"));
 		this.btTest.setGraphic(new ImageView(iTest));
-		this.btTest.setGraphicTextGap(5);
 
 		Image iUp = new Image(this.getClass().getResourceAsStream("/res/img/up.png"));
 		Image iDown = new Image(this.getClass().getResourceAsStream("/res/img/down.png"));
