@@ -80,13 +80,13 @@
       <children>
         <VBox alignment="CENTER" minWidth="-1.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
           <children>
-            <Button fx:id="btUp_1" ellipsisString="" maxHeight="20.0" maxWidth="-1.0" minHeight="20.0" minWidth="-1.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="-1.0" text="" wrapText="false">
+            <Button fx:id="btUp_1" ellipsisString="" maxHeight="20.0" maxWidth="-1.0" minHeight="24.0" minWidth="28.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="-1.0" styleClass="bt_up_down" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
             </Button>
             <Label fx:id="charsell_1_1" font="$x3" styleClass="digit_sell" text="X" />
-            <Button fx:id="btDown_1" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+            <Button fx:id="btDown_1" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="24.0" minWidth="28.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" styleClass="bt_up_down" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
@@ -95,13 +95,13 @@
         </VBox>
         <VBox alignment="CENTER" minWidth="-1.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
           <children>
-            <Button fx:id="btUp_2" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+            <Button fx:id="btUp_2" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="24.0" minWidth="28.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" styleClass="bt_up_down" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
             </Button>
             <Label fx:id="charsell_1_2" font="$x3" styleClass="digit_sell" text="X" />
-            <Button fx:id="btDown_2" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+            <Button fx:id="btDown_2" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="24.0" minWidth="28.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" styleClass="bt_up_down" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
@@ -110,13 +110,13 @@
         </VBox>
         <VBox alignment="CENTER" minWidth="-1.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
           <children>
-            <Button fx:id="btUp_3" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+            <Button fx:id="btUp_3" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="24.0" minWidth="28.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" styleClass="bt_up_down" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
             </Button>
             <Label fx:id="charsell_1_3" font="$x3" styleClass="digit_sell" text="X" />
-            <Button fx:id="btDown_3" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+            <Button fx:id="btDown_3" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="24.0" minWidth="28.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" styleClass="bt_up_down" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
@@ -125,13 +125,13 @@
         </VBox>
         <VBox alignment="CENTER" minWidth="-1.0" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
           <children>
-            <Button fx:id="btUp_4" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+            <Button fx:id="btUp_4" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="24.0" minWidth="28.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" styleClass="bt_up_down" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
             </Button>
             <Label fx:id="charsell_1_4" font="$x3" styleClass="digit_sell" text="X" />
-            <Button fx:id="btDown_4" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" text="" wrapText="false">
+            <Button fx:id="btDown_4" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="24.0" minWidth="28.0" mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0" styleClass="bt_up_down" text="" wrapText="false">
               <VBox.margin>
                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" fx:id="x1" />
               </VBox.margin>
