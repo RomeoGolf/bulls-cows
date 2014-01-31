@@ -22,6 +22,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -309,19 +310,19 @@ public class MainController implements Initializable{
 
 		Image iMode0 = new Image(this.getClass().getResourceAsStream("/res/img/user-comp.png"));
 		this.rbMode0.setGraphic(new ImageView(iMode0));
-		this.rbMode0.setText("");
+		this.rbMode0.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
 		Image iMode1 = new Image(this.getClass().getResourceAsStream("/res/img/user vs comp.png"));
 		this.rbMode1.setGraphic(new ImageView(iMode1));
-		this.rbMode1.setText("");
+		this.rbMode1.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
 		Image iMode2 = new Image(this.getClass().getResourceAsStream("/res/img/user,comp-comp.png"));
 		this.rbMode2.setGraphic(new ImageView(iMode2));
-		this.rbMode2.setText("");
+		this.rbMode2.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
 		Image iMode3 = new Image(this.getClass().getResourceAsStream("/res/img/comp-comp.png"));
 		this.rbMode3.setGraphic(new ImageView(iMode3));
-		this.rbMode3.setText("");
+		this.rbMode3.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
 	}
 
