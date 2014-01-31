@@ -18,3 +18,8 @@
     -fx-border-color: rgb(49, 89, 23);
     -fx-border-radius: 5;
 }
+
+.bt_up_down {
+	-fx-padding: 3;
+	-fx-border-radius: 5;
+}
