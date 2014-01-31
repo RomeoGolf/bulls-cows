@@ -289,6 +289,17 @@ public class MainController implements Initializable{
 		Image iTest = new Image(this.getClass().getResourceAsStream("/res/img/test.png"));
 		this.btTest.setGraphic(new ImageView(iTest));
 		this.btTest.setGraphicTextGap(5);
+
+		Image iUp = new Image(this.getClass().getResourceAsStream("/res/img/up.png"));
+		Image iDown = new Image(this.getClass().getResourceAsStream("/res/img/down.png"));
+		this.btUp_1.setGraphic(new ImageView(iUp));
+		this.btUp_2.setGraphic(new ImageView(iUp));
+		this.btUp_3.setGraphic(new ImageView(iUp));
+		this.btUp_4.setGraphic(new ImageView(iUp));
+		this.btDown_1.setGraphic(new ImageView(iDown));
+		this.btDown_2.setGraphic(new ImageView(iDown));
+		this.btDown_3.setGraphic(new ImageView(iDown));
+		this.btDown_4.setGraphic(new ImageView(iDown));
 	}
 
 	// вывод строки текста в ScrollPane
