@@ -9,14 +9,18 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="CENTER" maxHeight="-1.0" maxWidth="600.0" minHeight="-1.0" minWidth="600.0" prefHeight="700.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="romeogolf.MainController">
+<GridPane alignment="CENTER" maxHeight="-1.0" maxWidth="600.0" minHeight="-1.0" minWidth="700.0" prefHeight="700.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="romeogolf.MainController">
   <children>
     <VBox id="pLeft" alignment="TOP_CENTER" spacing="20.0" styleClass="common_panel" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.vgrow="ALWAYS">
       <children>
-        <VBox minHeight="136.0" prefHeight="136.0" prefWidth="89.0" styleClass="h_panel">
+        <VBox minHeight="-1.0" minWidth="-1.0" prefHeight="191.0" prefWidth="188.0" spacing="2.0" styleClass="h_panel" VBox.vgrow="SOMETIMES">
           <children>
-            <Label text="Режим" />
-            <RadioButton mnemonicParsing="false" selected="true" text="ч -&gt; м" userData="0">
+            <Label text="Режим">
+              <font>
+                <Font size="18.0" />
+              </font>
+            </Label>
+            <RadioButton fx:id="rbMode0" mnemonicParsing="false" selected="true" text="ч -&gt; м" userData="0">
               <toggleGroup>
                 <ToggleGroup fx:id="tgMode" />
               </toggleGroup>
@@ -24,15 +28,16 @@
                 <Insets bottom="5.0" top="5.0" fx:id="x2" />
               </VBox.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" text="ч &lt;-&gt; м" toggleGroup="$tgMode" userData="1" VBox.margin="$x2" />
-            <RadioButton mnemonicParsing="false" text="ч, м -&gt; м" toggleGroup="$tgMode" userData="2" VBox.margin="$x2" />
-            <RadioButton mnemonicParsing="false" text="м -&gt; м" toggleGroup="$tgMode" userData="3" VBox.margin="$x2" />
+            <RadioButton fx:id="rbMode1" mnemonicParsing="false" text="ч &lt;-&gt; м" toggleGroup="$tgMode" userData="1" VBox.margin="$x2" />
+            <RadioButton fx:id="rbMode2" mnemonicParsing="false" text="ч, м -&gt; м" toggleGroup="$tgMode" userData="2" VBox.margin="$x2" />
+            <RadioButton fx:id="rbMode3" mnemonicParsing="false" text="м -&gt; м" toggleGroup="$tgMode" userData="3" VBox.margin="$x2" />
           </children>
         </VBox>
         <Button fx:id="btSetQuad" mnemonicParsing="false" onAction="#onSetQwad" prefWidth="75.0" text="загадать" />
         <Button fx:id="btGenerateQuad" mnemonicParsing="false" onAction="#onGenerateQwad" prefWidth="75.0" text="сгенерить" />
         <Button fx:id="btReset" mnemonicParsing="false" onAction="#onReset" prefWidth="67.0" text="сброс" />
-        <Button fx:id="btTest" mnemonicParsing="false" onAction="#onTest" prefWidth="67.0" text="Тест" />
+        <Button fx:id="btTest" mnemonicParsing="false" onAction="#onTest" prefWidth="106.0" text="Тест" />
+        <VBox prefHeight="116.0" prefWidth="188.0" VBox.vgrow="ALWAYS" />
       </children>
     </VBox>
     <HBox id="pDigitsFor2" alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="10.0" styleClass="common_panel" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
@@ -147,7 +152,7 @@
     </Pane>
   </children>
   <columnConstraints>
-    <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="100.0" prefWidth="108.0" />
+    <ColumnConstraints hgrow="NEVER" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
     <ColumnConstraints hgrow="NEVER" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" />
     <ColumnConstraints hgrow="NEVER" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" />
   </columnConstraints>
