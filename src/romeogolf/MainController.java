@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
@@ -63,6 +64,11 @@ public class MainController implements Initializable{
 	@FXML private Button btGenerateQuad;
 	@FXML private Button btReset;
 	@FXML private Button btTest;
+	// переключатели режима
+	@FXML private RadioButton rbMode0;
+	@FXML private RadioButton rbMode1;
+	@FXML private RadioButton rbMode2;
+	@FXML private RadioButton rbMode3;
 
 	private Integer Player1ShotNum = 0;
 
@@ -300,6 +306,23 @@ public class MainController implements Initializable{
 		this.btDown_2.setGraphic(new ImageView(iDown));
 		this.btDown_3.setGraphic(new ImageView(iDown));
 		this.btDown_4.setGraphic(new ImageView(iDown));
+
+		Image iMode0 = new Image(this.getClass().getResourceAsStream("/res/img/user-comp.png"));
+		this.rbMode0.setGraphic(new ImageView(iMode0));
+		this.rbMode0.setText("");
+
+		Image iMode1 = new Image(this.getClass().getResourceAsStream("/res/img/user vs comp.png"));
+		this.rbMode1.setGraphic(new ImageView(iMode1));
+		this.rbMode1.setText("");
+
+		Image iMode2 = new Image(this.getClass().getResourceAsStream("/res/img/user,comp-comp.png"));
+		this.rbMode2.setGraphic(new ImageView(iMode2));
+		this.rbMode2.setText("");
+
+		Image iMode3 = new Image(this.getClass().getResourceAsStream("/res/img/comp-comp.png"));
+		this.rbMode3.setGraphic(new ImageView(iMode3));
+		this.rbMode3.setText("");
+
 	}
 
 	// вывод строки текста в ScrollPane
