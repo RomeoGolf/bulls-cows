@@ -65,6 +65,7 @@ public class MainController implements Initializable{
 	@FXML private Button btGenerateQuad;
 	@FXML private Button btReset;
 	@FXML private Button btTest;
+	@FXML private Button btShot;
 	// переключатели режима
 	@FXML private RadioButton rbMode0;
 	@FXML private RadioButton rbMode1;
@@ -323,6 +324,18 @@ public class MainController implements Initializable{
 		this.rbMode3.setGraphic(new ImageView(iMode3));
 		this.rbMode3.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
+		Image iShot = new Image(this.getClass().getResourceAsStream("/res/img/check.png"));
+		this.btShot.setGraphic(new ImageView(iShot));
+		this.btShot.setGraphicTextGap(10);
+
+		Image iGenerate = new Image(this.getClass().getResourceAsStream("/res/img/dice.png"));
+		this.btGenerateQuad.setGraphic(new ImageView(iGenerate));
+
+		Image iSetQuad = new Image(this.getClass().getResourceAsStream("/res/img/touch.png"));
+		this.btSetQuad.setGraphic(new ImageView(iSetQuad));
+
+		Image iReset = new Image(this.getClass().getResourceAsStream("/res/img/refresh.png"));
+		this.btReset.setGraphic(new ImageView(iReset));
 	}
 
 	// вывод строки текста в ScrollPane
