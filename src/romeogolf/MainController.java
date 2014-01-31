@@ -238,6 +238,23 @@ public class MainController implements Initializable{
     			}
             }
         });
+		setControlMaps();
+    	// начальное заполнение массива цифр и его отображение
+    	for(int i = 0; i < 4; i++){
+    		this.DigitsForShow[i] = i;
+    		aQuad1.get(i).setText(Integer.toString(i));
+    	}
+
+    	this.setMode(0);
+        tgMode.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+        	public void changed(ObservableValue<? extends Toggle> ov,
+        			Toggle old_toggle, Toggle new_toggle) {
+        		onModeToggle();
+        	}
+        });
+	}
+
+	private void setControlMaps(){
 		// заполнение карты соответствия кнопок их номерам
     	df.put(btUp_1, 0);
     	df.put(btDown_1, 0);
@@ -262,19 +279,6 @@ public class MainController implements Initializable{
     	aQuad2.add(charsell_2_2);
     	aQuad2.add(charsell_2_3);
     	aQuad2.add(charsell_2_4);
-    	// начальное заполнение массива цифр и его отображение
-    	for(int i = 0; i < 4; i++){
-    		this.DigitsForShow[i] = i;
-    		aQuad1.get(i).setText(Integer.toString(i));
-    	}
-
-    	this.setMode(0);
-        tgMode.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
-        	public void changed(ObservableValue<? extends Toggle> ov,
-        			Toggle old_toggle, Toggle new_toggle) {
-        		onModeToggle();
-        	}
-        });
 	}
 
 	// вывод строки текста в ScrollPane
