@@ -180,6 +180,7 @@ public class MainController implements Initializable{
     			aQuad2.get(i).setText(curator.getQuad(2)[i].toString());
     		}
     	}
+    	this.btShot.setDisable(false);
     }
 
     @FXML protected void onGenerateQwad(ActionEvent e) {
@@ -196,6 +197,7 @@ public class MainController implements Initializable{
     	}
     	curator.generateQuad(1);
 		solver.Init(curator.getDecade());
+    	this.btShot.setDisable(false);
     	//indicator.setText(Arrays.toString(curator.getQuad(1)));
     }
 
