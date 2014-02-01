@@ -175,6 +175,7 @@ public class Solver {
     }
 
     public void Init(Integer[] InitArray){
+    	this.shots_data.clear();
     	Indexes.clear();
     	for(int i = 0; i < 4; i++) {Indexes.add(i);}
     	ShotDigits.clear();
