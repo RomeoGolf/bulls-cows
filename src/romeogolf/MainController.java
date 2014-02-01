@@ -505,7 +505,9 @@ public class MainController implements Initializable{
 
     		Digits = solver.ToFindDigits(Digits);
     		Integer[] TmpBufI = new Integer[4];
-    		for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
+    		for(int i = 0; i < 4; i++) {
+    			TmpBufI[i] = Digits[i];
+    		}
     		ShotData shot_data2 = curator.checkQuad(Digits, 1);
     		bulls = shot_data2.getBulls();
     		cows = shot_data2.getCows();
