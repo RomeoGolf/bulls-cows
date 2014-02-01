@@ -75,36 +75,22 @@ public class MainController implements Initializable{
 	private Integer Player1ShotNum = 0;
 
 	private Integer mode = 0;
+
 	void setMode(Integer m){
+		this.Reset();
 		this.mode = m;
-		switch(mode){
-		case 0 :	// режим "человек угадывает"
-			this.btSetQuad.setDisable(true);
-			this.btGenerateQuad.setDisable(false);
-			this.Reset();
+		/*
+		0 :	// режим "человек угадывает"
+		1 :	// режим "человек и машина угадывают друг у друга"
+		2 :	// режим "человек и машина угадвают одно наперегонки"
+		3 :	// режим "машина угадывает (тестовый)"
+		 */
+		if (mode == 0){
 			curator.generateQuad(1);
-			break;
-		case 1 :	// режим "человек и машина угадывают друг у друга"
-			this.btSetQuad.setDisable(false);
-			this.btGenerateQuad.setDisable(false);
-			this.Reset();
+		} else {
 			generateQwads();
-			break;
-		case 2 :	// режим "человек и машина угадвают одно наперегонки"
-			this.btSetQuad.setDisable(true);
-			this.btGenerateQuad.setDisable(false);
-			this.Reset();
-			generateQwads();
-			break;
-		case 3 :	// режим "машина угадывает (тестовый)"
-			this.btSetQuad.setDisable(false);
-			this.btGenerateQuad.setDisable(false);
-			this.Reset();
-			generateQwads();
-			break;
-		default :	// режим "ХЗ"
-			indicator.setText("режим ХЗ");
 		}
+		this.setDisableBt(false);
 	}
 
 	Integer getMode(){
