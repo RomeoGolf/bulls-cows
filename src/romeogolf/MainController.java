@@ -91,6 +91,9 @@ public class MainController implements Initializable{
 			generateQwads();
 		}
 		this.setDisableBt(false);
+		if ((mode == 0) || (mode == 2)){
+			this.setXToPlayer2();
+		}
 	}
 
 	Integer getMode(){
@@ -529,6 +532,12 @@ public class MainController implements Initializable{
     		this.ShowStepInfo("Победа!", true, 0);
     	}
     	this.setDisableBt(false);
+    }
+
+    private void setXToPlayer2(){
+		for(int i = 0; i < 4; i++){
+			aQuad2.get(i).setText("X");
+		}
     }
 
 }
