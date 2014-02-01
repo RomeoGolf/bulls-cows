@@ -437,6 +437,9 @@ public class MainController implements Initializable{
     			img = 3;
     		}
     		ShowStepInfo(s, true, img);
+    		if (shot_data.getBulls() == 4){
+    			this.doEndOfGame(0);
+    		}
     	}
     }
 
@@ -449,6 +452,9 @@ public class MainController implements Initializable{
     		s = s + " -   " + Integer.toString(shot_data.getBulls()) + " Б, " +
     		    Integer.toString(shot_data.getCows()) + " К";
     		ShowStepInfo(s, true, 0);
+    		if (shot_data.getBulls() == 4){
+    			this.doEndOfGame(1);
+    		}
 
     		Digits = solver.ToFindDigits(Digits);
     		Integer[] TmpBufI = new Integer[4];
@@ -460,6 +466,9 @@ public class MainController implements Initializable{
     		ShowNextShot(solver.shots_data.size(), false, 0);	// отображение
     		solver.ShotDigitIndex = 0;		// обнуление индексов
     		solver.DigitsForAnswerIndex = 0;
+    		if (bulls == 4){
+    			this.doEndOfGame(2);
+    		}
     	}
     }
 
@@ -472,6 +481,9 @@ public class MainController implements Initializable{
     		s = s + " -   " + Integer.toString(shot_data.getBulls()) + " Б, " +
     		    Integer.toString(shot_data.getCows()) + " К";
     		ShowStepInfo(s, true, 0);
+    		if (shot_data.getBulls() == 4){
+    			this.doEndOfGame(1);
+    		}
 
     		Digits = solver.ToFindDigits(Digits);
     		Integer[] TmpBufI = new Integer[4];
@@ -485,9 +497,21 @@ public class MainController implements Initializable{
     		s2 = s2 + ": -   " + Integer.toString(bulls) + " Б, " +
     		    Integer.toString(cows) + " К";
     		ShowStepInfo(s2, false, 0);
-
     		solver.ShotDigitIndex = 0;		// обнуление индексов
     		solver.DigitsForAnswerIndex = 0;
+    		if (bulls == 4){
+    			this.doEndOfGame(2);
+    		}
+    	}
+    }
+
+    private void doEndOfGame(int player){
+    	this.btShot.setDisable(true);
+    	if (player != 0){
+    		this.ShowStepInfo("Победа игрока " + Integer.toString(player) + "!", true, 0);
+    		this.ShowStepInfo("Победа игрока " + Integer.toString(player) + "!", false, 0);
+    	} else {
+    		this.ShowStepInfo("Победа!", true, 0);
     	}
     }
 
