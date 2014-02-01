@@ -81,18 +81,26 @@ public class MainController implements Initializable{
 		case 0 :	// режим "человек угадывает"
 			this.btSetQuad.setDisable(true);
 			this.btGenerateQuad.setDisable(false);
+			this.Reset();
+			curator.generateQuad(1);
 			break;
 		case 1 :	// режим "человек и машина угадывают друг у друга"
 			this.btSetQuad.setDisable(false);
 			this.btGenerateQuad.setDisable(false);
+			this.Reset();
+			generateQwads();
 			break;
 		case 2 :	// режим "человек и машина угадвают одно наперегонки"
 			this.btSetQuad.setDisable(true);
 			this.btGenerateQuad.setDisable(false);
+			this.Reset();
+			generateQwads();
 			break;
 		case 3 :	// режим "машина угадывает (тестовый)"
 			this.btSetQuad.setDisable(false);
 			this.btGenerateQuad.setDisable(false);
+			this.Reset();
+			generateQwads();
 			break;
 		default :	// режим "’«"
 			indicator.setText("режим ’«");
@@ -164,6 +172,7 @@ public class MainController implements Initializable{
     }
 
     @FXML protected void onSetQwad(ActionEvent e) {
+    	this.Reset();
     	if (!this.IsDifferent()){
     		curator.setQuad(this.DigitsForShow, 2);
     		solver.Init(curator.getDecade());
@@ -174,6 +183,7 @@ public class MainController implements Initializable{
     }
 
     @FXML protected void onGenerateQwad(ActionEvent e) {
+    	this.Reset();
     	generateQwads();
     }
 
@@ -208,7 +218,6 @@ public class MainController implements Initializable{
 		if (tgMode.getSelectedToggle() != null) {
 			setMode(Integer.decode(tgMode.getSelectedToggle().getUserData().toString()));
 		}
-		solver.Init(curator.getDecade());
     }
 
 
