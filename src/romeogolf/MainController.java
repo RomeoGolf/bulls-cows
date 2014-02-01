@@ -200,6 +200,7 @@ public class MainController implements Initializable{
     	cows = 0;
 		solver.Init(curator.getDecade());
 		this.setDisableBt(false);
+		this.btShot.setDisable(false);
     }
 
     private void setDisableBt(Boolean disable){
