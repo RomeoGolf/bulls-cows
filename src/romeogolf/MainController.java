@@ -174,7 +174,11 @@ public class MainController implements Initializable{
     }
 
     @FXML protected void onGenerateQwad(ActionEvent e) {
-    	if((this.getMode() != 0) && (this.getMode() != 2)){
+    	generateQwads();
+    }
+
+    private void generateQwads() {
+    	if ((this.getMode() != 0) && (this.getMode() != 2)){
     		curator.generateQuad(2);
     		for(int i = 0; i < 4; i++){
     			aQuad2.get(i).setText(curator.getQuad(2)[i].toString());
