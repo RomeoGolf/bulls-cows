@@ -138,6 +138,7 @@ public class MainController implements Initializable{
     };
 
     @FXML protected void onShot(ActionEvent e) {
+    	this.setDisableBt(true);
 		switch(mode){
 		case 0 :	// режим "человек угадывает"
 			this.ShotMode0();
@@ -195,6 +196,17 @@ public class MainController implements Initializable{
     	bulls = 0;
     	cows = 0;
 		solver.Init(curator.getDecade());
+		this.setDisableBt(false);
+    }
+
+    private void setDisableBt(Boolean disable){
+    	// доступность кнопок "загадать" и "сгенерить"
+    	this.btGenerateQuad.setDisable(disable);
+    	if (!disable){
+    		this.btSetQuad.setDisable((this.mode == 0) || (this.mode == 2));
+    	} else {
+    		this.btSetQuad.setDisable(true);
+    	}
     }
 
     @FXML protected void onReset(ActionEvent e) {
@@ -516,6 +528,7 @@ public class MainController implements Initializable{
     	} else {
     		this.ShowStepInfo("ѕобеда!", true, 0);
     	}
+    	this.setDisableBt(false);
     }
 
 }
