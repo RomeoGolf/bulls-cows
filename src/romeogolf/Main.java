@@ -16,7 +16,7 @@ public class Main extends Application {
 
 		    //Scene scene = new Scene(root, 400, 500);
 		    Scene scene = new Scene(root);
-		    stage.setTitle("FXML Welcome");
+		    stage.setTitle("Ѕыки и коровы");
 		    stage.setScene(scene); 
 		    stage.show();
 		    stage.setMaxWidth(stage.getWidth());
