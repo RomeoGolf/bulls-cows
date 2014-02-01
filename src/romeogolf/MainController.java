@@ -339,13 +339,31 @@ public class MainController implements Initializable{
 	}
 
 	// вывод строки текста в ScrollPane
-    void ShowStepInfo(String s, boolean Player1) {
+    void ShowStepInfo(String s, boolean Player1, int img) {
     	HBox hb = new HBox();
     	hb.setAlignment(Pos.CENTER);
     	Text t = new Text(s);
     	t.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
     	hb.getChildren().add(t);
 		hb.setStyle("-fx-background-color: #33FFFF;");
+
+		Image iFlag = null;
+		switch(img){
+		case 1:
+			iFlag = new Image(this.getClass().getResourceAsStream("/res/img/flag green small.png"));
+			break;
+		case 2:
+			iFlag = new Image(this.getClass().getResourceAsStream("/res/img/flag yellow small.png"));
+			break;
+		case 3:
+			iFlag = new Image(this.getClass().getResourceAsStream("/res/img/flag red small.png"));
+			break;
+		}
+		if(iFlag != null){
+			hb.getChildren().add(0, new ImageView(iFlag));
+			hb.setSpacing(20);
+		}
+
 		if (Player1) {
 			vbPlayer1.getChildren().add(hb);
 		} else {
@@ -361,12 +379,12 @@ public class MainController implements Initializable{
     int trying;
 
     // вывод результатов попытки
-    void ShowNextShot(int trying, boolean Player1) {
+    void ShowNextShot(int trying, boolean Player1, int img) {
 		String s = new String(Arrays.toString(Digits));
 		s = Integer.toString(trying) + ": " + s;
 		s = s + " -   " + Integer.toString(bulls) + " Б, " +
 		    Integer.toString(cows) + " К";
-		ShowStepInfo(s, Player1);
+		ShowStepInfo(s, Player1, img);
     }
 
     // ========= машинная отгадка ======
@@ -383,7 +401,7 @@ public class MainController implements Initializable{
     		bulls = shot_data.getBulls();
     		cows = shot_data.getCows();
     		solver.shots_data.add(shot_data);
-    		ShowNextShot(solver.shots_data.size(), false);	// отображение
+    		ShowNextShot(solver.shots_data.size(), false, 0);	// отображение
     		solver.ShotDigitIndex = 0;		// обнуление индексов
     		solver.DigitsForAnswerIndex = 0;
     	}
@@ -393,7 +411,7 @@ public class MainController implements Initializable{
     		bulls = shot_data.getBulls();
     		cows = shot_data.getCows();
     		solver.shots_data.add(shot_data);
-    		ShowNextShot(solver.shots_data.size(), false);	// отображение
+    		ShowNextShot(solver.shots_data.size(), false, 0);	// отображение
     	}
     	solver.shots_data.clear();
     	bulls = 0;
@@ -408,7 +426,17 @@ public class MainController implements Initializable{
     		s = Integer.toString(Player1ShotNum) + ": " + s;
     		s = s + " -   " + Integer.toString(shot_data.getBulls()) + " Б, " +
     		    Integer.toString(shot_data.getCows()) + " К";
-    		ShowStepInfo(s, true);
+    		int img = 0;
+    		if(Player1ShotNum > 0){
+    			img = 1;
+    		}
+    		if(Player1ShotNum > 7){
+    			img = 2;
+    		}
+    		if(Player1ShotNum > 14){
+    			img = 3;
+    		}
+    		ShowStepInfo(s, true, img);
     	}
     }
 
@@ -420,7 +448,7 @@ public class MainController implements Initializable{
     		s = Integer.toString(Player1ShotNum) + ": " + s;
     		s = s + " -   " + Integer.toString(shot_data.getBulls()) + " Б, " +
     		    Integer.toString(shot_data.getCows()) + " К";
-    		ShowStepInfo(s, true);
+    		ShowStepInfo(s, true, 0);
 
     		Digits = solver.ToFindDigits(Digits);
     		Integer[] TmpBufI = new Integer[4];
@@ -429,7 +457,7 @@ public class MainController implements Initializable{
     		bulls = shot_data2.getBulls();
     		cows = shot_data2.getCows();
     		solver.shots_data.add(shot_data2);
-    		ShowNextShot(solver.shots_data.size(), false);	// отображение
+    		ShowNextShot(solver.shots_data.size(), false, 0);	// отображение
     		solver.ShotDigitIndex = 0;		// обнуление индексов
     		solver.DigitsForAnswerIndex = 0;
     	}
@@ -443,7 +471,7 @@ public class MainController implements Initializable{
     		s = Integer.toString(Player1ShotNum) + ": " + s;
     		s = s + " -   " + Integer.toString(shot_data.getBulls()) + " Б, " +
     		    Integer.toString(shot_data.getCows()) + " К";
-    		ShowStepInfo(s, true);
+    		ShowStepInfo(s, true, 0);
 
     		Digits = solver.ToFindDigits(Digits);
     		Integer[] TmpBufI = new Integer[4];
@@ -456,7 +484,7 @@ public class MainController implements Initializable{
     		String s2 = new String(Integer.toString(solver.shots_data.size()));
     		s2 = s2 + ": -   " + Integer.toString(bulls) + " Б, " +
     		    Integer.toString(cows) + " К";
-    		ShowStepInfo(s2, false);
+    		ShowStepInfo(s2, false, 0);
 
     		solver.ShotDigitIndex = 0;		// обнуление индексов
     		solver.DigitsForAnswerIndex = 0;
