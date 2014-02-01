@@ -198,7 +198,6 @@ public class MainController implements Initializable{
     	curator.generateQuad(1);
 		solver.Init(curator.getDecade());
     	this.btShot.setDisable(false);
-    	//indicator.setText(Arrays.toString(curator.getQuad(1)));
     }
 
     void Reset(){
@@ -222,7 +221,6 @@ public class MainController implements Initializable{
 		}
     }
 
-
     // проверка цифр на совпадение
     boolean IsDifferent() {
     	//TODO: обрабатывать не только пары?
@@ -231,7 +229,7 @@ public class MainController implements Initializable{
     	}
     	for(int i = 0; i < 3; i++) {
     		for(int j = i + 1; j < 4; j++) {
-    			if(DigitsForShow[i] == DigitsForShow[j]) {
+    			if (DigitsForShow[i] == DigitsForShow[j]) {
     				aQuad1.get(i).setStyle("-fx-text-fill: #FF0000;");
     				aQuad1.get(j).setStyle("-fx-text-fill: #FF0000;");
     				return true;
@@ -374,7 +372,7 @@ public class MainController implements Initializable{
 			iFlag = new Image(this.getClass().getResourceAsStream("/res/img/flag red small.png"));
 			break;
 		}
-		if(iFlag != null){
+		if (iFlag != null){
 			hb.getChildren().add(0, new ImageView(iFlag));
 			hb.setSpacing(20);
 		}
@@ -403,7 +401,8 @@ public class MainController implements Initializable{
     }
 
     // ========= машинная отгадка ======
-    void SelfAnswer() {	    // отгадка
+    // машина -> машина, режим 3
+    void SelfAnswer() {
     	//curator.Init();
     	curator.DigitMixer();			// перемешать цифры подготовить набор цифр
     	solver.Init(curator.getDecade());
@@ -433,6 +432,7 @@ public class MainController implements Initializable{
     	cows = 0;
     }
 
+    // человек -> машина
     void ShotMode0(){
     	if (!this.IsDifferent()){
     		Player1ShotNum++;
@@ -442,13 +442,13 @@ public class MainController implements Initializable{
     		s = s + " -   " + Integer.toString(shot_data.getBulls()) + " Б, " +
     		    Integer.toString(shot_data.getCows()) + " К";
     		int img = 0;
-    		if(Player1ShotNum > 0){
+    		if (Player1ShotNum > 0){
     			img = 1;
     		}
-    		if(Player1ShotNum > 7){
+    		if (Player1ShotNum > 7){
     			img = 2;
     		}
-    		if(Player1ShotNum > 14){
+    		if (Player1ShotNum > 14){
     			img = 3;
     		}
     		ShowStepInfo(s, true, img);
@@ -458,6 +458,7 @@ public class MainController implements Initializable{
     	}
     }
 
+    // человек <-> машина
     void ShotMode1(){
     	if (!this.IsDifferent()){
     		Player1ShotNum++;
@@ -487,6 +488,7 @@ public class MainController implements Initializable{
     	}
     }
 
+    // человек, машина -> машина
     void ShotMode2(){
     	if (!this.IsDifferent()){
     		Player1ShotNum++;
