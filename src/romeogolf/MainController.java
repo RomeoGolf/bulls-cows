@@ -117,11 +117,14 @@ public class MainController implements Initializable{
     	//this.ShowStepInfo("zxcvbn", true);
     	//this.ShowStepInfo("asdfgh", false);
     	//String s = new String(Arrays.toString(DigitsForShow));
-    	String s = new String("q1= ");
+    	
+    	/*String s = new String("q1= ");
     	s = s +	Arrays.toString(curator.getQuad(1));
     	s = s +	"; q2= " + Arrays.toString(curator.getQuad(2));
     	s = s + "; dec=" + Arrays.toString(curator.getDecade());
-    	indicator.setText(s);
+    	indicator.setText(s);*/
+    	
+    	this.FullTestForAlgotithm();
     };
 
     // общий обработчик для всех кнопок Up & Down
@@ -544,6 +547,92 @@ public class MainController implements Initializable{
 		for(int i = 0; i < 4; i++){
 			aQuad2.get(i).setText("X");
 		}
+    }
+
+    void FullTestForAlgotithm(){
+    	Integer[] TestQuad = {0, 0, 0, 0};
+    	Integer[] TestDecade = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    	ArrayList<Integer> ShotNum = new ArrayList<Integer>();
+    	Boolean isQuadReady = true;
+    	for(int d = 0; d <= 9999; d++){
+    		TestQuad[3] = d % 10;
+    		TestQuad[2] = (d / 10) % 10;
+    		TestQuad[1] = (d / 100) % 10;
+    		TestQuad[0] = (d / 1000) % 10;
+    		//System.out.println(Arrays.toString(TestQuad));
+    		this.Reset();
+    		this.curator.setQuad(TestQuad, 2);
+    		this.solver.Init(TestDecade);
+
+    		isQuadReady = true;
+        	for(int i = 0; i < 3; i++) {
+        		for(int j = i + 1; j < 4; j++) {
+        			if (TestQuad[i] == TestQuad[j]) {
+        				isQuadReady = false;
+        			}
+        		}
+        	}
+        	if(!isQuadReady){continue;}
+
+    		for(int i = 0; i < 4; i++){
+    			aQuad2.get(i).setText(TestQuad[i].toString());
+    		}
+
+        	while(bulls + cows < 4) {		// цикл до отгадки всех цифр
+        		Digits = solver.ToFindDigits(Digits);
+        		Integer[] TmpBufI = new Integer[4];
+        		for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
+        		ShotData shot_data = curator.checkQuad(Digits, 2);
+        		bulls = shot_data.getBulls();
+        		cows = shot_data.getCows();
+        		solver.shots_data.add(shot_data);
+        		ShowNextShot(solver.shots_data.size(), false, 0);	// отображение
+        		solver.ShotDigitIndex = 0;		// обнуление индексов
+        		solver.DigitsForAnswerIndex = 0;
+        	}
+        	while(bulls < 4) {
+        		solver.ToFindBulls(Digits);
+        		ShotData shot_data = curator.checkQuad(Digits, 2);
+        		bulls = shot_data.getBulls();
+        		cows = shot_data.getCows();
+        		solver.shots_data.add(shot_data);
+        		ShowNextShot(solver.shots_data.size(), false, 0);	// отображение
+        	}
+
+        	ShotNum.add(solver.shots_data.size());
+        	solver.shots_data.clear();
+        	bulls = 0;
+        	cows = 0;
+    	}
+
+    	Double sum = 0.0;
+    	int max = 0;
+    	for(int i = 0; i < ShotNum.size(); i++){
+    		sum = sum + ShotNum.get(i);
+    		if(max < ShotNum.get(i)){
+    			max = ShotNum.get(i);
+    		}
+    	}
+
+    	ArrayList<Integer> NumShotNum = new ArrayList<Integer>();
+    	for(int i = 0; i <= max; i++){
+    		NumShotNum.add(0);
+    	}
+
+    	for(int i = 0; i < ShotNum.size(); i++){
+    		NumShotNum.set(ShotNum.get(i), NumShotNum.get(ShotNum.get(i)) + 1);
+    	}
+
+    	this.ShowStepInfo("Перебор всех вариантов:", false, 0);
+    	this.ShowStepInfo("всего - " + Integer.toString(ShotNum.size()), false, 0);
+    	this.ShowStepInfo("Максимум попыток - " + Integer.toString(max), false, 0);
+    	this.ShowStepInfo("В среднем - " + Double.toString(sum / ShotNum.size()), false, 0);
+    	this.ShowStepInfo("", false, 0);
+    	this.ShowStepInfo("[Попыток]: [вариантов]", false, 0);
+
+    	for(int i = 0; i <= max; i++){
+    		this.ShowStepInfo(Integer.toString(i) + ": " + Integer.toString(NumShotNum.get(i)), false, 0);
+    	}
     }
 
 }
