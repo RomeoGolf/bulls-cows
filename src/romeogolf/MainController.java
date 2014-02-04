@@ -137,7 +137,7 @@ public class MainController implements Initializable{
     			// и соответствующее изменение
     		if (DigitsForShow[Num] > 9){DigitsForShow[Num] = 0;}
     		aQuad1.get(Num).setText(Integer.toString(DigitsForShow[Num]));
-    		IsDifferent();
+    		isEqualDigits();
     };
 
     @FXML protected void onShot(ActionEvent e) {
@@ -163,7 +163,7 @@ public class MainController implements Initializable{
 
     @FXML protected void onSetQwad(ActionEvent e) {
     	this.Reset();
-    	if (!this.IsDifferent()){
+    	if (!this.isEqualDigits()){
     		curator.setQuad(this.DigitsForShow, 2);
     		solver.Init(curator.getDecade());
     		for(int i = 0; i < 4; i++){
@@ -224,7 +224,7 @@ public class MainController implements Initializable{
     }
 
     // проверка цифр на совпадение
-    boolean IsDifferent() {
+    boolean isEqualDigits() {
     	//TODO: обрабатывать не только пары?
     	for(int i = 0; i < 4; i++) {
     		aQuad1.get(i).setStyle("-fx-text-fill: #000000;");
@@ -439,7 +439,7 @@ public class MainController implements Initializable{
 
     // человек -> машина
     void ShotMode0(){
-    	if (!this.IsDifferent()){
+    	if (!this.isEqualDigits()){
     		Player1ShotNum++;
     		ShotData shot_data = curator.checkQuad(this.DigitsForShow, 1);
     		String s = new String(Arrays.toString(DigitsForShow));
@@ -465,7 +465,7 @@ public class MainController implements Initializable{
 
     // человек <-> машина
     void ShotMode1(){
-    	if (!this.IsDifferent()){
+    	if (!this.isEqualDigits()){
     		Player1ShotNum++;
     		ShotData shot_data = curator.checkQuad(this.DigitsForShow, 1);
     		String s = new String(Arrays.toString(DigitsForShow));
@@ -495,7 +495,7 @@ public class MainController implements Initializable{
 
     // человек, машина -> машина
     void ShotMode2(){
-    	if (!this.IsDifferent()){
+    	if (!this.isEqualDigits()){
     		Player1ShotNum++;
     		ShotData shot_data = curator.checkQuad(this.DigitsForShow, 1);
     		String s = new String(Arrays.toString(DigitsForShow));
