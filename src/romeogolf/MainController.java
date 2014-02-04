@@ -241,30 +241,33 @@ public class MainController implements Initializable{
     	return false;
     };
 
-    // инициализация интерфейса
+
+    // ========= инициализация интерфейса ====================
+    Map<VBox, ScrollPane> mPlayerPanes = new HashMap<VBox, ScrollPane>();
+
+    private void setVBoxScroller(final VBox box){
+    	box.setSpacing(3);
+    	box.heightProperty().addListener(new ChangeListener<Object>() {
+    		@Override
+    		public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+    			if((Double)oldValue > 0){
+    				mPlayerPanes.get(box).setVvalue(1.0);
+    			}
+            }
+        });
+    }
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		// загрузка изображений в элементы управления
 		getImages();
 		// добавление обработчика изменения размера панели на ScrollPane
-		// для прокрутки до упора
-		vbPlayer1.setSpacing(3);
-		vbPlayer1.heightProperty().addListener(new ChangeListener<Object>() {
-    		@Override
-    		public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-    			if (vbPlayer1.getHeight() > spPlayer1.getHeight()) {
-    				spPlayer1.setVvalue((Double)newValue );
-    			}
-            }
-        });
-		vbPlayer2.setSpacing(3);
-		vbPlayer2.heightProperty().addListener(new ChangeListener<Object>() {
-    		@Override
-    		public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-    			if (vbPlayer2.getHeight() > spPlayer2.getHeight()) {
-    				spPlayer2.setVvalue((Double)newValue );
-    			}
-            }
-        });
+		// для прокрутки до упора вниз
+		mPlayerPanes.put(vbPlayer1, spPlayer1);
+		mPlayerPanes.put(vbPlayer2, spPlayer2);
+		setVBoxScroller(this.vbPlayer1);
+		setVBoxScroller(this.vbPlayer2);
+
 		setControlMaps();
     	// начальное заполнение массива цифр и его отображение
     	for(int i = 0; i < 4; i++){
