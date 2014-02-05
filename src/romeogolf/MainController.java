@@ -630,7 +630,7 @@ public class MainController implements Initializable{
     	this.ShowStepInfo("", false, 0);
     	this.ShowStepInfo("[Попыток]: [вариантов]", false, 0);
 
-    	for(int i = 0; i <= max; i++){
+    	for(int i = 1; i <= max; i++){
     		this.ShowStepInfo(Integer.toString(i) + ": " + Integer.toString(NumShotNum.get(i)), false, 0);
     	}
     }
