@@ -62,7 +62,7 @@
             <Label font="$x4" text="Игрок 1:" />
           </children>
         </VBox>
-        <ScrollPane fx:id="spPlayer1" fitToHeight="true" fitToWidth="true" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+        <ScrollPane fx:id="spPlayer1" fitToHeight="true" fitToWidth="true" styleClass="scroll_pane" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
           <content>
             <VBox fx:id="vbPlayer1" styleClass="common_panel" />
           </content>
@@ -81,7 +81,7 @@
             <Label font="$x4" text="Игрок 2:" />
           </children>
         </VBox>
-        <ScrollPane fx:id="spPlayer2" fitToHeight="true" fitToWidth="true" hbarPolicy="AS_NEEDED" prefHeight="-1.0" prefWidth="-1.0" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+        <ScrollPane fx:id="spPlayer2" fitToHeight="true" fitToWidth="true" hbarPolicy="AS_NEEDED" prefHeight="-1.0" prefWidth="-1.0" styleClass="scroll_pane" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
           <content>
             <VBox fx:id="vbPlayer2" prefHeight="267.0" prefWidth="196.0" styleClass="common_panel" />
           </content>

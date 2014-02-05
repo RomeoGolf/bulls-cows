@@ -6,6 +6,11 @@
     -fx-border-radius: 5;
 }
 
+.scroll_pane {
+    -fx-background-color: #CCFF99;
+    -fx-border-radius: 5;
+}
+
 .h_panel {
     -fx-background-color: #CCFF00;
     -fx-padding: 5;
