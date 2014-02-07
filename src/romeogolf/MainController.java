@@ -115,17 +115,6 @@ public class MainController implements Initializable{
 
     // тестова€ кнопка - тестовый обработчик
     @FXML protected void onTest(ActionEvent event) {
-    	//indicator.setText("qwerty");
-    	//this.ShowStepInfo("zxcvbn", true);
-    	//this.ShowStepInfo("asdfgh", false);
-    	//String s = new String(Arrays.toString(DigitsForShow));
-    	
-    	/*String s = new String("q1= ");
-    	s = s +	Arrays.toString(curator.getQuad(1));
-    	s = s +	"; q2= " + Arrays.toString(curator.getQuad(2));
-    	s = s + "; dec=" + Arrays.toString(curator.getDecade());
-    	indicator.setText(s);*/
-    	
     	//this.FullTestForAlgotithm();
     	this.at.start();
     };
@@ -231,7 +220,6 @@ public class MainController implements Initializable{
 
     // проверка цифр на совпадение
     boolean isEqualDigits() {
-    	//TODO: обрабатывать не только пары?
     	for(int i = 0; i < 4; i++) {
     		aQuad1.get(i).setStyle("-fx-text-fill: #000000;");
     	}
@@ -552,6 +540,8 @@ public class MainController implements Initializable{
 		}
     }
 
+    // проверка алгоритма перебором всех вариантов
+    //   с отображением результатов в конце
     void FullTestForAlgotithm(){
     	Integer[] TestQuad = {0, 0, 0, 0};
     	Integer[] TestDecade = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -562,7 +552,6 @@ public class MainController implements Initializable{
     		TestQuad[2] = (d / 10) % 10;
     		TestQuad[1] = (d / 100) % 10;
     		TestQuad[0] = (d / 1000) % 10;
-    		//System.out.println(Arrays.toString(TestQuad));
     		this.Reset();
     		this.curator.setQuad(TestQuad, 2);
     		this.solver.Init(TestDecade);
@@ -733,12 +722,12 @@ public class MainController implements Initializable{
     	}
     }
 
+    // экземпл€р AnimationTimer дл€ анимации процесса проверки алгоритма
     AnimationTimer at = new AnimationTimer(){
         @Override
         public void handle(long now) {
         	AnimatedTestOfAlgorithm();
         }
     };
-
 
 }
