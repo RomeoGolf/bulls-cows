@@ -79,6 +79,8 @@ public class MainController implements Initializable{
 	@FXML private RadioButton rbMode1;
 	@FXML private RadioButton rbMode2;
 	@FXML private RadioButton rbMode3;
+	// нижняя панель
+	@FXML private HBox hbBottom;
 
 	// количество попыток первого игрока (человека)
 	private Integer Player1ShotNum = 0;

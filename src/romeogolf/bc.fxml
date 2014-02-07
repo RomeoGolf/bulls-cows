@@ -69,11 +69,21 @@
         </ScrollPane>
       </children>
     </VBox>
-    <Pane minHeight="50.0" prefHeight="80.0" prefWidth="375.0" styleClass="common_panel" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="NEVER">
+    <HBox fx:id="hbBottom" alignment="CENTER" minHeight="50.0" prefHeight="80.0" prefWidth="375.0" spacing="10.0" styleClass="common_panel" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="NEVER">
       <children>
-        <TextField fx:id="indicator" layoutX="36.0" layoutY="14.0" prefWidth="498.0" />
+        <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X" />
+        <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X" />
+        <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X" />
+        <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X" />
+        <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X" />
+        <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X" />
+        <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X" />
+        <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X" />
+        <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X" />
+        <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X" />
+        <TextField fx:id="indicator" prefWidth="279.0" />
       </children>
-    </Pane>
+    </HBox>
     <VBox fx:id="vbRight" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS">
       <children>
         <VBox alignment="CENTER" prefHeight="46.0" prefWidth="101.0" style="" styleClass="common_panel" VBox.vgrow="NEVER">
