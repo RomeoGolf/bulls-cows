@@ -427,6 +427,13 @@ public class MainController implements Initializable{
     		l.setStyle("-fx-text-fill: #000000;");
     	}
     }
+
+    // обработчик кнопки сброса цвета меток вспомогательных цифр на черный
+    @FXML protected void onAidDigitsReset(ActionEvent e) {
+    	for(int i = 0; i < this.aAidDigits.size(); i++){
+    		aAidDigits.get(i).setStyle("-fx-text-fill: #000000;");
+    	}
+    }
     // ================ конец инициализации интерфейса =========================
 
 	// вывод строки текста в ScrollPane - информация о шаге игры

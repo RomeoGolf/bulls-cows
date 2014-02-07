@@ -81,6 +81,7 @@
         <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X" />
         <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X" />
         <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X" />
+        <Button fx:id="btAidDigitsReset" mnemonicParsing="false" onAction="#onAidDigitsReset" prefHeight="38.0" prefWidth="26.0" text="X" />
         <TextField fx:id="indicator" prefWidth="279.0" />
       </children>
     </HBox>
