@@ -33,6 +33,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -411,9 +412,21 @@ public class MainController implements Initializable{
     	Label l = (Label)e.getSource();
     	int num = this.aAidDigits.indexOf(l);
     	int colorNum = this.aAidDigitsColor.get(num);
-    	colorNum++;
+    	if(e.getButton() == MouseButton.PRIMARY){
+    		colorNum++;
+    	}
+    	if(e.getButton() == MouseButton.SECONDARY){
+    		colorNum--;
+    	}
+    	if(e.getButton() == MouseButton.MIDDLE){
+    		colorNum = 1;
+    	}
+    	
     	if(colorNum > 3){
     		colorNum = 1;
+    	}
+    	if(colorNum < 1){
+    		colorNum = 3;
     	}
     	this.aAidDigitsColor.set(num, colorNum);
     	switch(colorNum){
