@@ -15,7 +15,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Data;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -627,12 +633,51 @@ public class MainController implements Initializable{
     	}
     }
 
+    // проверка алгоритма перебором всех вариантов
+    //   с отображением процесса
+
+    // для гистограммы
+    final CategoryAxis xAxis = new CategoryAxis();
+    final NumberAxis yAxis = new NumberAxis();
+    BarChart<String, Number> bc;
+    XYChart.Series<String, Number> series1;
+
+    // тестовая четверка для перебора
 	Integer[] TestQuad = {0, 0, 0, 0};
-	Integer[] TestDecade = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-	ArrayList<Integer> ShotNum = new ArrayList<Integer>();
-	Boolean isQuadReady = true;
+	// постоянный набор цифр для отгадывания
+	final Integer[] TestDecade = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+	// учет количества попыток на вариант для подсчета статистики
+	ArrayList<Integer> alShotNum = new ArrayList<Integer>();
+	// учет количества попыток на вариант для гистограммы
+	Map<Integer, Integer> hmShotNum = new HashMap<Integer, Integer>();
+	// счетчик для перебора вариантов
 	int d = 0;
+	// метод для вызова из AnimationTimer.handle
+
     public void AnimatedTestOfAlgorithm(){
+    	// если графика гистограммы еще не существует - создать
+    	if(bc == null){
+    		bc = new BarChart<String, Number>(xAxis, yAxis);
+    		series1 = new XYChart.Series<String, Number>();
+    		series1.getData().add(new Data<String, Number>("3", 2));
+    		series1.getData().add(new Data<String, Number>("7", 2));
+    		bc.getData().add(series1);
+    		bc.setMaxHeight(200);
+    		bc.setPadding(new Insets(0,0,0,0));
+    		bc.setLegendVisible(false);
+    		bc.setBarGap(0);
+    		bc.setCategoryGap(0);
+    		bc.setAnimated(false);
+    		vbRight.getChildren().add(bc);
+    	} else {	// иначе - добавить на панель и очистить данные
+    		if(!vbRight.getChildren().contains(bc)){
+    			vbRight.getChildren().add(bc);
+    			this.series1.getData().clear();
+    		}
+    	}
+
+    	// создание четверки из счетчика с отсевом повторяющихся цифр
+    	Boolean isQuadReady = true;
 		do{
 			isQuadReady = true;
 			d++;
@@ -649,15 +694,17 @@ public class MainController implements Initializable{
     		}
 		}while(!isQuadReady && (d <= 9999));
 
-		if(isQuadReady){
+		if(isQuadReady){	// условие вставлено для чисел (d > 9870)
+			// сброс отображения, подготовка к решению
 			this.Reset();
 			this.curator.setQuad(TestQuad, 2);
 			this.solver.Init(TestDecade);
-
+			// отображение подготовленной четверки
 			for(int i = 0; i < 4; i++){
 				aQuad2.get(i).setText(TestQuad[i].toString());
 			}
 
+			// решение
 			while(bulls + cows < 4) {		// цикл до отгадки всех цифр
 				Digits = solver.ToFindDigits(Digits);
 				Integer[] TmpBufI = new Integer[4];
@@ -679,46 +726,108 @@ public class MainController implements Initializable{
 				ShowNextShot(solver.shots_data.size(), false, 0);	// отображение
 			}
 
-			ShotNum.add(solver.shots_data.size());
+			// заполнение коллекций для статистического учета
+			int size = solver.shots_data.size();
+			alShotNum.add(size);
+			if(hmShotNum.containsKey((Integer)size)){
+				hmShotNum.put(size, hmShotNum.get(size) + 1);
+			} else {
+				hmShotNum.put(size, 1);
+			}
+			// подчистка для следующего решения
 			solver.shots_data.clear();
 			bulls = 0;
 			cows = 0;
+
+			// работа с гистограммой
+			Boolean isData = false;
+        	if(bc != null){
+        		// проверка существования столбика для элемента hmShotNum
+        		for(int i = 0; i < hmShotNum.keySet().size(); i++){
+        			isData = false;
+        			Integer key = (Integer)hmShotNum.keySet().toArray()[i];
+        			for(int j = 0; j < bc.getData().get(0).getData().size(); j++){
+        				// если есть - изменить данные столбика
+        				if(bc.getData().get(0).getData().get(j).getXValue().equals(Integer.toString(key))){
+        					bc.getData().get(0).getData().get(j).setYValue((Integer)hmShotNum.get(key));
+        					isData = true;
+        					break;
+        				}
+        			}
+        			// если нету - очистить серию и наполнить заново 
+        			//    в сортированном виде
+        			//   (если просто вставлять в нужную позицию -
+        			//    может быть несортированное отображение - баг JavaFX)
+        			if(!isData){
+        				this.series1.getData().clear();
+        				int size2 = hmShotNum.keySet().size();
+        				Integer[] buf = new Integer[size2];
+        				for(int k = 0; k < size2; k++){
+        					buf[k] = (Integer)hmShotNum.keySet().toArray()[k];
+        				}
+        				Arrays.sort(buf);
+
+        				// если новый столбец не сразу после предыдущего -
+        				//   заполнить промежуток нулевыми столбцами
+        				if((size2 > 2) && (buf[size2 - 1] - buf[size2 - 2] > 1)){
+        					for(int n = buf[size2 - 2]; n < buf[size2 - 1]; n++){
+        						hmShotNum.put(n, 0);
+        					}
+        				}
+
+        				// заново формируем сортированный массив ключей
+        				int size3 = hmShotNum.keySet().size();
+        				Integer[] buf2 = new Integer[size3];
+        				for(int k = 0; k < size3; k++){
+        					buf2[k] = (Integer)hmShotNum.keySet().toArray()[k];
+        				}
+        				Arrays.sort(buf2);
+
+        				// заполнение гистограммы
+                		for(int k = 0; k < size3; k++){
+                			Integer key2 = buf2[k];
+                			this.series1.getData().add(new Data<String, Number>(Integer.toString(key2), (Integer)hmShotNum.get(key2)));
+                		}
+        			}
+
+        		}
+        	}
 		}
 
+		// перебор вариантов закончен
     	if(d >= 9999){
+    		// остановка AnimationTimer, сброс отображения
     		this.at.stop();
     		this.Reset();
+    		// подсчет статистики
     		Double sum = 0.0;
     		int max = 0;
-    		for(int i = 0; i < ShotNum.size(); i++){
-    			sum = sum + ShotNum.get(i);
-    			if(max < ShotNum.get(i)){
-    				max = ShotNum.get(i);
+    		for(int i = 0; i < alShotNum.size(); i++){
+    			sum = sum + alShotNum.get(i);
+    			if(max < alShotNum.get(i)){
+    				max = alShotNum.get(i);
     			}
     		}
 
-    		ArrayList<Integer> NumShotNum = new ArrayList<Integer>();
-    		for(int i = 0; i <= max; i++){
-    			NumShotNum.add(0);
-    		}
-
-    		for(int i = 0; i < ShotNum.size(); i++){
-    			NumShotNum.set(ShotNum.get(i), NumShotNum.get(ShotNum.get(i)) + 1);
-    		}
-
+    		// отображение результатов
     		this.ShowStepInfo("Перебор всех вариантов:", false, 0);
-    		this.ShowStepInfo("всего - " + Integer.toString(ShotNum.size()), false, 0);
+    		this.ShowStepInfo("всего - " + Integer.toString(alShotNum.size()), false, 0);
     		this.ShowStepInfo("Максимум попыток - " + Integer.toString(max), false, 0);
-    		this.ShowStepInfo("В среднем - " + Double.toString(sum / ShotNum.size()), false, 0);
+    		this.ShowStepInfo("В среднем - " + Double.toString(sum / alShotNum.size()), false, 0);
     		this.ShowStepInfo("", false, 0);
     		this.ShowStepInfo("[Попыток]: [вариантов]", false, 0);
-
     		for(int i = 1; i <= max; i++){
-    			this.ShowStepInfo(Integer.toString(i) + ": " + Integer.toString(NumShotNum.get(i)), false, 0);
+    			this.ShowStepInfo(Integer.toString(i) + ": " + Integer.toString(hmShotNum.get(i)), false, 0);
     		}
-
-    		ShotNum.clear();
+    		// подчистка данных для нового вызова
+    		alShotNum.clear();
+    		hmShotNum.clear();
     		d = 0;
+    		// перемещение гистограммы на другую панель 
+    		//   (чтобы стиралась по Reset)
+        	if(bc != null){
+        		vbPlayer1.getChildren().add(bc);
+        	}
     	}
     }
 
