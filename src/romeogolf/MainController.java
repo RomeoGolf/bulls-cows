@@ -13,6 +13,7 @@ import javafx.animation.AnimationTimer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -32,6 +33,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -297,6 +299,8 @@ public class MainController implements Initializable{
         		onModeToggle();
         	}
         });
+
+        this.setAidDigitsMap();
 	}
 
 	private void setControlMaps(){
@@ -381,6 +385,48 @@ public class MainController implements Initializable{
 													"/res/img/refresh.png"));
 		this.btReset.setGraphic(new ImageView(iReset));
 	}
+
+	// массив меток для вспомогательных цифр и массив кодов цвета для них
+    ArrayList<Label> aAidDigits = new ArrayList<Label>();
+    ArrayList<Integer> aAidDigitsColor = new ArrayList<Integer>();
+    // заполнение массивов меток и цвета, установка обработчика клика меток
+    private void setAidDigitsMap(){
+    	for(int i = 0; i < hbBottom.getChildren().size(); i++){
+    		if(hbBottom.getChildren().get(i).getClass() == Label.class){
+    			final Label l = (Label)hbBottom.getChildren().get(i);
+    			l.setText(Integer.toString(i));
+    			aAidDigits.add(l);
+    			aAidDigitsColor.add(1);
+    			l.setOnMouseClicked(new EventHandler<MouseEvent>() {
+    			    @Override public void handle(MouseEvent e) {
+    			        onAidDigitClick(e);
+    			    }
+    			});
+    		}
+    	}
+    }
+
+    // обработка клика мышью по метке - циклическое изменение трех цветов
+    protected void onAidDigitClick(MouseEvent e) {
+    	Label l = (Label)e.getSource();
+    	int num = this.aAidDigits.indexOf(l);
+    	int colorNum = this.aAidDigitsColor.get(num);
+    	colorNum++;
+    	if(colorNum > 3){
+    		colorNum = 1;
+    	}
+    	this.aAidDigitsColor.set(num, colorNum);
+    	switch(colorNum){
+    	case 2:
+    		l.setStyle("-fx-text-fill: #FF0000;");
+    		break;
+    	case 3:
+    		l.setStyle("-fx-text-fill: #00AFFF;");
+    		break;
+    	default:
+    		l.setStyle("-fx-text-fill: #000000;");
+    	}
+    }
     // ================ конец инициализации интерфейса =========================
 
 	// вывод строки текста в ScrollPane - информация о шаге игры
