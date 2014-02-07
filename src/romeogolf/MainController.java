@@ -59,6 +59,7 @@ public class MainController implements Initializable{
 	@FXML private ScrollPane spPlayer1;
 	@FXML private VBox vbPlayer2;
 	@FXML private ScrollPane spPlayer2;
+	@FXML private VBox vbRight;
 	// переключение режима
 	@FXML private ToggleGroup tgMode;
 	// кнопки управления
