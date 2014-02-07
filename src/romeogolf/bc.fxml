@@ -33,9 +33,9 @@
             <RadioButton fx:id="rbMode3" mnemonicParsing="false" text="м -&gt; м" toggleGroup="$tgMode" userData="3" VBox.margin="$x2" />
           </children>
         </VBox>
-        <Button fx:id="btSetQuad" mnemonicParsing="false" onAction="#onSetQwad" prefWidth="127.0" text="загадать" />
-        <Button fx:id="btGenerateQuad" mnemonicParsing="false" onAction="#onGenerateQwad" prefWidth="127.0" text="сгенерить" />
-        <Button fx:id="btReset" mnemonicParsing="false" onAction="#onReset" prefWidth="127.0" text="сброс" />
+        <Button fx:id="btSetQuad" mnemonicParsing="false" onAction="#onSetQwad" prefWidth="127.0" text="Загадать" />
+        <Button fx:id="btGenerateQuad" mnemonicParsing="false" onAction="#onGenerateQwad" prefWidth="127.0" text="Сгенерить" />
+        <Button fx:id="btReset" mnemonicParsing="false" onAction="#onReset" prefWidth="127.0" text="Сброс" />
         <Button fx:id="btTest" mnemonicParsing="false" onAction="#onTest" prefWidth="127.00009999999747" text="Тест" />
         <VBox prefHeight="116.0" prefWidth="188.0" VBox.vgrow="ALWAYS" />
       </children>
@@ -155,7 +155,7 @@
     </HBox>
     <VBox alignment="CENTER" prefHeight="70.0" prefWidth="250.0" snapToPixel="true" style="" styleClass="common_panel" GridPane.columnIndex="1" GridPane.rowIndex="2">
       <children>
-        <Button fx:id="btShot" mnemonicParsing="false" onAction="#onShot" prefHeight="25.0" prefWidth="176.0" text="попытка" />
+        <Button fx:id="btShot" mnemonicParsing="false" onAction="#onShot" prefHeight="25.0" prefWidth="176.0" text="Попытка" />
       </children>
     </VBox>
   </children>
