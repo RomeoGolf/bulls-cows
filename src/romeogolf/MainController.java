@@ -766,8 +766,6 @@ public class MainController implements Initializable{
     	if(bc == null){
     		bc = new BarChart<String, Number>(xAxis, yAxis);
     		series1 = new XYChart.Series<String, Number>();
-    		series1.getData().add(new Data<String, Number>("3", 2));
-    		series1.getData().add(new Data<String, Number>("7", 2));
     		bc.getData().add(series1);
     		bc.setMaxHeight(200);
     		bc.setPadding(new Insets(0,0,0,0));
