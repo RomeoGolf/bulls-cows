@@ -874,10 +874,26 @@ public class MainController implements Initializable{
         				}
         				Arrays.sort(buf);
 
+        				// если столбцы начинаются не с 1 -
+        				//   заполнить промежуток нулевыми столбцами
+        				if(buf[0] > 1){
+        					for(int n = 1; n < buf[0]; n++){
+        						hmShotNum.put(n, 0);
+        					}
+        				}
+
         				// если новый столбец не сразу после предыдущего -
         				//   заполнить промежуток нулевыми столбцами
         				if((size2 > 2) && (buf[size2 - 1] - buf[size2 - 2] > 1)){
         					for(int n = buf[size2 - 2]; n < buf[size2 - 1]; n++){
+        						hmShotNum.put(n, 0);
+        					}
+        				}
+
+        				// если новый столбец не сразу перед предыдущим -
+        				//   заполнить промежуток нулевыми столбцами
+        				if((size2 > 1) && (buf[1] - buf[0] > 1)){
+        					for(int n = buf[0]; n < buf[1]; n++){
         						hmShotNum.put(n, 0);
         					}
         				}
