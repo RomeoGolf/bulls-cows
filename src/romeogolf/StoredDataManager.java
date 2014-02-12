@@ -12,6 +12,56 @@ import java.security.CodeSource;
 import java.util.Properties;
 
 class StoredDataManager {
+	// =========================================================================
+	// data:
+	private Double top;
+	private Double left;
+	private Double height;
+	private Integer mode;
+
+	//--------------------------------
+	public void setTop(Double value){
+		top = value;
+		this.saveDouble("top", value);
+	}
+
+	public void setLeft(Double value){
+		left = value;
+		this.saveDouble("left", value);
+	}
+
+	public void setHeight(Double value){
+		height = value;
+		this.saveDouble("height", value);
+	}
+
+	public void setMode(Integer value){
+		mode = value;
+		this.saveInteger("mode", value);
+	}
+
+	//---------------------------------
+	public Double getTop(){
+		top = this.getDouble("top");
+		return top;
+	}
+
+	public Double getLeft(){
+		left = this.getDouble("left");
+		return left;
+	}
+
+	public Double getHeight(){
+		height = this.getDouble("height");
+		return height;
+	}
+
+	public Integer getMode(){
+		mode = this.getInteger("mode");
+		return mode;
+	}
+	// =========================================================================
+	
 	private Properties props = new Properties();
 	private CodeSource src;
     private URL url = null;
@@ -24,6 +74,51 @@ class StoredDataManager {
     private Boolean Loaded = false;
     public Boolean isLoaded(){
     	return this.Loaded;
+    }
+
+    private void saveInteger(String key, Integer value){
+    	props.setProperty(key, Integer.toString(value));
+    }
+
+    private void saveDouble(String key, Double value){
+    	props.setProperty(key, Double.toString(value));
+    }
+
+    /*private Integer getInteger(String key, Integer defValue){
+    	String s = props.getProperty(key, Integer.toString(defValue));
+    	Integer value = 0; //NumberFormatException
+    	try{
+    		value = Integer.decode(s);
+    	} catch(NumberFormatException e){
+    		e.printStackTrace();
+    	}
+    	return value;
+    }*/
+
+    private Integer getInteger(String key){
+    	String s = props.getProperty(key);
+    	Integer value = null; //NumberFormatException
+    	if(s != null){
+    		try{
+    			value = Integer.decode(s);
+    		} catch(NumberFormatException e){
+    			e.printStackTrace();
+    		}
+    	}
+    	return value;
+    }
+    
+    private Double getDouble(String key){
+    	String s = props.getProperty(key);
+    	Double value = null; //NumberFormatException
+    	if(s != null){
+    		try{
+    			value = Double.valueOf(s);
+    		} catch(NumberFormatException e){
+    			e.printStackTrace();
+    		}
+    	}
+    	return value;
     }
 
     // тестовая строка
@@ -40,7 +135,7 @@ class StoredDataManager {
     	}
     	if (propFile.canWrite()) {
     		try {
-    			props.setProperty("test", test_str);
+    			//props.setProperty("test", test_str);
 				props.store(new FileOutputStream(propFile), "");
 			} catch (IOException e) {
 				e.printStackTrace();
