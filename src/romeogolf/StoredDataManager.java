@@ -27,7 +27,7 @@ class StoredDataManager {
     }
 
     // тестовая строка
-    public String test_str;
+    public String test_str = "qwerty";
 
     // запись данных
     public void writeData(){
