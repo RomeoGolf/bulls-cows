@@ -12,19 +12,29 @@ import java.security.CodeSource;
 import java.util.Properties;
 
 class StoredDataManager {
-	Properties props = new Properties();
+	private Properties props = new Properties();
+	private CodeSource src;
+    private URL url = null;
+    private String decodedPath = null;
+    // имя файла настроек
+    private final String PropFileName = "bc.properties";
+    // файл для чтения/записи настроек
+    private File propFile = null;
+    // индикатор загруженности настроек
+    private Boolean Loaded = false;
+    public Boolean isLoaded(){
+    	return this.Loaded;
+    }
 
-    CodeSource src;
-    public URL url = null;
+    // тестовая строка
     public String test_str;
-    String decodedPath = null;
 
+    // запись данных
     public void writeData(){
-    	File pf = new File(decodedPath);
-    	if (pf.canWrite()) {
+    	if (propFile.canWrite()) {
     		try {
     			props.setProperty("test", test_str);
-				props.store(new FileOutputStream(pf), "comment");
+				props.store(new FileOutputStream(propFile), "");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -32,32 +42,35 @@ class StoredDataManager {
     }
 
     public StoredDataManager(){
-    	src = Main.class.getProtectionDomain().getCodeSource();
+    	// для получения пути к исполняемому файлу
+    	src = this.getClass().getProtectionDomain().getCodeSource();
     	if (src != null) {
 			try {
-				url = new URL(src.getLocation(), "bc.properties");
+				url = new URL(src.getLocation(), PropFileName);
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
+			// URL файла
     		String path = url.getPath();
     		try {
+    			// декодирование URL для устранения проблемы с пробелами
 				decodedPath = URLDecoder.decode(path, "UTF-8");
+				// окончательное получение файла настроек
+				propFile = new File(decodedPath);
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
     	}
 
-    	File pf = new File(decodedPath);
-    	if (pf.canRead()) {
+    	// загрузка сохраненных настроек (если возможно)
+    	if (propFile.canRead()) {
     		try {
-				props.load(new FileInputStream(pf));
+				props.load(new FileInputStream(propFile));
+				Loaded = true;
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
     	}
-
-    	//test_str = decodedPath;
     	test_str = props.getProperty("test");
-
     }
 }
