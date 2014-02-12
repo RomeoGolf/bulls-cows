@@ -31,6 +31,13 @@ class StoredDataManager {
 
     // запись данных
     public void writeData(){
+    	if(!propFile.exists()){
+    		try {
+				propFile.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	}
     	if (propFile.canWrite()) {
     		try {
     			props.setProperty("test", test_str);
