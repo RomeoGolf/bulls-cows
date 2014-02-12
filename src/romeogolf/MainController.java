@@ -532,7 +532,8 @@ public class MainController implements Initializable{
     	Text t = new Text(s);
     	t.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
     	hb.getChildren().add(t);
-		hb.setStyle("-fx-background-color: #33FFFF;");
+		//hb.setStyle("-fx-background-color: #33FFFF;");
+		hb.setStyle("-fx-background-color: #CCFF99;");
 
 		// при игре в одиночку (режим 0) можно добавить флажок определенного
 		//   цвета в зависимости от числа попыток
