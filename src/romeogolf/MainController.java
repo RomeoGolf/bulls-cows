@@ -122,6 +122,8 @@ public class MainController implements Initializable{
     ArrayList<Label> aQuad1 = new ArrayList<Label>();
     // массив знакомест для загаданных цифр
     ArrayList<Label> aQuad2 = new ArrayList<Label>();
+    // массив радиокнопок - переключатель режима
+    ArrayList<RadioButton> aRbMode = new ArrayList<RadioButton>();
     // карта соответствия кнопок цифрам	
     public Map<Button, Integer> df = new HashMap<Button, Integer>();
     // множество кнопок увеличения
@@ -237,6 +239,8 @@ public class MainController implements Initializable{
     protected void onModeToggle(){
 		if (tgMode.getSelectedToggle() != null) {
 			setMode(Integer.decode(tgMode.getSelectedToggle().getUserData().toString()));
+		} else {
+			setMode(0);
 		}
     }
 
@@ -261,16 +265,62 @@ public class MainController implements Initializable{
     // =================== инициализация интерфейса ============================
     StoredDataManager sdm = new StoredDataManager();
     Stage stage;
-    public void setStage_Listener(Stage stage){
+    private void storePrefs(){
+    	sdm.test_str = indicator.getText();
+    	sdm.setTop(stage.getY());
+    	sdm.setLeft(stage.getX());
+    	sdm.setHeight(stage.getHeight());
+    	sdm.setMode(this.mode);
+    	sdm.writeData();
+    }
+
+    // восстановление параметров игры из файла настроек
+    private void readPrefs(){
+    	// чтение режима
+    	Integer bufInt = sdm.getMode();
+    	if(bufInt != null){
+    		if((bufInt < 0) || (bufInt > 3)){
+    			bufInt = 0;
+    		}
+    		if(this.aRbMode.indexOf((RadioButton)this.tgMode.getSelectedToggle()) != bufInt){
+    			this.tgMode.selectToggle(aRbMode.get(bufInt));
+    		}
+    	}
+    }
+
+    // восстановление параметров окна из файла настроек
+    private void readStagePrefs(){
+    	Double bufDouble;
+    	bufDouble = sdm.getTop();
+    	if(bufDouble != null){
+    		stage.setY(bufDouble);
+    		//stage.setY(200);
+    	}
+    	bufDouble = sdm.getLeft();
+    	if(bufDouble != null){
+    		stage.setX(bufDouble);
+    	}
+    	bufDouble = sdm.getHeight();
+    	if(bufDouble != null){
+    		stage.setHeight(bufDouble);
+    	}
+    }
+
+    // получение ссылки на окно, установка обработчика событий окна 
+    //  и чтение параметров окна
+    public void setStage_Listener(final Stage stage){
     	this.stage = stage;
     	stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
     		@Override
     		public void handle(WindowEvent event) {
     			 //event.consume();
-    	    	sdm.test_str = indicator.getText();
-    			sdm.writeData();
+    			// сохранение настроек перед закрытием окна
+    			storePrefs();
     		}
     	});
+    	// чтение сохраненных параметров окна после получения
+    	//  ссылки на окно
+    	this.readStagePrefs();
     }
 
     // соответствие панели VBox своему контейнеру ScrollPane
@@ -311,15 +361,17 @@ public class MainController implements Initializable{
     		aQuad1.get(i).setText(Integer.toString(i));
     	}
 
-    	this.setMode(0);	// режим по умолчанию
     	// установка обработчика переключения режима игры
         tgMode.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
         	public void changed(ObservableValue<? extends Toggle> ov,
         			Toggle old_toggle, Toggle new_toggle) {
-        		onModeToggle();
+        		if(old_toggle != new_toggle){
+        			onModeToggle();
+        		}
         	}
         });
 
+        this.readPrefs();	// чтение сохраненных параметров игры
         this.setAidDigitsMap();
 	}
 
@@ -348,6 +400,11 @@ public class MainController implements Initializable{
     	aQuad2.add(charsell_2_2);
     	aQuad2.add(charsell_2_3);
     	aQuad2.add(charsell_2_4);
+    	// множество радиокнопок - переключатель режима
+    	aRbMode.add(rbMode0);
+    	aRbMode.add(rbMode1);
+    	aRbMode.add(rbMode2);
+    	aRbMode.add(rbMode3);
 	}
 
 	private void getImages(){
