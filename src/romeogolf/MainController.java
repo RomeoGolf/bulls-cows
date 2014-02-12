@@ -235,6 +235,10 @@ public class MainController implements Initializable{
 
     // кнопка "сброс"
     @FXML protected void onReset(ActionEvent e) {
+    	this.at.stop();
+    	if(this.vbRight.getChildren().contains(bc)){
+    		this.vbRight.getChildren().remove(bc);
+    	}
     	this.Reset();
     }
 
