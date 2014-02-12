@@ -40,6 +40,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class MainController implements Initializable{
 	// знакоместа пользовательских цифр
@@ -257,6 +259,20 @@ public class MainController implements Initializable{
 
 
     // =================== инициализация интерфейса ============================
+    StoredDataManager sdm = new StoredDataManager();
+    Stage stage;
+    public void setStage_Listener(Stage stage){
+    	this.stage = stage;
+    	stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+    		@Override
+    		public void handle(WindowEvent event) {
+    			 //event.consume();
+    	    	sdm.test_str = indicator.getText();
+    			sdm.writeData();
+    		}
+    	});
+    }
+
     // соответствие панели VBox своему контейнеру ScrollPane
     Map<VBox, ScrollPane> mPlayerPanes = new HashMap<VBox, ScrollPane>();
 
@@ -274,8 +290,11 @@ public class MainController implements Initializable{
         });
     }
 
+    // собственно инициализация
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		this.indicator.setText(sdm.test_str);
+
 		// загрузка изображений в элементы управления
 		getImages();
 		// добавление обработчика изменения размера панели на ScrollPane
@@ -966,5 +985,7 @@ public class MainController implements Initializable{
         }
     };
     // =========================================================================
+
+
 
 }
