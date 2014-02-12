@@ -256,16 +256,17 @@ public class MainController implements Initializable{
     	for(int i = 0; i < 4; i++) {
     		aQuad1.get(i).setStyle("-fx-text-fill: #000000;");
     	}
+    	Boolean result = false;
     	for(int i = 0; i < 3; i++) {
     		for(int j = i + 1; j < 4; j++) {
     			if (DigitsForShow[i] == DigitsForShow[j]) {
     				aQuad1.get(i).setStyle("-fx-text-fill: #FF0000;");
     				aQuad1.get(j).setStyle("-fx-text-fill: #FF0000;");
-    				return true;
+    				result = true;
     			}
     		}
     	}
-    	return false;
+    	return result;
     };
 
 
