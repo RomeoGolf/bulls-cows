@@ -32,6 +32,7 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Reflection;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -375,6 +376,21 @@ public class MainController implements Initializable{
 
         this.readPrefs();	// чтение сохраненных параметров игры
         this.setAidDigitsMap();
+
+		DropShadow ds = new DropShadow();
+		ds.setOffsetX(3.0);
+		ds.setOffsetY(3.0);
+		ds.setColor(Color.GRAY);
+		ds.setWidth(5.0);
+		Reflection refl = new Reflection();
+		refl.setFraction(0.5);
+		ds.setInput(refl);
+		for(int i = 0; i < 4; i++){
+			this.aQuad2.get(i).setEffect(ds);
+		}
+		for(int i = 0; i < 10; i++){
+			this.aAidDigits.get(i).setEffect(ds);
+		}
 	}
 
 	private void setControlMaps(){
