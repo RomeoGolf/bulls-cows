@@ -23,16 +23,10 @@ public class Main extends Application {
 		    Scene scene = new Scene(root);
 		    stage.setTitle("Ѕыки и коровы");
 
-		    //stage.getIcons().add(new Image("file:res/img/Roman16.png"));
-		    stage.getIcons().add(new Image("file:res/img/dice.png"));
-
-
-		    //stage.getIcons().add(new Image(this.getClass().getResourceAsStream(
-			//		"/res/img/Roman.ico")));
-		    //stage.getIcons().add(new Image(this.getClass().getResourceAsStream(
-			//		"/res/img/Roman32.png")));
-		    //stage.getIcons().add(new Image(this.getClass().getResourceAsStream(
-			//		"/res/img/Roman16.png")));
+		    stage.getIcons().add(new Image(this.getClass().getResourceAsStream(
+					"/res/img/Roman.ico")));
+		    stage.getIcons().add(new Image(this.getClass().getResourceAsStream(
+					"/res/img/Roman32.png")));
 
 		    stage.setScene(scene); 
 		    stage.show();
