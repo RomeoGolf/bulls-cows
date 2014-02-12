@@ -31,12 +31,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -425,24 +427,39 @@ public class MainController implements Initializable{
 		this.btDown_3.setGraphic(new ImageView(iDown));
 		this.btDown_4.setGraphic(new ImageView(iDown));
 
+		DropShadow ds = new DropShadow();
+		ds.setOffsetX(5.0);
+		ds.setOffsetY(5.0);
+		ds.setColor(Color.GRAY);
+		ds.setWidth(5.0);
+		ImageView iv;
+
 		Image iMode0 = new Image(this.getClass().getResourceAsStream(
 													"/res/img/user-comp.png"));
-		this.rbMode0.setGraphic(new ImageView(iMode0));
+		iv = new ImageView(iMode0);
+		iv.setEffect(ds);
+		this.rbMode0.setGraphic(iv);
 		this.rbMode0.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
 		Image iMode1 = new Image(this.getClass().getResourceAsStream(
 												"/res/img/user vs comp.png"));
-		this.rbMode1.setGraphic(new ImageView(iMode1));
+		iv = new ImageView(iMode1);
+		iv.setEffect(ds);
+		this.rbMode1.setGraphic(iv);
 		this.rbMode1.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
 		Image iMode2 = new Image(this.getClass().getResourceAsStream(
 												"/res/img/user,comp-comp.png"));
-		this.rbMode2.setGraphic(new ImageView(iMode2));
+		iv = new ImageView(iMode2);
+		iv.setEffect(ds);
+		this.rbMode2.setGraphic(iv);
 		this.rbMode2.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
 		Image iMode3 = new Image(this.getClass().getResourceAsStream(
 													"/res/img/comp-comp.png"));
-		this.rbMode3.setGraphic(new ImageView(iMode3));
+		iv = new ImageView(iMode3);
+		iv.setEffect(ds);
+		this.rbMode3.setGraphic(iv);
 		this.rbMode3.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
 		Image iShot = new Image(this.getClass().getResourceAsStream(
