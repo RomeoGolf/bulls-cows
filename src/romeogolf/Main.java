@@ -24,9 +24,9 @@ public class Main extends Application {
 		    stage.setTitle("Ѕыки и коровы");
 
 		    stage.getIcons().add(new Image(this.getClass().getResourceAsStream(
-					"/res/img/Roman.ico")));
-		    stage.getIcons().add(new Image(this.getClass().getResourceAsStream(
 					"/res/img/Roman32.png")));
+		    stage.getIcons().add(new Image(this.getClass().getResourceAsStream(
+					"/res/img/Roman16.png")));
 
 		    stage.setScene(scene); 
 		    stage.show();
