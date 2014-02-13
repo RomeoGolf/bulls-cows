@@ -677,69 +677,78 @@ public class MainController implements Initializable{
     	}
     }
 
+    private Boolean tryPlayer1(){
+    	Boolean result = false;
+    	Player1ShotNum++;
+    	ShotData shot_data = curator.checkQuad(this.DigitsForShow, 1);
+    	String s = new String(Arrays.toString(DigitsForShow));
+    	s = Integer.toString(Player1ShotNum) + ": " + s;
+    	s = s + " -   " + Integer.toString(shot_data.getBulls()) + " Б, " +
+    	    Integer.toString(shot_data.getCows()) + " К";
+    	ShowStepInfo(s, true, 0);
+    	if (shot_data.getBulls() == 4){
+    		result = true;
+    	}
+    	return result;
+    }
+
+    private Boolean tryPlayer2(int QuadNum){
+    	Boolean result = false;
+    	
+    	Digits = solver.ToFindDigits(Digits);
+    	Integer[] TmpBufI = new Integer[4];
+    	for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
+    	ShotData shot_data2 = curator.checkQuad(Digits, QuadNum);
+    	bulls = shot_data2.getBulls();
+    	cows = shot_data2.getCows();
+    	solver.shots_data.add(shot_data2);
+
+    	if(QuadNum == 2){
+    		ShowNextShot(solver.shots_data.size(), false, 0);	// отображение
+    	} else {
+    		String s2 = new String(Integer.toString(solver.shots_data.size()));
+    		s2 = s2 + ": -   " + Integer.toString(bulls) + " Б, " +
+		    Integer.toString(cows) + " К";
+    		ShowStepInfo(s2, false, 0);
+    	}
+
+    	solver.ShotDigitIndex = 0;		// обнуление индексов
+    	solver.DigitsForAnswerIndex = 0;
+    	if (bulls == 4){
+    		result = true;
+    	}
+    	return result;
+    }
+
+    private void whoWin(Boolean p1, Boolean p2){
+    	if(p1 && p2){
+    		this.doEndOfGame(3);
+    	} else if(p1) {
+    		this.doEndOfGame(1);
+    	} else if(p2) {
+    		this.doEndOfGame(2);
+    	}
+    }
+
     // человек <-> машина
     void shotMode1(){
+    	Boolean p1End = false;
+    	Boolean p2End = false;
     	if (!this.isEqualDigits()){
-    		Player1ShotNum++;
-    		ShotData shot_data = curator.checkQuad(this.DigitsForShow, 1);
-    		String s = new String(Arrays.toString(DigitsForShow));
-    		s = Integer.toString(Player1ShotNum) + ": " + s;
-    		s = s + " -   " + Integer.toString(shot_data.getBulls()) + " Б, " +
-    		    Integer.toString(shot_data.getCows()) + " К";
-    		ShowStepInfo(s, true, 0);
-    		if (shot_data.getBulls() == 4){
-    			this.doEndOfGame(1);
-    		}
-
-    		Digits = solver.ToFindDigits(Digits);
-    		Integer[] TmpBufI = new Integer[4];
-    		for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
-    		ShotData shot_data2 = curator.checkQuad(Digits, 2);
-    		bulls = shot_data2.getBulls();
-    		cows = shot_data2.getCows();
-    		solver.shots_data.add(shot_data2);
-    		ShowNextShot(solver.shots_data.size(), false, 0);	// отображение
-    		solver.ShotDigitIndex = 0;		// обнуление индексов
-    		solver.DigitsForAnswerIndex = 0;
-    		if (bulls == 4){
-    			this.doEndOfGame(2);
-    		}
+    	   	p1End = this.tryPlayer1();
+    	   	p2End = this.tryPlayer2(2);
+    	   	this.whoWin(p1End, p2End);
     	}
     }
 
     // человек, машина -> машина
     void shotMode2(){
+    	Boolean p1End = false;
+    	Boolean p2End = false;
     	if (!this.isEqualDigits()){
-    		Player1ShotNum++;
-    		ShotData shot_data = curator.checkQuad(this.DigitsForShow, 1);
-    		String s = new String(Arrays.toString(DigitsForShow));
-    		s = Integer.toString(Player1ShotNum) + ": " + s;
-    		s = s + " -   " + Integer.toString(shot_data.getBulls()) + " Б, " +
-    		    Integer.toString(shot_data.getCows()) + " К";
-    		ShowStepInfo(s, true, 0);
-    		if (shot_data.getBulls() == 4){
-    			this.doEndOfGame(1);
-    		}
-
-    		Digits = solver.ToFindDigits(Digits);
-    		Integer[] TmpBufI = new Integer[4];
-    		for(int i = 0; i < 4; i++) {
-    			TmpBufI[i] = Digits[i];
-    		}
-    		ShotData shot_data2 = curator.checkQuad(Digits, 1);
-    		bulls = shot_data2.getBulls();
-    		cows = shot_data2.getCows();
-    		solver.shots_data.add(shot_data2);
-    		//ShowNextShot(solver.shots_data.size(), false);	// отображение
-    		String s2 = new String(Integer.toString(solver.shots_data.size()));
-    		s2 = s2 + ": -   " + Integer.toString(bulls) + " Б, " +
-    		    Integer.toString(cows) + " К";
-    		ShowStepInfo(s2, false, 0);
-    		solver.ShotDigitIndex = 0;		// обнуление индексов
-    		solver.DigitsForAnswerIndex = 0;
-    		if (bulls == 4){
-    			this.doEndOfGame(2);
-    		}
+    	   	p1End = this.tryPlayer1();
+    	   	p2End = this.tryPlayer2(1);
+    	   	this.whoWin(p1End, p2End);
     	}
     }
 
