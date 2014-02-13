@@ -745,13 +745,19 @@ public class MainController implements Initializable{
     // действия при окончании игры - когда кто-то угадал
     private void doEndOfGame(int player){
     	this.btShot.setDisable(true);
-    	if (player != 0){
-    		this.ShowStepInfo("Победа игрока " + Integer.toString(player) + "!",
-    																true, 0);
-    		this.ShowStepInfo("Победа игрока " + Integer.toString(player) + "!",
-    																false, 0);
-    	} else {
+    	switch(player){
+    	case 0:
     		this.ShowStepInfo("Победа!", true, 0);
+    		break;
+    	case 1:
+    		this.ShowStepInfo("Победа игрока 1!", true, 0);
+    		break;
+    	case 2:
+    		this.ShowStepInfo("Победа игрока 2!", true, 0);
+    		break;
+    	case 3:
+    		this.ShowStepInfo("Ничья!", true, 0);
+    		break;
     	}
     	this.setDisableBt(false);
     }
