@@ -558,6 +558,7 @@ public class MainController implements Initializable{
     // обработчик кнопки сброса цвета меток вспомогательных цифр на черный
     @FXML protected void onAidDigitsReset(ActionEvent e) {
     	for(int i = 0; i < this.aAidDigits.size(); i++){
+    		aAidDigitsColor.set(i, 1);
     		aAidDigits.get(i).setStyle("-fx-text-fill: #000000;");
     	}
     }
