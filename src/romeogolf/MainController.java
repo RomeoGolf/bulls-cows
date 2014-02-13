@@ -160,17 +160,17 @@ public class MainController implements Initializable{
     	this.setDisableBt(true);
 		switch(mode){
 		case 0 :	// режим "человек угадывает"
-			this.ShotMode0();
+			this.shotMode0();
 			break;
 		case 1 :	// режим "человек и машина угадывают друг у друга"
-			this.ShotMode1();
+			this.shotMode1();
 			break;
 		case 2 :	// режим "человек и машина угадвают одно наперегонки"
-			this.ShotMode2();
+			this.shotMode2();
 			break;
 		case 3 :	// режим "машина угадывает (тестовый)"
 			this.Reset();
-			SelfAnswer();
+			shotMode3();
 			break;
 		default :	// режим "ХЗ"
 			indicator.setText("режим ХЗ");
@@ -620,7 +620,7 @@ public class MainController implements Initializable{
 
     // ========= машинная отгадка ======
     // машина -> машина, режим 3
-    void SelfAnswer() {
+    void shotMode3() {
     	//curator.Init();
     	curator.DigitMixer();		// перемешать цифры подготовить набор цифр
     	solver.Init(curator.getDecade());
@@ -651,7 +651,7 @@ public class MainController implements Initializable{
     }
 
     // человек -> машина
-    void ShotMode0(){
+    void shotMode0(){
     	if (!this.isEqualDigits()){
     		Player1ShotNum++;
     		ShotData shot_data = curator.checkQuad(this.DigitsForShow, 1);
@@ -677,7 +677,7 @@ public class MainController implements Initializable{
     }
 
     // человек <-> машина
-    void ShotMode1(){
+    void shotMode1(){
     	if (!this.isEqualDigits()){
     		Player1ShotNum++;
     		ShotData shot_data = curator.checkQuad(this.DigitsForShow, 1);
@@ -707,7 +707,7 @@ public class MainController implements Initializable{
     }
 
     // человек, машина -> машина
-    void ShotMode2(){
+    void shotMode2(){
     	if (!this.isEqualDigits()){
     		Player1ShotNum++;
     		ShotData shot_data = curator.checkQuad(this.DigitsForShow, 1);
