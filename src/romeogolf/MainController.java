@@ -579,15 +579,15 @@ public class MainController implements Initializable{
 		switch(img){
 		case 1:
 			iFlag = new Image(this.getClass().getResourceAsStream(
-											"/res/img/flag green small.png"));
+												"/res/img/ball2_green.png"));
 			break;
 		case 2:
 			iFlag = new Image(this.getClass().getResourceAsStream(
-											"/res/img/flag yellow small.png"));
+											"/res/img/ball2_yellow.png"));
 			break;
 		case 3:
 			iFlag = new Image(this.getClass().getResourceAsStream(
-											"/res/img/flag red small.png"));
+											"/res/img/ball2_red.png"));
 			break;
 		}
 		if (iFlag != null){
