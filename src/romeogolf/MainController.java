@@ -752,12 +752,15 @@ public class MainController implements Initializable{
     		break;
     	case 1:
     		this.ShowStepInfo("Победа игрока 1!", true, 0);
+    		this.ShowStepInfo("Победа игрока 1!", false, 0);
     		break;
     	case 2:
     		this.ShowStepInfo("Победа игрока 2!", true, 0);
+    		this.ShowStepInfo("Победа игрока 2!", false, 0);
     		break;
     	case 3:
     		this.ShowStepInfo("Ничья!", true, 0);
+    		this.ShowStepInfo("Ничья!", false, 0);
     		break;
     	}
     	this.setDisableBt(false);
