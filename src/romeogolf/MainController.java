@@ -1,5 +1,6 @@
 package romeogolf;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,9 +16,12 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -244,8 +248,23 @@ public class MainController implements Initializable{
     }
 
     // кнопка "Настройка"
-    @FXML protected void onSettings(ActionEvent e) {
+    @FXML protected void onSettings(ActionEvent e) throws IOException {
+    	Stage stage2 = new Stage();
+		Parent root2 = FXMLLoader.load(getClass().getResource("bc_settings.fxml"));
+		/*FXMLLoader loader = new FXMLLoader(getClass().getResource("bc_settings.fxml"));
+		Parent root = null;
+		try {
+			root = (Parent) loader.load();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		//MainController controller = (MainController)loader.getController();*/
 
+	    Scene scene2 = new Scene(root2);
+	    stage2.setTitle("Настройки");
+	    stage2.setScene(scene2);
+	    stage2.show();
     }
 
     // обработка переключения режима
