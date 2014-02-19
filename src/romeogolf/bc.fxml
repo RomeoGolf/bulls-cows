@@ -11,7 +11,7 @@
 
 <GridPane alignment="CENTER" maxHeight="-1.0" maxWidth="600.0" minHeight="-1.0" minWidth="700.0" prefHeight="750.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="romeogolf.MainController">
   <children>
-    <VBox id="pLeft" alignment="TOP_CENTER" spacing="20.0" styleClass="common_panel" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.vgrow="ALWAYS">
+    <VBox id="pLeft" alignment="TOP_CENTER" spacing="10.0" styleClass="common_panel" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.vgrow="ALWAYS">
       <children>
         <VBox minHeight="-1.0" minWidth="-1.0" prefHeight="191.0" prefWidth="188.0" spacing="2.0" styleClass="h_panel" VBox.vgrow="SOMETIMES">
           <children>
@@ -37,6 +37,7 @@
         <Button fx:id="btGenerateQuad" mnemonicParsing="false" onAction="#onGenerateQwad" prefWidth="127.0" text="Сгенерить" />
         <Button fx:id="btReset" mnemonicParsing="false" onAction="#onReset" prefWidth="127.0" text="Сброс" />
         <Button fx:id="btTest" mnemonicParsing="false" onAction="#onTest" prefWidth="127.00009999999747" text="Тест" />
+        <Button fx:id="btSettings" mnemonicParsing="false" onAction="#onSettings" prefWidth="127.00009999999747" text="Настройки" />
         <VBox prefHeight="116.0" prefWidth="188.0" VBox.vgrow="ALWAYS" />
       </children>
     </VBox>

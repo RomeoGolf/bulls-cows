@@ -82,6 +82,7 @@ public class MainController implements Initializable{
 	@FXML private Button btReset;
 	@FXML private Button btTest;
 	@FXML private Button btShot;
+	@FXML private Button btSettings;
 	// переключатели режима
 	@FXML private RadioButton rbMode0;
 	@FXML private RadioButton rbMode1;
@@ -242,6 +243,11 @@ public class MainController implements Initializable{
     	this.Reset();
     }
 
+    // кнопка "Настройка"
+    @FXML protected void onSettings(ActionEvent e) {
+
+    }
+
     // обработка переключения режима
     protected void onModeToggle(){
 		if (tgMode.getSelectedToggle() != null) {
@@ -365,8 +371,8 @@ public class MainController implements Initializable{
 		setControlMaps();	// для групповой обработки кнопок
     	// начальное заполнение массива цифр и его отображение
     	for(int i = 0; i < 4; i++){
-    		this.DigitsForShow[i] = i;
-    		aQuad1.get(i).setText(Integer.toString(i));
+    		this.DigitsForShow[i] = i + 1;
+    		aQuad1.get(i).setText(Integer.toString(this.DigitsForShow[i]));
     	}
 
     	// установка обработчика переключения режима игры
@@ -499,6 +505,10 @@ public class MainController implements Initializable{
 		Image iReset = new Image(this.getClass().getResourceAsStream(
 													"/res/img/refresh.png"));
 		this.btReset.setGraphic(new ImageView(iReset));
+
+		Image iSettings = new Image(this.getClass().getResourceAsStream(
+												"/res/img/configuration.png"));
+		this.btSettings.setGraphic(new ImageView(iSettings));
 	}
 
 	// массив меток для вспомогательных цифр и массив кодов цвета для них
