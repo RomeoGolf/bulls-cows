@@ -262,6 +262,7 @@ public class MainController implements Initializable{
 		}
 		SettingsController controller2 = (SettingsController)loader2.getController();
 		controller2.setStage_Listener(stage2);
+		controller2.setSDM(sdm);
 
 	    Scene scene2 = new Scene(root2);
 	    stage2.setTitle("Настройки");

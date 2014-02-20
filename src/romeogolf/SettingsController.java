@@ -21,6 +21,7 @@ public class SettingsController implements Initializable{
 	@FXML private CheckBox cbDigitsReset;
 
 	private Stage stage;
+	private StoredDataManager sdm;
 	private ArrayList<RadioButton> aFirstStep = new ArrayList<RadioButton>();
 
 	@FXML protected void onOK(ActionEvent e){
@@ -35,6 +36,10 @@ public class SettingsController implements Initializable{
     // получение ссылки на окно, установка обработчика событий окна 
     public void setStage_Listener(final Stage stage){
     	this.stage = stage;
+    }
+
+    public void setSDM(final StoredDataManager sdm){
+    	this.sdm = sdm;
     }
 
 	@Override
