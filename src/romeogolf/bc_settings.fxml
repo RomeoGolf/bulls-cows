@@ -12,14 +12,14 @@
     <VBox layoutX="16.0" layoutY="20.0" minHeight="78.0" prefHeight="109.0" prefWidth="101.0" spacing="5.0" styleClass="common_panel">
       <children>
         <Label text="Первый ход:" />
-        <RadioButton id="rbFirstStep1" fx:id="rbFirstStep0" mnemonicParsing="false" selected="true" text="Игрок 1">
+        <RadioButton fx:id="rbFirstStep0" mnemonicParsing="false" selected="true" text="Игрок 1">
           <toggleGroup>
-            <ToggleGroup fx:id="tgFirtstShot" />
+            <ToggleGroup fx:id="tgFirstStep" />
           </toggleGroup>
         </RadioButton>
-        <RadioButton fx:id="rbFirstStep1" mnemonicParsing="false" text="Игрок 2" toggleGroup="$tgFirtstShot" />
-        <RadioButton fx:id="rbFirstStep2" mnemonicParsing="false" text="Поочередно" toggleGroup="$tgFirtstShot" />
-        <RadioButton fx:id="rbFirstStep3" mnemonicParsing="false" text="Случайно" toggleGroup="$tgFirtstShot" />
+        <RadioButton fx:id="rbFirstStep1" mnemonicParsing="false" text="Игрок 2" toggleGroup="$tgFirstStep" />
+        <RadioButton fx:id="rbFirstStep2" mnemonicParsing="false" text="Поочередно" toggleGroup="$tgFirstStep" />
+        <RadioButton fx:id="rbFirstStep3" mnemonicParsing="false" text="Случайно" toggleGroup="$tgFirstStep" />
       </children>
     </VBox>
     <CheckBox fx:id="cbDigitsReset" layoutX="128.0" layoutY="20.0" minWidth="101.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="127.0" text="сбрасывать цифры игрока 1 на 1234" textAlignment="JUSTIFY" textOverrun="ELLIPSIS" underline="false" wrapText="true" />
