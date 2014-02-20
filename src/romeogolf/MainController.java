@@ -96,9 +96,57 @@ public class MainController implements Initializable{
 	@FXML private RadioButton rbMode3;
 	// нижняя панель
 	@FXML private HBox hbBottom;
+	// Метки имен полей с результатами попыток
+	@FXML private Label lPlayer1;
+	@FXML private Label lPlayer2;
 
 	// количество попыток первого игрока (человека)
 	private Integer Player1ShotNum = 0;
+
+	// право первого хода
+	private Boolean firstStepPlayer1 = true;
+	private Boolean isFirstPlayer1(){
+		return firstStepPlayer1;
+	}
+
+	private Boolean setFirstPlayer(){
+		Boolean result;
+		Integer firstStep = sdm.getFirstStep();
+		if(firstStep == null){
+			firstStep = 0;
+		}
+		switch(firstStep){
+		case 1:	// первым - второй игрок
+			firstStepPlayer1 = false;
+			result = false;
+			break;
+		case 2:	// первый ход по очереди
+			firstStepPlayer1 = !firstStepPlayer1;
+			result = firstStepPlayer1;
+			break;
+		case 3:	// первый ход случайно
+			firstStepPlayer1 = curator.getRandomBool();
+			result = firstStepPlayer1;
+			break;
+		default:	// первым - первый игрок (в т. ч. в непонятных ситуациях)
+			firstStepPlayer1 = true;
+			result = true;
+		}
+
+		Image iWhite = new Image(this.getClass().getResourceAsStream(
+				"/res/img/castle_white.png"));
+		Image iBlack = new Image(this.getClass().getResourceAsStream(
+				"/res/img/castle_black.png"));
+		if(result){
+			this.lPlayer1.setGraphic(new ImageView(iWhite));
+			this.lPlayer2.setGraphic(new ImageView(iBlack));
+		} else {
+			this.lPlayer2.setGraphic(new ImageView(iWhite));
+			this.lPlayer1.setGraphic(new ImageView(iBlack));
+		}
+
+		return result;
+	}
 
 	// режим игры
 	private Integer mode = 0;
@@ -116,9 +164,27 @@ public class MainController implements Initializable{
 		} else {
 			generateQwads();
 		}
+		// если нет загадки для машины
 		this.setDisableBt(false);
 		if ((mode == 0) || (mode == 2)){
 			this.setXToPlayer2();
+		}
+		// если играет человек с машиной - отобразить право хода
+		if ((mode == 1) || (mode == 2)){
+			Image iWhite = new Image(this.getClass().getResourceAsStream(
+					"/res/img/castle_white.png"));
+			Image iBlack = new Image(this.getClass().getResourceAsStream(
+					"/res/img/castle_black.png"));
+			if(this.isFirstPlayer1()){
+				this.lPlayer1.setGraphic(new ImageView(iWhite));
+				this.lPlayer2.setGraphic(new ImageView(iBlack));
+			} else {
+				this.lPlayer2.setGraphic(new ImageView(iWhite));
+				this.lPlayer1.setGraphic(new ImageView(iBlack));
+			}
+		} else {
+			lPlayer1.setGraphic(null);
+			lPlayer2.setGraphic(null);
 		}
 	}
 
@@ -769,6 +835,9 @@ public class MainController implements Initializable{
     		this.doEndOfGame(1);
     	} else if(p2) {
     		this.doEndOfGame(2);
+    	}
+    	if(p1 || p2){
+    		this.setFirstPlayer();
     	}
     }
 
