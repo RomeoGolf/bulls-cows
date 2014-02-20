@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 public class SettingsController implements Initializable{
@@ -17,6 +18,8 @@ public class SettingsController implements Initializable{
 	@FXML private RadioButton rbFirstStep1;
 	@FXML private RadioButton rbFirstStep2;
 	@FXML private RadioButton rbFirstStep3;
+	@FXML private ToggleGroup tgFirstStep;
+
 	//флажок сброса цифр в исходное (1234)
 	@FXML private CheckBox cbDigitsReset;
 
@@ -25,6 +28,8 @@ public class SettingsController implements Initializable{
 	private ArrayList<RadioButton> aFirstStep = new ArrayList<RadioButton>();
 
 	@FXML protected void onOK(ActionEvent e){
+		this.sdm.setDigitsReset(this.cbDigitsReset.isSelected());
+		this.sdm.setFirstStep(this.aFirstStep.indexOf((RadioButton)this.tgFirstStep.getSelectedToggle()));
 		stage.close();
 	}
 
@@ -32,7 +37,6 @@ public class SettingsController implements Initializable{
 		stage.close();
 	}
 
-	
     // получение ссылки на окно, установка обработчика событий окна 
     public void setStage_Listener(final Stage stage){
     	this.stage = stage;
@@ -40,6 +44,16 @@ public class SettingsController implements Initializable{
 
     public void setSDM(final StoredDataManager sdm){
     	this.sdm = sdm;
+    	Boolean checked = sdm.getDigitsReset();
+    	if(checked != null){
+    		this.cbDigitsReset.setSelected(checked);
+    	}
+    	Integer firstStepIndex = sdm.getFirstStep();
+    	if((firstStepIndex != null) && (firstStepIndex >= 0) && (firstStepIndex <= 3)){
+    		if(this.aFirstStep.indexOf((RadioButton)this.tgFirstStep.getSelectedToggle()) != firstStepIndex){
+    			this.tgFirstStep.selectToggle(this.aFirstStep.get(firstStepIndex));
+    		}
+    	}
     }
 
 	@Override
