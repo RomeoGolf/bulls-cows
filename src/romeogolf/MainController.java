@@ -807,7 +807,7 @@ public class MainController implements Initializable{
 
     private Boolean tryPlayer2(int QuadNum){
     	Boolean result = false;
-    	
+
     	Digits = solver.ToFindDigits(Digits);
     	Integer[] TmpBufI = new Integer[4];
     	for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
@@ -833,7 +833,11 @@ public class MainController implements Initializable{
     	return result;
     }
 
-    private void whoWin(Boolean p1, Boolean p2){
+    Boolean p1End = false;
+    Boolean p2End = false;
+
+    private Boolean whoWin(Boolean p1, Boolean p2){
+    	Boolean result = false;
     	if(p1 && p2){
     		this.doEndOfGame(3);
     	} else if(p1) {
@@ -843,28 +847,59 @@ public class MainController implements Initializable{
     	}
     	if(p1 || p2){
     		this.setFirstPlayer();
+    		result = true;
+    		p1End = false;
+    		p2End = false;
     	}
+        return result;
     }
 
     // человек <-> машина
     void shotMode1(){
-    	Boolean p1End = false;
-    	Boolean p2End = false;
-    	if (!this.isEqualDigits()){
-    	   	p1End = this.tryPlayer1();
-    	   	p2End = this.tryPlayer2(2);
-    	   	this.whoWin(p1End, p2End);
+    	if(this.isFirstPlayer1()){
+    		if (!this.isEqualDigits()){
+    			p1End = this.tryPlayer1();
+    			p2End = this.tryPlayer2(2);
+    			this.whoWin(p1End, p2End);
+    		}
+    	} else {
+    		if(this.Player2firstStep){
+    			Player2firstStep = false;
+    			this.btShot.setText("Попытка");
+    			p2End = this.tryPlayer2(2);
+    		} else {
+    			if (!this.isEqualDigits()){
+    				p1End = this.tryPlayer1();
+    				if(!this.whoWin(p1End, p2End)){
+    					p2End = this.tryPlayer2(2);
+    				}
+    			}
+    		}
     	}
+
     }
 
     // человек, машина -> машина
     void shotMode2(){
-    	Boolean p1End = false;
-    	Boolean p2End = false;
-    	if (!this.isEqualDigits()){
-    	   	p1End = this.tryPlayer1();
-    	   	p2End = this.tryPlayer2(1);
-    	   	this.whoWin(p1End, p2End);
+    	if(this.isFirstPlayer1()){
+    		if (!this.isEqualDigits()){
+    			p1End = this.tryPlayer1();
+    			p2End = this.tryPlayer2(1);
+    			this.whoWin(p1End, p2End);
+    		}
+    	} else {
+    		if(this.Player2firstStep){
+    			Player2firstStep = false;
+    			this.btShot.setText("Попытка");
+    			p2End = this.tryPlayer2(1);
+    		} else {
+    			if (!this.isEqualDigits()){
+    				p1End = this.tryPlayer1();
+    				if(!this.whoWin(p1End, p2End)){
+    					p2End = this.tryPlayer2(1);
+    				}
+    			}
+    		}
     	}
     }
 
