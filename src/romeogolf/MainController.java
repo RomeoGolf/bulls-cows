@@ -132,6 +132,7 @@ public class MainController implements Initializable{
 			firstStepPlayer1 = true;
 			result = true;
 		}
+		this.Player2firstStep = true;
 
 		Image iWhite = new Image(this.getClass().getResourceAsStream(
 				"/res/img/castle_white.png"));
@@ -148,6 +149,8 @@ public class MainController implements Initializable{
 		return result;
 	}
 
+	// первый ход игрока 2 при его праве первого хода
+	private Boolean Player2firstStep = true;
 	// режим игры
 	private Integer mode = 0;
 	void setMode(Integer m){
