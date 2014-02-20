@@ -47,7 +47,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 public class MainController implements Initializable{
@@ -250,20 +252,22 @@ public class MainController implements Initializable{
     // кнопка "Настройка"
     @FXML protected void onSettings(ActionEvent e) throws IOException {
     	Stage stage2 = new Stage();
-		Parent root2 = FXMLLoader.load(getClass().getResource("bc_settings.fxml"));
-		/*FXMLLoader loader = new FXMLLoader(getClass().getResource("bc_settings.fxml"));
-		Parent root = null;
+		FXMLLoader loader2 = new FXMLLoader(getClass().getResource("bc_settings.fxml"));
+		Parent root2 = null;
 		try {
-			root = (Parent) loader.load();
+			root2 = (Parent) loader2.load();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		//MainController controller = (MainController)loader.getController();*/
+		//MainController controller = (MainController)loader.getController();
 
 	    Scene scene2 = new Scene(root2);
 	    stage2.setTitle("Настройки");
 	    stage2.setScene(scene2);
+	    stage2.initOwner(this.stage);
+	    stage2.initModality(Modality.APPLICATION_MODAL);
+	    stage2.initStyle(StageStyle.UTILITY);
 	    stage2.show();
     }
 
