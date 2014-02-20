@@ -159,14 +159,14 @@ public class MainController implements Initializable{
 		2 :	// режим "человек и машина угадвают одно наперегонки"
 		3 :	// режим "машина угадывает (тестовый)"
 		 */
-		if (mode == 0){
+		if (m == 0){
 			curator.generateQuad(1);
 		} else {
 			generateQwads();
 		}
 		// если нет загадки для машины
 		this.setDisableBt(false);
-		if ((mode == 0) || (mode == 2)){
+		if ((m == 0) || (m == 2)){
 			this.setXToPlayer2();
 		}
 		// если играет человек с машиной - отобразить право хода
@@ -186,6 +186,7 @@ public class MainController implements Initializable{
 			lPlayer1.setGraphic(null);
 			lPlayer2.setGraphic(null);
 		}
+		this.drawFirstStep((m == 1) || (m == 2));
 	}
 
 	Integer getMode(){
