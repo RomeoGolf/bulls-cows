@@ -134,23 +134,34 @@ public class MainController implements Initializable{
 		}
 		this.Player2firstStep = true;
 
-		Image iWhite = new Image(this.getClass().getResourceAsStream(
-				"/res/img/castle_white.png"));
-		Image iBlack = new Image(this.getClass().getResourceAsStream(
-				"/res/img/castle_black.png"));
-		if(result){
-			this.lPlayer1.setGraphic(new ImageView(iWhite));
-			this.lPlayer2.setGraphic(new ImageView(iBlack));
-		} else {
-			this.lPlayer2.setGraphic(new ImageView(iWhite));
-			this.lPlayer1.setGraphic(new ImageView(iBlack));
-		}
-
 		return result;
+	}
+
+	private void drawFirstStep(Boolean toDraw){
+		if(toDraw){
+			Image iWhite = new Image(this.getClass().getResourceAsStream(
+					"/res/img/castle_white.png"));
+			Image iBlack = new Image(this.getClass().getResourceAsStream(
+					"/res/img/castle_black.png"));
+			if(this.isFirstPlayer1()){
+				this.lPlayer1.setGraphic(new ImageView(iWhite));
+				this.lPlayer2.setGraphic(new ImageView(iBlack));
+				this.btShot.setText("ѕопытка");
+			} else {
+				this.lPlayer2.setGraphic(new ImageView(iWhite));
+				this.lPlayer1.setGraphic(new ImageView(iBlack));
+				this.btShot.setText("—тарт");
+			}
+		} else {
+			this.lPlayer1.setGraphic(null);
+			this.lPlayer2.setGraphic(null);
+			this.btShot.setText("ѕопытка");
+		}
 	}
 
 	// первый ход игрока 2 при его праве первого хода
 	private Boolean Player2firstStep = true;
+
 	// режим игры
 	private Integer mode = 0;
 	void setMode(Integer m){
@@ -173,22 +184,7 @@ public class MainController implements Initializable{
 			this.setXToPlayer2();
 		}
 		// если играет человек с машиной - отобразить право хода
-		if ((mode == 1) || (mode == 2)){
-			Image iWhite = new Image(this.getClass().getResourceAsStream(
-					"/res/img/castle_white.png"));
-			Image iBlack = new Image(this.getClass().getResourceAsStream(
-					"/res/img/castle_black.png"));
-			if(this.isFirstPlayer1()){
-				this.lPlayer1.setGraphic(new ImageView(iWhite));
-				this.lPlayer2.setGraphic(new ImageView(iBlack));
-			} else {
-				this.lPlayer2.setGraphic(new ImageView(iWhite));
-				this.lPlayer1.setGraphic(new ImageView(iBlack));
-			}
-		} else {
-			lPlayer1.setGraphic(null);
-			lPlayer2.setGraphic(null);
-		}
+		this.btShot.setText("ѕопытка");
 		this.drawFirstStep((m == 1) || (m == 2));
 	}
 
@@ -303,6 +299,7 @@ public class MainController implements Initializable{
 		if(this.sdm.getDigitsReset()){
 			this.digitsReset();
 		}
+		this.drawFirstStep((getMode() == 1) || (getMode() == 2));
     }
 
     // установка доступности кнопок в зависимости от режима
