@@ -18,6 +18,8 @@ class StoredDataManager {
 	private Double left;
 	private Double height;
 	private Integer mode;
+	private Integer firstStep;
+	private Boolean digitsReset;
 
 	//--------------------------------
 	public void setTop(Double value){
@@ -40,6 +42,15 @@ class StoredDataManager {
 		this.saveInteger("mode", value);
 	}
 
+	public void setFirstStep(Integer value){
+		firstStep = value;
+		this.saveInteger("firstStep", value);
+	}
+
+	public void setDigitsReset(Boolean value){
+		digitsReset = value;
+		this.saveBool("digitsReset", value);
+	}
 	//---------------------------------
 	public Double getTop(){
 		top = this.getDouble("top");
@@ -60,8 +71,18 @@ class StoredDataManager {
 		mode = this.getInteger("mode");
 		return mode;
 	}
+
+	public Integer getFirstStep(){
+		firstStep = this.getInteger("firstStep");
+		return firstStep;
+	}
+
+	public Boolean getDigitsReset(){
+		digitsReset = this.getBool("digitsReset");
+		return digitsReset;
+	}
 	// =========================================================================
-	
+
 	private Properties props = new Properties();
 	private CodeSource src;
     private URL url = null;
@@ -82,6 +103,10 @@ class StoredDataManager {
 
     private void saveDouble(String key, Double value){
     	props.setProperty(key, Double.toString(value));
+    }
+
+    private void saveBool(String key, Boolean value){
+    	props.setProperty(key, Boolean.toString(value));
     }
 
     /*private Integer getInteger(String key, Integer defValue){
@@ -107,13 +132,26 @@ class StoredDataManager {
     	}
     	return value;
     }
-    
+
     private Double getDouble(String key){
     	String s = props.getProperty(key);
     	Double value = null; //NumberFormatException
     	if(s != null){
     		try{
     			value = Double.valueOf(s);
+    		} catch(NumberFormatException e){
+    			e.printStackTrace();
+    		}
+    	}
+    	return value;
+    }
+
+    private Boolean getBool(String key){
+    	String s = props.getProperty(key);
+    	Boolean value = null; //NumberFormatException
+    	if(s != null){
+    		try{
+    			value = Boolean.valueOf(s);
     		} catch(NumberFormatException e){
     			e.printStackTrace();
     		}
