@@ -260,7 +260,8 @@ public class MainController implements Initializable{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		//MainController controller = (MainController)loader.getController();
+		SettingsController controller2 = (SettingsController)loader2.getController();
+		controller2.setStage_Listener(stage2);
 
 	    Scene scene2 = new Scene(root2);
 	    stage2.setTitle("Настройки");

@@ -11,8 +11,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 
-
-
 public class SettingsController implements Initializable{
 	// переключатели права первого хода
 	@FXML private RadioButton rbFirstStep0;
@@ -22,6 +20,7 @@ public class SettingsController implements Initializable{
 	//флажок сброса цифр в исходное (1234)
 	@FXML private CheckBox cbDigitsReset;
 
+	private Stage stage;
 	private ArrayList<RadioButton> aFirstStep = new ArrayList<RadioButton>();
 
 	@FXML protected void onOK(ActionEvent e){
@@ -32,12 +31,12 @@ public class SettingsController implements Initializable{
 		stage.close();
 	}
 
-	Stage stage;
+	
     // получение ссылки на окно, установка обработчика событий окна 
     public void setStage_Listener(final Stage stage){
     	this.stage = stage;
     }
-	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		aFirstStep.add(rbFirstStep0);
