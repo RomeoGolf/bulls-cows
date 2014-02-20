@@ -227,6 +227,9 @@ public class MainController implements Initializable{
 		solver.Init(curator.getDecade());
 		this.setDisableBt(false);
 		this.btShot.setDisable(false);
+		if(this.sdm.getDigitsReset()){
+			this.digitsReset();
+		}
     }
 
     // установка доступности кнопок в зависимости от режима
@@ -379,6 +382,14 @@ public class MainController implements Initializable{
         });
     }
 
+    private void digitsReset(){
+    	// заполнение массива цифр и его отображение
+    	for(int i = 0; i < 4; i++){
+    		this.DigitsForShow[i] = i + 1;
+    		aQuad1.get(i).setText(Integer.toString(this.DigitsForShow[i]));
+    	}
+    }
+
     // собственно инициализация
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -394,11 +405,7 @@ public class MainController implements Initializable{
 		setVBoxScroller(this.vbPlayer2);
 
 		setControlMaps();	// для групповой обработки кнопок
-    	// начальное заполнение массива цифр и его отображение
-    	for(int i = 0; i < 4; i++){
-    		this.DigitsForShow[i] = i + 1;
-    		aQuad1.get(i).setText(Integer.toString(this.DigitsForShow[i]));
-    	}
+		this.digitsReset();
 
     	// установка обработчика переключения режима игры
         tgMode.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
