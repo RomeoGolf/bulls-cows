@@ -208,7 +208,10 @@ public class MainController implements Initializable{
     // тестовая кнопка - тестовый обработчик
     @FXML protected void onTest(ActionEvent event) {
     	//this.FullTestForAlgotithm();
-    	this.at.start();
+    	if(!this.isTestRun){
+    		this.at.start();
+    		isTestRun = true;
+    	}
     };
 
     // общий обработчик для всех кнопок Up & Down
@@ -312,6 +315,7 @@ public class MainController implements Initializable{
     // кнопка "сброс"
     @FXML protected void onReset(ActionEvent e) {
     	this.at.stop();
+    	this.isTestRun = false;
     	if(this.vbRight.getChildren().contains(bc)){
     		this.vbRight.getChildren().remove(bc);
     	}
@@ -1004,8 +1008,10 @@ public class MainController implements Initializable{
 	Map<Integer, Integer> hmShotNum = new HashMap<Integer, Integer>();
 	// счетчик для перебора вариантов
 	int d = 0;
-	// метод для вызова из AnimationTimer.handle
+	// тест запущен?
+	private Boolean isTestRun = false;
 
+	// метод для вызова из AnimationTimer.handle
     public void AnimatedTestOfAlgorithm(){
     	// если графика гистограммы еще не существует - создать
     	if(bc == null){
@@ -1200,6 +1206,7 @@ public class MainController implements Initializable{
         	if(bc != null){
         		vbPlayer1.getChildren().add(bc);
         	}
+        	this.isTestRun = false;
     	}
     }
 
