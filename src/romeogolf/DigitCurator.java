@@ -24,6 +24,10 @@ public class DigitCurator {
     	return Result;
     }
 
+    public Boolean getRandomBool(){
+    	return rg.nextBoolean();
+    }
+
     public Integer[] getQuad(int num){
     	if (num == 1){
     		return quad1;
