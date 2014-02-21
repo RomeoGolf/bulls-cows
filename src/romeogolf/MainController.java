@@ -899,6 +899,7 @@ public class MainController implements Initializable{
     // действия при окончании игры - когда кто-то угадал
     private void doEndOfGame(int player){
     	this.btShot.setDisable(true);
+    	Integer wins;
     	switch(player){
     	case 0:
     		this.ShowStepInfo("Победа!", true, 0);
@@ -914,14 +915,35 @@ public class MainController implements Initializable{
     	case 1:
     		this.ShowStepInfo("Победа игрока 1!", true, 0);
     		this.ShowStepInfo("Победа игрока 1!", false, 0);
+    		if(this.getMode() == 1){
+    			wins = sdm.getMode1Player1Win();
+    			sdm.setMode1Player1Win(wins + 1);
+    		} else {
+    			wins = sdm.getMode2Player1Win();
+    			sdm.setMode2Player1Win(wins + 1);
+    		}
     		break;
     	case 2:
     		this.ShowStepInfo("Победа игрока 2!", true, 0);
     		this.ShowStepInfo("Победа игрока 2!", false, 0);
+    		if(this.getMode() == 1){
+    			wins = sdm.getMode1Player2Win();
+    			sdm.setMode1Player2Win(wins + 1);
+    		} else {
+    			wins = sdm.getMode2Player2Win();
+    			sdm.setMode2Player2Win(wins + 1);
+    		}
     		break;
     	case 3:
     		this.ShowStepInfo("Ничья!", true, 0);
     		this.ShowStepInfo("Ничья!", false, 0);
+    		if(this.getMode() == 1){
+    			wins = sdm.getMode1Tie();
+    			sdm.setMode1Tie(wins++);
+    		} else {
+    			wins = sdm.getMode2Tie();
+    			sdm.setMode2Tie(wins + 1);
+    		}
     		break;
     	}
     	this.setDisableBt(false);
