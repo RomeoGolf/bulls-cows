@@ -42,6 +42,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -99,6 +100,8 @@ public class MainController implements Initializable{
 	// Метки имен полей с результатами попыток
 	@FXML private Label lPlayer1;
 	@FXML private Label lPlayer2;
+	// панель для вывода информации всякого рода
+	@FXML private Pane pInfo;
 
 	// количество попыток первого игрока (человека)
 	private Integer Player1ShotNum = 0;
@@ -314,8 +317,11 @@ public class MainController implements Initializable{
     @FXML protected void onReset(ActionEvent e) {
     	this.at.stop();
     	this.isTestRun = false;
-    	if(this.vbRight.getChildren().contains(bc)){
+    	/*if(this.vbRight.getChildren().contains(bc)){
     		this.vbRight.getChildren().remove(bc);
+    	}*/
+    	if(this.pInfo.getChildren().contains(bc)){
+    		this.pInfo.getChildren().remove(bc);
     	}
     	this.Reset();
     }
@@ -1046,10 +1052,17 @@ public class MainController implements Initializable{
     		bc.setBarGap(0);
     		bc.setCategoryGap(0);
     		bc.setAnimated(false);
-    		vbRight.getChildren().add(bc);
+    		bc.setMaxHeight(pInfo.getHeight());
+    		bc.setMaxWidth(pInfo.getWidth());
+    		//vbRight.getChildren().add(bc);
+    		pInfo.getChildren().add(bc);
     	} else {	// иначе - добавить на панель и очистить данные
-    		if(!vbRight.getChildren().contains(bc)){
+    		/*if(!vbRight.getChildren().contains(bc)){
     			vbRight.getChildren().add(bc);
+    			this.series1.getData().clear();
+    		}*/
+    		if(!pInfo.getChildren().contains(bc)){
+    			pInfo.getChildren().add(bc);
     			this.series1.getData().clear();
     		}
     	}
@@ -1225,9 +1238,9 @@ public class MainController implements Initializable{
     		d = 0;
     		// перемещение гистограммы на другую панель 
     		//   (чтобы стиралась по Reset)
-        	if(bc != null){
-        		vbPlayer1.getChildren().add(bc);
-        	}
+        	//if(bc != null){
+        	//	vbPlayer1.getChildren().add(bc);
+        	//}
         	this.isTestRun = false;
     	}
     }

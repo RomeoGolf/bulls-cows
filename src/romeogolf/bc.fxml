@@ -98,6 +98,7 @@
             <VBox fx:id="vbPlayer2" prefHeight="267.0" prefWidth="196.0" styleClass="common_panel" />
           </content>
         </ScrollPane>
+        <Pane fx:id="pInfo" prefHeight="158.0" prefWidth="250.0" styleClass="common_panel" />
       </children>
     </VBox>
     <Pane minHeight="25.0" prefHeight="200.0" prefWidth="200.0" styleClass="common_panel" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.vgrow="NEVER" />
