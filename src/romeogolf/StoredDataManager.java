@@ -53,32 +53,32 @@ class StoredDataManager {
 	}
 	//---------------------------------
 	public Double getTop(){
-		top = this.getDouble("top");
+		top = this.getDouble("top", 0.0);
 		return top;
 	}
 
 	public Double getLeft(){
-		left = this.getDouble("left");
+		left = this.getDouble("left", 0.0);
 		return left;
 	}
 
 	public Double getHeight(){
-		height = this.getDouble("height");
+		height = this.getDouble("height", 0.0);
 		return height;
 	}
 
 	public Integer getMode(){
-		mode = this.getInteger("mode");
+		mode = this.getInteger("mode", 0);
 		return mode;
 	}
 
 	public Integer getFirstStep(){
-		firstStep = this.getInteger("firstStep");
+		firstStep = this.getInteger("firstStep", 0);
 		return firstStep;
 	}
 
 	public Boolean getDigitsReset(){
-		digitsReset = this.getBool("digitsReset");
+		digitsReset = this.getBool("digitsReset", false);
 		return digitsReset;
 	}
 	// =========================================================================
@@ -109,20 +109,9 @@ class StoredDataManager {
     	props.setProperty(key, Boolean.toString(value));
     }
 
-    /*private Integer getInteger(String key, Integer defValue){
-    	String s = props.getProperty(key, Integer.toString(defValue));
-    	Integer value = 0; //NumberFormatException
-    	try{
-    		value = Integer.decode(s);
-    	} catch(NumberFormatException e){
-    		e.printStackTrace();
-    	}
-    	return value;
-    }*/
-
-    private Integer getInteger(String key){
+    private Integer getInteger(String key, Integer defValue){
     	String s = props.getProperty(key);
-    	Integer value = null; //NumberFormatException
+    	Integer value = defValue;
     	if(s != null){
     		try{
     			value = Integer.decode(s);
@@ -133,9 +122,9 @@ class StoredDataManager {
     	return value;
     }
 
-    private Double getDouble(String key){
+    private Double getDouble(String key, Double defValue){
     	String s = props.getProperty(key);
-    	Double value = null; //NumberFormatException
+    	Double value = defValue;
     	if(s != null){
     		try{
     			value = Double.valueOf(s);
@@ -146,9 +135,9 @@ class StoredDataManager {
     	return value;
     }
 
-    private Boolean getBool(String key){
+    private Boolean getBool(String key, Boolean defValue){
     	String s = props.getProperty(key);
-    	Boolean value = null; //NumberFormatException
+    	Boolean value = defValue;
     	if(s != null){
     		try{
     			value = Boolean.valueOf(s);
@@ -157,6 +146,49 @@ class StoredDataManager {
     		}
     	}
     	return value;
+    }
+
+    public Boolean isPosition(){
+    	Boolean result = false;
+    	String s = props.getProperty("top");
+    	Double value = null;
+    	if(s != null){
+    		try{
+    			value = Double.valueOf(s);
+    		} catch(NumberFormatException e){
+    			e.printStackTrace();
+    		}
+    	}
+    	if(value != null){
+    		result = true;
+    	}
+
+    	s = props.getProperty("left");
+    	value = null;
+    	if(s != null){
+    		try{
+    			value = Double.valueOf(s);
+    		} catch(NumberFormatException e){
+    			e.printStackTrace();
+    		}
+    	}
+    	if(value != null){
+    		result = true;
+    	}
+
+    	s = props.getProperty("height");
+    	value = null;
+    	if(s != null){
+    		try{
+    			value = Double.valueOf(s);
+    		} catch(NumberFormatException e){
+    			e.printStackTrace();
+    		}
+    	}
+    	if(value != null){
+    		result = true;
+    	}
+    	return result;
     }
 
     // тестовая строка

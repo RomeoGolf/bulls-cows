@@ -112,9 +112,6 @@ public class MainController implements Initializable{
 	private Boolean setFirstPlayer(){
 		Boolean result;
 		Integer firstStep = sdm.getFirstStep();
-		if(firstStep == null){
-			firstStep = 0;
-		}
 		switch(firstStep){
 		case 1:	// первым - второй игрок
 			firstStepPlayer1 = false;
@@ -391,31 +388,20 @@ public class MainController implements Initializable{
     private void readPrefs(){
     	// чтение режима
     	Integer bufInt = sdm.getMode();
-    	if(bufInt != null){
-    		if((bufInt < 0) || (bufInt > 3)){
-    			bufInt = 0;
-    		}
-    		if(this.aRbMode.indexOf((RadioButton)this.tgMode.getSelectedToggle()) != bufInt){
-    			this.tgMode.selectToggle(aRbMode.get(bufInt));
-    		}
-    	}
+   		if((bufInt < 0) || (bufInt > 3)){
+   			bufInt = 0;
+   		}
+   		if(this.aRbMode.indexOf((RadioButton)this.tgMode.getSelectedToggle()) != bufInt){
+   			this.tgMode.selectToggle(aRbMode.get(bufInt));
+   		}
     }
 
     // восстановление параметров окна из файла настроек
     private void readStagePrefs(){
-    	Double bufDouble;
-    	bufDouble = sdm.getTop();
-    	if(bufDouble != null){
-    		stage.setY(bufDouble);
-    		//stage.setY(200);
-    	}
-    	bufDouble = sdm.getLeft();
-    	if(bufDouble != null){
-    		stage.setX(bufDouble);
-    	}
-    	bufDouble = sdm.getHeight();
-    	if(bufDouble != null){
-    		stage.setHeight(bufDouble);
+    	if(sdm.isPosition()){
+    		stage.setY(sdm.getTop());
+    		stage.setX(sdm.getLeft());
+    		stage.setHeight(sdm.getHeight());
     	}
     }
 
