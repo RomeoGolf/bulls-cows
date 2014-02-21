@@ -902,6 +902,14 @@ public class MainController implements Initializable{
     	switch(player){
     	case 0:
     		this.ShowStepInfo("Победа!", true, 0);
+    		Integer max = sdm.getMode0Max();
+    		Integer min = sdm.getMode0Min();
+    		if(this.Player1ShotNum > max){
+    			sdm.setMode0Max(Player1ShotNum);
+    		}
+    		if((this.Player1ShotNum < min) || (min <= 0)){
+    			sdm.setMode0Min(Player1ShotNum);
+    		}
     		break;
     	case 1:
     		this.ShowStepInfo("Победа игрока 1!", true, 0);
