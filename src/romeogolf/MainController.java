@@ -672,7 +672,10 @@ public class MainController implements Initializable{
 	// вывод строки текста в ScrollPane - информация о шаге игры
     void ShowStepInfo(String s, boolean Player1, int img) {
     	HBox hb = new HBox();
-    	hb.setAlignment(Pos.CENTER);
+    	hb.setAlignment(Pos.CENTER_LEFT);
+    	if(img == 0){
+    		hb.setPadding(new Insets(0, 0, 0, 30));
+    	}
     	Text t = new Text(s);
     	t.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
     	hb.getChildren().add(t);
@@ -1226,11 +1229,11 @@ public class MainController implements Initializable{
     										+ Integer.toString(max), false, 0);
     		this.ShowStepInfo("В среднем - " + Double.toString(sum 
     											/ alShotNum.size()), false, 0);
-    		this.ShowStepInfo("", false, 0);
-    		this.ShowStepInfo("[Попыток]: [вариантов]", false, 0);
+    		//this.ShowStepInfo("", false, 0);
+    		this.ShowStepInfo("[Попыток]: [вариантов]", true, 0);
     		for(int i = 1; i <= max; i++){
     			this.ShowStepInfo(Integer.toString(i) + ": " 
-    							+ Integer.toString(hmShotNum.get(i)), false, 0);
+    							+ Integer.toString(hmShotNum.get(i)), true, 0);
     		}
     		// подчистка данных для нового вызова
     		alShotNum.clear();
