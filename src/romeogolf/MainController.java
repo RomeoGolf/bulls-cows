@@ -666,6 +666,7 @@ public class MainController implements Initializable{
         	}
         });
 
+		this.BuildStatBoxes();
         this.readPrefs();	// чтение сохраненных параметров игры
         this.setAidDigitsMap();
 
