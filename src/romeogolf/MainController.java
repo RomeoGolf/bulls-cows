@@ -576,8 +576,34 @@ public class MainController implements Initializable{
     	sdm.writeData();
     }
 
+    private void drawStatLabels(){
+   		this.aTotalLabels.get(0).setText(Integer.toString(sdm.getMode0Total()));
+   		Integer total = sdm.getMode1Player1Win() + sdm.getMode1Player2Win() +
+   				sdm.getMode1Tie();
+   		this.aTotalLabels.get(1).setText(Integer.toString(total));
+   		total = sdm.getMode2Player1Win() + sdm.getMode2Player2Win() +
+   				sdm.getMode2Tie();
+   		this.aTotalLabels.get(2).setText(Integer.toString(total));
+
+   		this.aWinLabels.get(0).setText(Integer.toString(sdm.getMode0Min()));
+   		StringBuffer sb = new StringBuffer(Integer.toString(sdm.getMode1Player1Win()));
+   		sb.append(" : ");
+   		sb.append(Integer.toString(sdm.getMode1Player2Win()));
+   		this.aWinLabels.get(1).setText(sb.toString());
+   		sb = new StringBuffer(Integer.toString(sdm.getMode2Player1Win()));
+   		sb.append(" : ");
+   		sb.append(Integer.toString(sdm.getMode2Player2Win()));
+   		this.aWinLabels.get(2).setText(sb.toString());
+
+   		this.aTieLabels.get(0).setText(Integer.toString(sdm.getMode0Max()));
+   		this.aTieLabels.get(1).setText(Integer.toString(sdm.getMode1Tie()));
+   		this.aTieLabels.get(2).setText(Integer.toString(sdm.getMode2Tie()));
+    }
+
     // восстановление параметров игры из файла настроек
     private void readPrefs(){
+    	this.drawStatLabels();
+
     	// чтение режима
     	Integer bufInt = sdm.getMode();
    		if((bufInt < 0) || (bufInt > 3)){
@@ -1137,6 +1163,7 @@ public class MainController implements Initializable{
     		break;
     	}
     	this.setDisableBt(false);
+    	this.drawStatLabels();
     }
 
     // заполнение знакомест игрока 2 крестиками
