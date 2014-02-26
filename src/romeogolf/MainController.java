@@ -710,6 +710,14 @@ public class MainController implements Initializable{
 		for(int i = 0; i < 10; i++){
 			this.aAidDigits.get(i).setEffect(ds);
 		}
+
+		DropShadow ds2 = new DropShadow();
+		ds2.setOffsetX(4.0);
+		ds2.setOffsetY(4.0);
+		ds2.setColor(Color.GRAY);
+		ds2.setWidth(5.0);
+		this.lPlayer1.setEffect(ds2);
+		this.lPlayer2.setEffect(ds2);
 	}
 
 	private void setControlMaps(){
