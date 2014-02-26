@@ -610,6 +610,7 @@ public class MainController implements Initializable{
    		if((bufInt < 0) || (bufInt > 3)){
    			bufInt = 0;
    		}
+   		this.setMode(0);
    		if(this.aRbMode.indexOf((RadioButton)this.tgMode.getSelectedToggle()) != bufInt){
    			this.tgMode.selectToggle(aRbMode.get(bufInt));
    		}
