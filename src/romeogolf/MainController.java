@@ -165,8 +165,8 @@ public class MainController implements Initializable{
 	// режим игры
 	private Integer mode = 0;
 	void setMode(Integer m){
-		this.Reset();
 		this.mode = m;
+		this.Reset();
 		/*
 		0 :	// режим "человек угадывает"
 		1 :	// режим "человек и машина угадывают друг у друга"
@@ -331,9 +331,9 @@ public class MainController implements Initializable{
     	/*if(this.vbRight.getChildren().contains(bc)){
     		this.vbRight.getChildren().remove(bc);
     	}*/
-    	if(this.pInfo.getChildren().contains(bc)){
+    	/*if(this.pInfo.getChildren().contains(bc)){
     		this.pInfo.getChildren().remove(bc);
-    	}
+    	}*/
     	this.Reset();
     }
 
@@ -1099,6 +1099,7 @@ public class MainController implements Initializable{
     		bc.setMaxHeight(pInfo.getHeight());
     		bc.setMaxWidth(pInfo.getWidth());
     		//vbRight.getChildren().add(bc);
+    		pInfo.getChildren().removeAll(pInfo.getChildren());
     		pInfo.getChildren().add(bc);
     	} else {	// иначе - добавить на панель и очистить данные
     		/*if(!vbRight.getChildren().contains(bc)){
@@ -1106,6 +1107,7 @@ public class MainController implements Initializable{
     			this.series1.getData().clear();
     		}*/
     		if(!pInfo.getChildren().contains(bc)){
+    			pInfo.getChildren().removeAll(pInfo.getChildren());
     			pInfo.getChildren().add(bc);
     			this.series1.getData().clear();
     		}
@@ -1131,7 +1133,7 @@ public class MainController implements Initializable{
 
 		if(isQuadReady){	// условие вставлено для чисел (d > 9870)
 			// сброс отображения, подготовка к решению
-			this.Reset();
+			this.Reset(false);
 			this.curator.setQuad(TestQuad, 2);
 			this.solver.Init(TestDecade);
 			// отображение подготовленной четверки
@@ -1251,7 +1253,7 @@ public class MainController implements Initializable{
     	if(d >= 9999){
     		// остановка AnimationTimer, сброс отображения
     		this.at.stop();
-    		this.Reset();
+    		this.Reset(false);
     		// подсчет статистики
     		Double sum = 0.0;
     		int max = 0;
