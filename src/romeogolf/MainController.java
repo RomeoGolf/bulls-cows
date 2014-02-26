@@ -566,6 +566,7 @@ public class MainController implements Initializable{
     	aTieLabels.add(null);
     }
 
+    // объект для управления данными, сохраняемыми в память (настройки, etc)
     StoredDataManager sdm = new StoredDataManager();
     Stage stage;
     private void storePrefs(){
@@ -863,7 +864,7 @@ public class MainController implements Initializable{
     	if(e.getButton() == MouseButton.MIDDLE){
     		colorNum = 1;
     	}
-    	
+
     	if(colorNum > 3){
     		colorNum = 1;
     	}
