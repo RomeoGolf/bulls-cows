@@ -710,6 +710,9 @@ public class MainController implements Initializable{
 		ds2.setWidth(5.0);
 		this.lPlayer1.setEffect(ds2);
 		this.lPlayer2.setEffect(ds2);
+		for(int i = 0; i < 4; i++){
+			this.aQuad1.get(i).setEffect(ds2);
+		}
 	}
 
 	private void setControlMaps(){
