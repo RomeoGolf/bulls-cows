@@ -299,10 +299,6 @@ public class MainController implements Initializable{
 		}
 		this.drawFirstStep((getMode() == 1) || (getMode() == 2));
 
-    	/*if(this.pInfo.getChildren().contains(bc)){
-    		this.pInfo.getChildren().remove(bc);
-    	}*/
-
 		if(clearPInfo){
 			pInfo.getChildren().removeAll(pInfo.getChildren());
 			pInfo.getChildren().add(this.aStatBoxes.get(this.getMode()));
@@ -328,12 +324,6 @@ public class MainController implements Initializable{
     @FXML protected void onReset(ActionEvent e) {
     	this.at.stop();
     	this.isTestRun = false;
-    	/*if(this.vbRight.getChildren().contains(bc)){
-    		this.vbRight.getChildren().remove(bc);
-    	}*/
-    	/*if(this.pInfo.getChildren().contains(bc)){
-    		this.pInfo.getChildren().remove(bc);
-    	}*/
     	this.Reset();
     }
 
@@ -388,7 +378,6 @@ public class MainController implements Initializable{
     	}
     	return result;
     };
-
 
     // =================== инициализация интерфейса ============================
     // список панелей для отображения статистики прошлых игр
@@ -954,7 +943,6 @@ public class MainController implements Initializable{
     // ========= машинная отгадка ======
     // машина -> машина, режим 3
     void shotMode3() {
-    	//curator.Init();
     	curator.DigitMixer();		// перемешать цифры подготовить набор цифр
     	solver.Init(curator.getDecade());
 
@@ -1095,7 +1083,6 @@ public class MainController implements Initializable{
     			}
     		}
     	}
-
     }
 
     // человек, машина -> машина
@@ -1313,14 +1300,9 @@ public class MainController implements Initializable{
     		bc.setAnimated(false);
     		bc.setMaxHeight(pInfo.getHeight());
     		bc.setMaxWidth(pInfo.getWidth());
-    		//vbRight.getChildren().add(bc);
     		pInfo.getChildren().removeAll(pInfo.getChildren());
     		pInfo.getChildren().add(bc);
     	} else {	// иначе - добавить на панель и очистить данные
-    		/*if(!vbRight.getChildren().contains(bc)){
-    			vbRight.getChildren().add(bc);
-    			this.series1.getData().clear();
-    		}*/
     		if(!pInfo.getChildren().contains(bc)){
     			pInfo.getChildren().removeAll(pInfo.getChildren());
     			pInfo.getChildren().add(bc);
@@ -1459,7 +1441,6 @@ public class MainController implements Initializable{
                 							(Integer)hmShotNum.get(key2)));
                 		}
         			}
-
         		}
         	}
 		}
@@ -1497,11 +1478,6 @@ public class MainController implements Initializable{
     		alShotNum.clear();
     		hmShotNum.clear();
     		d = 0;
-    		// перемещение гистограммы на другую панель 
-    		//   (чтобы стиралась по Reset)
-        	//if(bc != null){
-        	//	vbPlayer1.getChildren().add(bc);
-        	//}
         	this.isTestRun = false;
     	}
     }
