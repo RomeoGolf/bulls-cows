@@ -390,6 +390,181 @@ public class MainController implements Initializable{
 
 
     // =================== инициализация интерфейса ============================
+    // список панелей для отображения статистики прошлых игр
+    ArrayList<VBox> aStatBoxes = new ArrayList<VBox>();
+    // список меток для отображения статистики
+    ArrayList<Label> aTotalLabels = new ArrayList<Label>();
+    ArrayList<Label> aWinLabels = new ArrayList<Label>();
+    ArrayList<Label> aTieLabels = new ArrayList<Label>();
+    // создание панелей статистики, заполнение списков панелей и меток
+    private void BuildStatBoxes(){
+		DropShadow ds = new DropShadow();
+		ds.setOffsetX(5.0);
+		ds.setOffsetY(5.0);
+		ds.setColor(Color.GRAY);
+		ds.setWidth(5.0);
+
+    	// для режима 0 (человек угадывает)
+    	VBox vb = new VBox();
+    	vb.setMinHeight(this.pInfo.getPrefHeight());
+    	vb.setMaxHeight(this.pInfo.getPrefHeight());
+    	vb.setMinWidth(this.pInfo.getPrefWidth());
+    	vb.setMaxWidth(this.pInfo.getPrefWidth());
+    	vb.setAlignment(Pos.CENTER);
+    	vb.setSpacing(10);
+    	aStatBoxes.add(vb);
+    	HBox hb1 = new HBox();
+    	hb1.setSpacing(10);
+    	hb1.setAlignment(Pos.CENTER_LEFT);
+    	hb1.setPadding(new Insets(0, 0, 0, 30));
+    	Label l1 = new Label("Сыграно - ");
+    	l1.getStyleClass().add("l_statistic_1");
+    	l1.setEffect(ds);
+    	Label l2 = new Label("0");
+    	l2.getStyleClass().add("l_statistic_2");
+    	l2.setEffect(ds);
+    	hb1.getChildren().addAll(l1, l2);
+    	vb.getChildren().add(hb1);
+    	aTotalLabels.add(l2);
+    	hb1 = new HBox();
+    	hb1.setSpacing(10);
+    	hb1.setAlignment(Pos.CENTER_LEFT);
+    	hb1.setPadding(new Insets(0, 0, 0, 30));
+    	l1 = new Label("Мин. попыток - ");
+    	l1.setEffect(ds);
+    	l1.getStyleClass().add("l_statistic_1");
+    	l2 = new Label("0");
+    	l2.getStyleClass().add("l_statistic_2");
+    	l2.setEffect(ds);
+    	hb1.getChildren().addAll(l1, l2);
+    	vb.getChildren().add(hb1);
+    	aWinLabels.add(l2);
+    	hb1 = new HBox();
+    	hb1.setSpacing(10);
+    	hb1.setAlignment(Pos.CENTER_LEFT);
+    	hb1.setPadding(new Insets(0, 0, 0, 30));
+    	l1 = new Label("Макс. попыток - ");
+    	l1.getStyleClass().add("l_statistic_1");
+    	l1.setEffect(ds);
+    	l2 = new Label("0");
+    	l2.getStyleClass().add("l_statistic_2");
+    	l2.setEffect(ds);
+    	vb.getChildren().add(hb1);
+    	hb1.getChildren().addAll(l1, l2);
+    	aTieLabels.add(l2);
+
+    	// для режима 1 (человек <-> машина)
+    	vb = new VBox();
+    	vb.setMinHeight(this.pInfo.getPrefHeight());
+    	vb.setMaxHeight(this.pInfo.getPrefHeight());
+    	vb.setMinWidth(this.pInfo.getPrefWidth());
+    	vb.setMaxWidth(this.pInfo.getPrefWidth());
+    	vb.setAlignment(Pos.CENTER);
+    	vb.setSpacing(10);
+    	aStatBoxes.add(vb);
+    	hb1 = new HBox();
+    	hb1.setSpacing(10);
+    	hb1.setAlignment(Pos.CENTER_LEFT);
+    	hb1.setPadding(new Insets(0, 0, 0, 30));
+    	l1 = new Label("Сыграно - ");
+    	l1.getStyleClass().add("l_statistic_1");
+    	l1.setEffect(ds);
+    	l2 = new Label("0");
+    	l2.getStyleClass().add("l_statistic_2");
+    	l2.setEffect(ds);
+    	hb1.getChildren().addAll(l1, l2);
+    	vb.getChildren().add(hb1);
+    	aTotalLabels.add(l2);
+    	hb1 = new HBox();
+    	hb1.setSpacing(10);
+    	hb1.setAlignment(Pos.CENTER_LEFT);
+    	hb1.setPadding(new Insets(0, 0, 0, 30));
+    	l1 = new Label("Счет - ");
+    	l1.getStyleClass().add("l_statistic_1");
+    	l1.setEffect(ds);
+    	l2 = new Label("0");
+    	l2.getStyleClass().add("l_statistic_2");
+    	l2.setEffect(ds);
+    	hb1.getChildren().addAll(l1, l2);
+    	vb.getChildren().add(hb1);
+    	aWinLabels.add(l2);
+    	hb1 = new HBox();
+    	hb1.setSpacing(10);
+    	hb1.setAlignment(Pos.CENTER_LEFT);
+    	hb1.setPadding(new Insets(0, 0, 0, 30));
+    	l1 = new Label("Ничьих - ");
+    	l1.getStyleClass().add("l_statistic_1");
+    	l1.setEffect(ds);
+    	l2 = new Label("0");
+    	l2.getStyleClass().add("l_statistic_2");
+    	l2.setEffect(ds);
+    	hb1.getChildren().addAll(l1, l2);
+    	vb.getChildren().add(hb1);
+    	aTieLabels.add(l2);
+
+    	// для режима 2 (человек, машина -> машина)
+    	vb = new VBox();
+    	vb.setMinHeight(this.pInfo.getPrefHeight());
+    	vb.setMaxHeight(this.pInfo.getPrefHeight());
+    	vb.setMinWidth(this.pInfo.getPrefWidth());
+    	vb.setMaxWidth(this.pInfo.getPrefWidth());
+    	vb.setAlignment(Pos.CENTER);
+    	vb.setSpacing(10);
+    	aStatBoxes.add(vb);
+    	hb1 = new HBox();
+    	hb1.setSpacing(10);
+    	hb1.setAlignment(Pos.CENTER_LEFT);
+    	hb1.setPadding(new Insets(0, 0, 0, 30));
+    	l1 = new Label("Сыграно - ");
+    	l1.getStyleClass().add("l_statistic_1");
+    	l1.setEffect(ds);
+    	l2 = new Label("0");
+    	l2.getStyleClass().add("l_statistic_2");
+    	l2.setEffect(ds);
+    	hb1.getChildren().addAll(l1, l2);
+    	vb.getChildren().add(hb1);
+    	aTotalLabels.add(l2);
+    	hb1 = new HBox();
+    	hb1.setSpacing(10);
+    	hb1.setAlignment(Pos.CENTER_LEFT);
+    	hb1.setPadding(new Insets(0, 0, 0, 30));
+    	l1 = new Label("Счет - ");
+    	l1.getStyleClass().add("l_statistic_1");
+    	l1.setEffect(ds);
+    	l2 = new Label("0");
+    	l2.getStyleClass().add("l_statistic_2");
+    	l2.setEffect(ds);
+    	hb1.getChildren().addAll(l1, l2);
+    	vb.getChildren().add(hb1);
+    	aWinLabels.add(l2);
+    	hb1 = new HBox();
+    	hb1.setSpacing(10);
+    	hb1.setAlignment(Pos.CENTER_LEFT);
+    	hb1.setPadding(new Insets(0, 0, 0, 30));
+    	l1 = new Label("Ничьих - ");
+    	l1.getStyleClass().add("l_statistic_1");
+    	l1.setEffect(ds);
+    	l2 = new Label("0");
+    	l2.getStyleClass().add("l_statistic_2");
+    	l2.setEffect(ds);
+    	hb1.getChildren().addAll(l1, l2);
+    	vb.getChildren().add(hb1);
+    	aTieLabels.add(l2);
+
+    	// для режима 3 (машина -> машина)
+    	vb = new VBox();
+    	vb.setMinHeight(this.pInfo.getPrefHeight());
+    	vb.setMaxHeight(this.pInfo.getPrefHeight());
+    	vb.setMinWidth(this.pInfo.getPrefWidth());
+    	vb.setMaxWidth(this.pInfo.getPrefWidth());
+    	vb.setAlignment(Pos.CENTER);
+    	vb.setSpacing(10);
+    	aStatBoxes.add(vb);
+    	aTotalLabels.add(null);
+    	aWinLabels.add(null);
+    	aTieLabels.add(null);
+    }
+
     StoredDataManager sdm = new StoredDataManager();
     Stage stage;
     private void storePrefs(){
