@@ -364,7 +364,8 @@ public class MainController implements Initializable{
     // обработка переключения режима
     protected void onModeToggle(){
 		if (tgMode.getSelectedToggle() != null) {
-			setMode(Integer.decode(tgMode.getSelectedToggle().getUserData().toString()));
+			//setMode(Integer.decode(tgMode.getSelectedToggle().getUserData().toString()));
+			setMode(this.aRbMode.indexOf((RadioButton)this.tgMode.getSelectedToggle()));
 		} else {
 			setMode(0);
 		}
