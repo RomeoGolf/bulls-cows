@@ -285,7 +285,7 @@ public class MainController implements Initializable{
     }
 
     // сброс отображения предыдущей игры и подготовка к следующей
-    void Reset(){
+    void Reset(Boolean clearPInfo){
     	vbPlayer1.getChildren().removeAll(vbPlayer1.getChildren());
     	vbPlayer2.getChildren().removeAll(vbPlayer2.getChildren());
     	this.generateQwads();
@@ -298,6 +298,19 @@ public class MainController implements Initializable{
 			this.digitsReset();
 		}
 		this.drawFirstStep((getMode() == 1) || (getMode() == 2));
+
+    	/*if(this.pInfo.getChildren().contains(bc)){
+    		this.pInfo.getChildren().remove(bc);
+    	}*/
+
+		if(clearPInfo){
+			pInfo.getChildren().removeAll(pInfo.getChildren());
+			pInfo.getChildren().add(this.aStatBoxes.get(this.getMode()));
+		}
+    }
+
+    void Reset(){
+    	Reset(true);
     }
 
     // установка доступности кнопок в зависимости от режима
