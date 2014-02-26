@@ -24,6 +24,7 @@ class StoredDataManager {
 	// результаты игр
 	private Integer mode0Max;
 	private Integer mode0Min;
+	private Integer mode0Total;
 	private Integer mode1Player1Win;
 	private Integer mode1Player2Win;
 	private Integer mode1Tie;
@@ -70,6 +71,11 @@ class StoredDataManager {
 	public void setMode0Min(Integer value){
 		mode0Min = value;
 		this.saveInteger("mode0Min", value);
+	}
+
+	public void setMode0Total(Integer value){
+		mode0Total = value;
+		this.saveInteger("mode0Total", value);
 	}
 
 	public void setMode1Player1Win(Integer value){
@@ -141,6 +147,11 @@ class StoredDataManager {
 	public Integer getMode0Min(){
 		mode0Min = this.getInteger("mode0Min", 0);
 		return mode0Min;
+	}
+
+	public Integer getMode0Total(){
+		mode0Total = this.getInteger("mode0Total", 0);
+		return mode0Total;
 	}
 
 	public Integer getMode1Player1Win(){
