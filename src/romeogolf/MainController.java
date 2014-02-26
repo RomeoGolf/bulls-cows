@@ -387,14 +387,13 @@ public class MainController implements Initializable{
     ArrayList<Label> aWinLabels = new ArrayList<Label>();
     ArrayList<Label> aTieLabels = new ArrayList<Label>();
     // создание панелей статистики, заполнение списков панелей и меток
-    private void BuildStatBoxes(){
+    private void buildBox(Integer index, String tl1, String tl2, String tl3){
 		DropShadow ds = new DropShadow();
 		ds.setOffsetX(5.0);
 		ds.setOffsetY(5.0);
 		ds.setColor(Color.GRAY);
 		ds.setWidth(5.0);
 
-    	// для режима 0 (человек угадывает)
     	VBox vb = new VBox();
     	vb.setMinHeight(this.pInfo.getPrefHeight());
     	vb.setMaxHeight(this.pInfo.getPrefHeight());
@@ -407,7 +406,7 @@ public class MainController implements Initializable{
     	hb1.setSpacing(10);
     	hb1.setAlignment(Pos.CENTER_LEFT);
     	hb1.setPadding(new Insets(0, 0, 0, 30));
-    	Label l1 = new Label("Сыграно - ");
+    	Label l1 = new Label(tl1);
     	l1.getStyleClass().add("l_statistic_1");
     	l1.setEffect(ds);
     	Label l2 = new Label("0");
@@ -420,7 +419,7 @@ public class MainController implements Initializable{
     	hb1.setSpacing(10);
     	hb1.setAlignment(Pos.CENTER_LEFT);
     	hb1.setPadding(new Insets(0, 0, 0, 30));
-    	l1 = new Label("Мин. попыток - ");
+    	l1 = new Label(tl2);
     	l1.setEffect(ds);
     	l1.getStyleClass().add("l_statistic_1");
     	l2 = new Label("0");
@@ -433,7 +432,7 @@ public class MainController implements Initializable{
     	hb1.setSpacing(10);
     	hb1.setAlignment(Pos.CENTER_LEFT);
     	hb1.setPadding(new Insets(0, 0, 0, 30));
-    	l1 = new Label("Макс. попыток - ");
+    	l1 = new Label(tl3);
     	l1.getStyleClass().add("l_statistic_1");
     	l1.setEffect(ds);
     	l2 = new Label("0");
@@ -442,107 +441,18 @@ public class MainController implements Initializable{
     	vb.getChildren().add(hb1);
     	hb1.getChildren().addAll(l1, l2);
     	aTieLabels.add(l2);
+    }
 
+    private void BuildStatBoxes(){
+    	// для режима 0 (человек угадывает)
+    	buildBox(0, "Сыграно - ", "Мин. попыток - ", "Макс. попыток - ");
     	// для режима 1 (человек <-> машина)
-    	vb = new VBox();
-    	vb.setMinHeight(this.pInfo.getPrefHeight());
-    	vb.setMaxHeight(this.pInfo.getPrefHeight());
-    	vb.setMinWidth(this.pInfo.getPrefWidth());
-    	vb.setMaxWidth(this.pInfo.getPrefWidth());
-    	vb.setAlignment(Pos.CENTER);
-    	vb.setSpacing(10);
-    	aStatBoxes.add(vb);
-    	hb1 = new HBox();
-    	hb1.setSpacing(10);
-    	hb1.setAlignment(Pos.CENTER_LEFT);
-    	hb1.setPadding(new Insets(0, 0, 0, 30));
-    	l1 = new Label("Сыграно - ");
-    	l1.getStyleClass().add("l_statistic_1");
-    	l1.setEffect(ds);
-    	l2 = new Label("0");
-    	l2.getStyleClass().add("l_statistic_2");
-    	l2.setEffect(ds);
-    	hb1.getChildren().addAll(l1, l2);
-    	vb.getChildren().add(hb1);
-    	aTotalLabels.add(l2);
-    	hb1 = new HBox();
-    	hb1.setSpacing(10);
-    	hb1.setAlignment(Pos.CENTER_LEFT);
-    	hb1.setPadding(new Insets(0, 0, 0, 30));
-    	l1 = new Label("Счет - ");
-    	l1.getStyleClass().add("l_statistic_1");
-    	l1.setEffect(ds);
-    	l2 = new Label("0");
-    	l2.getStyleClass().add("l_statistic_2");
-    	l2.setEffect(ds);
-    	hb1.getChildren().addAll(l1, l2);
-    	vb.getChildren().add(hb1);
-    	aWinLabels.add(l2);
-    	hb1 = new HBox();
-    	hb1.setSpacing(10);
-    	hb1.setAlignment(Pos.CENTER_LEFT);
-    	hb1.setPadding(new Insets(0, 0, 0, 30));
-    	l1 = new Label("Ничьих - ");
-    	l1.getStyleClass().add("l_statistic_1");
-    	l1.setEffect(ds);
-    	l2 = new Label("0");
-    	l2.getStyleClass().add("l_statistic_2");
-    	l2.setEffect(ds);
-    	hb1.getChildren().addAll(l1, l2);
-    	vb.getChildren().add(hb1);
-    	aTieLabels.add(l2);
-
+    	buildBox(1, "Сыграно - ", "Счет - ", "Ничьих - ");
     	// для режима 2 (человек, машина -> машина)
-    	vb = new VBox();
-    	vb.setMinHeight(this.pInfo.getPrefHeight());
-    	vb.setMaxHeight(this.pInfo.getPrefHeight());
-    	vb.setMinWidth(this.pInfo.getPrefWidth());
-    	vb.setMaxWidth(this.pInfo.getPrefWidth());
-    	vb.setAlignment(Pos.CENTER);
-    	vb.setSpacing(10);
-    	aStatBoxes.add(vb);
-    	hb1 = new HBox();
-    	hb1.setSpacing(10);
-    	hb1.setAlignment(Pos.CENTER_LEFT);
-    	hb1.setPadding(new Insets(0, 0, 0, 30));
-    	l1 = new Label("Сыграно - ");
-    	l1.getStyleClass().add("l_statistic_1");
-    	l1.setEffect(ds);
-    	l2 = new Label("0");
-    	l2.getStyleClass().add("l_statistic_2");
-    	l2.setEffect(ds);
-    	hb1.getChildren().addAll(l1, l2);
-    	vb.getChildren().add(hb1);
-    	aTotalLabels.add(l2);
-    	hb1 = new HBox();
-    	hb1.setSpacing(10);
-    	hb1.setAlignment(Pos.CENTER_LEFT);
-    	hb1.setPadding(new Insets(0, 0, 0, 30));
-    	l1 = new Label("Счет - ");
-    	l1.getStyleClass().add("l_statistic_1");
-    	l1.setEffect(ds);
-    	l2 = new Label("0");
-    	l2.getStyleClass().add("l_statistic_2");
-    	l2.setEffect(ds);
-    	hb1.getChildren().addAll(l1, l2);
-    	vb.getChildren().add(hb1);
-    	aWinLabels.add(l2);
-    	hb1 = new HBox();
-    	hb1.setSpacing(10);
-    	hb1.setAlignment(Pos.CENTER_LEFT);
-    	hb1.setPadding(new Insets(0, 0, 0, 30));
-    	l1 = new Label("Ничьих - ");
-    	l1.getStyleClass().add("l_statistic_1");
-    	l1.setEffect(ds);
-    	l2 = new Label("0");
-    	l2.getStyleClass().add("l_statistic_2");
-    	l2.setEffect(ds);
-    	hb1.getChildren().addAll(l1, l2);
-    	vb.getChildren().add(hb1);
-    	aTieLabels.add(l2);
+    	buildBox(2, "Сыграно - ", "Счет - ", "Ничьих - ");
 
     	// для режима 3 (машина -> машина)
-    	vb = new VBox();
+    	VBox vb = new VBox();
     	vb.setMinHeight(this.pInfo.getPrefHeight());
     	vb.setMaxHeight(this.pInfo.getPrefHeight());
     	vb.setMinWidth(this.pInfo.getPrefWidth());
@@ -550,9 +460,6 @@ public class MainController implements Initializable{
     	vb.setAlignment(Pos.CENTER);
     	vb.setSpacing(10);
     	aStatBoxes.add(vb);
-    	aTotalLabels.add(null);
-    	aWinLabels.add(null);
-    	aTieLabels.add(null);
     }
 
     // объект для управления данными, сохраняемыми в память (настройки, etc)
