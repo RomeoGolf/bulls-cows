@@ -2,6 +2,7 @@ package romeogolf;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -1368,9 +1369,10 @@ public class MainController implements Initializable{
     																false, 0);
     		this.showStepInfo("Максимум попыток - " 
     										+ Integer.toString(max), false, 0);
-    		this.showStepInfo("В среднем - " + Double.toString(sum 
-    											/ alShotNum.size()), false, 0);
-    		//this.ShowStepInfo("", false, 0);
+    		Double aver = sum / alShotNum.size();
+    		NumberFormat nf = NumberFormat.getNumberInstance();
+    		nf.setMaximumFractionDigits(2);
+    		this.showStepInfo("В среднем - " + nf.format(aver), false, 0);
     		this.showStepInfo("[Попыток]: [вариантов]", true, 0);
     		for(int i = 1; i <= max; i++){
     			this.showStepInfo(Integer.toString(i) + ": " 
