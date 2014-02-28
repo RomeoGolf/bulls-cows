@@ -93,7 +93,7 @@ public class Solver {
 		int ShotDigitIndex = 0;			// индекс массива цифр очередной попытки
 		int DigitsForAnswerIndex = 0;	// индекс в наборе цифр
 		while (ShotDigitIndex < 4) {
-			// подстановка очередной цмфры
+			// подстановка очередной цифры
 			NextShot[ShotDigitIndex] = DigitsForAnswer.get(DigitsForAnswerIndex);
 			// запоминание индекса цифры в наборе
 			ShotDigitInDigits_index[ShotDigitIndex] = DigitsForAnswerIndex;
