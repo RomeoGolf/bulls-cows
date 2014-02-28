@@ -331,7 +331,8 @@ public class MainController implements Initializable{
     // кнопка "Настройка"
     @FXML protected void onSettings(ActionEvent e) throws IOException {
     	Stage stage2 = new Stage();
-		FXMLLoader loader2 = new FXMLLoader(getClass().getResource("bc_settings.fxml"));
+		FXMLLoader loader2 = 
+					new FXMLLoader(getClass().getResource("bc_settings.fxml"));
 		Parent root2 = null;
 		try {
 			root2 = (Parent) loader2.load();
@@ -339,7 +340,8 @@ public class MainController implements Initializable{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		SettingsController controller2 = (SettingsController)loader2.getController();
+		SettingsController controller2 = 
+									(SettingsController)loader2.getController();
 		controller2.setStage_Listener(stage2);
 		controller2.setSDM(sdm);
 
@@ -355,8 +357,8 @@ public class MainController implements Initializable{
     // обработка переключения режима
     protected void onModeToggle(){
 		if (tgMode.getSelectedToggle() != null) {
-			//setMode(Integer.decode(tgMode.getSelectedToggle().getUserData().toString()));
-			setMode(this.aRbMode.indexOf((RadioButton)this.tgMode.getSelectedToggle()));
+			setMode(this.aRbMode.indexOf(
+								(RadioButton)this.tgMode.getSelectedToggle()));
 		} else {
 			setMode(0);
 		}
@@ -485,7 +487,8 @@ public class MainController implements Initializable{
    		this.aTotalLabels.get(2).setText(Integer.toString(total));
 
    		this.aWinLabels.get(0).setText(Integer.toString(sdm.getMode0Min()));
-   		StringBuffer sb = new StringBuffer(Integer.toString(sdm.getMode1Player1Win()));
+   		StringBuffer sb = 
+   				new StringBuffer(Integer.toString(sdm.getMode1Player1Win()));
    		sb.append(" : ");
    		sb.append(Integer.toString(sdm.getMode1Player2Win()));
    		this.aWinLabels.get(1).setText(sb.toString());
@@ -509,7 +512,8 @@ public class MainController implements Initializable{
    			bufInt = 0;
    		}
    		this.setMode(0);
-   		if(this.aRbMode.indexOf((RadioButton)this.tgMode.getSelectedToggle()) != bufInt){
+   		if(this.aRbMode.indexOf((RadioButton)this.tgMode.getSelectedToggle()) 
+   																	!= bufInt){
    			this.tgMode.selectToggle(aRbMode.get(bufInt));
    		}
     }
@@ -583,7 +587,8 @@ public class MainController implements Initializable{
 		this.digitsReset();
 
     	// установка обработчика переключения режима игры
-        tgMode.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+        tgMode.selectedToggleProperty().addListener(
+        										new ChangeListener<Toggle>(){
         	public void changed(ObservableValue<? extends Toggle> ov,
         			Toggle old_toggle, Toggle new_toggle) {
         		if(old_toggle != new_toggle){
@@ -1283,10 +1288,14 @@ public class MainController implements Initializable{
         		for(int i = 0; i < hmShotNum.keySet().size(); i++){
         			isData = false;
         			Integer key = (Integer)hmShotNum.keySet().toArray()[i];
-        			for(int j = 0; j < bc.getData().get(0).getData().size(); j++){
+        			for(int j = 0; 
+        						j < bc.getData().get(0).getData().size(); j++){
         				// если есть - изменить данные столбика
-        				if(bc.getData().get(0).getData().get(j).getXValue().equals(Integer.toString(key))){
-        					bc.getData().get(0).getData().get(j).setYValue((Integer)hmShotNum.get(key));
+        				String xv = 
+        					bc.getData().get(0).getData().get(j).getXValue();
+        				Integer yv = (Integer)hmShotNum.get(key);
+        				if(xv.equals(Integer.toString(key))){
+        					bc.getData().get(0).getData().get(j).setYValue(yv);
         					isData = true;
         					break;
         				}
@@ -1314,8 +1323,10 @@ public class MainController implements Initializable{
 
         				// если новый столбец не сразу после предыдущего -
         				//   заполнить промежуток нулевыми столбцами
-        				if((size2 > 2) && (buf[size2 - 1] - buf[size2 - 2] > 1)){
-        					for(int n = buf[size2 - 2]; n < buf[size2 - 1]; n++){
+        				if((size2 > 2) && 
+        								(buf[size2 - 1] - buf[size2 - 2] > 1)){
+        					for(int n = buf[size2 - 2]; 
+        											n < buf[size2 - 1]; n++){
         						hmShotNum.put(n, 0);
         					}
         				}
