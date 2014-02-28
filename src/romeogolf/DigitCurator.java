@@ -5,10 +5,14 @@ import java.util.Random;
 import java.util.Set;
 
 public class DigitCurator {
-    private Integer[] quad1 = new Integer[4];		// "загаданные" цифры для первого игрока
-    private Integer[] quad2 = new Integer[4];		// "загаданные" цифры для второго игрока
-    Random rg = new Random(System.currentTimeMillis());	// Генератор ПСП, инициализируемый временем
-    private Integer[] rndAllDigits = new Integer[10];		// для перемешанного массива цифр
+	// "загаданные" цифры для первого игрока
+    private Integer[] quad1 = new Integer[4];
+    // "загаданные" цифры для второго игрока
+    private Integer[] quad2 = new Integer[4];
+    // Генератор ПСП, инициализируемый временем
+    Random rg = new Random(System.currentTimeMillis());
+    // для перемешанного массива цифр
+    private Integer[] rndAllDigits = new Integer[10];
     public Integer[] getDecade(){
     	Integer[] Result = rndAllDigits.clone();
     	int i, n, buf;
