@@ -31,14 +31,14 @@ public class Solver {
 
     // Цифры и индексы текущей попытки для проверки на соответствие быкам
     ArrayList<Integer> ShotDigits = new ArrayList<Integer>();
-    ArrayList<Integer> Indexes = new ArrayList<Integer>();
+    ArrayList<Integer> indices = new ArrayList<Integer>();
 
     // проверка на допустимость подмассива быков
     boolean IsSuitableBulls(int Max) {
     	for (int i = 0; i <= (shots_data.size() - 1); i++) {
     		int coincidence = 0;
     		for(int j = 0; j <= Max; j++) {
-    			if (ShotDigits.get(j) == shots_data.get(i).getQwad()[Indexes.get(j)]) {coincidence++;}
+    			if (ShotDigits.get(j) == shots_data.get(i).getQwad()[indices.get(j)]) {coincidence++;}
     		}
     		if (coincidence > shots_data.get(i).getBulls()) {return false;}
     	}
@@ -48,10 +48,10 @@ public class Solver {
     // Проверка пересечения индексов с коррекцией
     boolean IsIndexValid(int max) {
     	Set<Integer> Ind = new HashSet<Integer>();
-    	for(int i = 0; i < max; i++) {Ind.add(Indexes.get(i));}
-    	while(Indexes.get(max) < 4) {
-    		if(Ind.contains(Indexes.get(max))) {
-    			Indexes.set(max, Indexes.get(max) + 1);
+    	for(int i = 0; i < max; i++) {Ind.add(indices.get(i));}
+    	while(indices.get(max) < 4) {
+    		if(Ind.contains(indices.get(max))) {
+    			indices.set(max, indices.get(max) + 1);
     			continue;
     		} else {
     			return true;
@@ -63,14 +63,14 @@ public class Solver {
     // попытка расстановки быков
     boolean TrySetBulls() {
     	int i = 0;
-    	Indexes.set(i, -1);
+    	indices.set(i, -1);
     	while (i < 4) {
-    		Indexes.set(i, Indexes.get(i) + 1);
+    		indices.set(i, indices.get(i) + 1);
     		if(IsIndexValid(i)) {
     			if(IsSuitableBulls(i)) {
     				i++;
     				if(i > 3) {break;}
-    				Indexes.set(i, -1);
+    				indices.set(i, -1);
     				continue;
     			} else {
     				continue;
@@ -141,11 +141,11 @@ public class Solver {
 		}
 		
 		for(int i = 0; i < 4; i++) {ShotDigits.set(i, NextShot[i]);}
-		for(int i = 0; i < 4; i++) {Indexes.set(i, -1);}
+		for(int i = 0; i < 4; i++) {indices.set(i, -1);}
 
 		if(TrySetBulls()) {
 			for(int n = 0; n < 4; n++) {
-				Dgt[Indexes.get(n)] = ShotDigits.get(n);
+				Dgt[indices.get(n)] = ShotDigits.get(n);
 			}
 		} else {
 			// есть несочетаемый вариант быков в цифрах // ShowStepInfo("bull error");
@@ -156,11 +156,11 @@ public class Solver {
 
     public Integer[] ToFindBulls(Integer[] Dgt){
 		for(int i = 0; i < 4; i++) {ShotDigits.set(i, NextShot[i]);}
-		for(int i = 0; i < 4; i++) {Indexes.set(i, -1);}
+		for(int i = 0; i < 4; i++) {indices.set(i, -1);}
 
 		if(TrySetBulls()) {
 			for(int n = 0; n < 4; n++) {
-				Dgt[Indexes.get(n)] = ShotDigits.get(n);
+				Dgt[indices.get(n)] = ShotDigits.get(n);
 			}
 		} else {
 			// есть несочетаемый вариант быков в цифрах
@@ -172,10 +172,10 @@ public class Solver {
 
     public void Init(Integer[] InitArray){
     	this.shots_data.clear();
-    	Indexes.clear();
-    	for(int i = 0; i < 4; i++) {Indexes.add(i);}
+    	indices.clear();
+    	for(int i = 0; i < 4; i++) {indices.add(i);}
     	ShotDigits.clear();
-    	ShotDigits.addAll(Indexes);
+    	ShotDigits.addAll(indices);
 
     	DigitsForAnswer.clear();
     	for(int i = 0; i < 10; i++) {
