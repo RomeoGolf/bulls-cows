@@ -29,7 +29,8 @@ public class SettingsController implements Initializable{
 
 	@FXML protected void onOK(ActionEvent e){
 		this.sdm.setDigitsReset(this.cbDigitsReset.isSelected());
-		this.sdm.setFirstStep(this.aFirstStep.indexOf((RadioButton)this.tgFirstStep.getSelectedToggle()));
+		this.sdm.setFirstStep(this.aFirstStep.indexOf(
+							(RadioButton)this.tgFirstStep.getSelectedToggle()));
 		stage.close();
 	}
 
@@ -49,9 +50,12 @@ public class SettingsController implements Initializable{
     		this.cbDigitsReset.setSelected(checked);
     	}
     	Integer firstStepIndex = sdm.getFirstStep();
-    	if((firstStepIndex != null) && (firstStepIndex >= 0) && (firstStepIndex <= 3)){
-    		if(this.aFirstStep.indexOf((RadioButton)this.tgFirstStep.getSelectedToggle()) != firstStepIndex){
-    			this.tgFirstStep.selectToggle(this.aFirstStep.get(firstStepIndex));
+    	if((firstStepIndex != null) && (firstStepIndex >= 0) 
+    												&& (firstStepIndex <= 3)){
+    		int ind = aFirstStep.indexOf(
+    						(RadioButton)this.tgFirstStep.getSelectedToggle());
+    		if(ind != firstStepIndex){
+    			tgFirstStep.selectToggle(this.aFirstStep.get(firstStepIndex));
     		}
     	}
     }
