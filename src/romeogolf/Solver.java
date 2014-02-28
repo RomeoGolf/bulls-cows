@@ -9,10 +9,7 @@ public class Solver {
     ArrayList<Integer> DigitsForAnswer = new ArrayList<Integer>();	// набор цифр для отгадки
     Integer[] NextShot;					// массив очередной попытки
     Integer[] ShotDigitInDigits_index = new Integer[4];	// индекс цифры попытки в наборе цифр
-    
-	int ShotDigitIndex = 0;		// индекс массива цифр очередной попытки
-	int DigitsForAnswerIndex = 0;	// индекс в наборе цифр
-	
+
     // проверка допустимости подмассива по результатам предыдущих попыток
     boolean IsSuitable(Integer[] a, int length) {
     	int BullCow = 0;	// сумма быков и коров попытки
@@ -93,6 +90,8 @@ public class Solver {
 
     public Integer[] ToFindDigits(Integer[] Dgt){
 		NextShot = new Integer[4];		// формирование очередной попытки
+		int ShotDigitIndex = 0;			// индекс массива цифр очередной попытки
+		int DigitsForAnswerIndex = 0;	// индекс в наборе цифр
 		while (ShotDigitIndex < 4) {
 			// подстановка очередной цмфры
 			NextShot[ShotDigitIndex] = DigitsForAnswer.get(DigitsForAnswerIndex);
@@ -180,8 +179,6 @@ public class Solver {
     	for(int i = 0; i < 4; i++) {Indexes.add(i);}
     	ShotDigits.clear();
     	ShotDigits.addAll(Indexes);
-    	ShotDigitIndex = 0;		// индекс массива цифр очередной попытки
-    	DigitsForAnswerIndex = 0;	// индекс в наборе цифр
 
     	DigitsForAnswer.clear();
     	for(int i = 0; i < 10; i++) {

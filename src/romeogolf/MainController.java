@@ -865,8 +865,6 @@ public class MainController implements Initializable{
     		cows = shot_data.getCows();
     		solver.shots_data.add(shot_data);
     		ShowNextShot(solver.shots_data.size(), false, 0);	// отображение
-    		solver.ShotDigitIndex = 0;		// обнуление индексов
-    		solver.DigitsForAnswerIndex = 0;
     	}
     	while(bulls < 4) {
     		solver.ToFindBulls(Digits);
@@ -942,8 +940,6 @@ public class MainController implements Initializable{
     		ShowStepInfo(s2, false, 0);
     	}
 
-    	solver.ShotDigitIndex = 0;		// обнуление индексов
-    	solver.DigitsForAnswerIndex = 0;
     	if (bulls == 4){
     		result = true;
     	}
@@ -1120,8 +1116,6 @@ public class MainController implements Initializable{
         		cows = shot_data.getCows();
         		solver.shots_data.add(shot_data);
         		ShowNextShot(solver.shots_data.size(), false, 0); // отображение
-        		solver.ShotDigitIndex = 0;		// обнуление индексов
-        		solver.DigitsForAnswerIndex = 0;
         	}
         	while(bulls < 4) {
         		solver.ToFindBulls(Digits);
@@ -1258,8 +1252,6 @@ public class MainController implements Initializable{
 				cows = shot_data.getCows();
 				solver.shots_data.add(shot_data);
 				ShowNextShot(solver.shots_data.size(), false, 0); // отображение
-				solver.ShotDigitIndex = 0;		// обнуление индексов
-				solver.DigitsForAnswerIndex = 0;
 			}
 			while(bulls < 4) {
 				solver.ToFindBulls(Digits);
