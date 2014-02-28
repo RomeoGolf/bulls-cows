@@ -9,38 +9,41 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="CENTER" maxHeight="-1.0" maxWidth="600.0" minHeight="-1.0" minWidth="700.0" prefHeight="750.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="romeogolf.MainController">
+<GridPane alignment="CENTER" maxHeight="-1.0" maxWidth="700.0" minHeight="-1.0" minWidth="700.0" prefHeight="800.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="romeogolf.MainController">
   <children>
-    <VBox id="pLeft" alignment="TOP_CENTER" spacing="10.0" styleClass="common_panel" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.vgrow="ALWAYS">
-      <children>
-        <VBox minHeight="-1.0" minWidth="-1.0" prefHeight="191.0" prefWidth="188.0" spacing="2.0" styleClass="h_panel" VBox.vgrow="SOMETIMES">
+    <ScrollPane id="ScrollPane" pannable="true" prefHeight="675.0" prefViewportHeight="676.0" prefViewportWidth="201.0" prefWidth="200.0" styleClass="scroll_pane" GridPane.columnIndex="0" GridPane.columnSpan="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+      <content>
+        <VBox id="pLeft" alignment="TOP_CENTER" minWidth="188.0" prefHeight="675.0" prefWidth="188.0" spacing="10.0">
           <children>
-            <Label text="Режим:">
-              <font>
-                <Font size="18.0" fx:id="x4" />
-              </font>
-            </Label>
-            <RadioButton fx:id="rbMode0" mnemonicParsing="false" selected="true" text="ч -&gt; м" userData="0">
-              <toggleGroup>
-                <ToggleGroup fx:id="tgMode" />
-              </toggleGroup>
-              <VBox.margin>
-                <Insets bottom="5.0" top="5.0" fx:id="x2" />
-              </VBox.margin>
-            </RadioButton>
-            <RadioButton fx:id="rbMode1" mnemonicParsing="false" text="ч &lt;-&gt; м" toggleGroup="$tgMode" userData="1" VBox.margin="$x2" />
-            <RadioButton fx:id="rbMode2" mnemonicParsing="false" text="ч, м -&gt; м" toggleGroup="$tgMode" userData="2" VBox.margin="$x2" />
-            <RadioButton fx:id="rbMode3" mnemonicParsing="false" text="м -&gt; м" toggleGroup="$tgMode" userData="3" VBox.margin="$x2" />
+            <VBox maxWidth="188.0" minHeight="-1.0" minWidth="-1.0" prefHeight="191.0" prefWidth="186.0" spacing="2.0" styleClass="h_panel" VBox.vgrow="NEVER">
+              <children>
+                <Label text="Режим:">
+                  <font>
+                    <Font size="18.0" fx:id="x4" />
+                  </font>
+                </Label>
+                <RadioButton fx:id="rbMode0" mnemonicParsing="false" selected="true" text="ч -&gt; м" userData="0">
+                  <toggleGroup>
+                    <ToggleGroup fx:id="tgMode" />
+                  </toggleGroup>
+                  <VBox.margin>
+                    <Insets bottom="5.0" top="5.0" fx:id="x2" />
+                  </VBox.margin>
+                </RadioButton>
+                <RadioButton fx:id="rbMode1" mnemonicParsing="false" text="ч &lt;-&gt; м" toggleGroup="$tgMode" userData="1" VBox.margin="$x2" />
+                <RadioButton fx:id="rbMode2" mnemonicParsing="false" text="ч, м -&gt; м" toggleGroup="$tgMode" userData="2" VBox.margin="$x2" />
+                <RadioButton fx:id="rbMode3" mnemonicParsing="false" text="м -&gt; м" toggleGroup="$tgMode" userData="3" VBox.margin="$x2" />
+              </children>
+            </VBox>
+            <Button fx:id="btSetQuad" mnemonicParsing="false" onAction="#onSetQwad" prefWidth="127.0" text="Загадать" />
+            <Button fx:id="btGenerateQuad" mnemonicParsing="false" onAction="#onGenerateQwad" prefWidth="127.0" text="Сгенерить" />
+            <Button fx:id="btReset" mnemonicParsing="false" onAction="#onReset" prefWidth="127.0" text="Сброс" />
+            <Button fx:id="btTest" mnemonicParsing="false" onAction="#onTest" prefWidth="127.00009999999747" text="Тест" />
+            <Button fx:id="btSettings" mnemonicParsing="false" onAction="#onSettings" prefWidth="127.00009999999747" text="Настройки" />
           </children>
         </VBox>
-        <Button fx:id="btSetQuad" mnemonicParsing="false" onAction="#onSetQwad" prefWidth="127.0" text="Загадать" />
-        <Button fx:id="btGenerateQuad" mnemonicParsing="false" onAction="#onGenerateQwad" prefWidth="127.0" text="Сгенерить" />
-        <Button fx:id="btReset" mnemonicParsing="false" onAction="#onReset" prefWidth="127.0" text="Сброс" />
-        <Button fx:id="btTest" mnemonicParsing="false" onAction="#onTest" prefWidth="127.00009999999747" text="Тест" />
-        <Button fx:id="btSettings" mnemonicParsing="false" onAction="#onSettings" prefWidth="127.00009999999747" text="Настройки" />
-        <VBox prefHeight="116.0" prefWidth="188.0" VBox.vgrow="ALWAYS" />
-      </children>
-    </VBox>
+      </content>
+    </ScrollPane>
     <HBox id="pDigitsFor2" alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="10.0" styleClass="common_panel" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
       <children>
         <Label fx:id="charsell_2_1" styleClass="digit_sell" text="X">
