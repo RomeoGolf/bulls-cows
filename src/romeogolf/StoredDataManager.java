@@ -195,9 +195,9 @@ class StoredDataManager {
     // файл для чтения/записи настроек
     private File propFile = null;
     // индикатор загруженности настроек
-    private Boolean Loaded = false;
+    private Boolean loaded = false;
     public Boolean isLoaded(){
-    	return this.Loaded;
+    	return this.loaded;
     }
 
     private void saveInteger(String key, Integer value){
@@ -341,7 +341,7 @@ class StoredDataManager {
     	if (propFile.canRead()) {
     		try {
 				props.load(new FileInputStream(propFile));
-				Loaded = true;
+				loaded = true;
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
