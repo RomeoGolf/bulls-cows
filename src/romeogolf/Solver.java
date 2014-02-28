@@ -116,8 +116,7 @@ public class Solver {
 				// если вернулись к младшему элементу - младшая цифра точно не верна,
 				if (ShotDigitIndex == 0) {
 					DigitsForAnswer.remove(0);	// ее нужно выкинуть из набора
-					ShotDigitIndex = 0;		// и обнулить индексы
-					DigitsForAnswerIndex = 0;
+					DigitsForAnswerIndex = 0;	// и обнулить индексы
 				}
 				continue;
 			}
@@ -136,7 +135,6 @@ public class Solver {
 				DigitsForAnswerIndex = ShotDigitInDigits_index[ShotDigitIndex] + 1;
 				if (ShotDigitIndex == 0) {
 					DigitsForAnswer.remove(0);
-					ShotDigitIndex = 0;
 					DigitsForAnswerIndex = 0;
 				}
 				continue;
