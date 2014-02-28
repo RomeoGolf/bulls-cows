@@ -853,7 +853,7 @@ public class MainController implements Initializable{
     // ========= машинная отгадка ======
     // машина -> машина, режим 3
     void shotMode3() {
-    	curator.DigitMixer();		// перемешать цифры подготовить набор цифр
+    	curator.digitMixer();		// перемешать цифры подготовить набор цифр
     	solver.Init(curator.getDecade());
 
     	while(bulls + cows < 4) {		// цикл до отгадки всех цифр

@@ -8,9 +8,9 @@ public class DigitCurator {
     private Integer[] quad1 = new Integer[4];		// "загаданные" цифры для первого игрока
     private Integer[] quad2 = new Integer[4];		// "загаданные" цифры для второго игрока
     Random rg = new Random(System.currentTimeMillis());	// Генератор ПСП, инициализируемый временем
-    private Integer[] RndAllDigits = new Integer[10];		// для перемешанного массива цифр
+    private Integer[] rndAllDigits = new Integer[10];		// для перемешанного массива цифр
     public Integer[] getDecade(){
-    	Integer[] Result = RndAllDigits.clone();
+    	Integer[] Result = rndAllDigits.clone();
     	int i, n, buf;
     	i = 9;
     	while(i > 0){
@@ -20,7 +20,7 @@ public class DigitCurator {
     		Result[i] = buf;
     		i--;
     	}
-    	RndAllDigits = Result.clone();
+    	rndAllDigits = Result.clone();
     	return Result;
     }
 
@@ -53,7 +53,7 @@ public class DigitCurator {
     	Integer[] Result = new Integer[4];
     	int ind = rg.nextInt(6);
     	for(int i = 0; i < 4; i++){
-    		Result[i] = this.RndAllDigits[ind + i];
+    		Result[i] = this.rndAllDigits[ind + i];
     	}
 
     	if (num == 1){
@@ -63,15 +63,15 @@ public class DigitCurator {
     	}
     }
 
-    public void DigitMixer() {		// перемешивание массива цифр
+    public void digitMixer() {		// перемешивание массива цифр
     	for(int j = rg.nextInt(10) + 3; j > 0; j--) {
     		int i = 9;
     		int n, buf;
     		while(i > 0){
     			n = rg.nextInt(i);
-    			buf = RndAllDigits[n];
-    			RndAllDigits[n] = RndAllDigits[9];
-    			RndAllDigits[9] = buf;
+    			buf = rndAllDigits[n];
+    			rndAllDigits[n] = rndAllDigits[9];
+    			rndAllDigits[9] = buf;
     			i--;
     		}
     	}
@@ -105,19 +105,19 @@ public class DigitCurator {
     	return new ShotData(bulls, cows, quad);
     }
 
-    public void Init(){
-    	this.DigitMixer();
+    public void init(){
+    	this.digitMixer();
     	this.generateQuad(1);
-    	this.DigitMixer();
+    	this.digitMixer();
     	this.generateQuad(2);
-    	this.DigitMixer();
+    	this.digitMixer();
     }
 
 	public DigitCurator() {
     	for(int i = 0; i <= 9; i++){
-    		RndAllDigits[i] = i;
+    		rndAllDigits[i] = i;
     	}
-    	this.Init();
+    	this.init();
 	}
 
 }
