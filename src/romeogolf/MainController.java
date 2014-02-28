@@ -857,7 +857,7 @@ public class MainController implements Initializable{
     	solver.Init(curator.getDecade());
 
     	while(bulls + cows < 4) {		// цикл до отгадки всех цифр
-    		Digits = solver.ToFindDigits(Digits);
+    		Digits = solver.toFindDigits(Digits);
     		Integer[] TmpBufI = new Integer[4];
     		for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
     		ShotData shot_data = curator.checkQuad(Digits, 2);
@@ -867,7 +867,7 @@ public class MainController implements Initializable{
     		ShowNextShot(solver.shots_data.size(), false, 0);	// отображение
     	}
     	while(bulls < 4) {
-    		solver.ToFindBulls(Digits);
+    		solver.toFindBulls(Digits);
     		ShotData shot_data = curator.checkQuad(Digits, 2);
     		bulls = shot_data.getBulls();
     		cows = shot_data.getCows();
@@ -923,7 +923,7 @@ public class MainController implements Initializable{
     private Boolean tryPlayer2(int QuadNum){
     	Boolean result = false;
 
-    	Digits = solver.ToFindDigits(Digits);
+    	Digits = solver.toFindDigits(Digits);
     	Integer[] TmpBufI = new Integer[4];
     	for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
     	ShotData shot_data2 = curator.checkQuad(Digits, QuadNum);
@@ -1108,7 +1108,7 @@ public class MainController implements Initializable{
     		}
 
         	while(bulls + cows < 4) {		// цикл до отгадки всех цифр
-        		Digits = solver.ToFindDigits(Digits);
+        		Digits = solver.toFindDigits(Digits);
         		Integer[] TmpBufI = new Integer[4];
         		for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
         		ShotData shot_data = curator.checkQuad(Digits, 2);
@@ -1118,7 +1118,7 @@ public class MainController implements Initializable{
         		ShowNextShot(solver.shots_data.size(), false, 0); // отображение
         	}
         	while(bulls < 4) {
-        		solver.ToFindBulls(Digits);
+        		solver.toFindBulls(Digits);
         		ShotData shot_data = curator.checkQuad(Digits, 2);
         		bulls = shot_data.getBulls();
         		cows = shot_data.getCows();
@@ -1244,7 +1244,7 @@ public class MainController implements Initializable{
 
 			// решение
 			while(bulls + cows < 4) {		// цикл до отгадки всех цифр
-				Digits = solver.ToFindDigits(Digits);
+				Digits = solver.toFindDigits(Digits);
 				Integer[] TmpBufI = new Integer[4];
 				for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
 				ShotData shot_data = curator.checkQuad(Digits, 2);
@@ -1254,7 +1254,7 @@ public class MainController implements Initializable{
 				ShowNextShot(solver.shots_data.size(), false, 0); // отображение
 			}
 			while(bulls < 4) {
-				solver.ToFindBulls(Digits);
+				solver.toFindBulls(Digits);
 				ShotData shot_data = curator.checkQuad(Digits, 2);
 				bulls = shot_data.getBulls();
 				cows = shot_data.getCows();

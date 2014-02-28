@@ -6,12 +6,12 @@ import java.util.Set;
 
 public class Solver {
 	ArrayList<ShotData> shots_data = new ArrayList<ShotData>(); // массив данных попыток
-    ArrayList<Integer> DigitsForAnswer = new ArrayList<Integer>();	// набор цифр для отгадки
-    Integer[] NextShot;					// массив очередной попытки
-    Integer[] ShotDigitInDigits_index = new Integer[4];	// индекс цифры попытки в наборе цифр
+    ArrayList<Integer> digitsForAnswer = new ArrayList<Integer>();	// набор цифр для отгадки
+    Integer[] nextShot;					// массив очередной попытки
+    Integer[] shotDigitInDigitsIndex = new Integer[4];	// индекс цифры попытки в наборе цифр
 
     // проверка допустимости подмассива по результатам предыдущих попыток
-    boolean IsSuitable(Integer[] a, int length) {
+    boolean isSuitable(Integer[] a, int length) {
     	int BullCow = 0;	// сумма быков и коров попытки
     	int Intersection = 0;	// мощность пересечения цифр старой попытки
 				//      и цифр подмассива очередной попытки
@@ -30,15 +30,15 @@ public class Solver {
     }
 
     // Цифры и индексы текущей попытки для проверки на соответствие быкам
-    ArrayList<Integer> ShotDigits = new ArrayList<Integer>();
+    ArrayList<Integer> shotDigits = new ArrayList<Integer>();
     ArrayList<Integer> indices = new ArrayList<Integer>();
 
     // проверка на допустимость подмассива быков
-    boolean IsSuitableBulls(int Max) {
+    boolean isSuitableBulls(int Max) {
     	for (int i = 0; i <= (shots_data.size() - 1); i++) {
     		int coincidence = 0;
     		for(int j = 0; j <= Max; j++) {
-    			if (ShotDigits.get(j) == shots_data.get(i).getQwad()[indices.get(j)]) {coincidence++;}
+    			if (shotDigits.get(j) == shots_data.get(i).getQwad()[indices.get(j)]) {coincidence++;}
     		}
     		if (coincidence > shots_data.get(i).getBulls()) {return false;}
     	}
@@ -46,7 +46,7 @@ public class Solver {
     }
 
     // Проверка пересечения индексов с коррекцией
-    boolean IsIndexValid(int max) {
+    boolean isIndexValid(int max) {
     	Set<Integer> Ind = new HashSet<Integer>();
     	for(int i = 0; i < max; i++) {Ind.add(indices.get(i));}
     	while(indices.get(max) < 4) {
@@ -61,13 +61,13 @@ public class Solver {
     }
 
     // попытка расстановки быков
-    boolean TrySetBulls() {
+    boolean trySetBulls() {
     	int i = 0;
     	indices.set(i, -1);
     	while (i < 4) {
     		indices.set(i, indices.get(i) + 1);
-    		if(IsIndexValid(i)) {
-    			if(IsSuitableBulls(i)) {
+    		if(isIndexValid(i)) {
+    			if(isSuitableBulls(i)) {
     				i++;
     				if(i > 3) {break;}
     				indices.set(i, -1);
@@ -88,21 +88,21 @@ public class Solver {
     	return true;
     }
 
-    public Integer[] ToFindDigits(Integer[] Dgt){
-		NextShot = new Integer[4];		// формирование очередной попытки
+    public Integer[] toFindDigits(Integer[] Dgt){
+		nextShot = new Integer[4];		// формирование очередной попытки
 		int ShotDigitIndex = 0;			// индекс массива цифр очередной попытки
 		int DigitsForAnswerIndex = 0;	// индекс в наборе цифр
 		while (ShotDigitIndex < 4) {
 			// подстановка очередной цифры
-			NextShot[ShotDigitIndex] = DigitsForAnswer.get(DigitsForAnswerIndex);
+			nextShot[ShotDigitIndex] = digitsForAnswer.get(DigitsForAnswerIndex);
 			// запоминание индекса цифры в наборе
-			ShotDigitInDigits_index[ShotDigitIndex] = DigitsForAnswerIndex;
+			shotDigitInDigitsIndex[ShotDigitIndex] = DigitsForAnswerIndex;
 			// проверка набранного подмассива попытки на допустимость
-			if (!IsSuitable(NextShot, ShotDigitIndex)) {
+			if (!isSuitable(nextShot, ShotDigitIndex)) {
 				// если очередная цифра не подошла - берем следующую
 				DigitsForAnswerIndex++;
 				// проверка выхода за пределы набора
-				if (DigitsForAnswerIndex > (DigitsForAnswer.size() - 1)) {
+				if (DigitsForAnswerIndex > (digitsForAnswer.size() - 1)) {
 					// если вышли - возврат в попытке на одну цифру назад
 					ShotDigitIndex--;
 					// если слишком назад - ошибка в быках и коровах
@@ -111,18 +111,18 @@ public class Solver {
 						return Dgt;
 					}
 					// для первого элемента отгадки берем слеюующую цифру из набора
-					DigitsForAnswerIndex = ShotDigitInDigits_index[ShotDigitIndex] + 1;
+					DigitsForAnswerIndex = shotDigitInDigitsIndex[ShotDigitIndex] + 1;
 				}
 				// если вернулись к младшему элементу - младшая цифра точно не верна,
 				if (ShotDigitIndex == 0) {
-					DigitsForAnswer.remove(0);	// ее нужно выкинуть из набора
+					digitsForAnswer.remove(0);	// ее нужно выкинуть из набора
 					DigitsForAnswerIndex = 0;	// и обнулить индексы
 				}
 				continue;
 			}
 			DigitsForAnswerIndex++;	    // переход следующей цифре набора
 			// если вышли за пределы набора, когда еще осталась цифра набора
-			if ((DigitsForAnswerIndex > DigitsForAnswer.size() - 1) &&
+			if ((DigitsForAnswerIndex > digitsForAnswer.size() - 1) &&
 					(ShotDigitIndex < 3)) {
 				ShotDigitIndex--;	    // надо опять вернуться назад
 				if (ShotDigitIndex < 0) {
@@ -130,9 +130,9 @@ public class Solver {
 					return Dgt;
 				}
 				// и подставить другую цифру на спорное место
-				DigitsForAnswerIndex = ShotDigitInDigits_index[ShotDigitIndex] + 1;
+				DigitsForAnswerIndex = shotDigitInDigitsIndex[ShotDigitIndex] + 1;
 				if (ShotDigitIndex == 0) {
-					DigitsForAnswer.remove(0);
+					digitsForAnswer.remove(0);
 					DigitsForAnswerIndex = 0;
 				}
 				continue;
@@ -140,32 +140,32 @@ public class Solver {
 			ShotDigitIndex++;	    // переход к следующему элементу отгадки
 		}
 		
-		for(int i = 0; i < 4; i++) {ShotDigits.set(i, NextShot[i]);}
+		for(int i = 0; i < 4; i++) {shotDigits.set(i, nextShot[i]);}
 		for(int i = 0; i < 4; i++) {indices.set(i, -1);}
 
-		if(TrySetBulls()) {
+		if(trySetBulls()) {
 			for(int n = 0; n < 4; n++) {
-				Dgt[indices.get(n)] = ShotDigits.get(n);
+				Dgt[indices.get(n)] = shotDigits.get(n);
 			}
 		} else {
 			// есть несочетаемый вариант быков в цифрах // ShowStepInfo("bull error");
-			Dgt = NextShot.clone();
+			Dgt = nextShot.clone();
 		}
 		return Dgt;
     }
 
-    public Integer[] ToFindBulls(Integer[] Dgt){
-		for(int i = 0; i < 4; i++) {ShotDigits.set(i, NextShot[i]);}
+    public Integer[] toFindBulls(Integer[] Dgt){
+		for(int i = 0; i < 4; i++) {shotDigits.set(i, nextShot[i]);}
 		for(int i = 0; i < 4; i++) {indices.set(i, -1);}
 
-		if(TrySetBulls()) {
+		if(trySetBulls()) {
 			for(int n = 0; n < 4; n++) {
-				Dgt[indices.get(n)] = ShotDigits.get(n);
+				Dgt[indices.get(n)] = shotDigits.get(n);
 			}
 		} else {
 			// есть несочетаемый вариант быков в цифрах
 			// ShowStepInfo("bull error");
-			Dgt = NextShot.clone();
+			Dgt = nextShot.clone();
 		}
 		return Dgt;
     }
@@ -174,12 +174,12 @@ public class Solver {
     	this.shots_data.clear();
     	indices.clear();
     	for(int i = 0; i < 4; i++) {indices.add(i);}
-    	ShotDigits.clear();
-    	ShotDigits.addAll(indices);
+    	shotDigits.clear();
+    	shotDigits.addAll(indices);
 
-    	DigitsForAnswer.clear();
+    	digitsForAnswer.clear();
     	for(int i = 0; i < 10; i++) {
-    		DigitsForAnswer.add(InitArray[i]);
+    		digitsForAnswer.add(InitArray[i]);
     	}
     }
 
