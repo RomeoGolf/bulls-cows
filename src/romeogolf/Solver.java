@@ -5,10 +5,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Solver {
-	ArrayList<ShotData> shots_data = new ArrayList<ShotData>(); // массив данных попыток
-    ArrayList<Integer> digitsForAnswer = new ArrayList<Integer>();	// набор цифр для отгадки
+	// массив данных попыток
+	ArrayList<ShotData> shots_data = new ArrayList<ShotData>();
+	// набор цифр для отгадки
+    ArrayList<Integer> digitsForAnswer = new ArrayList<Integer>();
     Integer[] nextShot;					// массив очередной попытки
-    Integer[] shotDigitInDigitsIndex = new Integer[4];	// индекс цифры попытки в наборе цифр
+    // индекс цифры попытки в наборе цифр
+    Integer[] shotDigitInDigitsIndex = new Integer[4];
 
     // проверка допустимости подмассива по результатам предыдущих попыток
     boolean isSuitable(Integer[] a, int length) {
@@ -16,7 +19,8 @@ public class Solver {
     	int Intersection = 0;	// мощность пересечения цифр старой попытки
 				//      и цифр подмассива очередной попытки
     	for (int i = 0; i <= (shots_data.size() - 1); i++) {
-    		BullCow = shots_data.get(i).getBulls() + shots_data.get(i).getCows();
+    		BullCow = shots_data.get(i).getBulls() 
+    											+ shots_data.get(i).getCows();
     		for (int j = 0; j <= 3; j++) {	// подсчет мощности пересечения
     			for (int k = 0; k <= length; k++) {
     				if (a[k] == shots_data.get(i).getQwad()[j]){Intersection++;}
@@ -38,7 +42,8 @@ public class Solver {
     	for (int i = 0; i <= (shots_data.size() - 1); i++) {
     		int coincidence = 0;
     		for(int j = 0; j <= Max; j++) {
-    			if (shotDigits.get(j) == shots_data.get(i).getQwad()[indices.get(j)]) {coincidence++;}
+    			if (shotDigits.get(j) == 
+    			shots_data.get(i).getQwad()[indices.get(j)]) {coincidence++;}
     		}
     		if (coincidence > shots_data.get(i).getBulls()) {return false;}
     	}
@@ -94,7 +99,8 @@ public class Solver {
 		int DigitsForAnswerIndex = 0;	// индекс в наборе цифр
 		while (ShotDigitIndex < 4) {
 			// подстановка очередной цифры
-			nextShot[ShotDigitIndex] = digitsForAnswer.get(DigitsForAnswerIndex);
+			nextShot[ShotDigitIndex] = 
+									digitsForAnswer.get(DigitsForAnswerIndex);
 			// запоминание индекса цифры в наборе
 			shotDigitInDigitsIndex[ShotDigitIndex] = DigitsForAnswerIndex;
 			// проверка набранного подмассива попытки на допустимость
@@ -107,13 +113,17 @@ public class Solver {
 					ShotDigitIndex--;
 					// если слишком назад - ошибка в быках и коровах
 					if (ShotDigitIndex < 0) {
-						// есть ошибка в переданных ранее быках и коровах // Info("Error");
+						// есть ошибка в переданных ранее быках и коровах 
+						// Info("Error");
 						return Dgt;
 					}
-					// для первого элемента отгадки берем слеюующую цифру из набора
-					DigitsForAnswerIndex = shotDigitInDigitsIndex[ShotDigitIndex] + 1;
+					// для первого элемента отгадки берем следующую цифру 
+					//   из набора
+					DigitsForAnswerIndex = 
+									shotDigitInDigitsIndex[ShotDigitIndex] + 1;
 				}
-				// если вернулись к младшему элементу - младшая цифра точно не верна,
+				// если вернулись к младшему элементу - 
+				//   младшая цифра точно не верна,
 				if (ShotDigitIndex == 0) {
 					digitsForAnswer.remove(0);	// ее нужно выкинуть из набора
 					DigitsForAnswerIndex = 0;	// и обнулить индексы
@@ -126,11 +136,13 @@ public class Solver {
 					(ShotDigitIndex < 3)) {
 				ShotDigitIndex--;	    // надо опять вернуться назад
 				if (ShotDigitIndex < 0) {
-					// есть ошибка в ранее переданных быках и коровах // Info("Error");
+					// есть ошибка в ранее переданных быках и коровах 
+					// Info("Error");
 					return Dgt;
 				}
 				// и подставить другую цифру на спорное место
-				DigitsForAnswerIndex = shotDigitInDigitsIndex[ShotDigitIndex] + 1;
+				DigitsForAnswerIndex = 
+									shotDigitInDigitsIndex[ShotDigitIndex] + 1;
 				if (ShotDigitIndex == 0) {
 					digitsForAnswer.remove(0);
 					DigitsForAnswerIndex = 0;
@@ -148,7 +160,8 @@ public class Solver {
 				Dgt[indices.get(n)] = shotDigits.get(n);
 			}
 		} else {
-			// есть несочетаемый вариант быков в цифрах // ShowStepInfo("bull error");
+			// есть несочетаемый вариант быков в цифрах 
+			// ShowStepInfo("bull error");
 			Dgt = nextShot.clone();
 		}
 		return Dgt;
