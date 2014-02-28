@@ -120,13 +120,11 @@ public class Solver {
 				}
 				continue;
 			}
-			ShotDigitIndex++;	    // переход к следующему элементу отгадки
-			DigitsForAnswerIndex++;	    // и следующей цифре набора
-			// если вышли за пределы набора, когда массив еще не кончился
+			DigitsForAnswerIndex++;	    // переход следующей цифре набора
+			// если вышли за пределы набора, когда еще осталась цифра набора
 			if ((DigitsForAnswerIndex > DigitsForAnswer.size() - 1) &&
-					(ShotDigitIndex <= 3)) {
+					(ShotDigitIndex < 3)) {
 				ShotDigitIndex--;	    // надо опять вернуться назад
-				ShotDigitIndex--;
 				if (ShotDigitIndex < 0) {
 					// есть ошибка в ранее переданных быках и коровах // Info("Error");
 					return Dgt;
@@ -139,6 +137,7 @@ public class Solver {
 				}
 				continue;
 			}
+			ShotDigitIndex++;	    // переход к следующему элементу отгадки
 		}
 		
 		for(int i = 0; i < 4; i++) {ShotDigits.set(i, NextShot[i]);}
