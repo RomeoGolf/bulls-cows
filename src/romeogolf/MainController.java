@@ -104,7 +104,7 @@ public class MainController implements Initializable{
 	@FXML private Pane pInfo;
 
 	// количество попыток первого игрока (человека)
-	private Integer Player1ShotNum = 0;
+	private Integer player1ShotNum = 0;
 
 	// право первого хода
 	private Boolean firstStepPlayer1 = true;
@@ -132,7 +132,7 @@ public class MainController implements Initializable{
 			firstStepPlayer1 = true;
 			result = true;
 		}
-		this.Player2firstStep = true;
+		this.player2firstStep = true;
 
 		return result;
 	}
@@ -160,13 +160,13 @@ public class MainController implements Initializable{
 	}
 
 	// первый ход игрока 2 при его праве первого хода
-	private Boolean Player2firstStep = true;
+	private Boolean player2firstStep = true;
 
 	// режим игры
 	private Integer mode = 0;
 	void setMode(Integer m){
 		this.mode = m;
-		this.Reset();
+		this.reset();
 		/*
 		0 :	// режим "человек угадывает"
 		1 :	// режим "человек и машина угадывают друг у друга"
@@ -193,7 +193,7 @@ public class MainController implements Initializable{
 	}
 
 	// Цифры, вводимые пользователем
-    Integer[] DigitsForShow = new Integer[4];
+    Integer[] digitsForShow = new Integer[4];
     // массив знакомест для пользовательских цифр
     ArrayList<Label> aQuad1 = new ArrayList<Label>();
     // массив знакомест для загаданных цифр
@@ -219,15 +219,15 @@ public class MainController implements Initializable{
     		// получение номера цифры, чью кнопку нажали
     		int Num = df.get(e.getSource());
     		if (sUp.contains(e.getSource())){	// изменение цифры
-    			DigitsForShow[Num]++;
+    			digitsForShow[Num]++;
     		} else {
-    			DigitsForShow[Num]--;
+    			digitsForShow[Num]--;
     		}
     		// проверка выхода цифры за пределы
-    		if (DigitsForShow[Num] < 0){DigitsForShow[Num] = 9;}
+    		if (digitsForShow[Num] < 0){digitsForShow[Num] = 9;}
     			// и соответствующее изменение
-    		if (DigitsForShow[Num] > 9){DigitsForShow[Num] = 0;}
-    		aQuad1.get(Num).setText(Integer.toString(DigitsForShow[Num]));
+    		if (digitsForShow[Num] > 9){digitsForShow[Num] = 0;}
+    		aQuad1.get(Num).setText(Integer.toString(digitsForShow[Num]));
     		isEqualDigits();
     };
 
@@ -245,7 +245,7 @@ public class MainController implements Initializable{
 			this.shotMode2();
 			break;
 		case 3 :	// режим "машина угадывает (тестовый)"
-			this.Reset();
+			this.reset();
 			shotMode3();
 			break;
 		default :	// режим "ХЗ"
@@ -255,9 +255,9 @@ public class MainController implements Initializable{
 
     // обработчик кнопки установки четверки игроком 1 для игрока 2
     @FXML protected void onSetQwad(ActionEvent e) {
-    	this.Reset();
+    	this.reset();
     	if (!this.isEqualDigits()){
-    		curator.setQuad(this.DigitsForShow, 2);
+    		curator.setQuad(this.digitsForShow, 2);
     		solver.Init(curator.getDecade());
     		for(int i = 0; i < 4; i++){
     			aQuad2.get(i).setText(curator.getQuad(2)[i].toString());
@@ -268,7 +268,7 @@ public class MainController implements Initializable{
 
     // обработчик кнопки генерации четверки  для обоих игроков
     @FXML protected void onGenerateQwad(ActionEvent e) {
-    	this.Reset();
+    	this.reset();
     	generateQwads();
     }
 
@@ -285,11 +285,11 @@ public class MainController implements Initializable{
     }
 
     // сброс отображения предыдущей игры и подготовка к следующей
-    void Reset(Boolean clearPInfo){
+    void reset(Boolean clearPInfo){
     	vbPlayer1.getChildren().removeAll(vbPlayer1.getChildren());
     	vbPlayer2.getChildren().removeAll(vbPlayer2.getChildren());
     	this.generateQwads();
-    	Player1ShotNum = 0;
+    	player1ShotNum = 0;
     	bulls = 0;
     	cows = 0;
 		this.setDisableBt(false);
@@ -305,8 +305,8 @@ public class MainController implements Initializable{
 		}
     }
 
-    void Reset(){
-    	Reset(true);
+    void reset(){
+    	reset(true);
     }
 
     // установка доступности кнопок в зависимости от режима
@@ -324,7 +324,7 @@ public class MainController implements Initializable{
     @FXML protected void onReset(ActionEvent e) {
     	this.at.stop();
     	this.isTestRun = false;
-    	this.Reset();
+    	this.reset();
     }
 
     // кнопка "Настройка"
@@ -369,7 +369,7 @@ public class MainController implements Initializable{
     	Boolean result = false;
     	for(int i = 0; i < 3; i++) {
     		for(int j = i + 1; j < 4; j++) {
-    			if (DigitsForShow[i] == DigitsForShow[j]) {
+    			if (digitsForShow[i] == digitsForShow[j]) {
     				aQuad1.get(i).setStyle("-fx-text-fill: #FF0000;");
     				aQuad1.get(j).setStyle("-fx-text-fill: #FF0000;");
     				result = true;
@@ -443,7 +443,7 @@ public class MainController implements Initializable{
     	aTieLabels.add(l2);
     }
 
-    private void BuildStatBoxes(){
+    private void buildStatBoxes(){
     	// для режима 0 (человек угадывает)
     	buildBox(0, "Сыграно - ", "Мин. попыток - ", "Макс. попыток - ");
     	// для режима 1 (человек <-> машина)
@@ -559,8 +559,8 @@ public class MainController implements Initializable{
     private void digitsReset(){
     	// заполнение массива цифр и его отображение
     	for(int i = 0; i < 4; i++){
-    		this.DigitsForShow[i] = i + 1;
-    		aQuad1.get(i).setText(Integer.toString(this.DigitsForShow[i]));
+    		this.digitsForShow[i] = i + 1;
+    		aQuad1.get(i).setText(Integer.toString(this.digitsForShow[i]));
     	}
     }
 
@@ -591,7 +591,7 @@ public class MainController implements Initializable{
         	}
         });
 
-		this.BuildStatBoxes();
+		this.buildStatBoxes();
         this.readPrefs();	// чтение сохраненных параметров игры
         this.setAidDigitsMap();
 
@@ -793,7 +793,7 @@ public class MainController implements Initializable{
     // ================ конец инициализации интерфейса =========================
 
 	// вывод строки текста в ScrollPane - информация о шаге игры
-    void ShowStepInfo(String s, boolean Player1, int img) {
+    void showStepInfo(String s, boolean Player1, int img) {
     	HBox hb = new HBox();
     	hb.setAlignment(Pos.CENTER_LEFT);
     	if(img == 0){
@@ -836,18 +836,18 @@ public class MainController implements Initializable{
 
 	DigitCurator curator = new DigitCurator();	// класс слежения за игрой
 	Solver solver = new Solver();				// класс-игрок
-    Integer[] Digits = new Integer[4];			// Цифры, вводимые пользователем
+    Integer[] digits = new Integer[4];			// Цифры, вводимые пользователем
     int bulls;
     int cows;
     int trying;
 
     // вывод результатов попытки
-    void ShowNextShot(int trying, boolean Player1, int img) {
-		String s = new String(Arrays.toString(Digits));
+    void showNextShot(int trying, boolean Player1, int img) {
+		String s = new String(Arrays.toString(digits));
 		s = Integer.toString(trying) + ": " + s;
 		s = s + " -   " + Integer.toString(bulls) + " Б, " +
 		    Integer.toString(cows) + " К";
-		ShowStepInfo(s, Player1, img);
+		showStepInfo(s, Player1, img);
     }
 
     // ========= машинная отгадка ======
@@ -857,22 +857,22 @@ public class MainController implements Initializable{
     	solver.Init(curator.getDecade());
 
     	while(bulls + cows < 4) {		// цикл до отгадки всех цифр
-    		Digits = solver.toFindDigits(Digits);
+    		digits = solver.toFindDigits(digits);
     		Integer[] TmpBufI = new Integer[4];
-    		for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
-    		ShotData shot_data = curator.checkQuad(Digits, 2);
+    		for(int i = 0; i < 4; i++) {TmpBufI[i] = digits[i];}
+    		ShotData shot_data = curator.checkQuad(digits, 2);
     		bulls = shot_data.getBulls();
     		cows = shot_data.getCows();
     		solver.shots_data.add(shot_data);
-    		ShowNextShot(solver.shots_data.size(), false, 0);	// отображение
+    		showNextShot(solver.shots_data.size(), false, 0);	// отображение
     	}
     	while(bulls < 4) {
-    		solver.toFindBulls(Digits);
-    		ShotData shot_data = curator.checkQuad(Digits, 2);
+    		solver.toFindBulls(digits);
+    		ShotData shot_data = curator.checkQuad(digits, 2);
     		bulls = shot_data.getBulls();
     		cows = shot_data.getCows();
     		solver.shots_data.add(shot_data);
-    		ShowNextShot(solver.shots_data.size(), false, 0);	// отображение
+    		showNextShot(solver.shots_data.size(), false, 0);	// отображение
     	}
     	solver.shots_data.clear();
     	bulls = 0;
@@ -882,23 +882,23 @@ public class MainController implements Initializable{
     // человек -> машина
     void shotMode0(){
     	if (!this.isEqualDigits()){
-    		Player1ShotNum++;
-    		ShotData shot_data = curator.checkQuad(this.DigitsForShow, 1);
-    		String s = new String(Arrays.toString(DigitsForShow));
-    		s = Integer.toString(Player1ShotNum) + ": " + s;
+    		player1ShotNum++;
+    		ShotData shot_data = curator.checkQuad(this.digitsForShow, 1);
+    		String s = new String(Arrays.toString(digitsForShow));
+    		s = Integer.toString(player1ShotNum) + ": " + s;
     		s = s + " -   " + Integer.toString(shot_data.getBulls()) + " Б, " +
     		    Integer.toString(shot_data.getCows()) + " К";
     		int img = 0;
-    		if (Player1ShotNum > 0){
+    		if (player1ShotNum > 0){
     			img = 1;
     		}
-    		if (Player1ShotNum > 7){
+    		if (player1ShotNum > 7){
     			img = 2;
     		}
-    		if (Player1ShotNum > 14){
+    		if (player1ShotNum > 14){
     			img = 3;
     		}
-    		ShowStepInfo(s, true, img);
+    		showStepInfo(s, true, img);
     		if (shot_data.getBulls() == 4){
     			this.doEndOfGame(0);
     		}
@@ -907,13 +907,13 @@ public class MainController implements Initializable{
 
     private Boolean tryPlayer1(){
     	Boolean result = false;
-    	Player1ShotNum++;
-    	ShotData shot_data = curator.checkQuad(this.DigitsForShow, 1);
-    	String s = new String(Arrays.toString(DigitsForShow));
-    	s = Integer.toString(Player1ShotNum) + ": " + s;
+    	player1ShotNum++;
+    	ShotData shot_data = curator.checkQuad(this.digitsForShow, 1);
+    	String s = new String(Arrays.toString(digitsForShow));
+    	s = Integer.toString(player1ShotNum) + ": " + s;
     	s = s + " -   " + Integer.toString(shot_data.getBulls()) + " Б, " +
     	    Integer.toString(shot_data.getCows()) + " К";
-    	ShowStepInfo(s, true, 0);
+    	showStepInfo(s, true, 0);
     	if (shot_data.getBulls() == 4){
     		result = true;
     	}
@@ -923,21 +923,21 @@ public class MainController implements Initializable{
     private Boolean tryPlayer2(int QuadNum){
     	Boolean result = false;
 
-    	Digits = solver.toFindDigits(Digits);
+    	digits = solver.toFindDigits(digits);
     	Integer[] TmpBufI = new Integer[4];
-    	for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
-    	ShotData shot_data2 = curator.checkQuad(Digits, QuadNum);
+    	for(int i = 0; i < 4; i++) {TmpBufI[i] = digits[i];}
+    	ShotData shot_data2 = curator.checkQuad(digits, QuadNum);
     	bulls = shot_data2.getBulls();
     	cows = shot_data2.getCows();
     	solver.shots_data.add(shot_data2);
 
     	if(QuadNum == 2){
-    		ShowNextShot(solver.shots_data.size(), false, 0);	// отображение
+    		showNextShot(solver.shots_data.size(), false, 0);	// отображение
     	} else {
     		String s2 = new String(Integer.toString(solver.shots_data.size()));
     		s2 = s2 + ": -   " + Integer.toString(bulls) + " Б, " +
 		    Integer.toString(cows) + " К";
-    		ShowStepInfo(s2, false, 0);
+    		showStepInfo(s2, false, 0);
     	}
 
     	if (bulls == 4){
@@ -976,8 +976,8 @@ public class MainController implements Initializable{
     			this.whoWin(p1End, p2End);
     		}
     	} else {
-    		if(this.Player2firstStep){
-    			Player2firstStep = false;
+    		if(this.player2firstStep){
+    			player2firstStep = false;
     			this.btShot.setText("Попытка");
     			p2End = this.tryPlayer2(2);
     		} else {
@@ -1000,8 +1000,8 @@ public class MainController implements Initializable{
     			this.whoWin(p1End, p2End);
     		}
     	} else {
-    		if(this.Player2firstStep){
-    			Player2firstStep = false;
+    		if(this.player2firstStep){
+    			player2firstStep = false;
     			this.btShot.setText("Попытка");
     			p2End = this.tryPlayer2(1);
     		} else {
@@ -1021,20 +1021,20 @@ public class MainController implements Initializable{
     	Integer wins;
     	switch(player){
     	case 0:
-    		this.ShowStepInfo("Победа!", true, 0);
+    		this.showStepInfo("Победа!", true, 0);
     		sdm.setMode0Total(sdm.getMode0Total() + 1);
     		Integer max = sdm.getMode0Max();
     		Integer min = sdm.getMode0Min();
-    		if(this.Player1ShotNum > max){
-    			sdm.setMode0Max(Player1ShotNum);
+    		if(this.player1ShotNum > max){
+    			sdm.setMode0Max(player1ShotNum);
     		}
-    		if((this.Player1ShotNum < min) || (min <= 0)){
-    			sdm.setMode0Min(Player1ShotNum);
+    		if((this.player1ShotNum < min) || (min <= 0)){
+    			sdm.setMode0Min(player1ShotNum);
     		}
     		break;
     	case 1:
-    		this.ShowStepInfo("Победа игрока 1!", true, 0);
-    		this.ShowStepInfo("Победа игрока 1!", false, 0);
+    		this.showStepInfo("Победа игрока 1!", true, 0);
+    		this.showStepInfo("Победа игрока 1!", false, 0);
     		if(this.getMode() == 1){
     			wins = sdm.getMode1Player1Win();
     			sdm.setMode1Player1Win(wins + 1);
@@ -1044,8 +1044,8 @@ public class MainController implements Initializable{
     		}
     		break;
     	case 2:
-    		this.ShowStepInfo("Победа игрока 2!", true, 0);
-    		this.ShowStepInfo("Победа игрока 2!", false, 0);
+    		this.showStepInfo("Победа игрока 2!", true, 0);
+    		this.showStepInfo("Победа игрока 2!", false, 0);
     		if(this.getMode() == 1){
     			wins = sdm.getMode1Player2Win();
     			sdm.setMode1Player2Win(wins + 1);
@@ -1055,8 +1055,8 @@ public class MainController implements Initializable{
     		}
     		break;
     	case 3:
-    		this.ShowStepInfo("Ничья!", true, 0);
-    		this.ShowStepInfo("Ничья!", false, 0);
+    		this.showStepInfo("Ничья!", true, 0);
+    		this.showStepInfo("Ничья!", false, 0);
     		if(this.getMode() == 1){
     			wins = sdm.getMode1Tie();
     			sdm.setMode1Tie(wins++);
@@ -1079,7 +1079,7 @@ public class MainController implements Initializable{
 
     // проверка алгоритма перебором всех вариантов
     //   с отображением результатов в конце
-    void FullTestForAlgotithm(){
+    void fullTestForAlgotithm(){
     	Integer[] TestQuad = {0, 0, 0, 0};
     	Integer[] TestDecade = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     	ArrayList<Integer> ShotNum = new ArrayList<Integer>();
@@ -1089,7 +1089,7 @@ public class MainController implements Initializable{
     		TestQuad[2] = (d / 10) % 10;
     		TestQuad[1] = (d / 100) % 10;
     		TestQuad[0] = (d / 1000) % 10;
-    		this.Reset();
+    		this.reset();
     		this.curator.setQuad(TestQuad, 2);
     		this.solver.Init(TestDecade);
 
@@ -1108,22 +1108,22 @@ public class MainController implements Initializable{
     		}
 
         	while(bulls + cows < 4) {		// цикл до отгадки всех цифр
-        		Digits = solver.toFindDigits(Digits);
+        		digits = solver.toFindDigits(digits);
         		Integer[] TmpBufI = new Integer[4];
-        		for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
-        		ShotData shot_data = curator.checkQuad(Digits, 2);
+        		for(int i = 0; i < 4; i++) {TmpBufI[i] = digits[i];}
+        		ShotData shot_data = curator.checkQuad(digits, 2);
         		bulls = shot_data.getBulls();
         		cows = shot_data.getCows();
         		solver.shots_data.add(shot_data);
-        		ShowNextShot(solver.shots_data.size(), false, 0); // отображение
+        		showNextShot(solver.shots_data.size(), false, 0); // отображение
         	}
         	while(bulls < 4) {
-        		solver.toFindBulls(Digits);
-        		ShotData shot_data = curator.checkQuad(Digits, 2);
+        		solver.toFindBulls(digits);
+        		ShotData shot_data = curator.checkQuad(digits, 2);
         		bulls = shot_data.getBulls();
         		cows = shot_data.getCows();
         		solver.shots_data.add(shot_data);
-        		ShowNextShot(solver.shots_data.size(), false, 0); // отображение
+        		showNextShot(solver.shots_data.size(), false, 0); // отображение
         	}
 
         	ShotNum.add(solver.shots_data.size());
@@ -1150,18 +1150,18 @@ public class MainController implements Initializable{
     		NumShotNum.set(ShotNum.get(i), NumShotNum.get(ShotNum.get(i)) + 1);
     	}
 
-    	this.ShowStepInfo("Перебор всех вариантов:", false, 0);
-    	this.ShowStepInfo("всего - " + Integer.toString(ShotNum.size()), 
+    	this.showStepInfo("Перебор всех вариантов:", false, 0);
+    	this.showStepInfo("всего - " + Integer.toString(ShotNum.size()), 
     																false, 0);
-    	this.ShowStepInfo("Максимум попыток - " + Integer.toString(max), 
+    	this.showStepInfo("Максимум попыток - " + Integer.toString(max), 
     																false, 0);
-    	this.ShowStepInfo("В среднем - " + Double.toString(sum 
+    	this.showStepInfo("В среднем - " + Double.toString(sum 
     											/ ShotNum.size()), false, 0);
-    	this.ShowStepInfo("", false, 0);
-    	this.ShowStepInfo("[Попыток]: [вариантов]", false, 0);
+    	this.showStepInfo("", false, 0);
+    	this.showStepInfo("[Попыток]: [вариантов]", false, 0);
 
     	for(int i = 1; i <= max; i++){
-    		this.ShowStepInfo(Integer.toString(i) + ": " 
+    		this.showStepInfo(Integer.toString(i) + ": " 
     						+ Integer.toString(NumShotNum.get(i)), false, 0);
     	}
     }
@@ -1177,9 +1177,9 @@ public class MainController implements Initializable{
     XYChart.Series<String, Number> series1;
 
     // тестовая четверка для перебора
-	Integer[] TestQuad = {0, 0, 0, 0};
+	Integer[] testQuad = {0, 0, 0, 0};
 	// постоянный набор цифр для отгадывания
-	final Integer[] TestDecade = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+	final Integer[] testDecade = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 	// учет количества попыток на вариант для подсчета статистики
 	ArrayList<Integer> alShotNum = new ArrayList<Integer>();
 	// учет количества попыток на вариант для гистограммы
@@ -1190,7 +1190,7 @@ public class MainController implements Initializable{
 	private Boolean isTestRun = false;
 
 	// метод для вызова из AnimationTimer.handle
-    public void AnimatedTestOfAlgorithm(){
+    public void animatedTestOfAlgorithm(){
     	// если графика гистограммы еще не существует - создать
     	if(bc == null){
     		bc = new BarChart<String, Number>(xAxis, yAxis);
@@ -1219,13 +1219,13 @@ public class MainController implements Initializable{
 		do{
 			isQuadReady = true;
 			d++;
-			TestQuad[3] = d % 10;
-			TestQuad[2] = (d / 10) % 10;
-			TestQuad[1] = (d / 100) % 10;
-			TestQuad[0] = (d / 1000) % 10;
+			testQuad[3] = d % 10;
+			testQuad[2] = (d / 10) % 10;
+			testQuad[1] = (d / 100) % 10;
+			testQuad[0] = (d / 1000) % 10;
     		for(int i = 0; i < 3; i++) {
     			for(int j = i + 1; j < 4; j++) {
-    				if (TestQuad[i] == TestQuad[j]) {
+    				if (testQuad[i] == testQuad[j]) {
     					isQuadReady = false;
     				}
     			}
@@ -1234,32 +1234,32 @@ public class MainController implements Initializable{
 
 		if(isQuadReady){	// условие вставлено для чисел (d > 9870)
 			// сброс отображения, подготовка к решению
-			this.Reset(false);
-			this.curator.setQuad(TestQuad, 2);
-			this.solver.Init(TestDecade);
+			this.reset(false);
+			this.curator.setQuad(testQuad, 2);
+			this.solver.Init(testDecade);
 			// отображение подготовленной четверки
 			for(int i = 0; i < 4; i++){
-				aQuad2.get(i).setText(TestQuad[i].toString());
+				aQuad2.get(i).setText(testQuad[i].toString());
 			}
 
 			// решение
 			while(bulls + cows < 4) {		// цикл до отгадки всех цифр
-				Digits = solver.toFindDigits(Digits);
+				digits = solver.toFindDigits(digits);
 				Integer[] TmpBufI = new Integer[4];
-				for(int i = 0; i < 4; i++) {TmpBufI[i] = Digits[i];}
-				ShotData shot_data = curator.checkQuad(Digits, 2);
+				for(int i = 0; i < 4; i++) {TmpBufI[i] = digits[i];}
+				ShotData shot_data = curator.checkQuad(digits, 2);
 				bulls = shot_data.getBulls();
 				cows = shot_data.getCows();
 				solver.shots_data.add(shot_data);
-				ShowNextShot(solver.shots_data.size(), false, 0); // отображение
+				showNextShot(solver.shots_data.size(), false, 0); // отображение
 			}
 			while(bulls < 4) {
-				solver.toFindBulls(Digits);
-				ShotData shot_data = curator.checkQuad(Digits, 2);
+				solver.toFindBulls(digits);
+				ShotData shot_data = curator.checkQuad(digits, 2);
 				bulls = shot_data.getBulls();
 				cows = shot_data.getCows();
 				solver.shots_data.add(shot_data);
-				ShowNextShot(solver.shots_data.size(), false, 0); // отображение
+				showNextShot(solver.shots_data.size(), false, 0); // отображение
 			}
 
 			// заполнение коллекций для статистического учета
@@ -1351,7 +1351,7 @@ public class MainController implements Initializable{
     	if(d >= 9999){
     		// остановка AnimationTimer, сброс отображения
     		this.at.stop();
-    		this.Reset(false);
+    		this.reset(false);
     		// подсчет статистики
     		Double sum = 0.0;
     		int max = 0;
@@ -1363,17 +1363,17 @@ public class MainController implements Initializable{
     		}
 
     		// отображение результатов
-    		this.ShowStepInfo("Перебор всех вариантов:", false, 0);
-    		this.ShowStepInfo("всего - " + Integer.toString(alShotNum.size()), 
+    		this.showStepInfo("Перебор всех вариантов:", false, 0);
+    		this.showStepInfo("всего - " + Integer.toString(alShotNum.size()), 
     																false, 0);
-    		this.ShowStepInfo("Максимум попыток - " 
+    		this.showStepInfo("Максимум попыток - " 
     										+ Integer.toString(max), false, 0);
-    		this.ShowStepInfo("В среднем - " + Double.toString(sum 
+    		this.showStepInfo("В среднем - " + Double.toString(sum 
     											/ alShotNum.size()), false, 0);
     		//this.ShowStepInfo("", false, 0);
-    		this.ShowStepInfo("[Попыток]: [вариантов]", true, 0);
+    		this.showStepInfo("[Попыток]: [вариантов]", true, 0);
     		for(int i = 1; i <= max; i++){
-    			this.ShowStepInfo(Integer.toString(i) + ": " 
+    			this.showStepInfo(Integer.toString(i) + ": " 
     							+ Integer.toString(hmShotNum.get(i)), true, 0);
     		}
     		// подчистка данных для нового вызова
@@ -1388,7 +1388,7 @@ public class MainController implements Initializable{
     AnimationTimer at = new AnimationTimer(){
         @Override
         public void handle(long now) {
-        	AnimatedTestOfAlgorithm();
+        	animatedTestOfAlgorithm();
         }
     };
     // =========================================================================
