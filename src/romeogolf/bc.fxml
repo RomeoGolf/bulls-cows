@@ -11,11 +11,11 @@
 
 <GridPane alignment="CENTER" maxHeight="-1.0" maxWidth="700.0" minHeight="-1.0" minWidth="700.0" prefHeight="800.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="romeogolf.MainController">
   <children>
-    <ScrollPane id="ScrollPane" pannable="true" prefHeight="675.0" prefViewportHeight="676.0" prefViewportWidth="201.0" prefWidth="200.0" styleClass="scroll_pane" GridPane.columnIndex="0" GridPane.columnSpan="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+    <ScrollPane id="ScrollPane" fitToHeight="false" fitToWidth="true" pannable="true" prefHeight="675.0" prefViewportHeight="676.0" prefViewportWidth="201.0" prefWidth="200.0" styleClass="scroll_pane" GridPane.columnIndex="0" GridPane.columnSpan="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
       <content>
-        <VBox id="pLeft" alignment="TOP_CENTER" minWidth="188.0" prefHeight="675.0" prefWidth="188.0" spacing="10.0">
+        <VBox id="pLeft" alignment="TOP_CENTER" fillWidth="false" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" spacing="10.0" styleClass="left_panel">
           <children>
-            <VBox maxWidth="188.0" minHeight="-1.0" minWidth="-1.0" prefHeight="191.0" prefWidth="186.0" spacing="2.0" styleClass="h_panel" VBox.vgrow="NEVER">
+            <VBox alignment="TOP_LEFT" maxWidth="188.0" minHeight="-1.0" minWidth="-1.0" prefHeight="191.0" prefWidth="168.0" spacing="2.0" styleClass="h_panel" VBox.vgrow="NEVER">
               <children>
                 <Label text="Режим:">
                   <font>

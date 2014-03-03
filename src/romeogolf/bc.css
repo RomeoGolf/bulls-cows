@@ -8,9 +8,7 @@
 
 .left_panel {
     -fx-background-color: #CCFF99;
-    -fx-padding: 1;
-    -fx-border-color: rgb(49, 89, 23);
-    -fx-border-radius: 5;
+    -fx-padding: 10;
 }
 
 .scroll_pane {
