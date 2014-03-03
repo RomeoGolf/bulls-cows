@@ -359,8 +359,29 @@ public class MainController implements Initializable{
 	    stageSettings.show();
     }
 
+    Stage stageHelp;
     @FXML protected void onHelp(ActionEvent e) throws IOException {
-    	
+    	if(stageHelp == null){
+    		stageHelp = new Stage();
+    		FXMLLoader loaderHelp =
+					new FXMLLoader(getClass().getResource("bc_help.fxml"));
+    		Parent rootHelp = null;
+    		try {
+    			rootHelp = (Parent)loaderHelp.load();
+    		} catch (IOException e1) {
+    			// TODO Auto-generated catch block
+    			e1.printStackTrace();
+    		}
+    		HelpController controllerHelp = 
+									(HelpController)loaderHelp.getController();
+    		controllerHelp.setStage_Listener(stageHelp);
+
+    		Scene sceneHelp= new Scene(rootHelp);
+    		stageHelp.setTitle("Справка");
+    		stageHelp.setScene(sceneHelp);
+    		stageHelp.initOwner(this.stage);
+    	}
+    	stageHelp.show();
     }
 
     // обработка переключения режима
