@@ -345,14 +345,14 @@ public class MainController implements Initializable{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		SettingsController controller2 = 
+		SettingsController controllerSettings = 
 									(SettingsController)loaderSettings.getController();
-		controller2.setStage_Listener(stageSettings);
-		controller2.setSDM(sdm);
+		controllerSettings.setStage_Listener(stageSettings);
+		controllerSettings.setSDM(sdm);
 
-	    Scene scene2 = new Scene(rootSettings);
+	    Scene sceneSettings = new Scene(rootSettings);
 	    stageSettings.setTitle("Настройки");
-	    stageSettings.setScene(scene2);
+	    stageSettings.setScene(sceneSettings);
 	    stageSettings.initOwner(this.stage);
 	    stageSettings.initModality(Modality.APPLICATION_MODAL);
 	    stageSettings.initStyle(StageStyle.UTILITY);
