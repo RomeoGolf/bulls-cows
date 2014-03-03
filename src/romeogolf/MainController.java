@@ -225,9 +225,13 @@ public class MainController implements Initializable{
     			digitsForShow[Num]--;
     		}
     		// проверка выхода цифры за пределы
-    		if (digitsForShow[Num] < 0){digitsForShow[Num] = 9;}
+    		if (digitsForShow[Num] < 0){
+    			digitsForShow[Num] = 9;
+    		}
     			// и соответствующее изменение
-    		if (digitsForShow[Num] > 9){digitsForShow[Num] = 0;}
+    		if (digitsForShow[Num] > 9){
+    			digitsForShow[Num] = 0;
+    		}
     		aQuad1.get(Num).setText(Integer.toString(digitsForShow[Num]));
     		isEqualDigits();
     };
@@ -865,7 +869,9 @@ public class MainController implements Initializable{
     	while(bulls + cows < 4) {		// цикл до отгадки всех цифр
     		digits = solver.toFindDigits(digits);
     		Integer[] TmpBufI = new Integer[4];
-    		for(int i = 0; i < 4; i++) {TmpBufI[i] = digits[i];}
+    		for(int i = 0; i < 4; i++){
+    			TmpBufI[i] = digits[i];
+    		}
     		ShotData shot_data = curator.checkQuad(digits, 2);
     		bulls = shot_data.getBulls();
     		cows = shot_data.getCows();
@@ -931,7 +937,9 @@ public class MainController implements Initializable{
 
     	digits = solver.toFindDigits(digits);
     	Integer[] TmpBufI = new Integer[4];
-    	for(int i = 0; i < 4; i++) {TmpBufI[i] = digits[i];}
+    	for(int i = 0; i < 4; i++){
+    		TmpBufI[i] = digits[i];
+    	}
     	ShotData shot_data2 = curator.checkQuad(digits, QuadNum);
     	bulls = shot_data2.getBulls();
     	cows = shot_data2.getCows();
@@ -1107,7 +1115,9 @@ public class MainController implements Initializable{
         			}
         		}
         	}
-        	if(!isQuadReady){continue;}
+        	if(!isQuadReady){
+        		continue;
+        	}
 
     		for(int i = 0; i < 4; i++){
     			aQuad2.get(i).setText(TestQuad[i].toString());
@@ -1116,7 +1126,9 @@ public class MainController implements Initializable{
         	while(bulls + cows < 4) {		// цикл до отгадки всех цифр
         		digits = solver.toFindDigits(digits);
         		Integer[] TmpBufI = new Integer[4];
-        		for(int i = 0; i < 4; i++) {TmpBufI[i] = digits[i];}
+        		for(int i = 0; i < 4; i++){
+        			TmpBufI[i] = digits[i];
+        		}
         		ShotData shot_data = curator.checkQuad(digits, 2);
         		bulls = shot_data.getBulls();
         		cows = shot_data.getCows();
@@ -1252,7 +1264,9 @@ public class MainController implements Initializable{
 			while(bulls + cows < 4) {		// цикл до отгадки всех цифр
 				digits = solver.toFindDigits(digits);
 				Integer[] TmpBufI = new Integer[4];
-				for(int i = 0; i < 4; i++) {TmpBufI[i] = digits[i];}
+				for(int i = 0; i < 4; i++){
+					TmpBufI[i] = digits[i];
+				}
 				ShotData shot_data = curator.checkQuad(digits, 2);
 				bulls = shot_data.getBulls();
 				cows = shot_data.getCows();
