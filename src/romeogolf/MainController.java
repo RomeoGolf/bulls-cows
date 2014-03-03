@@ -165,7 +165,7 @@ public class MainController implements Initializable{
 
 	// режим игры
 	private Integer mode = 0;
-	void setMode(Integer m){
+	protected void setMode(Integer m){
 		this.mode = m;
 		this.reset();
 		/*
@@ -189,22 +189,22 @@ public class MainController implements Initializable{
 		this.drawFirstStep((m == 1) || (m == 2));
 	}
 
-	Integer getMode(){
+	protected Integer getMode(){
 		return this.mode;
 	}
 
 	// Цифры, вводимые пользователем
-    Integer[] digitsForShow = new Integer[4];
+    private Integer[] digitsForShow = new Integer[4];
     // массив знакомест для пользовательских цифр
-    ArrayList<Label> aQuad1 = new ArrayList<Label>();
+    private ArrayList<Label> aQuad1 = new ArrayList<Label>();
     // массив знакомест для загаданных цифр
-    ArrayList<Label> aQuad2 = new ArrayList<Label>();
+    private ArrayList<Label> aQuad2 = new ArrayList<Label>();
     // массив радиокнопок - переключатель режима
-    ArrayList<RadioButton> aRbMode = new ArrayList<RadioButton>();
+    private ArrayList<RadioButton> aRbMode = new ArrayList<RadioButton>();
     // карта соответствия кнопок цифрам	
-    public Map<Button, Integer> df = new HashMap<Button, Integer>();
+    protected Map<Button, Integer> df = new HashMap<Button, Integer>();
     // множество кнопок увеличения
-    public Set<Button> sUp = new HashSet<Button>();;
+    protected Set<Button> sUp = new HashSet<Button>();;
 
     // тестовая кнопка - тестовый обработчик
     @FXML protected void onTest(ActionEvent event) {
@@ -290,7 +290,7 @@ public class MainController implements Initializable{
     }
 
     // сброс отображения предыдущей игры и подготовка к следующей
-    void reset(Boolean clearPInfo){
+    protected void reset(Boolean clearPInfo){
     	vbPlayer1.getChildren().removeAll(vbPlayer1.getChildren());
     	vbPlayer2.getChildren().removeAll(vbPlayer2.getChildren());
     	this.generateQwads();
@@ -310,7 +310,7 @@ public class MainController implements Initializable{
 		}
     }
 
-    void reset(){
+    protected void reset(){
     	reset(true);
     }
 
@@ -369,7 +369,7 @@ public class MainController implements Initializable{
     }
 
     // проверка цифр на совпадение
-    boolean isEqualDigits() {
+    private boolean isEqualDigits() {
     	for(int i = 0; i < 4; i++) {
     		aQuad1.get(i).setStyle("-fx-text-fill: #000000;");
     	}
@@ -388,11 +388,11 @@ public class MainController implements Initializable{
 
     // =================== инициализация интерфейса ============================
     // список панелей для отображения статистики прошлых игр
-    ArrayList<VBox> aStatBoxes = new ArrayList<VBox>();
+    private ArrayList<VBox> aStatBoxes = new ArrayList<VBox>();
     // список меток для отображения статистики
-    ArrayList<Label> aTotalLabels = new ArrayList<Label>();
-    ArrayList<Label> aWinLabels = new ArrayList<Label>();
-    ArrayList<Label> aTieLabels = new ArrayList<Label>();
+    private ArrayList<Label> aTotalLabels = new ArrayList<Label>();
+    private ArrayList<Label> aWinLabels = new ArrayList<Label>();
+    private ArrayList<Label> aTieLabels = new ArrayList<Label>();
     // создание панелей статистики, заполнение списков панелей и меток
     private void buildBox(Integer index, String tl1, String tl2, String tl3){
 		DropShadow ds = new DropShadow();
@@ -470,8 +470,8 @@ public class MainController implements Initializable{
     }
 
     // объект для управления данными, сохраняемыми в память (настройки, etc)
-    StoredDataManager sdm = new StoredDataManager();
-    Stage stage;
+    private StoredDataManager sdm = new StoredDataManager();
+    protected Stage stage;
     private void storePrefs(){
     	sdm.test_str = indicator.getText();
     	sdm.setTop(stage.getY());
@@ -533,7 +533,7 @@ public class MainController implements Initializable{
 
     // получение ссылки на окно, установка обработчика событий окна 
     //  и чтение параметров окна
-    public void setStage_Listener(final Stage stage){
+    protected void setStage_Listener(final Stage stage){
     	this.stage = stage;
     	stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
     		@Override
@@ -549,7 +549,7 @@ public class MainController implements Initializable{
     }
 
     // соответствие панели VBox своему контейнеру ScrollPane
-    Map<VBox, ScrollPane> mPlayerPanes = new HashMap<VBox, ScrollPane>();
+    private Map<VBox, ScrollPane> mPlayerPanes = new HashMap<VBox, ScrollPane>();
 
     // общий обработчик увеличения для обоих VBox Player[X]
     private void setVBoxScroller(final VBox box){
@@ -740,8 +740,8 @@ public class MainController implements Initializable{
 	}
 
 	// массив меток для вспомогательных цифр и массив кодов цвета для них
-    ArrayList<Label> aAidDigits = new ArrayList<Label>();
-    ArrayList<Integer> aAidDigitsColor = new ArrayList<Integer>();
+	private ArrayList<Label> aAidDigits = new ArrayList<Label>();
+	private ArrayList<Integer> aAidDigitsColor = new ArrayList<Integer>();
     // заполнение массивов меток и цвета, установка обработчика клика меток
     private void setAidDigitsMap(){
     	for(int i = 0; i < hbBottom.getChildren().size(); i++){
@@ -803,7 +803,7 @@ public class MainController implements Initializable{
     // ================ конец инициализации интерфейса =========================
 
 	// вывод строки текста в ScrollPane - информация о шаге игры
-    void showStepInfo(String s, boolean Player1, int img) {
+    protected void showStepInfo(String s, boolean Player1, int img) {
     	HBox hb = new HBox();
     	hb.setAlignment(Pos.CENTER_LEFT);
     	if(img == 0){
@@ -844,15 +844,14 @@ public class MainController implements Initializable{
 		}
     }
 
-	DigitCurator curator = new DigitCurator();	// класс слежения за игрой
-	Solver solver = new Solver();				// класс-игрок
-    Integer[] digits = new Integer[4];			// Цифры, вводимые пользователем
-    int bulls;
-    int cows;
-    int trying;
+    private DigitCurator curator = new DigitCurator();	// класс слежения за игрой
+    private Solver solver = new Solver();				// класс-игрок
+    private Integer[] digits = new Integer[4];			// Цифры, вводимые пользователем
+    private int bulls;
+    private int cows;
 
     // вывод результатов попытки
-    void showNextShot(int trying, boolean Player1, int img) {
+    private void showNextShot(int trying, boolean Player1, int img) {
 		String s = new String(Arrays.toString(digits));
 		s = Integer.toString(trying) + ": " + s;
 		s = s + " -   " + Integer.toString(bulls) + " Б, " +
@@ -862,7 +861,7 @@ public class MainController implements Initializable{
 
     // ========= машинная отгадка ======
     // машина -> машина, режим 3
-    void shotMode3() {
+    private void shotMode3() {
     	curator.digitMixer();		// перемешать цифры подготовить набор цифр
     	solver.Init(curator.getDecade());
 
@@ -892,7 +891,7 @@ public class MainController implements Initializable{
     }
 
     // человек -> машина
-    void shotMode0(){
+    private void shotMode0(){
     	if (!this.isEqualDigits()){
     		player1ShotNum++;
     		ShotData shot_data = curator.checkQuad(this.digitsForShow, 1);
@@ -960,8 +959,8 @@ public class MainController implements Initializable{
     	return result;
     }
 
-    Boolean p1End = false;
-    Boolean p2End = false;
+    private Boolean p1End = false;
+    private Boolean p2End = false;
 
     private Boolean whoWin(Boolean p1, Boolean p2){
     	Boolean result = false;
@@ -982,7 +981,7 @@ public class MainController implements Initializable{
     }
 
     // человек <-> машина
-    void shotMode1(){
+    private void shotMode1(){
     	if(this.isFirstPlayer1()){
     		if (!this.isEqualDigits()){
     			p1End = this.tryPlayer1();
@@ -1006,7 +1005,7 @@ public class MainController implements Initializable{
     }
 
     // человек, машина -> машина
-    void shotMode2(){
+    private void shotMode2(){
     	if(this.isFirstPlayer1()){
     		if (!this.isEqualDigits()){
     			p1End = this.tryPlayer1();
@@ -1093,7 +1092,7 @@ public class MainController implements Initializable{
 
     // проверка алгоритма перебором всех вариантов
     //   с отображением результатов в конце
-    void fullTestForAlgotithm(){
+    private void fullTestForAlgotithm(){
     	Integer[] TestQuad = {0, 0, 0, 0};
     	Integer[] TestDecade = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     	ArrayList<Integer> ShotNum = new ArrayList<Integer>();
@@ -1189,26 +1188,26 @@ public class MainController implements Initializable{
     //   с отображением процесса
 
     // для гистограммы
-    final CategoryAxis xAxis = new CategoryAxis();
-    final NumberAxis yAxis = new NumberAxis();
-    BarChart<String, Number> bc;
-    XYChart.Series<String, Number> series1;
+    private final CategoryAxis xAxis = new CategoryAxis();
+    private final NumberAxis yAxis = new NumberAxis();
+    private BarChart<String, Number> bc;
+    private XYChart.Series<String, Number> series1;
 
     // тестовая четверка для перебора
-	Integer[] testQuad = {0, 0, 0, 0};
+    private Integer[] testQuad = {0, 0, 0, 0};
 	// постоянный набор цифр для отгадывания
-	final Integer[] testDecade = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    private final Integer[] testDecade = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 	// учет количества попыток на вариант для подсчета статистики
-	ArrayList<Integer> alShotNum = new ArrayList<Integer>();
+    private ArrayList<Integer> alShotNum = new ArrayList<Integer>();
 	// учет количества попыток на вариант для гистограммы
-	Map<Integer, Integer> hmShotNum = new HashMap<Integer, Integer>();
+    private Map<Integer, Integer> hmShotNum = new HashMap<Integer, Integer>();
 	// счетчик для перебора вариантов
-	int d = 0;
+    private int d = 0;
 	// тест запущен?
 	private Boolean isTestRun = false;
 
 	// метод для вызова из AnimationTimer.handle
-    public void animatedTestOfAlgorithm(){
+	protected void animatedTestOfAlgorithm(){
     	// если графика гистограммы еще не существует - создать
     	if(bc == null){
     		bc = new BarChart<String, Number>(xAxis, yAxis);
@@ -1412,7 +1411,7 @@ public class MainController implements Initializable{
     }
 
     // экземпляр AnimationTimer для анимации процесса проверки алгоритма
-    AnimationTimer at = new AnimationTimer(){
+    protected AnimationTimer at = new AnimationTimer(){
         @Override
         public void handle(long now) {
         	animatedTestOfAlgorithm();
