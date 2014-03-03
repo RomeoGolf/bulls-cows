@@ -166,8 +166,8 @@ public class MainController implements Initializable{
 
 	// режим игры
 	private Integer mode = 0;
-	protected void setMode(Integer m){
-		this.mode = m;
+	protected void setMode(Integer mode){
+		this.mode = mode;
 		this.reset();
 		/*
 		0 :	// режим "человек угадывает"
@@ -175,19 +175,19 @@ public class MainController implements Initializable{
 		2 :	// режим "человек и машина угадвают одно наперегонки"
 		3 :	// режим "машина угадывает (тестовый)"
 		 */
-		if (m == 0){
+		if (mode == 0){
 			curator.generateQuad(1);
 		} else {
 			generateQwads();
 		}
 		// если нет загадки для машины
 		this.setDisableBt(false);
-		if ((m == 0) || (m == 2)){
+		if ((mode == 0) || (mode == 2)){
 			this.setXToPlayer2();
 		}
 		// если играет человек с машиной - отобразить право хода
 		this.btShot.setText("Попытка");
-		this.drawFirstStep((m == 1) || (m == 2));
+		this.drawFirstStep((mode == 1) || (mode == 2));
 	}
 
 	protected Integer getMode(){
@@ -202,8 +202,8 @@ public class MainController implements Initializable{
     private ArrayList<Label> aQuad2 = new ArrayList<Label>();
     // массив радиокнопок - переключатель режима
     private ArrayList<RadioButton> aRbMode = new ArrayList<RadioButton>();
-    // карта соответствия кнопок цифрам	
-    protected Map<Button, Integer> df = new HashMap<Button, Integer>();
+    // карта соответствия кнопок цифрам
+    protected Map<Button, Integer> mapButtonDigit = new HashMap<Button, Integer>();
     // множество кнопок увеличения
     protected Set<Button> sUp = new HashSet<Button>();;
 
@@ -211,7 +211,7 @@ public class MainController implements Initializable{
     @FXML protected void onTest(ActionEvent event) {
     	//this.FullTestForAlgotithm();
     	if(!this.isTestRun){
-    		this.at.start();
+    		this.atAlgorithmTest.start();
     		isTestRun = true;
     	}
     };
@@ -219,7 +219,7 @@ public class MainController implements Initializable{
     // общий обработчик для всех кнопок Up & Down
     @FXML protected void onUpDown(ActionEvent e) {
     		// получение номера цифры, чью кнопку нажали
-    		int Num = df.get(e.getSource());
+    		int Num = mapButtonDigit.get(e.getSource());
     		if (sUp.contains(e.getSource())){	// изменение цифры
     			digitsForShow[Num]++;
     		} else {
@@ -328,35 +328,35 @@ public class MainController implements Initializable{
 
     // кнопка "сброс"
     @FXML protected void onReset(ActionEvent e) {
-    	this.at.stop();
+    	this.atAlgorithmTest.stop();
     	this.isTestRun = false;
     	this.reset();
     }
 
     // кнопка "Настройка"
     @FXML protected void onSettings(ActionEvent e) throws IOException {
-    	Stage stage2 = new Stage();
-		FXMLLoader loader2 = 
+    	Stage stageSettings = new Stage();
+		FXMLLoader loaderSettings = 
 					new FXMLLoader(getClass().getResource("bc_settings.fxml"));
-		Parent root2 = null;
+		Parent rootSettings = null;
 		try {
-			root2 = (Parent) loader2.load();
+			rootSettings = (Parent) loaderSettings.load();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		SettingsController controller2 = 
-									(SettingsController)loader2.getController();
-		controller2.setStage_Listener(stage2);
+									(SettingsController)loaderSettings.getController();
+		controller2.setStage_Listener(stageSettings);
 		controller2.setSDM(sdm);
 
-	    Scene scene2 = new Scene(root2);
-	    stage2.setTitle("Настройки");
-	    stage2.setScene(scene2);
-	    stage2.initOwner(this.stage);
-	    stage2.initModality(Modality.APPLICATION_MODAL);
-	    stage2.initStyle(StageStyle.UTILITY);
-	    stage2.show();
+	    Scene scene2 = new Scene(rootSettings);
+	    stageSettings.setTitle("Настройки");
+	    stageSettings.setScene(scene2);
+	    stageSettings.initOwner(this.stage);
+	    stageSettings.initModality(Modality.APPLICATION_MODAL);
+	    stageSettings.initStyle(StageStyle.UTILITY);
+	    stageSettings.show();
     }
 
     @FXML protected void onHelp(ActionEvent e) throws IOException {
@@ -639,14 +639,14 @@ public class MainController implements Initializable{
 
 	private void setControlMaps(){
 		// заполнение карты соответствия кнопок их номерам
-    	df.put(btUp_1, 0);
-    	df.put(btDown_1, 0);
-    	df.put(btUp_2, 1);
-    	df.put(btDown_2, 1);
-    	df.put(btUp_3, 2);
-    	df.put(btDown_3, 2);
-    	df.put(btUp_4, 3);
-    	df.put(btDown_4, 3);
+    	mapButtonDigit.put(btUp_1, 0);
+    	mapButtonDigit.put(btDown_1, 0);
+    	mapButtonDigit.put(btUp_2, 1);
+    	mapButtonDigit.put(btDown_2, 1);
+    	mapButtonDigit.put(btUp_3, 2);
+    	mapButtonDigit.put(btDown_3, 2);
+    	mapButtonDigit.put(btUp_4, 3);
+    	mapButtonDigit.put(btDown_4, 3);
     	// множество кнопок "вверх"
     	sUp.add(btUp_1);
     	sUp.add(btUp_2);
@@ -968,8 +968,8 @@ public class MainController implements Initializable{
     	return result;
     }
 
-    private Boolean p1End = false;
-    private Boolean p2End = false;
+    private Boolean isPlayer1End = false;
+    private Boolean isPlayer2End = false;
 
     private Boolean whoWin(Boolean p1, Boolean p2){
     	Boolean result = false;
@@ -983,8 +983,8 @@ public class MainController implements Initializable{
     	if(p1 || p2){
     		this.setFirstPlayer();
     		result = true;
-    		p1End = false;
-    		p2End = false;
+    		isPlayer1End = false;
+    		isPlayer2End = false;
     	}
         return result;
     }
@@ -993,20 +993,20 @@ public class MainController implements Initializable{
     private void shotMode1(){
     	if(this.isFirstPlayer1()){
     		if (!this.isEqualDigits()){
-    			p1End = this.tryPlayer1();
-    			p2End = this.tryPlayer2(2);
-    			this.whoWin(p1End, p2End);
+    			isPlayer1End = this.tryPlayer1();
+    			isPlayer2End = this.tryPlayer2(2);
+    			this.whoWin(isPlayer1End, isPlayer2End);
     		}
     	} else {
     		if(this.player2firstStep){
     			player2firstStep = false;
     			this.btShot.setText("Попытка");
-    			p2End = this.tryPlayer2(2);
+    			isPlayer2End = this.tryPlayer2(2);
     		} else {
     			if (!this.isEqualDigits()){
-    				p1End = this.tryPlayer1();
-    				if(!this.whoWin(p1End, p2End)){
-    					p2End = this.tryPlayer2(2);
+    				isPlayer1End = this.tryPlayer1();
+    				if(!this.whoWin(isPlayer1End, isPlayer2End)){
+    					isPlayer2End = this.tryPlayer2(2);
     				}
     			}
     		}
@@ -1017,20 +1017,20 @@ public class MainController implements Initializable{
     private void shotMode2(){
     	if(this.isFirstPlayer1()){
     		if (!this.isEqualDigits()){
-    			p1End = this.tryPlayer1();
-    			p2End = this.tryPlayer2(1);
-    			this.whoWin(p1End, p2End);
+    			isPlayer1End = this.tryPlayer1();
+    			isPlayer2End = this.tryPlayer2(1);
+    			this.whoWin(isPlayer1End, isPlayer2End);
     		}
     	} else {
     		if(this.player2firstStep){
     			player2firstStep = false;
     			this.btShot.setText("Попытка");
-    			p2End = this.tryPlayer2(1);
+    			isPlayer2End = this.tryPlayer2(1);
     		} else {
     			if (!this.isEqualDigits()){
-    				p1End = this.tryPlayer1();
-    				if(!this.whoWin(p1End, p2End)){
-    					p2End = this.tryPlayer2(1);
+    				isPlayer1End = this.tryPlayer1();
+    				if(!this.whoWin(isPlayer1End, isPlayer2End)){
+    					isPlayer2End = this.tryPlayer2(1);
     				}
     			}
     		}
@@ -1106,7 +1106,7 @@ public class MainController implements Initializable{
     // для гистограммы
     private final CategoryAxis xAxis = new CategoryAxis();
     private final NumberAxis yAxis = new NumberAxis();
-    private BarChart<String, Number> bc;
+    private BarChart<String, Number> bcHistogram;
     private XYChart.Series<String, Number> series1;
 
     // тестовая четверка для перебора
@@ -1118,31 +1118,31 @@ public class MainController implements Initializable{
 	// учет количества попыток на вариант для гистограммы
     private Map<Integer, Integer> hmShotNum = new HashMap<Integer, Integer>();
 	// счетчик для перебора вариантов
-    private int d = 0;
+    private int variantCounter = 0;
 	// тест запущен?
 	private Boolean isTestRun = false;
 
 	// метод для вызова из AnimationTimer.handle
 	protected void animatedTestOfAlgorithm(){
     	// если графика гистограммы еще не существует - создать
-    	if(bc == null){
-    		bc = new BarChart<String, Number>(xAxis, yAxis);
+    	if(bcHistogram == null){
+    		bcHistogram = new BarChart<String, Number>(xAxis, yAxis);
     		series1 = new XYChart.Series<String, Number>();
-    		bc.getData().add(series1);
-    		bc.setMaxHeight(200);
-    		bc.setPadding(new Insets(0,0,0,0));
-    		bc.setLegendVisible(false);
-    		bc.setBarGap(0);
-    		bc.setCategoryGap(0);
-    		bc.setAnimated(false);
-    		bc.setMaxHeight(pInfo.getHeight());
-    		bc.setMaxWidth(pInfo.getWidth());
+    		bcHistogram.getData().add(series1);
+    		bcHistogram.setMaxHeight(200);
+    		bcHistogram.setPadding(new Insets(0,0,0,0));
+    		bcHistogram.setLegendVisible(false);
+    		bcHistogram.setBarGap(0);
+    		bcHistogram.setCategoryGap(0);
+    		bcHistogram.setAnimated(false);
+    		bcHistogram.setMaxHeight(pInfo.getHeight());
+    		bcHistogram.setMaxWidth(pInfo.getWidth());
     		pInfo.getChildren().removeAll(pInfo.getChildren());
-    		pInfo.getChildren().add(bc);
+    		pInfo.getChildren().add(bcHistogram);
     	} else {	// иначе - добавить на панель и очистить данные
-    		if(!pInfo.getChildren().contains(bc)){
+    		if(!pInfo.getChildren().contains(bcHistogram)){
     			pInfo.getChildren().removeAll(pInfo.getChildren());
-    			pInfo.getChildren().add(bc);
+    			pInfo.getChildren().add(bcHistogram);
     			this.series1.getData().clear();
     		}
     	}
@@ -1151,11 +1151,11 @@ public class MainController implements Initializable{
     	Boolean isQuadReady = true;
 		do{
 			isQuadReady = true;
-			d++;
-			testQuad[3] = d % 10;
-			testQuad[2] = (d / 10) % 10;
-			testQuad[1] = (d / 100) % 10;
-			testQuad[0] = (d / 1000) % 10;
+			variantCounter++;
+			testQuad[3] = variantCounter % 10;
+			testQuad[2] = (variantCounter / 10) % 10;
+			testQuad[1] = (variantCounter / 100) % 10;
+			testQuad[0] = (variantCounter / 1000) % 10;
     		for(int i = 0; i < 3; i++) {
     			for(int j = i + 1; j < 4; j++) {
     				if (testQuad[i] == testQuad[j]) {
@@ -1163,7 +1163,7 @@ public class MainController implements Initializable{
     				}
     			}
     		}
-		}while(!isQuadReady && (d <= 9999));
+		}while(!isQuadReady && (variantCounter <= 9999));
 
 		if(isQuadReady){	// условие вставлено для чисел (d > 9870)
 			// сброс отображения, подготовка к решению
@@ -1212,19 +1212,19 @@ public class MainController implements Initializable{
 
 			// работа с гистограммой
 			Boolean isData = false;
-        	if(bc != null){
+        	if(bcHistogram != null){
         		// проверка существования столбика для элемента hmShotNum
         		for(int i = 0; i < hmShotNum.keySet().size(); i++){
         			isData = false;
         			Integer key = (Integer)hmShotNum.keySet().toArray()[i];
         			for(int j = 0; 
-        						j < bc.getData().get(0).getData().size(); j++){
+        						j < bcHistogram.getData().get(0).getData().size(); j++){
         				// если есть - изменить данные столбика
         				String xv = 
-        					bc.getData().get(0).getData().get(j).getXValue();
+        					bcHistogram.getData().get(0).getData().get(j).getXValue();
         				Integer yv = (Integer)hmShotNum.get(key);
         				if(xv.equals(Integer.toString(key))){
-        					bc.getData().get(0).getData().get(j).setYValue(yv);
+        					bcHistogram.getData().get(0).getData().get(j).setYValue(yv);
         					isData = true;
         					break;
         				}
@@ -1289,9 +1289,9 @@ public class MainController implements Initializable{
 		}
 
 		// перебор вариантов закончен
-    	if(d >= 9999){
+    	if(variantCounter >= 9999){
     		// остановка AnimationTimer, сброс отображения
-    		this.at.stop();
+    		this.atAlgorithmTest.stop();
     		this.reset(false);
     		// подсчет статистики
     		Double sum = 0.0;
@@ -1321,13 +1321,13 @@ public class MainController implements Initializable{
     		// подчистка данных для нового вызова
     		alShotNum.clear();
     		hmShotNum.clear();
-    		d = 0;
+    		variantCounter = 0;
         	this.isTestRun = false;
     	}
     }
 
     // экземпляр AnimationTimer для анимации процесса проверки алгоритма
-    protected AnimationTimer at = new AnimationTimer(){
+    protected AnimationTimer atAlgorithmTest = new AnimationTimer(){
         @Override
         public void handle(long now) {
         	animatedTestOfAlgorithm();

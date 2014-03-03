@@ -10,7 +10,7 @@ public class DigitCurator {
     // "загаданные" цифры для второго игрока
     private Integer[] quad2 = new Integer[4];
     // Генератор ПСП, инициализируемый временем
-    private Random rg = new Random(System.currentTimeMillis());
+    private Random randomGenerator = new Random(System.currentTimeMillis());
     // для перемешанного массива цифр
     private Integer[] rndAllDigits = new Integer[10];
     public Integer[] getDecade(){
@@ -18,7 +18,7 @@ public class DigitCurator {
     	int i, n, buf;
     	i = 9;
     	while(i > 0){
-    		n = rg.nextInt(i);
+    		n = randomGenerator.nextInt(i);
     		buf = Result[n];
     		Result[n] = Result[i];
     		Result[i] = buf;
@@ -29,7 +29,7 @@ public class DigitCurator {
     }
 
     public Boolean getRandomBool(){
-    	return rg.nextBoolean();
+    	return randomGenerator.nextBoolean();
     }
 
     public Integer[] getQuad(int num){
@@ -55,7 +55,7 @@ public class DigitCurator {
     public void generateQuad(int num){
     	this.getDecade();
     	Integer[] Result = new Integer[4];
-    	int ind = rg.nextInt(6);
+    	int ind = randomGenerator.nextInt(6);
     	for(int i = 0; i < 4; i++){
     		Result[i] = this.rndAllDigits[ind + i];
     	}
@@ -68,11 +68,11 @@ public class DigitCurator {
     }
 
     public void digitMixer() {		// перемешивание массива цифр
-    	for(int j = rg.nextInt(10) + 3; j > 0; j--) {
+    	for(int j = randomGenerator.nextInt(10) + 3; j > 0; j--) {
     		int i = 9;
     		int n, buf;
     		while(i > 0){
-    			n = rg.nextInt(i);
+    			n = randomGenerator.nextInt(i);
     			buf = rndAllDigits[n];
     			rndAllDigits[n] = rndAllDigits[9];
     			rndAllDigits[9] = buf;
