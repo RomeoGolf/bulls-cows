@@ -40,6 +40,7 @@
             <Button fx:id="btReset" mnemonicParsing="false" onAction="#onReset" prefWidth="127.0" text="Сброс" />
             <Button fx:id="btTest" mnemonicParsing="false" onAction="#onTest" prefWidth="127.00009999999747" text="Тест" />
             <Button fx:id="btSettings" mnemonicParsing="false" onAction="#onSettings" prefWidth="127.00009999999747" text="Настройки" />
+            <Button fx:id="btHelp" mnemonicParsing="false" onAction="#onHelp" prefWidth="127.00009999999747" text="Справка" />
           </children>
         </VBox>
       </content>

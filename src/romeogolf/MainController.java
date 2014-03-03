@@ -91,6 +91,7 @@ public class MainController implements Initializable{
 	@FXML private Button btTest;
 	@FXML private Button btShot;
 	@FXML private Button btSettings;
+	@FXML private Button btHelp;
 	// переключатели режима
 	@FXML private RadioButton rbMode0;
 	@FXML private RadioButton rbMode1;
@@ -356,6 +357,10 @@ public class MainController implements Initializable{
 	    stage2.initModality(Modality.APPLICATION_MODAL);
 	    stage2.initStyle(StageStyle.UTILITY);
 	    stage2.show();
+    }
+
+    @FXML protected void onHelp(ActionEvent e) throws IOException {
+    	
     }
 
     // обработка переключения режима
@@ -737,6 +742,10 @@ public class MainController implements Initializable{
 		Image iSettings = new Image(this.getClass().getResourceAsStream(
 												"/res/img/configuration.png"));
 		this.btSettings.setGraphic(new ImageView(iSettings));
+
+		Image iHelp = new Image(this.getClass().getResourceAsStream(
+												"/res/img/help.png"));
+		this.btHelp.setGraphic(new ImageView(iHelp));
 	}
 
 	// массив меток для вспомогательных цифр и массив кодов цвета для них
