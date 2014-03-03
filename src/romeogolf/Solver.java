@@ -16,9 +16,9 @@ public class Solver {
     // проверка допустимости подмассива по результатам предыдущих попыток
     boolean isSuitable(Integer[] a, int length) {
     	int BullCow = 0;	// сумма быков и коров попытки
-    	int Intersection = 0;	// мощность пересечения цифр старой попытки
-				//      и цифр подмассива очередной попытки
     	for (int i = 0; i <= (shots_data.size() - 1); i++) {
+    		int Intersection = 0;	// мощность пересечения цифр старой попытки
+				//      и цифр подмассива очередной попытки
     		BullCow = shots_data.get(i).getBulls() 
     											+ shots_data.get(i).getCows();
     		for (int j = 0; j <= 3; j++) {	// подсчет мощности пересечения
@@ -28,7 +28,6 @@ public class Solver {
     		}
     		// если пересечение больше числа угаданных - есть лишнее в отгадке
     		if (Intersection > BullCow) {return false;}
-    		Intersection = 0;
     	}
     	return true;
     }
