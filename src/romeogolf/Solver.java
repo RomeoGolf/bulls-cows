@@ -6,15 +6,24 @@ import java.util.Set;
 
 public class Solver {
 	// массив данных попыток
-	ArrayList<ShotData> shots_data = new ArrayList<ShotData>();
+	private ArrayList<ShotData> shots_data = new ArrayList<ShotData>();
+	public void addShotData(ShotData sd){
+		this.shots_data.add(sd);
+	}
+	public void clearShotsData(){
+		this.shots_data.clear();
+	}
+	public Integer getNumberOfShots(){
+		return this.shots_data.size();
+	}
 	// набор цифр для отгадки
-    ArrayList<Integer> digitsForAnswer = new ArrayList<Integer>();
-    Integer[] nextShot;					// массив очередной попытки
+	private ArrayList<Integer> digitsForAnswer = new ArrayList<Integer>();
+	private Integer[] nextShot;					// массив очередной попытки
     // индекс цифры попытки в наборе цифр
-    Integer[] shotDigitInDigitsIndex = new Integer[4];
+	private Integer[] shotDigitInDigitsIndex = new Integer[4];
 
     // проверка допустимости подмассива по результатам предыдущих попыток
-    boolean isSuitable(Integer[] a, int length){
+	private boolean isSuitable(Integer[] a, int length){
     	int BullCow = 0;	// сумма быков и коров попытки
     	for (int i = 0; i <= (shots_data.size() - 1); i++){
     		int Intersection = 0;	// мощность пересечения цифр старой попытки
@@ -37,11 +46,11 @@ public class Solver {
     }
 
     // Цифры и индексы текущей попытки для проверки на соответствие быкам
-    ArrayList<Integer> shotDigits = new ArrayList<Integer>();
-    ArrayList<Integer> indices = new ArrayList<Integer>();
+    private ArrayList<Integer> shotDigits = new ArrayList<Integer>();
+    private ArrayList<Integer> indices = new ArrayList<Integer>();
 
     // проверка на допустимость подмассива быков
-    boolean isSuitableBulls(int Max){
+    private boolean isSuitableBulls(int Max){
     	for (int i = 0; i <= (shots_data.size() - 1); i++){
     		int coincidence = 0;
     		for(int j = 0; j <= Max; j++){
@@ -58,7 +67,7 @@ public class Solver {
     }
 
     // Проверка пересечения индексов с коррекцией
-    boolean isIndexValid(int max){
+    private boolean isIndexValid(int max){
     	Set<Integer> Ind = new HashSet<Integer>();
     	for(int i = 0; i < max; i++) {
     		Ind.add(indices.get(i));
@@ -75,7 +84,7 @@ public class Solver {
     }
 
     // попытка расстановки быков
-    boolean trySetBulls(){
+    private boolean trySetBulls(){
     	int i = 0;
     	indices.set(i, -1);
     	while(i < 4){

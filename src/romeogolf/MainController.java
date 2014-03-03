@@ -874,18 +874,18 @@ public class MainController implements Initializable{
     		ShotData shot_data = curator.checkQuad(digits, 2);
     		bulls = shot_data.getBulls();
     		cows = shot_data.getCows();
-    		solver.shots_data.add(shot_data);
-    		showNextShot(solver.shots_data.size(), false, 0);	// отображение
+    		solver.addShotData(shot_data);
+    		showNextShot(solver.getNumberOfShots(), false, 0);	// отображение
     	}
     	while(bulls < 4) {
     		solver.toFindBulls(digits);
     		ShotData shot_data = curator.checkQuad(digits, 2);
     		bulls = shot_data.getBulls();
     		cows = shot_data.getCows();
-    		solver.shots_data.add(shot_data);
-    		showNextShot(solver.shots_data.size(), false, 0);	// отображение
+    		solver.addShotData(shot_data);
+    		showNextShot(solver.getNumberOfShots(), false, 0);	// отображение
     	}
-    	solver.shots_data.clear();
+    	solver.clearShotsData();
     	bulls = 0;
     	cows = 0;
     }
@@ -942,12 +942,12 @@ public class MainController implements Initializable{
     	ShotData shot_data2 = curator.checkQuad(digits, QuadNum);
     	bulls = shot_data2.getBulls();
     	cows = shot_data2.getCows();
-    	solver.shots_data.add(shot_data2);
+    	solver.addShotData(shot_data2);
 
     	if(QuadNum == 2){
-    		showNextShot(solver.shots_data.size(), false, 0);	// отображение
+    		showNextShot(solver.getNumberOfShots(), false, 0);	// отображение
     	} else {
-    		String s2 = new String(Integer.toString(solver.shots_data.size()));
+    		String s2 = new String(Integer.toString(solver.getNumberOfShots()));
     		s2 = s2 + ": -   " + Integer.toString(bulls) + " Б, " +
 		    Integer.toString(cows) + " К";
     		showStepInfo(s2, false, 0);
@@ -1131,20 +1131,20 @@ public class MainController implements Initializable{
         		ShotData shot_data = curator.checkQuad(digits, 2);
         		bulls = shot_data.getBulls();
         		cows = shot_data.getCows();
-        		solver.shots_data.add(shot_data);
-        		showNextShot(solver.shots_data.size(), false, 0); // отображение
+        		solver.addShotData(shot_data);
+        		showNextShot(solver.getNumberOfShots(), false, 0); // отображение
         	}
         	while(bulls < 4) {
         		solver.toFindBulls(digits);
         		ShotData shot_data = curator.checkQuad(digits, 2);
         		bulls = shot_data.getBulls();
         		cows = shot_data.getCows();
-        		solver.shots_data.add(shot_data);
-        		showNextShot(solver.shots_data.size(), false, 0); // отображение
+        		solver.addShotData(shot_data);
+        		showNextShot(solver.getNumberOfShots(), false, 0); // отображение
         	}
 
-        	ShotNum.add(solver.shots_data.size());
-        	solver.shots_data.clear();
+        	ShotNum.add(solver.getNumberOfShots());
+        	solver.clearShotsData();
         	bulls = 0;
         	cows = 0;
     	}
@@ -1269,20 +1269,20 @@ public class MainController implements Initializable{
 				ShotData shot_data = curator.checkQuad(digits, 2);
 				bulls = shot_data.getBulls();
 				cows = shot_data.getCows();
-				solver.shots_data.add(shot_data);
-				showNextShot(solver.shots_data.size(), false, 0); // отображение
+				solver.addShotData(shot_data);
+				showNextShot(solver.getNumberOfShots(), false, 0); // отображение
 			}
 			while(bulls < 4) {
 				solver.toFindBulls(digits);
 				ShotData shot_data = curator.checkQuad(digits, 2);
 				bulls = shot_data.getBulls();
 				cows = shot_data.getCows();
-				solver.shots_data.add(shot_data);
-				showNextShot(solver.shots_data.size(), false, 0); // отображение
+				solver.addShotData(shot_data);
+				showNextShot(solver.getNumberOfShots(), false, 0); // отображение
 			}
 
 			// заполнение коллекций для статистического учета
-			int size = solver.shots_data.size();
+			int size = solver.getNumberOfShots();
 			alShotNum.add(size);
 			if(hmShotNum.containsKey((Integer)size)){
 				hmShotNum.put(size, hmShotNum.get(size) + 1);
@@ -1290,7 +1290,7 @@ public class MainController implements Initializable{
 				hmShotNum.put(size, 1);
 			}
 			// подчистка для следующего решения
-			solver.shots_data.clear();
+			solver.clearShotsData();
 			bulls = 0;
 			cows = 0;
 

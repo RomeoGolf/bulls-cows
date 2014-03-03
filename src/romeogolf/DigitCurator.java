@@ -10,7 +10,7 @@ public class DigitCurator {
     // "загаданные" цифры для второго игрока
     private Integer[] quad2 = new Integer[4];
     // Генератор ПСП, инициализируемый временем
-    Random rg = new Random(System.currentTimeMillis());
+    private Random rg = new Random(System.currentTimeMillis());
     // для перемешанного массива цифр
     private Integer[] rndAllDigits = new Integer[10];
     public Integer[] getDecade(){
