@@ -23,7 +23,9 @@ public class HelpController implements Initializable{
 	}
 
 	@FXML protected void onTest(ActionEvent e){
-		we.load("/res/html/HTML~/index.html");
+		String s = this.getClass().getResource(
+								"/res/html/Site/index.html").toExternalForm();
+		we.load(s);
 	}
 
 	// получение ссылки на окно, установка обработчика событий окна 
