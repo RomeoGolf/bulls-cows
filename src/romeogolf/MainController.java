@@ -210,6 +210,7 @@ public class MainController implements Initializable{
     // тестовая кнопка - тестовый обработчик
     @FXML protected void onTest(ActionEvent event) {
     	//this.FullTestForAlgotithm();
+    	this.reset(true);
     	if(!this.isTestRun){
     		this.atAlgorithmTest.start();
     		isTestRun = true;
