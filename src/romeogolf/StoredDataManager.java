@@ -294,9 +294,6 @@ class StoredDataManager {
     	return result;
     }
 
-    // тестовая строка
-    public String test_str = "qwerty";
-
     // запись данных
     public void writeData(){
     	if(!propFile.exists()){
@@ -346,6 +343,5 @@ class StoredDataManager {
 				e.printStackTrace();
 			}
     	}
-    	test_str = props.getProperty("test");
     }
 }
