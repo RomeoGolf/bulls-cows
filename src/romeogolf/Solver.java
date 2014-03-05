@@ -113,7 +113,8 @@ public class Solver {
     	return true;
     }
 
-    public Integer[] toFindDigits(Integer[] Dgt){
+    // при ошибках в Б и К будет возвращать null, что может вызвать исключение
+    public Integer[] toFindDigits(){
 		nextShot = new Integer[4];		// формирование очередной попытки
 		int ShotDigitIndex = 0;			// индекс массива цифр очередной попытки
 		int DigitsForAnswerIndex = 0;	// индекс в наборе цифр
@@ -135,7 +136,7 @@ public class Solver {
 					if (ShotDigitIndex < 0){
 						// есть ошибка в переданных ранее быках и коровах 
 						// Info("Error");
-						return Dgt;
+						return null;
 					}
 					// для первого элемента отгадки берем следующую цифру 
 					//   из набора
@@ -158,7 +159,7 @@ public class Solver {
 				if (ShotDigitIndex < 0){
 					// есть ошибка в ранее переданных быках и коровах 
 					// Info("Error");
-					return Dgt;
+					return null;
 				}
 				// и подставить другую цифру на спорное место
 				DigitsForAnswerIndex = 
@@ -179,7 +180,9 @@ public class Solver {
 			indices.set(i, -1);
 		}
 
+		Integer[] Dgt;
 		if(trySetBulls()){
+			Dgt = new Integer[4];
 			for(int n = 0; n < 4; n++){
 				Dgt[indices.get(n)] = shotDigits.get(n);
 			}

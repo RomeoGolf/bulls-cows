@@ -891,7 +891,7 @@ public class MainController implements Initializable{
     	solver.Init(curator.getDecade());
 
     	while(bulls + cows < 4) {		// цикл до отгадки всех цифр
-    		digits = solver.toFindDigits(digits);
+    		digits = solver.toFindDigits();
     		Integer[] TmpBufI = new Integer[4];
     		for(int i = 0; i < 4; i++){
     			TmpBufI[i] = digits[i];
@@ -959,7 +959,7 @@ public class MainController implements Initializable{
     private Boolean tryPlayer2(int QuadNum){
     	Boolean result = false;
 
-    	digits = solver.toFindDigits(digits);
+    	digits = solver.toFindDigits();
     	Integer[] TmpBufI = new Integer[4];
     	for(int i = 0; i < 4; i++){
     		TmpBufI[i] = digits[i];
@@ -1193,7 +1193,7 @@ public class MainController implements Initializable{
 
 			// решение
 			while(bulls + cows < 4) {		// цикл до отгадки всех цифр
-				digits = solver.toFindDigits(digits);
+				digits = solver.toFindDigits();
 				Integer[] TmpBufI = new Integer[4];
 				for(int i = 0; i < 4; i++){
 					TmpBufI[i] = digits[i];
