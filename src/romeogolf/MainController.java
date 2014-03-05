@@ -32,7 +32,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ContentDisplay;
@@ -65,8 +64,6 @@ public class MainController implements Initializable{
 	@FXML private Label charsell_2_2;
 	@FXML private Label charsell_2_3;
 	@FXML private Label charsell_2_4;
-	// поле отображения загаданной последовательности
-	@FXML private TextField indicator;
 	// кнопки для изменения цифр
 	@FXML private Button btUp_1;
 	@FXML private Button btDown_1;
@@ -256,7 +253,7 @@ public class MainController implements Initializable{
 			shotMode3();
 			break;
 		default :	// режим "ХЗ"
-			indicator.setText("режим ХЗ");
+
 		}
     }
 
@@ -500,7 +497,6 @@ public class MainController implements Initializable{
     private StoredDataManager sdm = new StoredDataManager();
     protected Stage stage;
     private void storePrefs(){
-    	sdm.test_str = indicator.getText();
     	sdm.setTop(stage.getY());
     	sdm.setLeft(stage.getX());
     	sdm.setHeight(stage.getHeight());
@@ -603,8 +599,6 @@ public class MainController implements Initializable{
     // собственно инициализация
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		this.indicator.setText(sdm.test_str);
-
 		// загрузка изображений в элементы управления
 		getImages();
 		// добавление обработчика изменения размера панели на ScrollPane
