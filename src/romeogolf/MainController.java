@@ -375,6 +375,8 @@ public class MainController implements Initializable{
     		controllerHelp.setStage_Listener(stageHelp);
 
     		Scene sceneHelp= new Scene(rootHelp);
+    		stageHelp.setHeight(800);
+    		stageHelp.setWidth(800);
     		stageHelp.setTitle("Справка");
     		stageHelp.setScene(sceneHelp);
     		stageHelp.initOwner(this.stage);
