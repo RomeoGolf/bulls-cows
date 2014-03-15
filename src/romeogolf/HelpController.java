@@ -24,7 +24,7 @@ public class HelpController implements Initializable{
 
 	@FXML protected void onTest(ActionEvent e){
 		String s = this.getClass().getResource(
-								"/res/html/Site/index.html").toExternalForm();
+								"/res/help/index.html").toExternalForm();
 		we.load(s);
 	}
 
