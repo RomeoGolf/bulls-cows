@@ -340,7 +340,7 @@ public class MainController implements Initializable{
 		try {
 			rootSettings = (Parent) loaderSettings.load();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
+			// TODO Не знаю, что тут делать. FXML-файл в составе JAR, его не может не быть.
 			e1.printStackTrace();
 		}
 		SettingsController controllerSettings = 
@@ -367,10 +367,10 @@ public class MainController implements Initializable{
     		try {
     			rootHelp = (Parent)loaderHelp.load();
     		} catch (IOException e1) {
-    			// TODO Auto-generated catch block
+    			// TODO Не знаю, что тут делать. FXML-файл в составе JAR, его не может не быть.
     			e1.printStackTrace();
     		}
-
+ 
     		Scene sceneHelp= new Scene(rootHelp);
     		stageHelp.setHeight(800);
     		stageHelp.setWidth(910);

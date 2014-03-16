@@ -219,6 +219,9 @@ class StoredDataManager {
     		try{
     			value = Integer.decode(s);
     		} catch(NumberFormatException e){
+    			// если никто руками не лез в файл настроек -
+    			//   исключения здесь не будет. Но...
+    			value = 0;
     			e.printStackTrace();
     		}
     	}
@@ -232,6 +235,7 @@ class StoredDataManager {
     		try{
     			value = Double.valueOf(s);
     		} catch(NumberFormatException e){
+    			value = 0.0;
     			e.printStackTrace();
     		}
     	}
@@ -245,6 +249,7 @@ class StoredDataManager {
     		try{
     			value = Boolean.valueOf(s);
     		} catch(NumberFormatException e){
+    			value = false;
     			e.printStackTrace();
     		}
     	}
@@ -259,6 +264,7 @@ class StoredDataManager {
     		try{
     			value = Double.valueOf(s);
     		} catch(NumberFormatException e){
+    			value = 0.0;
     			e.printStackTrace();
     		}
     	}
@@ -272,6 +278,7 @@ class StoredDataManager {
     		try{
     			value = Double.valueOf(s);
     		} catch(NumberFormatException e){
+    			value = 0.0;
     			e.printStackTrace();
     		}
     	}
@@ -285,6 +292,7 @@ class StoredDataManager {
     		try{
     			value = Double.valueOf(s);
     		} catch(NumberFormatException e){
+    			value = 0.0;
     			e.printStackTrace();
     		}
     	}
@@ -305,9 +313,10 @@ class StoredDataManager {
     	}
     	if (propFile.canWrite()) {
     		try {
-    			//props.setProperty("test", test_str);
 				props.store(new FileOutputStream(propFile), "");
 			} catch (IOException e) {
+				// Нечего тут делать. Нет возможности сохранить - 
+				//   не будем сохранять.
 				e.printStackTrace();
 			}
     	}
@@ -320,6 +329,7 @@ class StoredDataManager {
 			try {
 				url = new URL(src.getLocation(), PropFileName);
 			} catch (MalformedURLException e) {
+				// С таким способом получения URL ошибка не должна возникать.
 				e.printStackTrace();
 			}
 			// URL файла
@@ -330,6 +340,7 @@ class StoredDataManager {
 				// окончательное получение файла настроек
 				propFile = new File(decodedPath);
 			} catch (UnsupportedEncodingException e) {
+				// Не вижу причин возникновения ошибки тут.
 				e.printStackTrace();
 			}
     	}
@@ -340,6 +351,8 @@ class StoredDataManager {
 				props.load(new FileInputStream(propFile));
 				loaded = true;
 			} catch (IOException e) {
+				// Тут ничего не надо делать. Нет файла настроек - и ладно, 
+				//   будут значения по умолчанию.
 				e.printStackTrace();
 			}
     	}
