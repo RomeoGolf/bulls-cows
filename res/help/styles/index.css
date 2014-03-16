@@ -1,0 +1,61 @@
+  body {background-color: #CCFF99;}
+
+  .header, .sidebar, .content, .footer { 
+    padding: 10px; /* Поля */
+    border: solid 1px #000; /* Параметры рамки */
+    border-radius: 5px;
+    background: #CCFF99; /* Цвет фона */
+  }
+  .header { /* Верхняя часть с заголовком */
+    font-size: 24px; /* Размер шрифта */
+  }
+  .layout {
+    margin: 15px 0; /* Отступы сверху и снизу */ 
+    overflow: hidden; /* Отменяем действие float */
+    min-width: 850px; /* Минимальная ширина */
+    max-width: 1200px; /* Максимальная ширина */
+  }
+  .sidebar { /* Навигация по сайту */
+    width: 200px; /* Ширина меню */
+    float: left; /* Состыковка с другим слоем по горизонтали */
+  }
+  .sidebar ul {
+    list-style: none; /* Убираем маркеры */
+    padding: 0; /* Убираем отступы */
+  }
+  .content { /* Основное содержание страницы */
+    margin-left: 235px; /* Отступ слева */
+    min-width: 600px; /* Минимальная ширина */
+  }
+
+  .sub li {
+    padding-left: 20px; /* отступы */
+  }
+
+  /*.link1level {display:none}
+  .button {
+    cursor:pointer;
+    border: solid 1px black;
+    padding-left: 0.2em;
+    padding-right: 0.3em;
+    font-family: monospace;
+  }
+
+  .link1level:checked + .button:before {content:"-"}
+  .link1level:not(:checked) + .button:before {content:"+"}
+
+  .link1level:checked + .button + a + ul {display:block}
+  .link1level:not(:checked) + .button + a + ul {display:none}*/
+
+  #a1, #a2, #a3, #a4, #a5, #a6 {
+    min-width: 600;
+    overflow: auto;
+  }
+
+  #a1 {height: 620px;}
+  #a2 {height: 970px;}
+  #a3 {height: 620px;}
+  #a4 {height: 920px;}
+  #a5 {height: 420px;}
+  #a6 {height: 420px;}
+
