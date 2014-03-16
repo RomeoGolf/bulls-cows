@@ -1,4 +1,4 @@
-package romeogolf;
+package romeogolf.bc;
 
 import java.io.IOException;
 import java.net.URL;

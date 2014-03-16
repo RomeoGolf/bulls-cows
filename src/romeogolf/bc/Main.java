@@ -1,4 +1,4 @@
-package romeogolf;
+package romeogolf.bc;
 
 import javafx.application.Application;
 import javafx.scene.Parent;

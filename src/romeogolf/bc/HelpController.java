@@ -1,4 +1,4 @@
-package romeogolf;
+package romeogolf.bc;
 
 import java.net.URL;
 import java.util.ResourceBundle;

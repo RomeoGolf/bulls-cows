@@ -1,4 +1,4 @@
-package romeogolf;
+package romeogolf.bc;
 
 public class ShotData {
 	private Integer bulls;

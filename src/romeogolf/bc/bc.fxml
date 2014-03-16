@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="CENTER" maxHeight="-1.0" maxWidth="700.0" minHeight="-1.0" minWidth="700.0" prefHeight="800.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="romeogolf.MainController">
+<GridPane alignment="CENTER" maxHeight="-1.0" maxWidth="700.0" minHeight="-1.0" minWidth="700.0" prefHeight="800.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="romeogolf.bc.MainController">
   <children>
     <ScrollPane id="ScrollPane" fitToHeight="false" fitToWidth="true" pannable="true" prefHeight="675.0" prefViewportHeight="676.0" prefViewportWidth="201.0" prefWidth="200.0" styleClass="scroll_pane" GridPane.columnIndex="0" GridPane.columnSpan="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="0" GridPane.rowSpan="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
       <content>

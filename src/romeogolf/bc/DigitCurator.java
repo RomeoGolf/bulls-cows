@@ -1,4 +1,4 @@
-package romeogolf;
+package romeogolf.bc;
 
 import java.util.HashSet;
 import java.util.Random;
