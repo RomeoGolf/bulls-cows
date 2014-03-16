@@ -12,15 +12,4 @@
   <center>
     <WebView fx:id="wvHelp" prefHeight="200.0" prefWidth="200.0" />
   </center>
-  <top>
-    <HBox alignment="CENTER_LEFT" fillHeight="true" prefHeight="39.0" prefWidth="446.0" spacing="10.0" styleClass="common_panel">
-      <children>
-        <Button fx:id="btOK" mnemonicParsing="false" onAction="#onOk" text="OK" />
-        <Button fx:id="btTest" mnemonicParsing="false" onAction="#onTest" text="Test" />
-      </children>
-      <stylesheets>
-        <URL value="@bc.css" />
-      </stylesheets>
-    </HBox>
-  </top>
 </BorderPane>

@@ -370,9 +370,6 @@ public class MainController implements Initializable{
     			// TODO Auto-generated catch block
     			e1.printStackTrace();
     		}
-    		HelpController controllerHelp = 
-									(HelpController)loaderHelp.getController();
-    		controllerHelp.setStage_Listener(stageHelp);
 
     		Scene sceneHelp= new Scene(rootHelp);
     		stageHelp.setHeight(800);
