@@ -1,28 +1,26 @@
 package romeogolf.bc;
 
-public class ShotData {
-    private Integer bulls;
-    private Integer cows;
-    private Integer[] qwad = new Integer[4];
+class ShotData {
+    private final Integer bulls;
+    private final Integer cows;
+    private final Integer[] qwad = new Integer[4];
 
-    public Integer getBulls(){
+    Integer getBulls(){
         return bulls;
     }
 
-    public Integer getCows(){
+    Integer getCows(){
         return cows;
     }
 
-    public Integer[] getQwad(){
+    Integer[] getQwad(){
         return qwad;
     }
 
-    public ShotData(Integer bulls, Integer cows, Integer[] qwad) {
+    ShotData(Integer bulls, Integer cows, Integer[] qwad) {
         this.bulls = bulls;
         this.cows = cows;
-        for(int i = 0; i < 4; i++){
-            this.qwad[i] = qwad[i];
-        }
+        System.arraycopy(qwad, 0, this.qwad, 0, 4);
     }
 
 }

@@ -1,19 +1,20 @@
 package romeogolf.bc;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-public class DigitCurator {
+class DigitCurator {
     // "загаданные" цифры для первого игрока
     private Integer[] quad1 = new Integer[4];
     // "загаданные" цифры для второго игрока
     private Integer[] quad2 = new Integer[4];
     // Генератор ПСП, инициализируемый временем
-    private Random randomGenerator = new Random(System.currentTimeMillis());
+    private final Random randomGenerator = new Random(System.currentTimeMillis());
     // для перемешанного массива цифр
     private Integer[] rndAllDigits = new Integer[10];
-    public Integer[] getDecade(){
+    Integer[] getDecade(){
         Integer[] Result = rndAllDigits.clone();
         int i, n, buf;
         i = 9;
@@ -28,11 +29,11 @@ public class DigitCurator {
         return Result;
     }
 
-    public Boolean getRandomBool(){
+    Boolean getRandomBool(){
         return randomGenerator.nextBoolean();
     }
 
-    public Integer[] getQuad(int num){
+    Integer[] getQuad(int num){
         if (num == 1){
             return quad1;
         }else{
@@ -40,25 +41,19 @@ public class DigitCurator {
         }
     }
 
-    public void setQuad(Integer[] Quad, int num){
+    void setQuad(Integer[] Quad, int num){
         if (num == 1){
-            for(int i = 0; i < 4; i++){
-                this.quad1[i] = Quad[i];
-            }
+            System.arraycopy(Quad, 0, this.quad1, 0, 4);
         }else{
-            for(int i = 0; i < 4; i++){
-                this.quad2[i] = Quad[i];
-            }
+            System.arraycopy(Quad, 0, this.quad2, 0, 4);
         }
     }
 
-    public void generateQuad(int num){
+    void generateQuad(int num){
         this.getDecade();
         Integer[] Result = new Integer[4];
         int ind = randomGenerator.nextInt(6);
-        for(int i = 0; i < 4; i++){
-            Result[i] = this.rndAllDigits[ind + i];
-        }
+        System.arraycopy(this.rndAllDigits, ind, Result, 0, 4);
 
         if (num == 1){
             this.quad1 = Result.clone();
@@ -67,7 +62,7 @@ public class DigitCurator {
         }
     }
 
-    public void digitMixer() {      // перемешивание массива цифр
+    void digitMixer() {      // перемешивание массива цифр
         for(int j = randomGenerator.nextInt(10) + 3; j > 0; j--) {
             int i = 9;
             int n, buf;
@@ -79,9 +74,9 @@ public class DigitCurator {
                 i--;
             }
         }
-    };
+    }
 
-    public ShotData checkQuad(Integer[] quad, int num){
+    ShotData checkQuad(Integer[] quad, int num){
         Integer[] q;
         if (num == 1) {
             q = this.quad1.clone();
@@ -92,14 +87,11 @@ public class DigitCurator {
         int bulls = 0;
         int cows = 0;
         for(int i = 0; i < 4; i++) {
-            if (quad[i] == q[i]) {
+            if (quad[i].equals(q[i])) {
                 bulls++;
             }
         }
-        Set<Integer> s = new HashSet<Integer>();
-        for(int i = 0; i < 4; i++) {
-            s.add(q[i]);
-        }
+        Set<Integer> s = new HashSet<>(Arrays.asList(q).subList(0, 4));
         for(int i = 0; i < 4; i++) {
             if(s.contains(quad[i])){
                 cows++;
@@ -109,7 +101,7 @@ public class DigitCurator {
         return new ShotData(bulls, cows, quad);
     }
 
-    public void init(){
+    private void init(){
         this.digitMixer();
         this.generateQuad(1);
         this.digitMixer();
@@ -117,7 +109,7 @@ public class DigitCurator {
         this.digitMixer();
     }
 
-    public DigitCurator() {
+    DigitCurator() {
         for(int i = 0; i <= 9; i++){
             rndAllDigits[i] = i;
         }

@@ -25,12 +25,12 @@ public class SettingsController implements Initializable{
 
     private Stage stage;
     private StoredDataManager sdm;
-    private ArrayList<RadioButton> aFirstStep = new ArrayList<RadioButton>();
+    private final ArrayList<RadioButton> aFirstStep = new ArrayList<>();
 
     @FXML protected void onOK(ActionEvent e){
         this.sdm.setDigitsReset(this.cbDigitsReset.isSelected());
         this.sdm.setFirstStep(this.aFirstStep.indexOf(
-                            (RadioButton)this.tgFirstStep.getSelectedToggle()));
+                this.tgFirstStep.getSelectedToggle()));
         stage.close();
     }
 
@@ -39,11 +39,11 @@ public class SettingsController implements Initializable{
     }
 
     // получение ссылки на окно, установка обработчика событий окна 
-    public void setStage_Listener(final Stage stage){
+    void setStage_Listener(final Stage stage){
         this.stage = stage;
     }
 
-    public void setSDM(final StoredDataManager sdm){
+    void setSDM(final StoredDataManager sdm){
         this.sdm = sdm;
         Boolean checked = sdm.getDigitsReset();
         if(checked != null){
@@ -53,7 +53,7 @@ public class SettingsController implements Initializable{
         if((firstStepIndex != null) && (firstStepIndex >= 0) 
                                                     && (firstStepIndex <= 3)){
             int ind = aFirstStep.indexOf(
-                            (RadioButton)this.tgFirstStep.getSelectedToggle());
+                    this.tgFirstStep.getSelectedToggle());
             if(ind != firstStepIndex){
                 tgFirstStep.selectToggle(this.aFirstStep.get(firstStepIndex));
             }

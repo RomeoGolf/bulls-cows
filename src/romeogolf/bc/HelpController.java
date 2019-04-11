@@ -11,11 +11,10 @@ import javafx.scene.web.WebView;
 public class HelpController implements Initializable{
 
     @FXML private WebView wvHelp;
-    private WebEngine we;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        we = wvHelp.getEngine();
+        WebEngine we = wvHelp.getEngine();
         String s = this.getClass().getResource(
                                 "/res/help/index.html").toExternalForm();
         we.load(s);

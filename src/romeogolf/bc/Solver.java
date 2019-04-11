@@ -1,38 +1,38 @@
 package romeogolf.bc;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Solver {
+class Solver {
     // массив данных попыток
-    private ArrayList<ShotData> shots_data = new ArrayList<ShotData>();
-    public void addShotData(ShotData sd){
+    private final ArrayList<ShotData> shots_data = new ArrayList<>();
+    void addShotData(ShotData sd){
         this.shots_data.add(sd);
     }
-    public void clearShotsData(){
+    void clearShotsData(){
         this.shots_data.clear();
     }
-    public Integer getNumberOfShots(){
+    Integer getNumberOfShots(){
         return this.shots_data.size();
     }
     // набор цифр для отгадки
-    private ArrayList<Integer> digitsForAnswer = new ArrayList<Integer>();
+    private final ArrayList<Integer> digitsForAnswer = new ArrayList<>();
     private Integer[] nextShot;                 // массив очередной попытки
     // индекс цифры попытки в наборе цифр
-    private Integer[] shotDigitInDigitsIndex = new Integer[4];
+    private final Integer[] shotDigitInDigitsIndex = new Integer[4];
 
     // проверка допустимости подмассива по результатам предыдущих попыток
     private boolean isSuitable(Integer[] a, int length){
-        int BullCow = 0;    // сумма быков и коров попытки
+        int BullCow;    // сумма быков и коров попытки
         for (int i = 0; i <= (shots_data.size() - 1); i++){
             int Intersection = 0;   // мощность пересечения цифр старой попытки
                 //      и цифр подмассива очередной попытки
-            BullCow = shots_data.get(i).getBulls()
-                                                + shots_data.get(i).getCows();
+            BullCow = shots_data.get(i).getBulls() + shots_data.get(i).getCows();
             for (int j = 0; j <= 3; j++){   // подсчет мощности пересечения
                 for (int k = 0; k <= length; k++){
-                    if (a[k] == shots_data.get(i).getQwad()[j]){
+                    if (a[k].equals(shots_data.get(i).getQwad()[j])){
                         Intersection++;
                     }
                 }
@@ -46,16 +46,15 @@ public class Solver {
     }
 
     // Цифры и индексы текущей попытки для проверки на соответствие быкам
-    private ArrayList<Integer> shotDigits = new ArrayList<Integer>();
-    private ArrayList<Integer> indices = new ArrayList<Integer>();
+    private final ArrayList<Integer> shotDigits = new ArrayList<>();
+    private final ArrayList<Integer> indices = new ArrayList<>();
 
     // проверка на допустимость подмассива быков
     private boolean isSuitableBulls(int Max){
         for (int i = 0; i <= (shots_data.size() - 1); i++){
             int coincidence = 0;
             for(int j = 0; j <= Max; j++){
-                if (shotDigits.get(j) ==
-                shots_data.get(i).getQwad()[indices.get(j)]){
+                if (shotDigits.get(j).equals(shots_data.get(i).getQwad()[indices.get(j)])){
                     coincidence++;
                 }
             }
@@ -68,14 +67,13 @@ public class Solver {
 
     // Проверка пересечения индексов с коррекцией
     private boolean isIndexValid(int max){
-        Set<Integer> Ind = new HashSet<Integer>();
+        Set<Integer> Ind = new HashSet<>();
         for(int i = 0; i < max; i++) {
             Ind.add(indices.get(i));
         }
         while(indices.get(max) < 4){
             if(Ind.contains(indices.get(max))){
                 indices.set(max, indices.get(max) + 1);
-                continue;
             } else {
                 return true;
             }
@@ -96,17 +94,12 @@ public class Solver {
                         break;
                     }
                     indices.set(i, -1);
-                    continue;
-                } else {
-                    continue;
                 }
             } else {
                 i--;
                 if(i < 0){
                     // error
                     return false;
-                } else {
-                    continue;
                 }
             }
         }
@@ -114,7 +107,7 @@ public class Solver {
     }
 
     // при ошибках в Б и К будет возвращать null, что может вызвать исключение
-    public Integer[] toFindDigits(){
+    Integer[] toFindDigits(){
         nextShot = new Integer[4];      // формирование очередной попытки
         int ShotDigitIndex = 0;         // индекс массива цифр очередной попытки
         int DigitsForAnswerIndex = 0;   // индекс в наборе цифр
@@ -194,7 +187,7 @@ public class Solver {
         return Dgt;
     }
 
-    public Integer[] toFindBulls(Integer[] Dgt){
+    void toFindBulls(Integer[] Dgt){
         for(int i = 0; i < 4; i++){
             shotDigits.set(i, nextShot[i]);
         }
@@ -211,10 +204,9 @@ public class Solver {
             // ShowStepInfo("bull error");
             Dgt = nextShot.clone();
         }
-        return Dgt;
     }
 
-    public void Init(Integer[] InitArray){
+    void Init(Integer[] InitArray){
         this.shots_data.clear();
         indices.clear();
         for(int i = 0; i < 4; i++){
@@ -224,8 +216,6 @@ public class Solver {
         shotDigits.addAll(indices);
 
         digitsForAnswer.clear();
-        for(int i = 0; i < 10; i++){
-            digitsForAnswer.add(InitArray[i]);
-        }
+        digitsForAnswer.addAll(Arrays.asList(InitArray).subList(0, 10));
     }
 }
