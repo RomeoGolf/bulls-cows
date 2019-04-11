@@ -21,7 +21,7 @@ public class Main extends Application {
 
 		    //Scene scene = new Scene(root, 400, 500);
 		    Scene scene = new Scene(root);
-		    stage.setTitle("Быки и коровы");
+		    stage.setTitle("Р‘С‹РєРё Рё РєРѕСЂРѕРІС‹");
 
 		    stage.getIcons().add(new Image(this.getClass().getResourceAsStream(
 					"/res/img/Roman32.png")));

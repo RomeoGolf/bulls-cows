@@ -5,13 +5,13 @@ import java.util.Random;
 import java.util.Set;
 
 public class DigitCurator {
-	// "çàãàäàííûå" öèôğû äëÿ ïåğâîãî èãğîêà
+	// "Ğ·Ğ°Ğ³Ğ°Ğ´Ğ°Ğ½Ğ½Ñ‹Ğµ" Ñ†Ğ¸Ñ„Ñ€Ñ‹ Ğ´Ğ»Ñ Ğ¿ĞµÑ€Ğ²Ğ¾Ğ³Ğ¾ Ğ¸Ğ³Ñ€Ğ¾ĞºĞ°
     private Integer[] quad1 = new Integer[4];
-    // "çàãàäàííûå" öèôğû äëÿ âòîğîãî èãğîêà
+    // "Ğ·Ğ°Ğ³Ğ°Ğ´Ğ°Ğ½Ğ½Ñ‹Ğµ" Ñ†Ğ¸Ñ„Ñ€Ñ‹ Ğ´Ğ»Ñ Ğ²Ñ‚Ğ¾Ñ€Ğ¾Ğ³Ğ¾ Ğ¸Ğ³Ñ€Ğ¾ĞºĞ°
     private Integer[] quad2 = new Integer[4];
-    // Ãåíåğàòîğ ÏÑÏ, èíèöèàëèçèğóåìûé âğåìåíåì
+    // Ğ“ĞµĞ½ĞµÑ€Ğ°Ñ‚Ğ¾Ñ€ ĞŸĞ¡ĞŸ, Ğ¸Ğ½Ğ¸Ñ†Ğ¸Ğ°Ğ»Ğ¸Ğ·Ğ¸Ñ€ÑƒĞµĞ¼Ñ‹Ğ¹ Ğ²Ñ€ĞµĞ¼ĞµĞ½ĞµĞ¼
     private Random randomGenerator = new Random(System.currentTimeMillis());
-    // äëÿ ïåğåìåøàííîãî ìàññèâà öèôğ
+    // Ğ´Ğ»Ñ Ğ¿ĞµÑ€ĞµĞ¼ĞµÑˆĞ°Ğ½Ğ½Ğ¾Ğ³Ğ¾ Ğ¼Ğ°ÑÑĞ¸Ğ²Ğ° Ñ†Ğ¸Ñ„Ñ€
     private Integer[] rndAllDigits = new Integer[10];
     public Integer[] getDecade(){
     	Integer[] Result = rndAllDigits.clone();
@@ -67,7 +67,7 @@ public class DigitCurator {
     	}
     }
 
-    public void digitMixer() {		// ïåğåìåøèâàíèå ìàññèâà öèôğ
+    public void digitMixer() {		// Ğ¿ĞµÑ€ĞµĞ¼ĞµÑˆĞ¸Ğ²Ğ°Ğ½Ğ¸Ğµ Ğ¼Ğ°ÑÑĞ¸Ğ²Ğ° Ñ†Ğ¸Ñ„Ñ€
     	for(int j = randomGenerator.nextInt(10) + 3; j > 0; j--) {
     		int i = 9;
     		int n, buf;

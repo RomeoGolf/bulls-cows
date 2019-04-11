@@ -54,17 +54,17 @@ import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 public class MainController implements Initializable{
-	// знакоместа пользовательских цифр
+	// Р·РЅР°РєРѕРјРµСЃС‚Р° РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёС… С†РёС„СЂ
 	@FXML private Label charsell_1_1;
 	@FXML private Label charsell_1_2;
 	@FXML private Label charsell_1_3;
 	@FXML private Label charsell_1_4;
-	// знакоместа цифр 2 игрока
+	// Р·РЅР°РєРѕРјРµСЃС‚Р° С†РёС„СЂ 2 РёРіСЂРѕРєР°
 	@FXML private Label charsell_2_1;
 	@FXML private Label charsell_2_2;
 	@FXML private Label charsell_2_3;
 	@FXML private Label charsell_2_4;
-	// кнопки для изменения цифр
+	// РєРЅРѕРїРєРё РґР»СЏ РёР·РјРµРЅРµРЅРёСЏ С†РёС„СЂ
 	@FXML private Button btUp_1;
 	@FXML private Button btDown_1;
 	@FXML private Button btUp_2;
@@ -73,15 +73,15 @@ public class MainController implements Initializable{
 	@FXML private Button btDown_3;
 	@FXML private Button btUp_4;
 	@FXML private Button btDown_4;
-	// поля для отображения ходов игроков 1 и 2
+	// РїРѕР»СЏ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ С…РѕРґРѕРІ РёРіСЂРѕРєРѕРІ 1 Рё 2
 	@FXML private VBox vbPlayer1;
 	@FXML private ScrollPane spPlayer1;
 	@FXML private VBox vbPlayer2;
 	@FXML private ScrollPane spPlayer2;
 	@FXML private VBox vbRight;
-	// переключение режима
+	// РїРµСЂРµРєР»СЋС‡РµРЅРёРµ СЂРµР¶РёРјР°
 	@FXML private ToggleGroup tgMode;
-	// кнопки управления
+	// РєРЅРѕРїРєРё СѓРїСЂР°РІР»РµРЅРёСЏ
 	@FXML private Button btSetQuad;
 	@FXML private Button btGenerateQuad;
 	@FXML private Button btReset;
@@ -89,23 +89,23 @@ public class MainController implements Initializable{
 	@FXML private Button btShot;
 	@FXML private Button btSettings;
 	@FXML private Button btHelp;
-	// переключатели режима
+	// РїРµСЂРµРєР»СЋС‡Р°С‚РµР»Рё СЂРµР¶РёРјР°
 	@FXML private RadioButton rbMode0;
 	@FXML private RadioButton rbMode1;
 	@FXML private RadioButton rbMode2;
 	@FXML private RadioButton rbMode3;
-	// нижняя панель
+	// РЅРёР¶РЅСЏСЏ РїР°РЅРµР»СЊ
 	@FXML private HBox hbBottom;
-	// Метки имен полей с результатами попыток
+	// РњРµС‚РєРё РёРјРµРЅ РїРѕР»РµР№ СЃ СЂРµР·СѓР»СЊС‚Р°С‚Р°РјРё РїРѕРїС‹С‚РѕРє
 	@FXML private Label lPlayer1;
 	@FXML private Label lPlayer2;
-	// панель для вывода информации всякого рода
+	// РїР°РЅРµР»СЊ РґР»СЏ РІС‹РІРѕРґР° РёРЅС„РѕСЂРјР°С†РёРё РІСЃСЏРєРѕРіРѕ СЂРѕРґР°
 	@FXML private Pane pInfo;
 
-	// количество попыток первого игрока (человека)
+	// РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРїС‹С‚РѕРє РїРµСЂРІРѕРіРѕ РёРіСЂРѕРєР° (С‡РµР»РѕРІРµРєР°)
 	private Integer player1ShotNum = 0;
 
-	// право первого хода
+	// РїСЂР°РІРѕ РїРµСЂРІРѕРіРѕ С…РѕРґР°
 	private Boolean firstStepPlayer1 = true;
 	private Boolean isFirstPlayer1(){
 		return firstStepPlayer1;
@@ -115,19 +115,19 @@ public class MainController implements Initializable{
 		Boolean result;
 		Integer firstStep = sdm.getFirstStep();
 		switch(firstStep){
-		case 1:	// первым - второй игрок
+		case 1:	// РїРµСЂРІС‹Рј - РІС‚РѕСЂРѕР№ РёРіСЂРѕРє
 			firstStepPlayer1 = false;
 			result = false;
 			break;
-		case 2:	// первый ход по очереди
+		case 2:	// РїРµСЂРІС‹Р№ С…РѕРґ РїРѕ РѕС‡РµСЂРµРґРё
 			firstStepPlayer1 = !firstStepPlayer1;
 			result = firstStepPlayer1;
 			break;
-		case 3:	// первый ход случайно
+		case 3:	// РїРµСЂРІС‹Р№ С…РѕРґ СЃР»СѓС‡Р°Р№РЅРѕ
 			firstStepPlayer1 = curator.getRandomBool();
 			result = firstStepPlayer1;
 			break;
-		default:	// первым - первый игрок (в т. ч. в непонятных ситуациях)
+		default:	// РїРµСЂРІС‹Рј - РїРµСЂРІС‹Р№ РёРіСЂРѕРє (РІ С‚. С‡. РІ РЅРµРїРѕРЅСЏС‚РЅС‹С… СЃРёС‚СѓР°С†РёСЏС…)
 			firstStepPlayer1 = true;
 			result = true;
 		}
@@ -145,45 +145,45 @@ public class MainController implements Initializable{
 			if(this.isFirstPlayer1()){
 				this.lPlayer1.setGraphic(new ImageView(iWhite));
 				this.lPlayer2.setGraphic(new ImageView(iBlack));
-				this.btShot.setText("Попытка");
+				this.btShot.setText("РџРѕРїС‹С‚РєР°");
 			} else {
 				this.lPlayer2.setGraphic(new ImageView(iWhite));
 				this.lPlayer1.setGraphic(new ImageView(iBlack));
-				this.btShot.setText("Старт");
+				this.btShot.setText("РЎС‚Р°СЂС‚");
 			}
 		} else {
 			this.lPlayer1.setGraphic(null);
 			this.lPlayer2.setGraphic(null);
-			this.btShot.setText("Попытка");
+			this.btShot.setText("РџРѕРїС‹С‚РєР°");
 		}
 	}
 
-	// первый ход игрока 2 при его праве первого хода
+	// РїРµСЂРІС‹Р№ С…РѕРґ РёРіСЂРѕРєР° 2 РїСЂРё РµРіРѕ РїСЂР°РІРµ РїРµСЂРІРѕРіРѕ С…РѕРґР°
 	private Boolean player2firstStep = true;
 
-	// режим игры
+	// СЂРµР¶РёРј РёРіСЂС‹
 	private Integer mode = 0;
 	protected void setMode(Integer mode){
 		this.mode = mode;
 		this.reset();
 		/*
-		0 :	// режим "человек угадывает"
-		1 :	// режим "человек и машина угадывают друг у друга"
-		2 :	// режим "человек и машина угадвают одно наперегонки"
-		3 :	// режим "машина угадывает (тестовый)"
+		0 :	// СЂРµР¶РёРј "С‡РµР»РѕРІРµРє СѓРіР°РґС‹РІР°РµС‚"
+		1 :	// СЂРµР¶РёРј "С‡РµР»РѕРІРµРє Рё РјР°С€РёРЅР° СѓРіР°РґС‹РІР°СЋС‚ РґСЂСѓРі Сѓ РґСЂСѓРіР°"
+		2 :	// СЂРµР¶РёРј "С‡РµР»РѕРІРµРє Рё РјР°С€РёРЅР° СѓРіР°РґРІР°СЋС‚ РѕРґРЅРѕ РЅР°РїРµСЂРµРіРѕРЅРєРё"
+		3 :	// СЂРµР¶РёРј "РјР°С€РёРЅР° СѓРіР°РґС‹РІР°РµС‚ (С‚РµСЃС‚РѕРІС‹Р№)"
 		 */
 		if (mode == 0){
 			curator.generateQuad(1);
 		} else {
 			generateQwads();
 		}
-		// если нет загадки для машины
+		// РµСЃР»Рё РЅРµС‚ Р·Р°РіР°РґРєРё РґР»СЏ РјР°С€РёРЅС‹
 		this.setDisableBt(false);
 		if ((mode == 0) || (mode == 2)){
 			this.setXToPlayer2();
 		}
-		// если играет человек с машиной - отобразить право хода
-		this.btShot.setText("Попытка");
+		// РµСЃР»Рё РёРіСЂР°РµС‚ С‡РµР»РѕРІРµРє СЃ РјР°С€РёРЅРѕР№ - РѕС‚РѕР±СЂР°Р·РёС‚СЊ РїСЂР°РІРѕ С…РѕРґР°
+		this.btShot.setText("РџРѕРїС‹С‚РєР°");
 		this.drawFirstStep((mode == 1) || (mode == 2));
 	}
 
@@ -191,20 +191,20 @@ public class MainController implements Initializable{
 		return this.mode;
 	}
 
-	// Цифры, вводимые пользователем
+	// Р¦РёС„СЂС‹, РІРІРѕРґРёРјС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј
     private Integer[] digitsForShow = new Integer[4];
-    // массив знакомест для пользовательских цифр
+    // РјР°СЃСЃРёРІ Р·РЅР°РєРѕРјРµСЃС‚ РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёС… С†РёС„СЂ
     private ArrayList<Label> aQuad1 = new ArrayList<Label>();
-    // массив знакомест для загаданных цифр
+    // РјР°СЃСЃРёРІ Р·РЅР°РєРѕРјРµСЃС‚ РґР»СЏ Р·Р°РіР°РґР°РЅРЅС‹С… С†РёС„СЂ
     private ArrayList<Label> aQuad2 = new ArrayList<Label>();
-    // массив радиокнопок - переключатель режима
+    // РјР°СЃСЃРёРІ СЂР°РґРёРѕРєРЅРѕРїРѕРє - РїРµСЂРµРєР»СЋС‡Р°С‚РµР»СЊ СЂРµР¶РёРјР°
     private ArrayList<RadioButton> aRbMode = new ArrayList<RadioButton>();
-    // карта соответствия кнопок цифрам
+    // РєР°СЂС‚Р° СЃРѕРѕС‚РІРµС‚СЃС‚РІРёСЏ РєРЅРѕРїРѕРє С†РёС„СЂР°Рј
     protected Map<Button, Integer> mapButtonDigit = new HashMap<Button, Integer>();
-    // множество кнопок увеличения
+    // РјРЅРѕР¶РµСЃС‚РІРѕ РєРЅРѕРїРѕРє СѓРІРµР»РёС‡РµРЅРёСЏ
     protected Set<Button> sUp = new HashSet<Button>();;
 
-    // тестовая кнопка - тестовый обработчик
+    // С‚РµСЃС‚РѕРІР°СЏ РєРЅРѕРїРєР° - С‚РµСЃС‚РѕРІС‹Р№ РѕР±СЂР°Р±РѕС‚С‡РёРє
     @FXML protected void onTest(ActionEvent event) {
     	//this.FullTestForAlgotithm();
     	this.reset(true);
@@ -214,20 +214,20 @@ public class MainController implements Initializable{
     	}
     };
 
-    // общий обработчик для всех кнопок Up & Down
+    // РѕР±С‰РёР№ РѕР±СЂР°Р±РѕС‚С‡РёРє РґР»СЏ РІСЃРµС… РєРЅРѕРїРѕРє Up & Down
     @FXML protected void onUpDown(ActionEvent e) {
-    		// получение номера цифры, чью кнопку нажали
+    		// РїРѕР»СѓС‡РµРЅРёРµ РЅРѕРјРµСЂР° С†РёС„СЂС‹, С‡СЊСЋ РєРЅРѕРїРєСѓ РЅР°Р¶Р°Р»Рё
     		int Num = mapButtonDigit.get(e.getSource());
-    		if (sUp.contains(e.getSource())){	// изменение цифры
+    		if (sUp.contains(e.getSource())){	// РёР·РјРµРЅРµРЅРёРµ С†РёС„СЂС‹
     			digitsForShow[Num]++;
     		} else {
     			digitsForShow[Num]--;
     		}
-    		// проверка выхода цифры за пределы
+    		// РїСЂРѕРІРµСЂРєР° РІС‹С…РѕРґР° С†РёС„СЂС‹ Р·Р° РїСЂРµРґРµР»С‹
     		if (digitsForShow[Num] < 0){
     			digitsForShow[Num] = 9;
     		}
-    			// и соответствующее изменение
+    			// Рё СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РµРµ РёР·РјРµРЅРµРЅРёРµ
     		if (digitsForShow[Num] > 9){
     			digitsForShow[Num] = 0;
     		}
@@ -235,29 +235,29 @@ public class MainController implements Initializable{
     		isEqualDigits();
     };
 
-    // Обработчик кнопки "попытка"
+    // РћР±СЂР°Р±РѕС‚С‡РёРє РєРЅРѕРїРєРё "РїРѕРїС‹С‚РєР°"
     @FXML protected void onShot(ActionEvent e) {
     	this.setDisableBt(true);
 		switch(mode){
-		case 0 :	// режим "человек угадывает"
+		case 0 :	// СЂРµР¶РёРј "С‡РµР»РѕРІРµРє СѓРіР°РґС‹РІР°РµС‚"
 			this.shotMode0();
 			break;
-		case 1 :	// режим "человек и машина угадывают друг у друга"
+		case 1 :	// СЂРµР¶РёРј "С‡РµР»РѕРІРµРє Рё РјР°С€РёРЅР° СѓРіР°РґС‹РІР°СЋС‚ РґСЂСѓРі Сѓ РґСЂСѓРіР°"
 			this.shotMode1();
 			break;
-		case 2 :	// режим "человек и машина угадвают одно наперегонки"
+		case 2 :	// СЂРµР¶РёРј "С‡РµР»РѕРІРµРє Рё РјР°С€РёРЅР° СѓРіР°РґРІР°СЋС‚ РѕРґРЅРѕ РЅР°РїРµСЂРµРіРѕРЅРєРё"
 			this.shotMode2();
 			break;
-		case 3 :	// режим "машина угадывает (тестовый)"
+		case 3 :	// СЂРµР¶РёРј "РјР°С€РёРЅР° СѓРіР°РґС‹РІР°РµС‚ (С‚РµСЃС‚РѕРІС‹Р№)"
 			this.reset();
 			shotMode3();
 			break;
-		default :	// режим "ХЗ"
+		default :	// СЂРµР¶РёРј "РҐР—"
 
 		}
     }
 
-    // обработчик кнопки установки четверки игроком 1 для игрока 2
+    // РѕР±СЂР°Р±РѕС‚С‡РёРє РєРЅРѕРїРєРё СѓСЃС‚Р°РЅРѕРІРєРё С‡РµС‚РІРµСЂРєРё РёРіСЂРѕРєРѕРј 1 РґР»СЏ РёРіСЂРѕРєР° 2
     @FXML protected void onSetQwad(ActionEvent e) {
     	this.reset();
     	if (!this.isEqualDigits()){
@@ -270,7 +270,7 @@ public class MainController implements Initializable{
     	this.btShot.setDisable(false);
     }
 
-    // обработчик кнопки генерации четверки  для обоих игроков
+    // РѕР±СЂР°Р±РѕС‚С‡РёРє РєРЅРѕРїРєРё РіРµРЅРµСЂР°С†РёРё С‡РµС‚РІРµСЂРєРё  РґР»СЏ РѕР±РѕРёС… РёРіСЂРѕРєРѕРІ
     @FXML protected void onGenerateQwad(ActionEvent e) {
     	this.reset();
     	generateQwads();
@@ -288,7 +288,7 @@ public class MainController implements Initializable{
     	this.btShot.setDisable(false);
     }
 
-    // сброс отображения предыдущей игры и подготовка к следующей
+    // СЃР±СЂРѕСЃ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїСЂРµРґС‹РґСѓС‰РµР№ РёРіСЂС‹ Рё РїРѕРґРіРѕС‚РѕРІРєР° Рє СЃР»РµРґСѓСЋС‰РµР№
     protected void reset(Boolean clearPInfo){
     	vbPlayer1.getChildren().removeAll(vbPlayer1.getChildren());
     	vbPlayer2.getChildren().removeAll(vbPlayer2.getChildren());
@@ -313,9 +313,9 @@ public class MainController implements Initializable{
     	reset(true);
     }
 
-    // установка доступности кнопок в зависимости от режима
+    // СѓСЃС‚Р°РЅРѕРІРєР° РґРѕСЃС‚СѓРїРЅРѕСЃС‚Рё РєРЅРѕРїРѕРє РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЂРµР¶РёРјР°
     private void setDisableBt(Boolean disable){
-    	// доступность кнопок "загадать" и "сгенерить"
+    	// РґРѕСЃС‚СѓРїРЅРѕСЃС‚СЊ РєРЅРѕРїРѕРє "Р·Р°РіР°РґР°С‚СЊ" Рё "СЃРіРµРЅРµСЂРёС‚СЊ"
     	this.btGenerateQuad.setDisable(disable);
     	if (!disable){
     		this.btSetQuad.setDisable((this.mode == 0) || (this.mode == 2));
@@ -324,14 +324,14 @@ public class MainController implements Initializable{
     	}
     }
 
-    // кнопка "сброс"
+    // РєРЅРѕРїРєР° "СЃР±СЂРѕСЃ"
     @FXML protected void onReset(ActionEvent e) {
     	this.atAlgorithmTest.stop();
     	this.isTestRun = false;
     	this.reset();
     }
 
-    // кнопка "Настройка"
+    // РєРЅРѕРїРєР° "РќР°СЃС‚СЂРѕР№РєР°"
     @FXML protected void onSettings(ActionEvent e) throws IOException {
     	Stage stageSettings = new Stage();
 		FXMLLoader loaderSettings = 
@@ -340,7 +340,7 @@ public class MainController implements Initializable{
 		try {
 			rootSettings = (Parent) loaderSettings.load();
 		} catch (IOException e1) {
-			// TODO Не знаю, что тут делать. FXML-файл в составе JAR, его не может не быть.
+			// TODO РќРµ Р·РЅР°СЋ, С‡С‚Рѕ С‚СѓС‚ РґРµР»Р°С‚СЊ. FXML-С„Р°Р№Р» РІ СЃРѕСЃС‚Р°РІРµ JAR, РµРіРѕ РЅРµ РјРѕР¶РµС‚ РЅРµ Р±С‹С‚СЊ.
 			e1.printStackTrace();
 		}
 		SettingsController controllerSettings = 
@@ -349,7 +349,7 @@ public class MainController implements Initializable{
 		controllerSettings.setSDM(sdm);
 
 	    Scene sceneSettings = new Scene(rootSettings);
-	    stageSettings.setTitle("Настройки");
+	    stageSettings.setTitle("РќР°СЃС‚СЂРѕР№РєРё");
 	    stageSettings.setScene(sceneSettings);
 	    stageSettings.initOwner(this.stage);
 	    stageSettings.initModality(Modality.APPLICATION_MODAL);
@@ -367,21 +367,21 @@ public class MainController implements Initializable{
     		try {
     			rootHelp = (Parent)loaderHelp.load();
     		} catch (IOException e1) {
-    			// TODO Не знаю, что тут делать. FXML-файл в составе JAR, его не может не быть.
+    			// TODO РќРµ Р·РЅР°СЋ, С‡С‚Рѕ С‚СѓС‚ РґРµР»Р°С‚СЊ. FXML-С„Р°Р№Р» РІ СЃРѕСЃС‚Р°РІРµ JAR, РµРіРѕ РЅРµ РјРѕР¶РµС‚ РЅРµ Р±С‹С‚СЊ.
     			e1.printStackTrace();
     		}
  
     		Scene sceneHelp= new Scene(rootHelp);
     		stageHelp.setHeight(800);
     		stageHelp.setWidth(910);
-    		stageHelp.setTitle("Справка");
+    		stageHelp.setTitle("РЎРїСЂР°РІРєР°");
     		stageHelp.setScene(sceneHelp);
     		stageHelp.initOwner(this.stage);
     	}
     	stageHelp.show();
     }
 
-    // обработка переключения режима
+    // РѕР±СЂР°Р±РѕС‚РєР° РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ СЂРµР¶РёРјР°
     protected void onModeToggle(){
 		if (tgMode.getSelectedToggle() != null) {
 			setMode(this.aRbMode.indexOf(
@@ -391,7 +391,7 @@ public class MainController implements Initializable{
 		}
     }
 
-    // проверка цифр на совпадение
+    // РїСЂРѕРІРµСЂРєР° С†РёС„СЂ РЅР° СЃРѕРІРїР°РґРµРЅРёРµ
     private boolean isEqualDigits() {
     	for(int i = 0; i < 4; i++) {
     		aQuad1.get(i).setStyle("-fx-text-fill: #000000;");
@@ -409,14 +409,14 @@ public class MainController implements Initializable{
     	return result;
     };
 
-    // =================== инициализация интерфейса ============================
-    // список панелей для отображения статистики прошлых игр
+    // =================== РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РёРЅС‚РµСЂС„РµР№СЃР° ============================
+    // СЃРїРёСЃРѕРє РїР°РЅРµР»РµР№ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ СЃС‚Р°С‚РёСЃС‚РёРєРё РїСЂРѕС€Р»С‹С… РёРіСЂ
     private ArrayList<VBox> aStatBoxes = new ArrayList<VBox>();
-    // список меток для отображения статистики
+    // СЃРїРёСЃРѕРє РјРµС‚РѕРє РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ СЃС‚Р°С‚РёСЃС‚РёРєРё
     private ArrayList<Label> aTotalLabels = new ArrayList<Label>();
     private ArrayList<Label> aWinLabels = new ArrayList<Label>();
     private ArrayList<Label> aTieLabels = new ArrayList<Label>();
-    // создание панелей статистики, заполнение списков панелей и меток
+    // СЃРѕР·РґР°РЅРёРµ РїР°РЅРµР»РµР№ СЃС‚Р°С‚РёСЃС‚РёРєРё, Р·Р°РїРѕР»РЅРµРЅРёРµ СЃРїРёСЃРєРѕРІ РїР°РЅРµР»РµР№ Рё РјРµС‚РѕРє
     private void buildBox(Integer index, String tl1, String tl2, String tl3){
 		DropShadow ds = new DropShadow();
 		ds.setOffsetX(5.0);
@@ -474,14 +474,14 @@ public class MainController implements Initializable{
     }
 
     private void buildStatBoxes(){
-    	// для режима 0 (человек угадывает)
-    	buildBox(0, "Сыграно - ", "Мин. попыток - ", "Макс. попыток - ");
-    	// для режима 1 (человек <-> машина)
-    	buildBox(1, "Сыграно - ", "Счет - ", "Ничьих - ");
-    	// для режима 2 (человек, машина -> машина)
-    	buildBox(2, "Сыграно - ", "Счет - ", "Ничьих - ");
+    	// РґР»СЏ СЂРµР¶РёРјР° 0 (С‡РµР»РѕРІРµРє СѓРіР°РґС‹РІР°РµС‚)
+    	buildBox(0, "РЎС‹РіСЂР°РЅРѕ - ", "РњРёРЅ. РїРѕРїС‹С‚РѕРє - ", "РњР°РєСЃ. РїРѕРїС‹С‚РѕРє - ");
+    	// РґР»СЏ СЂРµР¶РёРјР° 1 (С‡РµР»РѕРІРµРє <-> РјР°С€РёРЅР°)
+    	buildBox(1, "РЎС‹РіСЂР°РЅРѕ - ", "РЎС‡РµС‚ - ", "РќРёС‡СЊРёС… - ");
+    	// РґР»СЏ СЂРµР¶РёРјР° 2 (С‡РµР»РѕРІРµРє, РјР°С€РёРЅР° -> РјР°С€РёРЅР°)
+    	buildBox(2, "РЎС‹РіСЂР°РЅРѕ - ", "РЎС‡РµС‚ - ", "РќРёС‡СЊРёС… - ");
 
-    	// для режима 3 (машина -> машина)
+    	// РґР»СЏ СЂРµР¶РёРјР° 3 (РјР°С€РёРЅР° -> РјР°С€РёРЅР°)
     	VBox vb = new VBox();
     	vb.setMinHeight(this.pInfo.getPrefHeight());
     	vb.setMaxHeight(this.pInfo.getPrefHeight());
@@ -492,7 +492,7 @@ public class MainController implements Initializable{
     	aStatBoxes.add(vb);
     }
 
-    // объект для управления данными, сохраняемыми в память (настройки, etc)
+    // РѕР±СЉРµРєС‚ РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ РґР°РЅРЅС‹РјРё, СЃРѕС…СЂР°РЅСЏРµРјС‹РјРё РІ РїР°РјСЏС‚СЊ (РЅР°СЃС‚СЂРѕР№РєРё, etc)
     private StoredDataManager sdm = new StoredDataManager();
     protected Stage stage;
     private void storePrefs(){
@@ -528,11 +528,11 @@ public class MainController implements Initializable{
    		this.aTieLabels.get(2).setText(Integer.toString(sdm.getMode2Tie()));
     }
 
-    // восстановление параметров игры из файла настроек
+    // РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ РёРіСЂС‹ РёР· С„Р°Р№Р»Р° РЅР°СЃС‚СЂРѕРµРє
     private void readPrefs(){
     	this.drawStatLabels();
 
-    	// чтение режима
+    	// С‡С‚РµРЅРёРµ СЂРµР¶РёРјР°
     	Integer bufInt = sdm.getMode();
    		if((bufInt < 0) || (bufInt > 3)){
    			bufInt = 0;
@@ -544,7 +544,7 @@ public class MainController implements Initializable{
    		}
     }
 
-    // восстановление параметров окна из файла настроек
+    // РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ РѕРєРЅР° РёР· С„Р°Р№Р»Р° РЅР°СЃС‚СЂРѕРµРє
     private void readStagePrefs(){
     	if(sdm.isPosition()){
     		stage.setY(sdm.getTop());
@@ -553,27 +553,27 @@ public class MainController implements Initializable{
     	}
     }
 
-    // получение ссылки на окно, установка обработчика событий окна 
-    //  и чтение параметров окна
+    // РїРѕР»СѓС‡РµРЅРёРµ СЃСЃС‹Р»РєРё РЅР° РѕРєРЅРѕ, СѓСЃС‚Р°РЅРѕРІРєР° РѕР±СЂР°Р±РѕС‚С‡РёРєР° СЃРѕР±С‹С‚РёР№ РѕРєРЅР° 
+    //  Рё С‡С‚РµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ РѕРєРЅР°
     protected void setStage_Listener(final Stage stage){
     	this.stage = stage;
     	stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
     		@Override
     		public void handle(WindowEvent event) {
     			 //event.consume();
-    			// сохранение настроек перед закрытием окна
+    			// СЃРѕС…СЂР°РЅРµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїРµСЂРµРґ Р·Р°РєСЂС‹С‚РёРµРј РѕРєРЅР°
     			storePrefs();
     		}
     	});
-    	// чтение сохраненных параметров окна после получения
-    	//  ссылки на окно
+    	// С‡С‚РµРЅРёРµ СЃРѕС…СЂР°РЅРµРЅРЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ РѕРєРЅР° РїРѕСЃР»Рµ РїРѕР»СѓС‡РµРЅРёСЏ
+    	//  СЃСЃС‹Р»РєРё РЅР° РѕРєРЅРѕ
     	this.readStagePrefs();
     }
 
-    // соответствие панели VBox своему контейнеру ScrollPane
+    // СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРµ РїР°РЅРµР»Рё VBox СЃРІРѕРµРјСѓ РєРѕРЅС‚РµР№РЅРµСЂСѓ ScrollPane
     private Map<VBox, ScrollPane> mPlayerPanes = new HashMap<VBox, ScrollPane>();
 
-    // общий обработчик увеличения для обоих VBox Player[X]
+    // РѕР±С‰РёР№ РѕР±СЂР°Р±РѕС‚С‡РёРє СѓРІРµР»РёС‡РµРЅРёСЏ РґР»СЏ РѕР±РѕРёС… VBox Player[X]
     private void setVBoxScroller(final VBox box){
     	box.setSpacing(3);
     	box.heightProperty().addListener(new ChangeListener<Object>() {
@@ -588,29 +588,29 @@ public class MainController implements Initializable{
     }
 
     private void digitsReset(){
-    	// заполнение массива цифр и его отображение
+    	// Р·Р°РїРѕР»РЅРµРЅРёРµ РјР°СЃСЃРёРІР° С†РёС„СЂ Рё РµРіРѕ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ
     	for(int i = 0; i < 4; i++){
     		this.digitsForShow[i] = i + 1;
     		aQuad1.get(i).setText(Integer.toString(this.digitsForShow[i]));
     	}
     }
 
-    // собственно инициализация
+    // СЃРѕР±СЃС‚РІРµРЅРЅРѕ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// загрузка изображений в элементы управления
+		// Р·Р°РіСЂСѓР·РєР° РёР·РѕР±СЂР°Р¶РµРЅРёР№ РІ СЌР»РµРјРµРЅС‚С‹ СѓРїСЂР°РІР»РµРЅРёСЏ
 		getImages();
-		// добавление обработчика изменения размера панели на ScrollPane
-		// для прокрутки до упора вниз
+		// РґРѕР±Р°РІР»РµРЅРёРµ РѕР±СЂР°Р±РѕС‚С‡РёРєР° РёР·РјРµРЅРµРЅРёСЏ СЂР°Р·РјРµСЂР° РїР°РЅРµР»Рё РЅР° ScrollPane
+		// РґР»СЏ РїСЂРѕРєСЂСѓС‚РєРё РґРѕ СѓРїРѕСЂР° РІРЅРёР·
 		mPlayerPanes.put(vbPlayer1, spPlayer1);
 		mPlayerPanes.put(vbPlayer2, spPlayer2);
 		setVBoxScroller(this.vbPlayer1);
 		setVBoxScroller(this.vbPlayer2);
 
-		setControlMaps();	// для групповой обработки кнопок
+		setControlMaps();	// РґР»СЏ РіСЂСѓРїРїРѕРІРѕР№ РѕР±СЂР°Р±РѕС‚РєРё РєРЅРѕРїРѕРє
 		this.digitsReset();
 
-    	// установка обработчика переключения режима игры
+    	// СѓСЃС‚Р°РЅРѕРІРєР° РѕР±СЂР°Р±РѕС‚С‡РёРєР° РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ СЂРµР¶РёРјР° РёРіСЂС‹
         tgMode.selectedToggleProperty().addListener(
         										new ChangeListener<Toggle>(){
         	public void changed(ObservableValue<? extends Toggle> ov,
@@ -622,7 +622,7 @@ public class MainController implements Initializable{
         });
 
 		this.buildStatBoxes();
-        this.readPrefs();	// чтение сохраненных параметров игры
+        this.readPrefs();	// С‡С‚РµРЅРёРµ СЃРѕС…СЂР°РЅРµРЅРЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ РёРіСЂС‹
         this.setAidDigitsMap();
 
 		DropShadow ds = new DropShadow();
@@ -653,7 +653,7 @@ public class MainController implements Initializable{
 	}
 
 	private void setControlMaps(){
-		// заполнение карты соответствия кнопок их номерам
+		// Р·Р°РїРѕР»РЅРµРЅРёРµ РєР°СЂС‚С‹ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёСЏ РєРЅРѕРїРѕРє РёС… РЅРѕРјРµСЂР°Рј
     	mapButtonDigit.put(btUp_1, 0);
     	mapButtonDigit.put(btDown_1, 0);
     	mapButtonDigit.put(btUp_2, 1);
@@ -662,22 +662,22 @@ public class MainController implements Initializable{
     	mapButtonDigit.put(btDown_3, 2);
     	mapButtonDigit.put(btUp_4, 3);
     	mapButtonDigit.put(btDown_4, 3);
-    	// множество кнопок "вверх"
+    	// РјРЅРѕР¶РµСЃС‚РІРѕ РєРЅРѕРїРѕРє "РІРІРµСЂС…"
     	sUp.add(btUp_1);
     	sUp.add(btUp_2);
     	sUp.add(btUp_3);
     	sUp.add(btUp_4);
-    	// множество знакомест для цифр
+    	// РјРЅРѕР¶РµСЃС‚РІРѕ Р·РЅР°РєРѕРјРµСЃС‚ РґР»СЏ С†РёС„СЂ
     	aQuad1.add(charsell_1_1);
     	aQuad1.add(charsell_1_2);
     	aQuad1.add(charsell_1_3);
     	aQuad1.add(charsell_1_4);
-    	// множество знакомест для загаданных цифр
+    	// РјРЅРѕР¶РµСЃС‚РІРѕ Р·РЅР°РєРѕРјРµСЃС‚ РґР»СЏ Р·Р°РіР°РґР°РЅРЅС‹С… С†РёС„СЂ
     	aQuad2.add(charsell_2_1);
     	aQuad2.add(charsell_2_2);
     	aQuad2.add(charsell_2_3);
     	aQuad2.add(charsell_2_4);
-    	// множество радиокнопок - переключатель режима
+    	// РјРЅРѕР¶РµСЃС‚РІРѕ СЂР°РґРёРѕРєРЅРѕРїРѕРє - РїРµСЂРµРєР»СЋС‡Р°С‚РµР»СЊ СЂРµР¶РёРјР°
     	aRbMode.add(rbMode0);
     	aRbMode.add(rbMode1);
     	aRbMode.add(rbMode2);
@@ -763,10 +763,10 @@ public class MainController implements Initializable{
 		this.btHelp.setGraphic(new ImageView(iHelp));
 	}
 
-	// массив меток для вспомогательных цифр и массив кодов цвета для них
+	// РјР°СЃСЃРёРІ РјРµС‚РѕРє РґР»СЏ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹С… С†РёС„СЂ Рё РјР°СЃСЃРёРІ РєРѕРґРѕРІ С†РІРµС‚Р° РґР»СЏ РЅРёС…
 	private ArrayList<Label> aAidDigits = new ArrayList<Label>();
 	private ArrayList<Integer> aAidDigitsColor = new ArrayList<Integer>();
-    // заполнение массивов меток и цвета, установка обработчика клика меток
+    // Р·Р°РїРѕР»РЅРµРЅРёРµ РјР°СЃСЃРёРІРѕРІ РјРµС‚РѕРє Рё С†РІРµС‚Р°, СѓСЃС‚Р°РЅРѕРІРєР° РѕР±СЂР°Р±РѕС‚С‡РёРєР° РєР»РёРєР° РјРµС‚РѕРє
     private void setAidDigitsMap(){
     	for(int i = 0; i < hbBottom.getChildren().size(); i++){
     		if(hbBottom.getChildren().get(i).getClass() == Label.class){
@@ -783,7 +783,7 @@ public class MainController implements Initializable{
     	}
     }
 
-    // обработка клика мышью по метке - циклическое изменение трех цветов
+    // РѕР±СЂР°Р±РѕС‚РєР° РєР»РёРєР° РјС‹С€СЊСЋ РїРѕ РјРµС‚РєРµ - С†РёРєР»РёС‡РµСЃРєРѕРµ РёР·РјРµРЅРµРЅРёРµ С‚СЂРµС… С†РІРµС‚РѕРІ
     protected void onAidDigitClick(MouseEvent e) {
     	Label l = (Label)e.getSource();
     	int num = this.aAidDigits.indexOf(l);
@@ -817,16 +817,16 @@ public class MainController implements Initializable{
     	}
     }
 
-    // обработчик кнопки сброса цвета меток вспомогательных цифр на черный
+    // РѕР±СЂР°Р±РѕС‚С‡РёРє РєРЅРѕРїРєРё СЃР±СЂРѕСЃР° С†РІРµС‚Р° РјРµС‚РѕРє РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹С… С†РёС„СЂ РЅР° С‡РµСЂРЅС‹Р№
     @FXML protected void onAidDigitsReset(ActionEvent e) {
     	for(int i = 0; i < this.aAidDigits.size(); i++){
     		aAidDigitsColor.set(i, 1);
     		aAidDigits.get(i).setStyle("-fx-text-fill: #000000;");
     	}
     }
-    // ================ конец инициализации интерфейса =========================
+    // ================ РєРѕРЅРµС† РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РёРЅС‚РµСЂС„РµР№СЃР° =========================
 
-	// вывод строки текста в ScrollPane - информация о шаге игры
+	// РІС‹РІРѕРґ СЃС‚СЂРѕРєРё С‚РµРєСЃС‚Р° РІ ScrollPane - РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ С€Р°РіРµ РёРіСЂС‹
     protected void showStepInfo(String s, boolean Player1, int img) {
     	HBox hb = new HBox();
     	hb.setAlignment(Pos.CENTER_LEFT);
@@ -839,8 +839,8 @@ public class MainController implements Initializable{
 		//hb.setStyle("-fx-background-color: #33FFFF;");
 		hb.setStyle("-fx-background-color: #CCFF99;");
 
-		// при игре в одиночку (режим 0) можно добавить флажок определенного
-		//   цвета в зависимости от числа попыток
+		// РїСЂРё РёРіСЂРµ РІ РѕРґРёРЅРѕС‡РєСѓ (СЂРµР¶РёРј 0) РјРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ С„Р»Р°Р¶РѕРє РѕРїСЂРµРґРµР»РµРЅРЅРѕРіРѕ
+		//   С†РІРµС‚Р° РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ С‡РёСЃР»Р° РїРѕРїС‹С‚РѕРє
 		Image iFlag = null;
 		switch(img){
 		case 1:
@@ -868,28 +868,28 @@ public class MainController implements Initializable{
 		}
     }
 
-    private DigitCurator curator = new DigitCurator();	// класс слежения за игрой
-    private Solver solver = new Solver();				// класс-игрок
-    private Integer[] digits = new Integer[4];			// Цифры, вводимые пользователем
+    private DigitCurator curator = new DigitCurator();	// РєР»Р°СЃСЃ СЃР»РµР¶РµРЅРёСЏ Р·Р° РёРіСЂРѕР№
+    private Solver solver = new Solver();				// РєР»Р°СЃСЃ-РёРіСЂРѕРє
+    private Integer[] digits = new Integer[4];			// Р¦РёС„СЂС‹, РІРІРѕРґРёРјС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј
     private int bulls;
     private int cows;
 
-    // вывод результатов попытки
+    // РІС‹РІРѕРґ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РїРѕРїС‹С‚РєРё
     private void showNextShot(int trying, boolean Player1, int img) {
 		String s = new String(Arrays.toString(digits));
 		s = Integer.toString(trying) + ": " + s;
-		s = s + " -   " + Integer.toString(bulls) + " Б, " +
-		    Integer.toString(cows) + " К";
+		s = s + " -   " + Integer.toString(bulls) + " Р‘, " +
+		    Integer.toString(cows) + " Рљ";
 		showStepInfo(s, Player1, img);
     }
 
-    // ========= машинная отгадка ======
-    // машина -> машина, режим 3
+    // ========= РјР°С€РёРЅРЅР°СЏ РѕС‚РіР°РґРєР° ======
+    // РјР°С€РёРЅР° -> РјР°С€РёРЅР°, СЂРµР¶РёРј 3
     private void shotMode3() {
-    	curator.digitMixer();		// перемешать цифры подготовить набор цифр
+    	curator.digitMixer();		// РїРµСЂРµРјРµС€Р°С‚СЊ С†РёС„СЂС‹ РїРѕРґРіРѕС‚РѕРІРёС‚СЊ РЅР°Р±РѕСЂ С†РёС„СЂ
     	solver.Init(curator.getDecade());
 
-    	while(bulls + cows < 4) {		// цикл до отгадки всех цифр
+    	while(bulls + cows < 4) {		// С†РёРєР» РґРѕ РѕС‚РіР°РґРєРё РІСЃРµС… С†РёС„СЂ
     		digits = solver.toFindDigits();
     		Integer[] TmpBufI = new Integer[4];
     		for(int i = 0; i < 4; i++){
@@ -899,7 +899,7 @@ public class MainController implements Initializable{
     		bulls = shot_data.getBulls();
     		cows = shot_data.getCows();
     		solver.addShotData(shot_data);
-    		showNextShot(solver.getNumberOfShots(), false, 0);	// отображение
+    		showNextShot(solver.getNumberOfShots(), false, 0);	// РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ
     	}
     	while(bulls < 4) {
     		solver.toFindBulls(digits);
@@ -907,22 +907,22 @@ public class MainController implements Initializable{
     		bulls = shot_data.getBulls();
     		cows = shot_data.getCows();
     		solver.addShotData(shot_data);
-    		showNextShot(solver.getNumberOfShots(), false, 0);	// отображение
+    		showNextShot(solver.getNumberOfShots(), false, 0);	// РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ
     	}
     	solver.clearShotsData();
     	bulls = 0;
     	cows = 0;
     }
 
-    // человек -> машина
+    // С‡РµР»РѕРІРµРє -> РјР°С€РёРЅР°
     private void shotMode0(){
     	if (!this.isEqualDigits()){
     		player1ShotNum++;
     		ShotData shot_data = curator.checkQuad(this.digitsForShow, 1);
     		String s = new String(Arrays.toString(digitsForShow));
     		s = Integer.toString(player1ShotNum) + ": " + s;
-    		s = s + " -   " + Integer.toString(shot_data.getBulls()) + " Б, " +
-    		    Integer.toString(shot_data.getCows()) + " К";
+    		s = s + " -   " + Integer.toString(shot_data.getBulls()) + " Р‘, " +
+    		    Integer.toString(shot_data.getCows()) + " Рљ";
     		int img = 0;
     		if (player1ShotNum > 0){
     			img = 1;
@@ -946,8 +946,8 @@ public class MainController implements Initializable{
     	ShotData shot_data = curator.checkQuad(this.digitsForShow, 1);
     	String s = new String(Arrays.toString(digitsForShow));
     	s = Integer.toString(player1ShotNum) + ": " + s;
-    	s = s + " -   " + Integer.toString(shot_data.getBulls()) + " Б, " +
-    	    Integer.toString(shot_data.getCows()) + " К";
+    	s = s + " -   " + Integer.toString(shot_data.getBulls()) + " Р‘, " +
+    	    Integer.toString(shot_data.getCows()) + " Рљ";
     	showStepInfo(s, true, 0);
     	if (shot_data.getBulls() == 4){
     		result = true;
@@ -969,11 +969,11 @@ public class MainController implements Initializable{
     	solver.addShotData(shot_data2);
 
     	if(QuadNum == 2){
-    		showNextShot(solver.getNumberOfShots(), false, 0);	// отображение
+    		showNextShot(solver.getNumberOfShots(), false, 0);	// РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ
     	} else {
     		String s2 = new String(Integer.toString(solver.getNumberOfShots()));
-    		s2 = s2 + ": -   " + Integer.toString(bulls) + " Б, " +
-		    Integer.toString(cows) + " К";
+    		s2 = s2 + ": -   " + Integer.toString(bulls) + " Р‘, " +
+		    Integer.toString(cows) + " Рљ";
     		showStepInfo(s2, false, 0);
     	}
 
@@ -1004,7 +1004,7 @@ public class MainController implements Initializable{
         return result;
     }
 
-    // человек <-> машина
+    // С‡РµР»РѕРІРµРє <-> РјР°С€РёРЅР°
     private void shotMode1(){
     	if(this.isFirstPlayer1()){
     		if (!this.isEqualDigits()){
@@ -1015,7 +1015,7 @@ public class MainController implements Initializable{
     	} else {
     		if(this.player2firstStep){
     			player2firstStep = false;
-    			this.btShot.setText("Попытка");
+    			this.btShot.setText("РџРѕРїС‹С‚РєР°");
     			isPlayer2End = this.tryPlayer2(2);
     		} else {
     			if (!this.isEqualDigits()){
@@ -1028,7 +1028,7 @@ public class MainController implements Initializable{
     	}
     }
 
-    // человек, машина -> машина
+    // С‡РµР»РѕРІРµРє, РјР°С€РёРЅР° -> РјР°С€РёРЅР°
     private void shotMode2(){
     	if(this.isFirstPlayer1()){
     		if (!this.isEqualDigits()){
@@ -1039,7 +1039,7 @@ public class MainController implements Initializable{
     	} else {
     		if(this.player2firstStep){
     			player2firstStep = false;
-    			this.btShot.setText("Попытка");
+    			this.btShot.setText("РџРѕРїС‹С‚РєР°");
     			isPlayer2End = this.tryPlayer2(1);
     		} else {
     			if (!this.isEqualDigits()){
@@ -1052,13 +1052,13 @@ public class MainController implements Initializable{
     	}
     }
 
-    // действия при окончании игры - когда кто-то угадал
+    // РґРµР№СЃС‚РІРёСЏ РїСЂРё РѕРєРѕРЅС‡Р°РЅРёРё РёРіСЂС‹ - РєРѕРіРґР° РєС‚Рѕ-С‚Рѕ СѓРіР°РґР°Р»
     private void doEndOfGame(int player){
     	this.btShot.setDisable(true);
     	Integer wins;
     	switch(player){
     	case 0:
-    		this.showStepInfo("Победа!", true, 0);
+    		this.showStepInfo("РџРѕР±РµРґР°!", true, 0);
     		sdm.setMode0Total(sdm.getMode0Total() + 1);
     		Integer max = sdm.getMode0Max();
     		Integer min = sdm.getMode0Min();
@@ -1070,8 +1070,8 @@ public class MainController implements Initializable{
     		}
     		break;
     	case 1:
-    		this.showStepInfo("Победа игрока 1!", true, 0);
-    		this.showStepInfo("Победа игрока 1!", false, 0);
+    		this.showStepInfo("РџРѕР±РµРґР° РёРіСЂРѕРєР° 1!", true, 0);
+    		this.showStepInfo("РџРѕР±РµРґР° РёРіСЂРѕРєР° 1!", false, 0);
     		if(this.getMode() == 1){
     			wins = sdm.getMode1Player1Win();
     			sdm.setMode1Player1Win(wins + 1);
@@ -1081,8 +1081,8 @@ public class MainController implements Initializable{
     		}
     		break;
     	case 2:
-    		this.showStepInfo("Победа игрока 2!", true, 0);
-    		this.showStepInfo("Победа игрока 2!", false, 0);
+    		this.showStepInfo("РџРѕР±РµРґР° РёРіСЂРѕРєР° 2!", true, 0);
+    		this.showStepInfo("РџРѕР±РµРґР° РёРіСЂРѕРєР° 2!", false, 0);
     		if(this.getMode() == 1){
     			wins = sdm.getMode1Player2Win();
     			sdm.setMode1Player2Win(wins + 1);
@@ -1092,8 +1092,8 @@ public class MainController implements Initializable{
     		}
     		break;
     	case 3:
-    		this.showStepInfo("Ничья!", true, 0);
-    		this.showStepInfo("Ничья!", false, 0);
+    		this.showStepInfo("РќРёС‡СЊСЏ!", true, 0);
+    		this.showStepInfo("РќРёС‡СЊСЏ!", false, 0);
     		if(this.getMode() == 1){
     			wins = sdm.getMode1Tie();
     			sdm.setMode1Tie(wins++);
@@ -1107,7 +1107,7 @@ public class MainController implements Initializable{
     	this.drawStatLabels();
     }
 
-    // заполнение знакомест игрока 2 крестиками
+    // Р·Р°РїРѕР»РЅРµРЅРёРµ Р·РЅР°РєРѕРјРµСЃС‚ РёРіСЂРѕРєР° 2 РєСЂРµСЃС‚РёРєР°РјРё
     private void setXToPlayer2(){
 		for(int i = 0; i < 4; i++){
 			aQuad2.get(i).setText("X");
@@ -1115,31 +1115,31 @@ public class MainController implements Initializable{
     }
 
     // =========================================================================
-    // проверка алгоритма перебором всех вариантов
-    //   с отображением процесса
+    // РїСЂРѕРІРµСЂРєР° Р°Р»РіРѕСЂРёС‚РјР° РїРµСЂРµР±РѕСЂРѕРј РІСЃРµС… РІР°СЂРёР°РЅС‚РѕРІ
+    //   СЃ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµРј РїСЂРѕС†РµСЃСЃР°
 
-    // для гистограммы
+    // РґР»СЏ РіРёСЃС‚РѕРіСЂР°РјРјС‹
     private final CategoryAxis xAxis = new CategoryAxis();
     private final NumberAxis yAxis = new NumberAxis();
     private BarChart<String, Number> bcHistogram;
     private XYChart.Series<String, Number> series1;
 
-    // тестовая четверка для перебора
+    // С‚РµСЃС‚РѕРІР°СЏ С‡РµС‚РІРµСЂРєР° РґР»СЏ РїРµСЂРµР±РѕСЂР°
     private Integer[] testQuad = {0, 0, 0, 0};
-	// постоянный набор цифр для отгадывания
+	// РїРѕСЃС‚РѕСЏРЅРЅС‹Р№ РЅР°Р±РѕСЂ С†РёС„СЂ РґР»СЏ РѕС‚РіР°РґС‹РІР°РЅРёСЏ
     private final Integer[] testDecade = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-	// учет количества попыток на вариант для подсчета статистики
+	// СѓС‡РµС‚ РєРѕР»РёС‡РµСЃС‚РІР° РїРѕРїС‹С‚РѕРє РЅР° РІР°СЂРёР°РЅС‚ РґР»СЏ РїРѕРґСЃС‡РµС‚Р° СЃС‚Р°С‚РёСЃС‚РёРєРё
     private ArrayList<Integer> alShotNum = new ArrayList<Integer>();
-	// учет количества попыток на вариант для гистограммы
+	// СѓС‡РµС‚ РєРѕР»РёС‡РµСЃС‚РІР° РїРѕРїС‹С‚РѕРє РЅР° РІР°СЂРёР°РЅС‚ РґР»СЏ РіРёСЃС‚РѕРіСЂР°РјРјС‹
     private Map<Integer, Integer> hmShotNum = new HashMap<Integer, Integer>();
-	// счетчик для перебора вариантов
+	// СЃС‡РµС‚С‡РёРє РґР»СЏ РїРµСЂРµР±РѕСЂР° РІР°СЂРёР°РЅС‚РѕРІ
     private int variantCounter = 0;
-	// тест запущен?
+	// С‚РµСЃС‚ Р·Р°РїСѓС‰РµРЅ?
 	private Boolean isTestRun = false;
 
-	// метод для вызова из AnimationTimer.handle
+	// РјРµС‚РѕРґ РґР»СЏ РІС‹Р·РѕРІР° РёР· AnimationTimer.handle
 	protected void animatedTestOfAlgorithm(){
-    	// если графика гистограммы еще не существует - создать
+    	// РµСЃР»Рё РіСЂР°С„РёРєР° РіРёСЃС‚РѕРіСЂР°РјРјС‹ РµС‰Рµ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ - СЃРѕР·РґР°С‚СЊ
     	if(bcHistogram == null){
     		bcHistogram = new BarChart<String, Number>(xAxis, yAxis);
     		series1 = new XYChart.Series<String, Number>();
@@ -1154,7 +1154,7 @@ public class MainController implements Initializable{
     		bcHistogram.setMaxWidth(pInfo.getWidth());
     		pInfo.getChildren().removeAll(pInfo.getChildren());
     		pInfo.getChildren().add(bcHistogram);
-    	} else {	// иначе - добавить на панель и очистить данные
+    	} else {	// РёРЅР°С‡Рµ - РґРѕР±Р°РІРёС‚СЊ РЅР° РїР°РЅРµР»СЊ Рё РѕС‡РёСЃС‚РёС‚СЊ РґР°РЅРЅС‹Рµ
     		if(!pInfo.getChildren().contains(bcHistogram)){
     			pInfo.getChildren().removeAll(pInfo.getChildren());
     			pInfo.getChildren().add(bcHistogram);
@@ -1162,7 +1162,7 @@ public class MainController implements Initializable{
     		}
     	}
 
-    	// создание четверки из счетчика с отсевом повторяющихся цифр
+    	// СЃРѕР·РґР°РЅРёРµ С‡РµС‚РІРµСЂРєРё РёР· СЃС‡РµС‚С‡РёРєР° СЃ РѕС‚СЃРµРІРѕРј РїРѕРІС‚РѕСЂСЏСЋС‰РёС…СЃСЏ С†РёС„СЂ
     	Boolean isQuadReady = true;
 		do{
 			isQuadReady = true;
@@ -1180,18 +1180,18 @@ public class MainController implements Initializable{
     		}
 		}while(!isQuadReady && (variantCounter <= 9999));
 
-		if(isQuadReady){	// условие вставлено для чисел (d > 9870)
-			// сброс отображения, подготовка к решению
+		if(isQuadReady){	// СѓСЃР»РѕРІРёРµ РІСЃС‚Р°РІР»РµРЅРѕ РґР»СЏ С‡РёСЃРµР» (d > 9870)
+			// СЃР±СЂРѕСЃ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ, РїРѕРґРіРѕС‚РѕРІРєР° Рє СЂРµС€РµРЅРёСЋ
 			this.reset(false);
 			this.curator.setQuad(testQuad, 2);
 			this.solver.Init(testDecade);
-			// отображение подготовленной четверки
+			// РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРґРіРѕС‚РѕРІР»РµРЅРЅРѕР№ С‡РµС‚РІРµСЂРєРё
 			for(int i = 0; i < 4; i++){
 				aQuad2.get(i).setText(testQuad[i].toString());
 			}
 
-			// решение
-			while(bulls + cows < 4) {		// цикл до отгадки всех цифр
+			// СЂРµС€РµРЅРёРµ
+			while(bulls + cows < 4) {		// С†РёРєР» РґРѕ РѕС‚РіР°РґРєРё РІСЃРµС… С†РёС„СЂ
 				digits = solver.toFindDigits();
 				Integer[] TmpBufI = new Integer[4];
 				for(int i = 0; i < 4; i++){
@@ -1201,7 +1201,7 @@ public class MainController implements Initializable{
 				bulls = shot_data.getBulls();
 				cows = shot_data.getCows();
 				solver.addShotData(shot_data);
-				showNextShot(solver.getNumberOfShots(), false, 0); // отображение
+				showNextShot(solver.getNumberOfShots(), false, 0); // РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ
 			}
 			while(bulls < 4) {
 				solver.toFindBulls(digits);
@@ -1209,10 +1209,10 @@ public class MainController implements Initializable{
 				bulls = shot_data.getBulls();
 				cows = shot_data.getCows();
 				solver.addShotData(shot_data);
-				showNextShot(solver.getNumberOfShots(), false, 0); // отображение
+				showNextShot(solver.getNumberOfShots(), false, 0); // РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ
 			}
 
-			// заполнение коллекций для статистического учета
+			// Р·Р°РїРѕР»РЅРµРЅРёРµ РєРѕР»Р»РµРєС†РёР№ РґР»СЏ СЃС‚Р°С‚РёСЃС‚РёС‡РµСЃРєРѕРіРѕ СѓС‡РµС‚Р°
 			int size = solver.getNumberOfShots();
 			alShotNum.add(size);
 			if(hmShotNum.containsKey((Integer)size)){
@@ -1220,21 +1220,21 @@ public class MainController implements Initializable{
 			} else {
 				hmShotNum.put(size, 1);
 			}
-			// подчистка для следующего решения
+			// РїРѕРґС‡РёСЃС‚РєР° РґР»СЏ СЃР»РµРґСѓСЋС‰РµРіРѕ СЂРµС€РµРЅРёСЏ
 			solver.clearShotsData();
 			bulls = 0;
 			cows = 0;
 
-			// работа с гистограммой
+			// СЂР°Р±РѕС‚Р° СЃ РіРёСЃС‚РѕРіСЂР°РјРјРѕР№
 			Boolean isData = false;
         	if(bcHistogram != null){
-        		// проверка существования столбика для элемента hmShotNum
+        		// РїСЂРѕРІРµСЂРєР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ СЃС‚РѕР»Р±РёРєР° РґР»СЏ СЌР»РµРјРµРЅС‚Р° hmShotNum
         		for(int i = 0; i < hmShotNum.keySet().size(); i++){
         			isData = false;
         			Integer key = (Integer)hmShotNum.keySet().toArray()[i];
         			for(int j = 0; 
         						j < bcHistogram.getData().get(0).getData().size(); j++){
-        				// если есть - изменить данные столбика
+        				// РµСЃР»Рё РµСЃС‚СЊ - РёР·РјРµРЅРёС‚СЊ РґР°РЅРЅС‹Рµ СЃС‚РѕР»Р±РёРєР°
         				String xv = 
         					bcHistogram.getData().get(0).getData().get(j).getXValue();
         				Integer yv = (Integer)hmShotNum.get(key);
@@ -1244,10 +1244,10 @@ public class MainController implements Initializable{
         					break;
         				}
         			}
-        			// если нету - очистить серию и наполнить заново 
-        			//    в сортированном виде
-        			//   (если просто вставлять в нужную позицию -
-        			//    может быть несортированное отображение - баг JavaFX)
+        			// РµСЃР»Рё РЅРµС‚Сѓ - РѕС‡РёСЃС‚РёС‚СЊ СЃРµСЂРёСЋ Рё РЅР°РїРѕР»РЅРёС‚СЊ Р·Р°РЅРѕРІРѕ 
+        			//    РІ СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅРѕРј РІРёРґРµ
+        			//   (РµСЃР»Рё РїСЂРѕСЃС‚Рѕ РІСЃС‚Р°РІР»СЏС‚СЊ РІ РЅСѓР¶РЅСѓСЋ РїРѕР·РёС†РёСЋ -
+        			//    РјРѕР¶РµС‚ Р±С‹С‚СЊ РЅРµСЃРѕСЂС‚РёСЂРѕРІР°РЅРЅРѕРµ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ - Р±Р°Рі JavaFX)
         			if(!isData){
         				this.series1.getData().clear();
         				int size2 = hmShotNum.keySet().size();
@@ -1257,16 +1257,16 @@ public class MainController implements Initializable{
         				}
         				Arrays.sort(buf);
 
-        				// если столбцы начинаются не с 1 -
-        				//   заполнить промежуток нулевыми столбцами
+        				// РµСЃР»Рё СЃС‚РѕР»Р±С†С‹ РЅР°С‡РёРЅР°СЋС‚СЃСЏ РЅРµ СЃ 1 -
+        				//   Р·Р°РїРѕР»РЅРёС‚СЊ РїСЂРѕРјРµР¶СѓС‚РѕРє РЅСѓР»РµРІС‹РјРё СЃС‚РѕР»Р±С†Р°РјРё
         				if(buf[0] > 1){
         					for(int n = 1; n < buf[0]; n++){
         						hmShotNum.put(n, 0);
         					}
         				}
 
-        				// если новый столбец не сразу после предыдущего -
-        				//   заполнить промежуток нулевыми столбцами
+        				// РµСЃР»Рё РЅРѕРІС‹Р№ СЃС‚РѕР»Р±РµС† РЅРµ СЃСЂР°Р·Сѓ РїРѕСЃР»Рµ РїСЂРµРґС‹РґСѓС‰РµРіРѕ -
+        				//   Р·Р°РїРѕР»РЅРёС‚СЊ РїСЂРѕРјРµР¶СѓС‚РѕРє РЅСѓР»РµРІС‹РјРё СЃС‚РѕР»Р±С†Р°РјРё
         				if((size2 > 2) && 
         								(buf[size2 - 1] - buf[size2 - 2] > 1)){
         					for(int n = buf[size2 - 2]; 
@@ -1275,15 +1275,15 @@ public class MainController implements Initializable{
         					}
         				}
 
-        				// если новый столбец не сразу перед предыдущим -
-        				//   заполнить промежуток нулевыми столбцами
+        				// РµСЃР»Рё РЅРѕРІС‹Р№ СЃС‚РѕР»Р±РµС† РЅРµ СЃСЂР°Р·Сѓ РїРµСЂРµРґ РїСЂРµРґС‹РґСѓС‰РёРј -
+        				//   Р·Р°РїРѕР»РЅРёС‚СЊ РїСЂРѕРјРµР¶СѓС‚РѕРє РЅСѓР»РµРІС‹РјРё СЃС‚РѕР»Р±С†Р°РјРё
         				if((size2 > 1) && (buf[1] - buf[0] > 1)){
         					for(int n = buf[0]; n < buf[1]; n++){
         						hmShotNum.put(n, 0);
         					}
         				}
 
-        				// заново формируем сортированный массив ключей
+        				// Р·Р°РЅРѕРІРѕ С„РѕСЂРјРёСЂСѓРµРј СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ РјР°СЃСЃРёРІ РєР»СЋС‡РµР№
         				int size3 = hmShotNum.keySet().size();
         				Integer[] buf2 = new Integer[size3];
         				for(int k = 0; k < size3; k++){
@@ -1291,7 +1291,7 @@ public class MainController implements Initializable{
         				}
         				Arrays.sort(buf2);
 
-        				// заполнение гистограммы
+        				// Р·Р°РїРѕР»РЅРµРЅРёРµ РіРёСЃС‚РѕРіСЂР°РјРјС‹
                 		for(int k = 0; k < size3; k++){
                 			Integer key2 = buf2[k];
                 			this.series1.getData().add(new Data<String, 
@@ -1303,12 +1303,12 @@ public class MainController implements Initializable{
         	}
 		}
 
-		// перебор вариантов закончен
+		// РїРµСЂРµР±РѕСЂ РІР°СЂРёР°РЅС‚РѕРІ Р·Р°РєРѕРЅС‡РµРЅ
     	if(variantCounter >= 9999){
-    		// остановка AnimationTimer, сброс отображения
+    		// РѕСЃС‚Р°РЅРѕРІРєР° AnimationTimer, СЃР±СЂРѕСЃ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ
     		this.atAlgorithmTest.stop();
     		this.reset(false);
-    		// подсчет статистики
+    		// РїРѕРґСЃС‡РµС‚ СЃС‚Р°С‚РёСЃС‚РёРєРё
     		Double sum = 0.0;
     		int max = 0;
     		for(int i = 0; i < alShotNum.size(); i++){
@@ -1318,22 +1318,22 @@ public class MainController implements Initializable{
     			}
     		}
 
-    		// отображение результатов
-    		this.showStepInfo("Перебор всех вариантов:", false, 0);
-    		this.showStepInfo("всего - " + Integer.toString(alShotNum.size()), 
+    		// РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ
+    		this.showStepInfo("РџРµСЂРµР±РѕСЂ РІСЃРµС… РІР°СЂРёР°РЅС‚РѕРІ:", false, 0);
+    		this.showStepInfo("РІСЃРµРіРѕ - " + Integer.toString(alShotNum.size()), 
     																false, 0);
-    		this.showStepInfo("Максимум попыток - " 
+    		this.showStepInfo("РњР°РєСЃРёРјСѓРј РїРѕРїС‹С‚РѕРє - " 
     										+ Integer.toString(max), false, 0);
     		Double aver = sum / alShotNum.size();
     		NumberFormat nf = NumberFormat.getNumberInstance();
     		nf.setMaximumFractionDigits(2);
-    		this.showStepInfo("В среднем - " + nf.format(aver), false, 0);
-    		this.showStepInfo("[Попыток]: [вариантов]", true, 0);
+    		this.showStepInfo("Р’ СЃСЂРµРґРЅРµРј - " + nf.format(aver), false, 0);
+    		this.showStepInfo("[РџРѕРїС‹С‚РѕРє]: [РІР°СЂРёР°РЅС‚РѕРІ]", true, 0);
     		for(int i = 1; i <= max; i++){
     			this.showStepInfo(Integer.toString(i) + ": " 
     							+ Integer.toString(hmShotNum.get(i)), true, 0);
     		}
-    		// подчистка данных для нового вызова
+    		// РїРѕРґС‡РёСЃС‚РєР° РґР°РЅРЅС‹С… РґР»СЏ РЅРѕРІРѕРіРѕ РІС‹Р·РѕРІР°
     		alShotNum.clear();
     		hmShotNum.clear();
     		variantCounter = 0;
@@ -1341,7 +1341,7 @@ public class MainController implements Initializable{
     	}
     }
 
-    // экземпляр AnimationTimer для анимации процесса проверки алгоритма
+    // СЌРєР·РµРјРїР»СЏСЂ AnimationTimer РґР»СЏ Р°РЅРёРјР°С†РёРё РїСЂРѕС†РµСЃСЃР° РїСЂРѕРІРµСЂРєРё Р°Р»РіРѕСЂРёС‚РјР°
     protected AnimationTimer atAlgorithmTest = new AnimationTimer(){
         @Override
         public void handle(long now) {

@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Solver {
-	// массив данных попыток
+	// РјР°СЃСЃРёРІ РґР°РЅРЅС‹С… РїРѕРїС‹С‚РѕРє
 	private ArrayList<ShotData> shots_data = new ArrayList<ShotData>();
 	public void addShotData(ShotData sd){
 		this.shots_data.add(sd);
@@ -16,28 +16,28 @@ public class Solver {
 	public Integer getNumberOfShots(){
 		return this.shots_data.size();
 	}
-	// набор цифр для отгадки
+	// РЅР°Р±РѕСЂ С†РёС„СЂ РґР»СЏ РѕС‚РіР°РґРєРё
 	private ArrayList<Integer> digitsForAnswer = new ArrayList<Integer>();
-	private Integer[] nextShot;					// массив очередной попытки
-    // индекс цифры попытки в наборе цифр
+	private Integer[] nextShot;					// РјР°СЃСЃРёРІ РѕС‡РµСЂРµРґРЅРѕР№ РїРѕРїС‹С‚РєРё
+    // РёРЅРґРµРєСЃ С†РёС„СЂС‹ РїРѕРїС‹С‚РєРё РІ РЅР°Р±РѕСЂРµ С†РёС„СЂ
 	private Integer[] shotDigitInDigitsIndex = new Integer[4];
 
-    // проверка допустимости подмассива по результатам предыдущих попыток
+    // РїСЂРѕРІРµСЂРєР° РґРѕРїСѓСЃС‚РёРјРѕСЃС‚Рё РїРѕРґРјР°СЃСЃРёРІР° РїРѕ СЂРµР·СѓР»СЊС‚Р°С‚Р°Рј РїСЂРµРґС‹РґСѓС‰РёС… РїРѕРїС‹С‚РѕРє
 	private boolean isSuitable(Integer[] a, int length){
-    	int BullCow = 0;	// сумма быков и коров попытки
+    	int BullCow = 0;	// СЃСѓРјРјР° Р±С‹РєРѕРІ Рё РєРѕСЂРѕРІ РїРѕРїС‹С‚РєРё
     	for (int i = 0; i <= (shots_data.size() - 1); i++){
-    		int Intersection = 0;	// мощность пересечения цифр старой попытки
-				//      и цифр подмассива очередной попытки
+    		int Intersection = 0;	// РјРѕС‰РЅРѕСЃС‚СЊ РїРµСЂРµСЃРµС‡РµРЅРёСЏ С†РёС„СЂ СЃС‚Р°СЂРѕР№ РїРѕРїС‹С‚РєРё
+				//      Рё С†РёС„СЂ РїРѕРґРјР°СЃСЃРёРІР° РѕС‡РµСЂРµРґРЅРѕР№ РїРѕРїС‹С‚РєРё
     		BullCow = shots_data.get(i).getBulls()
     											+ shots_data.get(i).getCows();
-    		for (int j = 0; j <= 3; j++){	// подсчет мощности пересечения
+    		for (int j = 0; j <= 3; j++){	// РїРѕРґСЃС‡РµС‚ РјРѕС‰РЅРѕСЃС‚Рё РїРµСЂРµСЃРµС‡РµРЅРёСЏ
     			for (int k = 0; k <= length; k++){
     				if (a[k] == shots_data.get(i).getQwad()[j]){
     					Intersection++;
     				}
     			}
     		}
-    		// если пересечение больше числа угаданных - есть лишнее в отгадке
+    		// РµСЃР»Рё РїРµСЂРµСЃРµС‡РµРЅРёРµ Р±РѕР»СЊС€Рµ С‡РёСЃР»Р° СѓРіР°РґР°РЅРЅС‹С… - РµСЃС‚СЊ Р»РёС€РЅРµРµ РІ РѕС‚РіР°РґРєРµ
     		if (Intersection > BullCow) {
     			return false;
     		}
@@ -45,11 +45,11 @@ public class Solver {
     	return true;
     }
 
-    // Цифры и индексы текущей попытки для проверки на соответствие быкам
+    // Р¦РёС„СЂС‹ Рё РёРЅРґРµРєСЃС‹ С‚РµРєСѓС‰РµР№ РїРѕРїС‹С‚РєРё РґР»СЏ РїСЂРѕРІРµСЂРєРё РЅР° СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРµ Р±С‹РєР°Рј
     private ArrayList<Integer> shotDigits = new ArrayList<Integer>();
     private ArrayList<Integer> indices = new ArrayList<Integer>();
 
-    // проверка на допустимость подмассива быков
+    // РїСЂРѕРІРµСЂРєР° РЅР° РґРѕРїСѓСЃС‚РёРјРѕСЃС‚СЊ РїРѕРґРјР°СЃСЃРёРІР° Р±С‹РєРѕРІ
     private boolean isSuitableBulls(int Max){
     	for (int i = 0; i <= (shots_data.size() - 1); i++){
     		int coincidence = 0;
@@ -66,7 +66,7 @@ public class Solver {
     	return true;
     }
 
-    // Проверка пересечения индексов с коррекцией
+    // РџСЂРѕРІРµСЂРєР° РїРµСЂРµСЃРµС‡РµРЅРёСЏ РёРЅРґРµРєСЃРѕРІ СЃ РєРѕСЂСЂРµРєС†РёРµР№
     private boolean isIndexValid(int max){
     	Set<Integer> Ind = new HashSet<Integer>();
     	for(int i = 0; i < max; i++) {
@@ -83,7 +83,7 @@ public class Solver {
     	return false;
     }
 
-    // попытка расстановки быков
+    // РїРѕРїС‹С‚РєР° СЂР°СЃСЃС‚Р°РЅРѕРІРєРё Р±С‹РєРѕРІ
     private boolean trySetBulls(){
     	int i = 0;
     	indices.set(i, -1);
@@ -113,55 +113,55 @@ public class Solver {
     	return true;
     }
 
-    // при ошибках в Б и К будет возвращать null, что может вызвать исключение
+    // РїСЂРё РѕС€РёР±РєР°С… РІ Р‘ Рё Рљ Р±СѓРґРµС‚ РІРѕР·РІСЂР°С‰Р°С‚СЊ null, С‡С‚Рѕ РјРѕР¶РµС‚ РІС‹Р·РІР°С‚СЊ РёСЃРєР»СЋС‡РµРЅРёРµ
     public Integer[] toFindDigits(){
-		nextShot = new Integer[4];		// формирование очередной попытки
-		int ShotDigitIndex = 0;			// индекс массива цифр очередной попытки
-		int DigitsForAnswerIndex = 0;	// индекс в наборе цифр
+		nextShot = new Integer[4];		// С„РѕСЂРјРёСЂРѕРІР°РЅРёРµ РѕС‡РµСЂРµРґРЅРѕР№ РїРѕРїС‹С‚РєРё
+		int ShotDigitIndex = 0;			// РёРЅРґРµРєСЃ РјР°СЃСЃРёРІР° С†РёС„СЂ РѕС‡РµСЂРµРґРЅРѕР№ РїРѕРїС‹С‚РєРё
+		int DigitsForAnswerIndex = 0;	// РёРЅРґРµРєСЃ РІ РЅР°Р±РѕСЂРµ С†РёС„СЂ
 		while (ShotDigitIndex < 4){
-			// подстановка очередной цифры
+			// РїРѕРґСЃС‚Р°РЅРѕРІРєР° РѕС‡РµСЂРµРґРЅРѕР№ С†РёС„СЂС‹
 			nextShot[ShotDigitIndex] = 
 									digitsForAnswer.get(DigitsForAnswerIndex);
-			// запоминание индекса цифры в наборе
+			// Р·Р°РїРѕРјРёРЅР°РЅРёРµ РёРЅРґРµРєСЃР° С†РёС„СЂС‹ РІ РЅР°Р±РѕСЂРµ
 			shotDigitInDigitsIndex[ShotDigitIndex] = DigitsForAnswerIndex;
-			// проверка набранного подмассива попытки на допустимость
+			// РїСЂРѕРІРµСЂРєР° РЅР°Р±СЂР°РЅРЅРѕРіРѕ РїРѕРґРјР°СЃСЃРёРІР° РїРѕРїС‹С‚РєРё РЅР° РґРѕРїСѓСЃС‚РёРјРѕСЃС‚СЊ
 			if (!isSuitable(nextShot, ShotDigitIndex)){
-				// если очередная цифра не подошла - берем следующую
+				// РµСЃР»Рё РѕС‡РµСЂРµРґРЅР°СЏ С†РёС„СЂР° РЅРµ РїРѕРґРѕС€Р»Р° - Р±РµСЂРµРј СЃР»РµРґСѓСЋС‰СѓСЋ
 				DigitsForAnswerIndex++;
-				// проверка выхода за пределы набора
+				// РїСЂРѕРІРµСЂРєР° РІС‹С…РѕРґР° Р·Р° РїСЂРµРґРµР»С‹ РЅР°Р±РѕСЂР°
 				if (DigitsForAnswerIndex > (digitsForAnswer.size() - 1)){
-					// если вышли - возврат в попытке на одну цифру назад
+					// РµСЃР»Рё РІС‹С€Р»Рё - РІРѕР·РІСЂР°С‚ РІ РїРѕРїС‹С‚РєРµ РЅР° РѕРґРЅСѓ С†РёС„СЂСѓ РЅР°Р·Р°Рґ
 					ShotDigitIndex--;
-					// если слишком назад - ошибка в быках и коровах
+					// РµСЃР»Рё СЃР»РёС€РєРѕРј РЅР°Р·Р°Рґ - РѕС€РёР±РєР° РІ Р±С‹РєР°С… Рё РєРѕСЂРѕРІР°С…
 					if (ShotDigitIndex < 0){
-						// есть ошибка в переданных ранее быках и коровах 
+						// РµСЃС‚СЊ РѕС€РёР±РєР° РІ РїРµСЂРµРґР°РЅРЅС‹С… СЂР°РЅРµРµ Р±С‹РєР°С… Рё РєРѕСЂРѕРІР°С… 
 						// Info("Error");
 						return null;
 					}
-					// для первого элемента отгадки берем следующую цифру 
-					//   из набора
+					// РґР»СЏ РїРµСЂРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р° РѕС‚РіР°РґРєРё Р±РµСЂРµРј СЃР»РµРґСѓСЋС‰СѓСЋ С†РёС„СЂСѓ 
+					//   РёР· РЅР°Р±РѕСЂР°
 					DigitsForAnswerIndex = 
 									shotDigitInDigitsIndex[ShotDigitIndex] + 1;
 				}
-				// если вернулись к младшему элементу - 
-				//   младшая цифра точно не верна,
+				// РµСЃР»Рё РІРµСЂРЅСѓР»РёСЃСЊ Рє РјР»Р°РґС€РµРјСѓ СЌР»РµРјРµРЅС‚Сѓ - 
+				//   РјР»Р°РґС€Р°СЏ С†РёС„СЂР° С‚РѕС‡РЅРѕ РЅРµ РІРµСЂРЅР°,
 				if (ShotDigitIndex == 0){
-					digitsForAnswer.remove(0);	// ее нужно выкинуть из набора
-					DigitsForAnswerIndex = 0;	// и обнулить индексы
+					digitsForAnswer.remove(0);	// РµРµ РЅСѓР¶РЅРѕ РІС‹РєРёРЅСѓС‚СЊ РёР· РЅР°Р±РѕСЂР°
+					DigitsForAnswerIndex = 0;	// Рё РѕР±РЅСѓР»РёС‚СЊ РёРЅРґРµРєСЃС‹
 				}
 				continue;
 			}
-			DigitsForAnswerIndex++;	    // переход следующей цифре набора
-			// если вышли за пределы набора, когда еще осталась цифра набора
+			DigitsForAnswerIndex++;	    // РїРµСЂРµС…РѕРґ СЃР»РµРґСѓСЋС‰РµР№ С†РёС„СЂРµ РЅР°Р±РѕСЂР°
+			// РµСЃР»Рё РІС‹С€Р»Рё Р·Р° РїСЂРµРґРµР»С‹ РЅР°Р±РѕСЂР°, РєРѕРіРґР° РµС‰Рµ РѕСЃС‚Р°Р»Р°СЃСЊ С†РёС„СЂР° РЅР°Р±РѕСЂР°
 			if ((DigitsForAnswerIndex > digitsForAnswer.size() - 1) &&
 					(ShotDigitIndex < 3)){
-				ShotDigitIndex--;	    // надо опять вернуться назад
+				ShotDigitIndex--;	    // РЅР°РґРѕ РѕРїСЏС‚СЊ РІРµСЂРЅСѓС‚СЊСЃСЏ РЅР°Р·Р°Рґ
 				if (ShotDigitIndex < 0){
-					// есть ошибка в ранее переданных быках и коровах 
+					// РµСЃС‚СЊ РѕС€РёР±РєР° РІ СЂР°РЅРµРµ РїРµСЂРµРґР°РЅРЅС‹С… Р±С‹РєР°С… Рё РєРѕСЂРѕРІР°С… 
 					// Info("Error");
 					return null;
 				}
-				// и подставить другую цифру на спорное место
+				// Рё РїРѕРґСЃС‚Р°РІРёС‚СЊ РґСЂСѓРіСѓСЋ С†РёС„СЂСѓ РЅР° СЃРїРѕСЂРЅРѕРµ РјРµСЃС‚Рѕ
 				DigitsForAnswerIndex = 
 									shotDigitInDigitsIndex[ShotDigitIndex] + 1;
 				if (ShotDigitIndex == 0){
@@ -170,7 +170,7 @@ public class Solver {
 				}
 				continue;
 			}
-			ShotDigitIndex++;	    // переход к следующему элементу отгадки
+			ShotDigitIndex++;	    // РїРµСЂРµС…РѕРґ Рє СЃР»РµРґСѓСЋС‰РµРјСѓ СЌР»РµРјРµРЅС‚Сѓ РѕС‚РіР°РґРєРё
 		}
 
 		for(int i = 0; i < 4; i++){
@@ -187,7 +187,7 @@ public class Solver {
 				Dgt[indices.get(n)] = shotDigits.get(n);
 			}
 		} else {
-			// есть несочетаемый вариант быков в цифрах 
+			// РµСЃС‚СЊ РЅРµСЃРѕС‡РµС‚Р°РµРјС‹Р№ РІР°СЂРёР°РЅС‚ Р±С‹РєРѕРІ РІ С†РёС„СЂР°С… 
 			// ShowStepInfo("bull error");
 			Dgt = nextShot.clone();
 		}
@@ -207,7 +207,7 @@ public class Solver {
 				Dgt[indices.get(n)] = shotDigits.get(n);
 			}
 		} else {
-			// есть несочетаемый вариант быков в цифрах
+			// РµСЃС‚СЊ РЅРµСЃРѕС‡РµС‚Р°РµРјС‹Р№ РІР°СЂРёР°РЅС‚ Р±С‹РєРѕРІ РІ С†РёС„СЂР°С…
 			// ShowStepInfo("bull error");
 			Dgt = nextShot.clone();
 		}

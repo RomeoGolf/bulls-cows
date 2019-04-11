@@ -21,7 +21,7 @@ class StoredDataManager {
 	private Integer firstStep;
 	private Boolean digitsReset;
 
-	// результаты игр
+	// СЂРµР·СѓР»СЊС‚Р°С‚С‹ РёРіСЂ
 	private Integer mode0Max;
 	private Integer mode0Min;
 	private Integer mode0Total;
@@ -190,11 +190,11 @@ class StoredDataManager {
 	private CodeSource src;
     private URL url = null;
     private String decodedPath = null;
-    // имя файла настроек
+    // РёРјСЏ С„Р°Р№Р»Р° РЅР°СЃС‚СЂРѕРµРє
     private final String PropFileName = "bc.properties";
-    // файл для чтения/записи настроек
+    // С„Р°Р№Р» РґР»СЏ С‡С‚РµРЅРёСЏ/Р·Р°РїРёСЃРё РЅР°СЃС‚СЂРѕРµРє
     private File propFile = null;
-    // индикатор загруженности настроек
+    // РёРЅРґРёРєР°С‚РѕСЂ Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚Рё РЅР°СЃС‚СЂРѕРµРє
     private Boolean loaded = false;
     public Boolean isLoaded(){
     	return this.loaded;
@@ -219,8 +219,8 @@ class StoredDataManager {
     		try{
     			value = Integer.decode(s);
     		} catch(NumberFormatException e){
-    			// если никто руками не лез в файл настроек -
-    			//   исключения здесь не будет. Но...
+    			// РµСЃР»Рё РЅРёРєС‚Рѕ СЂСѓРєР°РјРё РЅРµ Р»РµР· РІ С„Р°Р№Р» РЅР°СЃС‚СЂРѕРµРє -
+    			//   РёСЃРєР»СЋС‡РµРЅРёСЏ Р·РґРµСЃСЊ РЅРµ Р±СѓРґРµС‚. РќРѕ...
     			value = 0;
     			e.printStackTrace();
     		}
@@ -302,7 +302,7 @@ class StoredDataManager {
     	return result;
     }
 
-    // запись данных
+    // Р·Р°РїРёСЃСЊ РґР°РЅРЅС‹С…
     public void writeData(){
     	if(!propFile.exists()){
     		try {
@@ -315,44 +315,44 @@ class StoredDataManager {
     		try {
 				props.store(new FileOutputStream(propFile), "");
 			} catch (IOException e) {
-				// Нечего тут делать. Нет возможности сохранить - 
-				//   не будем сохранять.
+				// РќРµС‡РµРіРѕ С‚СѓС‚ РґРµР»Р°С‚СЊ. РќРµС‚ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё СЃРѕС…СЂР°РЅРёС‚СЊ - 
+				//   РЅРµ Р±СѓРґРµРј СЃРѕС…СЂР°РЅСЏС‚СЊ.
 				e.printStackTrace();
 			}
     	}
     }
 
     public StoredDataManager(){
-    	// для получения пути к исполняемому файлу
+    	// РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РїСѓС‚Рё Рє РёСЃРїРѕР»РЅСЏРµРјРѕРјСѓ С„Р°Р№Р»Сѓ
     	src = this.getClass().getProtectionDomain().getCodeSource();
     	if (src != null) {
 			try {
 				url = new URL(src.getLocation(), PropFileName);
 			} catch (MalformedURLException e) {
-				// С таким способом получения URL ошибка не должна возникать.
+				// РЎ С‚Р°РєРёРј СЃРїРѕСЃРѕР±РѕРј РїРѕР»СѓС‡РµРЅРёСЏ URL РѕС€РёР±РєР° РЅРµ РґРѕР»Р¶РЅР° РІРѕР·РЅРёРєР°С‚СЊ.
 				e.printStackTrace();
 			}
-			// URL файла
+			// URL С„Р°Р№Р»Р°
     		String path = url.getPath();
     		try {
-    			// декодирование URL для устранения проблемы с пробелами
+    			// РґРµРєРѕРґРёСЂРѕРІР°РЅРёРµ URL РґР»СЏ СѓСЃС‚СЂР°РЅРµРЅРёСЏ РїСЂРѕР±Р»РµРјС‹ СЃ РїСЂРѕР±РµР»Р°РјРё
 				decodedPath = URLDecoder.decode(path, "UTF-8");
-				// окончательное получение файла настроек
+				// РѕРєРѕРЅС‡Р°С‚РµР»СЊРЅРѕРµ РїРѕР»СѓС‡РµРЅРёРµ С„Р°Р№Р»Р° РЅР°СЃС‚СЂРѕРµРє
 				propFile = new File(decodedPath);
 			} catch (UnsupportedEncodingException e) {
-				// Не вижу причин возникновения ошибки тут.
+				// РќРµ РІРёР¶Сѓ РїСЂРёС‡РёРЅ РІРѕР·РЅРёРєРЅРѕРІРµРЅРёСЏ РѕС€РёР±РєРё С‚СѓС‚.
 				e.printStackTrace();
 			}
     	}
 
-    	// загрузка сохраненных настроек (если возможно)
+    	// Р·Р°РіСЂСѓР·РєР° СЃРѕС…СЂР°РЅРµРЅРЅС‹С… РЅР°СЃС‚СЂРѕРµРє (РµСЃР»Рё РІРѕР·РјРѕР¶РЅРѕ)
     	if (propFile.canRead()) {
     		try {
 				props.load(new FileInputStream(propFile));
 				loaded = true;
 			} catch (IOException e) {
-				// Тут ничего не надо делать. Нет файла настроек - и ладно, 
-				//   будут значения по умолчанию.
+				// РўСѓС‚ РЅРёС‡РµРіРѕ РЅРµ РЅР°РґРѕ РґРµР»Р°С‚СЊ. РќРµС‚ С„Р°Р№Р»Р° РЅР°СЃС‚СЂРѕРµРє - Рё Р»Р°РґРЅРѕ, 
+				//   Р±СѓРґСѓС‚ Р·РЅР°С‡РµРЅРёСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ.
 				e.printStackTrace();
 			}
     	}

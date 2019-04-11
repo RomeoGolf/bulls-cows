@@ -13,14 +13,14 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 public class SettingsController implements Initializable{
-	// переключатели права первого хода
+	// РїРµСЂРµРєР»СЋС‡Р°С‚РµР»Рё РїСЂР°РІР° РїРµСЂРІРѕРіРѕ С…РѕРґР°
 	@FXML private RadioButton rbFirstStep0;
 	@FXML private RadioButton rbFirstStep1;
 	@FXML private RadioButton rbFirstStep2;
 	@FXML private RadioButton rbFirstStep3;
 	@FXML private ToggleGroup tgFirstStep;
 
-	//флажок сброса цифр в исходное (1234)
+	//С„Р»Р°Р¶РѕРє СЃР±СЂРѕСЃР° С†РёС„СЂ РІ РёСЃС…РѕРґРЅРѕРµ (1234)
 	@FXML private CheckBox cbDigitsReset;
 
 	private Stage stage;
@@ -38,7 +38,7 @@ public class SettingsController implements Initializable{
 		stage.close();
 	}
 
-    // получение ссылки на окно, установка обработчика событий окна 
+    // РїРѕР»СѓС‡РµРЅРёРµ СЃСЃС‹Р»РєРё РЅР° РѕРєРЅРѕ, СѓСЃС‚Р°РЅРѕРІРєР° РѕР±СЂР°Р±РѕС‚С‡РёРєР° СЃРѕР±С‹С‚РёР№ РѕРєРЅР° 
     public void setStage_Listener(final Stage stage){
     	this.stage = stage;
     }
