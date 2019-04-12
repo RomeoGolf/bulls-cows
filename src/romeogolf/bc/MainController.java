@@ -1052,7 +1052,7 @@ public class MainController implements Initializable{
             this.showStepInfo("Ничья!", false, 0);
             if(this.getMode() == 1){
                 wins = storedDataManager.getMode1Tie();
-                storedDataManager.setMode1Tie(wins++);
+                storedDataManager.setMode1Tie(wins + 1);
             } else {
                 wins = storedDataManager.getMode2Tie();
                 storedDataManager.setMode2Tie(wins + 1);
