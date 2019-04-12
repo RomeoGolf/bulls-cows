@@ -1012,6 +1012,7 @@ public class MainController implements Initializable{
     private void doEndOfGame(int player){
         this.shotButton.setDisable(true);
         Integer wins;
+        // TODO: сделать перечисление
         switch(player){
         case 0:
             this.showStepInfo("Победа!", true, 0);
