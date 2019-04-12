@@ -14,23 +14,23 @@ import javafx.stage.Stage;
 
 public class SettingsController implements Initializable{
     // переключатели права первого хода
-    @FXML private RadioButton rbFirstStep0;
-    @FXML private RadioButton rbFirstStep1;
-    @FXML private RadioButton rbFirstStep2;
-    @FXML private RadioButton rbFirstStep3;
-    @FXML private ToggleGroup tgFirstStep;
+    @FXML private RadioButton firstStep0RadioButton;
+    @FXML private RadioButton firstStep1RadioButton;
+    @FXML private RadioButton firstStep2RadioButton;
+    @FXML private RadioButton firstStep3RadioButton;
+    @FXML private ToggleGroup firstStepToggleGroup;
 
     //флажок сброса цифр в исходное (1234)
-    @FXML private CheckBox cbDigitsReset;
+    @FXML private CheckBox digitsResetCheckBox;
 
     private Stage stage;
-    private StoredDataManager sdm;
-    private final ArrayList<RadioButton> aFirstStep = new ArrayList<>();
+    private StoredDataManager storedDataManager;
+    private final ArrayList<RadioButton> firstSteps = new ArrayList<>();
 
     @FXML protected void onOK(ActionEvent e){
-        this.sdm.setDigitsReset(this.cbDigitsReset.isSelected());
-        this.sdm.setFirstStep(this.aFirstStep.indexOf(
-                this.tgFirstStep.getSelectedToggle()));
+        this.storedDataManager.setDigitsReset(this.digitsResetCheckBox.isSelected());
+        this.storedDataManager.setFirstStep(this.firstSteps.indexOf(
+                this.firstStepToggleGroup.getSelectedToggle()));
         stage.close();
     }
 
@@ -44,28 +44,28 @@ public class SettingsController implements Initializable{
     }
 
     void setSDM(final StoredDataManager sdm){
-        this.sdm = sdm;
+        this.storedDataManager = sdm;
         Boolean checked = sdm.getDigitsReset();
         if(checked != null){
-            this.cbDigitsReset.setSelected(checked);
+            this.digitsResetCheckBox.setSelected(checked);
         }
         Integer firstStepIndex = sdm.getFirstStep();
         if((firstStepIndex != null) && (firstStepIndex >= 0) 
                                                     && (firstStepIndex <= 3)){
-            int ind = aFirstStep.indexOf(
-                    this.tgFirstStep.getSelectedToggle());
+            int ind = firstSteps.indexOf(
+                    this.firstStepToggleGroup.getSelectedToggle());
             if(ind != firstStepIndex){
-                tgFirstStep.selectToggle(this.aFirstStep.get(firstStepIndex));
+                firstStepToggleGroup.selectToggle(this.firstSteps.get(firstStepIndex));
             }
         }
     }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        aFirstStep.add(rbFirstStep0);
-        aFirstStep.add(rbFirstStep1);
-        aFirstStep.add(rbFirstStep2);
-        aFirstStep.add(rbFirstStep3);
+        firstSteps.add(firstStep0RadioButton);
+        firstSteps.add(firstStep1RadioButton);
+        firstSteps.add(firstStep2RadioButton);
+        firstSteps.add(firstStep3RadioButton);
     }
 
 }

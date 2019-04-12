@@ -40,109 +40,110 @@ import java.util.*;
 
 public class MainController implements Initializable{
     // знакоместа пользовательских цифр
-    @FXML private Label charsell_1_1;
-    @FXML private Label charsell_1_2;
-    @FXML private Label charsell_1_3;
-    @FXML private Label charsell_1_4;
+    @FXML private Label charSell11Label;
+    @FXML private Label charSell12Label;
+    @FXML private Label charSell13Label;
+    @FXML private Label charSell14Label;
     // знакоместа цифр 2 игрока
-    @FXML private Label charsell_2_1;
-    @FXML private Label charsell_2_2;
-    @FXML private Label charsell_2_3;
-    @FXML private Label charsell_2_4;
+    @FXML private Label charSell2_1Label;
+    @FXML private Label charSell22Label;
+    @FXML private Label charSell23Label;
+    @FXML private Label charSell24Label;
     // кнопки для изменения цифр
-    @FXML private Button btUp_1;
-    @FXML private Button btDown_1;
-    @FXML private Button btUp_2;
-    @FXML private Button btDown_2;
-    @FXML private Button btUp_3;
-    @FXML private Button btDown_3;
-    @FXML private Button btUp_4;
-    @FXML private Button btDown_4;
+    @FXML private Button up1Button;
+    @FXML private Button down1Button;
+    @FXML private Button up2Button;
+    @FXML private Button down2Button;
+    @FXML private Button up3Button;
+    @FXML private Button down3Button;
+    @FXML private Button up4Button;
+    @FXML private Button down4Button;
     // поля для отображения ходов игроков 1 и 2
-    @FXML private VBox vbPlayer1;
-    @FXML private ScrollPane spPlayer1;
-    @FXML private VBox vbPlayer2;
-    @FXML private ScrollPane spPlayer2;
+    @FXML private VBox player1VBox;
+    @FXML private ScrollPane player1ScrollPane;
+    @FXML private VBox player2VBox;
+    @FXML private ScrollPane player2ScrollPane;
     // переключение режима
-    @FXML private ToggleGroup tgMode;
+    @FXML private ToggleGroup modeToggleGroup;
     // кнопки управления
-    @FXML private Button btSetQuad;
-    @FXML private Button btGenerateQuad;
-    @FXML private Button btReset;
-    @FXML private Button btTest;
-    @FXML private Button btShot;
-    @FXML private Button btSettings;
-    @FXML private Button btHelp;
+    @FXML private Button settingQuadButton;
+    @FXML private Button generatingQuadButton;
+    @FXML private Button resettingButton;
+    @FXML private Button testButton;
+    @FXML private Button shotButton;
+    @FXML private Button settingsButton;
+    @FXML private Button helpButton;
     // переключатели режима
-    @FXML private RadioButton rbMode0;
-    @FXML private RadioButton rbMode1;
-    @FXML private RadioButton rbMode2;
-    @FXML private RadioButton rbMode3;
+    @FXML private RadioButton mode0RadioButton;
+    @FXML private RadioButton mode1RadioButton;
+    @FXML private RadioButton mode2RadioButton;
+    @FXML private RadioButton mode3RadioButton;
     // нижняя панель
-    @FXML private HBox hbBottom;
+    @FXML private HBox bottomHBox;
     // Метки имен полей с результатами попыток
-    @FXML private Label lPlayer1;
-    @FXML private Label lPlayer2;
+    @FXML private Label player1Label;
+    @FXML private Label player2Label;
     // панель для вывода информации всякого рода
-    @FXML private Pane pInfo;
+    @FXML private Pane infoPane;
 
     // количество попыток первого игрока (человека)
     private Integer player1ShotNum = 0;
 
     // право первого хода
-    private Boolean firstStepPlayer1 = true;
-    private Boolean isFirstPlayer1(){
-        return firstStepPlayer1;
+    private Boolean isFirstStepPlayer1 = true;
+    private Boolean getIsFirstStepPlayer1(){
+        return isFirstStepPlayer1;
     }
 
     private void setFirstPlayer(){
-        Integer firstStep = sdm.getFirstStep();
+        Integer firstStep = storedDataManager.getFirstStep();
         switch(firstStep){
         case 1: // первым - второй игрок
-            firstStepPlayer1 = false;
+            isFirstStepPlayer1 = false;
             break;
         case 2: // первый ход по очереди
-            firstStepPlayer1 = !firstStepPlayer1;
+            isFirstStepPlayer1 = !isFirstStepPlayer1;
             break;
         case 3: // первый ход случайно
-            firstStepPlayer1 = curator.getRandomBool();
+            isFirstStepPlayer1 = curator.getRandomBool();
             break;
         default:    // первым - первый игрок (в т. ч. в непонятных ситуациях)
-            firstStepPlayer1 = true;
+            isFirstStepPlayer1 = true;
         }
-        this.player2firstStep = true;
+        this.isFirstSrepPlayer2 = true;
     }
 
-    private void drawFirstStep(Boolean toDraw){
-        if(toDraw){
+    private void drawFirstStep(Boolean needDraw){
+        if(needDraw){
             Image iWhite = new Image(this.getClass().getResourceAsStream(
                     "/res/img/castle_white.png"));
             Image iBlack = new Image(this.getClass().getResourceAsStream(
                     "/res/img/castle_black.png"));
-            if(this.isFirstPlayer1()){
-                this.lPlayer1.setGraphic(new ImageView(iWhite));
-                this.lPlayer2.setGraphic(new ImageView(iBlack));
-                this.btShot.setText("Попытка");
+            if(this.getIsFirstStepPlayer1()){
+                this.player1Label.setGraphic(new ImageView(iWhite));
+                this.player2Label.setGraphic(new ImageView(iBlack));
+                this.shotButton.setText("Попытка");
             } else {
-                this.lPlayer2.setGraphic(new ImageView(iWhite));
-                this.lPlayer1.setGraphic(new ImageView(iBlack));
-                this.btShot.setText("Старт");
+                this.player2Label.setGraphic(new ImageView(iWhite));
+                this.player1Label.setGraphic(new ImageView(iBlack));
+                this.shotButton.setText("Старт");
             }
         } else {
-            this.lPlayer1.setGraphic(null);
-            this.lPlayer2.setGraphic(null);
-            this.btShot.setText("Попытка");
+            this.player1Label.setGraphic(null);
+            this.player2Label.setGraphic(null);
+            this.shotButton.setText("Попытка");
         }
     }
 
     // первый ход игрока 2 при его праве первого хода
-    private Boolean player2firstStep = true;
+    private Boolean isFirstSrepPlayer2 = true;
 
     // режим игры
     private Integer mode = 0;
     private void setMode(Integer mode){
         this.mode = mode;
         this.reset();
+        // TODO: сделать перечисление
         /*
         0 : // режим "человек угадывает"
         1 : // режим "человек и машина угадывают друг у друга"
@@ -155,12 +156,12 @@ public class MainController implements Initializable{
             generateQwads();
         }
         // если нет загадки для машины
-        this.setDisableBt(false);
+        this.setDisableButtons(false);
         if ((mode == 0) || (mode == 2)){
             this.setXToPlayer2();
         }
         // если играет человек с машиной - отобразить право хода
-        this.btShot.setText("Попытка");
+        this.shotButton.setText("Попытка");
         this.drawFirstStep((mode == 1) || (mode == 2));
     }
 
@@ -171,22 +172,22 @@ public class MainController implements Initializable{
     // Цифры, вводимые пользователем
     private final Integer[] digitsForShow = new Integer[4];
     // массив знакомест для пользовательских цифр
-    private final ArrayList<Label> aQuad1 = new ArrayList<>();
-    // массив знакомест для загаданных цифр
-    private final ArrayList<Label> aQuad2 = new ArrayList<>();
+    private final ArrayList<Label> quad1User = new ArrayList<>();
+    // массив знакомест для загаданных цифр // TODO: уточнить название
+    private final ArrayList<Label> quad2 = new ArrayList<>();
     // массив радиокнопок - переключатель режима
-    private final ArrayList<RadioButton> aRbMode = new ArrayList<>();
+    private final ArrayList<RadioButton> modeRadioButtons = new ArrayList<>();
     // карта соответствия кнопок цифрам
-    private final Map<Button, Integer> mapButtonDigit = new HashMap<>();
+    private final Map<Button, Integer> buttonToDigitMap = new HashMap<>();
     // множество кнопок увеличения
-    private final Set<Button> sUp = new HashSet<>();
+    private final Set<Button> upButtonsSet = new HashSet<>();
 
     // тестовая кнопка - тестовый обработчик
     @FXML protected void onTest(ActionEvent event) {
         //this.FullTestForAlgorithm();
         this.reset(true);
         if(!this.isTestRun){
-            this.atAlgorithmTest.start();
+            this.algorithmTestAnimationTimer.start();
             isTestRun = true;
         }
     }
@@ -194,8 +195,8 @@ public class MainController implements Initializable{
     // общий обработчик для всех кнопок Up & Down
     @FXML protected void onUpDown(ActionEvent e) {
             // получение номера цифры, чью кнопку нажали
-            int Num = mapButtonDigit.get(e.getSource());
-            if (sUp.contains(e.getSource())){   // изменение цифры
+            int Num = buttonToDigitMap.get(e.getSource());
+            if (upButtonsSet.contains(e.getSource())){   // изменение цифры
                 digitsForShow[Num]++;
             } else {
                 digitsForShow[Num]--;
@@ -208,13 +209,13 @@ public class MainController implements Initializable{
             if (digitsForShow[Num] > 9){
                 digitsForShow[Num] = 0;
             }
-            aQuad1.get(Num).setText(Integer.toString(digitsForShow[Num]));
+            quad1User.get(Num).setText(Integer.toString(digitsForShow[Num]));
             isEqualDigits();
     }
 
     // Обработчик кнопки "попытка"
     @FXML protected void onShot(ActionEvent e) {
-        this.setDisableBt(true);
+        this.setDisableButtons(true);
         switch(mode){
         case 0 :    // режим "человек угадывает"
             this.shotMode0();
@@ -241,10 +242,10 @@ public class MainController implements Initializable{
             curator.setQuad(this.digitsForShow, 2);
             solver.Init(curator.getDecade());
             for(int i = 0; i < 4; i++){
-                aQuad2.get(i).setText(curator.getQuad(2)[i].toString());
+                quad2.get(i).setText(curator.getQuad(2)[i].toString());
             }
         }
-        this.btShot.setDisable(false);
+        this.shotButton.setDisable(false);
     }
 
     // обработчик кнопки генерации четверки  для обоих игроков
@@ -257,32 +258,32 @@ public class MainController implements Initializable{
         if ((this.getMode() != 0) && (this.getMode() != 2)){
             curator.generateQuad(2);
             for(int i = 0; i < 4; i++){
-                aQuad2.get(i).setText(curator.getQuad(2)[i].toString());
+                quad2.get(i).setText(curator.getQuad(2)[i].toString());
             }
         }
         curator.generateQuad(1);
         solver.Init(curator.getDecade());
-        this.btShot.setDisable(false);
+        this.shotButton.setDisable(false);
     }
 
     // сброс отображения предыдущей игры и подготовка к следующей
     private void reset(Boolean clearPInfo){
-        vbPlayer1.getChildren().removeAll(vbPlayer1.getChildren());
-        vbPlayer2.getChildren().removeAll(vbPlayer2.getChildren());
+        player1VBox.getChildren().removeAll(player1VBox.getChildren());
+        player2VBox.getChildren().removeAll(player2VBox.getChildren());
         this.generateQwads();
         player1ShotNum = 0;
         bulls = 0;
         cows = 0;
-        this.setDisableBt(false);
-        this.btShot.setDisable(false);
-        if(this.sdm.getDigitsReset()){
+        this.setDisableButtons(false);
+        this.shotButton.setDisable(false);
+        if(this.storedDataManager.getDigitsReset()){
             this.digitsReset();
         }
         this.drawFirstStep((getMode() == 1) || (getMode() == 2));
 
         if(clearPInfo){
-            pInfo.getChildren().removeAll(pInfo.getChildren());
-            pInfo.getChildren().add(this.aStatBoxes.get(this.getMode()));
+            infoPane.getChildren().removeAll(infoPane.getChildren());
+            infoPane.getChildren().add(this.statBoxes.get(this.getMode()));
         }
     }
 
@@ -291,19 +292,19 @@ public class MainController implements Initializable{
     }
 
     // установка доступности кнопок в зависимости от режима
-    private void setDisableBt(Boolean disable){
+    private void setDisableButtons(Boolean disable){
         // доступность кнопок "загадать" и "сгенерить"
-        this.btGenerateQuad.setDisable(disable);
+        this.generatingQuadButton.setDisable(disable);
         if (!disable){
-            this.btSetQuad.setDisable((this.mode == 0) || (this.mode == 2));
+            this.settingQuadButton.setDisable((this.mode == 0) || (this.mode == 2));
         } else {
-            this.btSetQuad.setDisable(true);
+            this.settingQuadButton.setDisable(true);
         }
     }
 
     // кнопка "сброс"
     @FXML protected void onReset(ActionEvent e) {
-        this.atAlgorithmTest.stop();
+        this.algorithmTestAnimationTimer.stop();
         this.isTestRun = false;
         this.reset();
     }
@@ -323,7 +324,7 @@ public class MainController implements Initializable{
         SettingsController controllerSettings =
                 loaderSettings.getController();
         controllerSettings.setStage_Listener(stageSettings);
-        controllerSettings.setSDM(sdm);
+        controllerSettings.setSDM(storedDataManager);
 
         Scene sceneSettings = new Scene(rootSettings);
         stageSettings.setTitle("Настройки");
@@ -360,9 +361,9 @@ public class MainController implements Initializable{
 
     // обработка переключения режима
     private void onModeToggle(){
-        if (tgMode.getSelectedToggle() != null) {
-            setMode(this.aRbMode.indexOf(
-                    this.tgMode.getSelectedToggle()));
+        if (modeToggleGroup.getSelectedToggle() != null) {
+            setMode(this.modeRadioButtons.indexOf(
+                    this.modeToggleGroup.getSelectedToggle()));
         } else {
             setMode(0);
         }
@@ -371,14 +372,14 @@ public class MainController implements Initializable{
     // проверка цифр на совпадение
     private boolean isEqualDigits() {
         for(int i = 0; i < 4; i++) {
-            aQuad1.get(i).setStyle("-fx-text-fill: #000000;");
+            quad1User.get(i).setStyle("-fx-text-fill: #000000;");
         }
         boolean result = false;
         for(int i = 0; i < 3; i++) {
             for(int j = i + 1; j < 4; j++) {
                 if (digitsForShow[i].equals(digitsForShow[j])) {
-                    aQuad1.get(i).setStyle("-fx-text-fill: #FF0000;");
-                    aQuad1.get(j).setStyle("-fx-text-fill: #FF0000;");
+                    quad1User.get(i).setStyle("-fx-text-fill: #FF0000;");
+                    quad1User.get(j).setStyle("-fx-text-fill: #FF0000;");
                     result = true;
                 }
             }
@@ -388,11 +389,11 @@ public class MainController implements Initializable{
 
     // =================== инициализация интерфейса ============================
     // список панелей для отображения статистики прошлых игр
-    private final ArrayList<VBox> aStatBoxes = new ArrayList<>();
+    private final ArrayList<VBox> statBoxes = new ArrayList<>();
     // список меток для отображения статистики
-    private final ArrayList<Label> aTotalLabels = new ArrayList<>();
-    private final ArrayList<Label> aWinLabels = new ArrayList<>();
-    private final ArrayList<Label> aTieLabels = new ArrayList<>();
+    private final ArrayList<Label> totalLabels = new ArrayList<>();
+    private final ArrayList<Label> winLabels = new ArrayList<>();
+    private final ArrayList<Label> tieLabels = new ArrayList<>();
     // создание панелей статистики, заполнение списков панелей и меток
     private void buildBox(String tl1, String tl2, String tl3){
         DropShadow ds = new DropShadow();
@@ -402,13 +403,13 @@ public class MainController implements Initializable{
         ds.setWidth(5.0);
 
         VBox vb = new VBox();
-        vb.setMinHeight(this.pInfo.getPrefHeight());
-        vb.setMaxHeight(this.pInfo.getPrefHeight());
-        vb.setMinWidth(this.pInfo.getPrefWidth());
-        vb.setMaxWidth(this.pInfo.getPrefWidth());
+        vb.setMinHeight(this.infoPane.getPrefHeight());
+        vb.setMaxHeight(this.infoPane.getPrefHeight());
+        vb.setMinWidth(this.infoPane.getPrefWidth());
+        vb.setMaxWidth(this.infoPane.getPrefWidth());
         vb.setAlignment(Pos.CENTER);
         vb.setSpacing(10);
-        aStatBoxes.add(vb);
+        statBoxes.add(vb);
         HBox hb1 = new HBox();
         hb1.setSpacing(10);
         hb1.setAlignment(Pos.CENTER_LEFT);
@@ -421,7 +422,7 @@ public class MainController implements Initializable{
         l2.setEffect(ds);
         hb1.getChildren().addAll(l1, l2);
         vb.getChildren().add(hb1);
-        aTotalLabels.add(l2);
+        totalLabels.add(l2);
         hb1 = new HBox();
         hb1.setSpacing(10);
         hb1.setAlignment(Pos.CENTER_LEFT);
@@ -434,7 +435,7 @@ public class MainController implements Initializable{
         l2.setEffect(ds);
         hb1.getChildren().addAll(l1, l2);
         vb.getChildren().add(hb1);
-        aWinLabels.add(l2);
+        winLabels.add(l2);
         hb1 = new HBox();
         hb1.setSpacing(10);
         hb1.setAlignment(Pos.CENTER_LEFT);
@@ -447,7 +448,7 @@ public class MainController implements Initializable{
         l2.setEffect(ds);
         vb.getChildren().add(hb1);
         hb1.getChildren().addAll(l1, l2);
-        aTieLabels.add(l2);
+        tieLabels.add(l2);
     }
 
     private void buildStatBoxes(){
@@ -460,49 +461,49 @@ public class MainController implements Initializable{
 
         // для режима 3 (машина -> машина)
         VBox vb = new VBox();
-        vb.setMinHeight(this.pInfo.getPrefHeight());
-        vb.setMaxHeight(this.pInfo.getPrefHeight());
-        vb.setMinWidth(this.pInfo.getPrefWidth());
-        vb.setMaxWidth(this.pInfo.getPrefWidth());
+        vb.setMinHeight(this.infoPane.getPrefHeight());
+        vb.setMaxHeight(this.infoPane.getPrefHeight());
+        vb.setMinWidth(this.infoPane.getPrefWidth());
+        vb.setMaxWidth(this.infoPane.getPrefWidth());
         vb.setAlignment(Pos.CENTER);
         vb.setSpacing(10);
-        aStatBoxes.add(vb);
+        statBoxes.add(vb);
     }
 
     // объект для управления данными, сохраняемыми в память (настройки, etc)
-    private final StoredDataManager sdm = new StoredDataManager();
+    private final StoredDataManager storedDataManager = new StoredDataManager();
     private Stage stage;
     private void storePrefs(){
-        sdm.setTop(stage.getY());
-        sdm.setLeft(stage.getX());
-        sdm.setHeight(stage.getHeight());
-        sdm.setMode(this.mode);
-        sdm.writeData();
+        storedDataManager.setTop(stage.getY());
+        storedDataManager.setLeft(stage.getX());
+        storedDataManager.setHeight(stage.getHeight());
+        storedDataManager.setMode(this.mode);
+        storedDataManager.writeData();
     }
 
     private void drawStatLabels(){
-        this.aTotalLabels.get(0).setText(Integer.toString(sdm.getMode0Total()));
-        int total = sdm.getMode1Player1Win() + sdm.getMode1Player2Win() +
-                sdm.getMode1Tie();
-        this.aTotalLabels.get(1).setText(Integer.toString(total));
-        total = sdm.getMode2Player1Win() + sdm.getMode2Player2Win() +
-                sdm.getMode2Tie();
-        this.aTotalLabels.get(2).setText(Integer.toString(total));
+        this.totalLabels.get(0).setText(Integer.toString(storedDataManager.getMode0Total()));
+        int total = storedDataManager.getMode1Player1Win() + storedDataManager.getMode1Player2Win() +
+                storedDataManager.getMode1Tie();
+        this.totalLabels.get(1).setText(Integer.toString(total));
+        total = storedDataManager.getMode2Player1Win() + storedDataManager.getMode2Player2Win() +
+                storedDataManager.getMode2Tie();
+        this.totalLabels.get(2).setText(Integer.toString(total));
 
-        this.aWinLabels.get(0).setText(Integer.toString(sdm.getMode0Min()));
+        this.winLabels.get(0).setText(Integer.toString(storedDataManager.getMode0Min()));
         StringBuffer sb = 
-                new StringBuffer(Integer.toString(sdm.getMode1Player1Win()));
+                new StringBuffer(Integer.toString(storedDataManager.getMode1Player1Win()));
         sb.append(" : ");
-        sb.append(sdm.getMode1Player2Win());
-        this.aWinLabels.get(1).setText(sb.toString());
-        sb = new StringBuffer(Integer.toString(sdm.getMode2Player1Win()));
+        sb.append(storedDataManager.getMode1Player2Win());
+        this.winLabels.get(1).setText(sb.toString());
+        sb = new StringBuffer(Integer.toString(storedDataManager.getMode2Player1Win()));
         sb.append(" : ");
-        sb.append(sdm.getMode2Player2Win());
-        this.aWinLabels.get(2).setText(sb.toString());
+        sb.append(storedDataManager.getMode2Player2Win());
+        this.winLabels.get(2).setText(sb.toString());
 
-        this.aTieLabels.get(0).setText(Integer.toString(sdm.getMode0Max()));
-        this.aTieLabels.get(1).setText(Integer.toString(sdm.getMode1Tie()));
-        this.aTieLabels.get(2).setText(Integer.toString(sdm.getMode2Tie()));
+        this.tieLabels.get(0).setText(Integer.toString(storedDataManager.getMode0Max()));
+        this.tieLabels.get(1).setText(Integer.toString(storedDataManager.getMode1Tie()));
+        this.tieLabels.get(2).setText(Integer.toString(storedDataManager.getMode2Tie()));
     }
 
     // восстановление параметров игры из файла настроек
@@ -510,23 +511,23 @@ public class MainController implements Initializable{
         this.drawStatLabels();
 
         // чтение режима
-        Integer bufInt = sdm.getMode();
+        Integer bufInt = storedDataManager.getMode();
         if((bufInt < 0) || (bufInt > 3)){
             bufInt = 0;
         }
         this.setMode(0);
-        if(this.aRbMode.indexOf(this.tgMode.getSelectedToggle())
+        if(this.modeRadioButtons.indexOf(this.modeToggleGroup.getSelectedToggle())
                                                                     != bufInt){
-            this.tgMode.selectToggle(aRbMode.get(bufInt));
+            this.modeToggleGroup.selectToggle(modeRadioButtons.get(bufInt));
         }
     }
 
     // восстановление параметров окна из файла настроек
     private void readStagePrefs(){
-        if(sdm.isPosition()){
-            stage.setY(sdm.getTop());
-            stage.setX(sdm.getLeft());
-            stage.setHeight(sdm.getHeight());
+        if(storedDataManager.isPosition()){
+            stage.setY(storedDataManager.getTop());
+            stage.setX(storedDataManager.getLeft());
+            stage.setHeight(storedDataManager.getHeight());
         }
     }
 
@@ -545,14 +546,14 @@ public class MainController implements Initializable{
     }
 
     // соответствие панели VBox своему контейнеру ScrollPane
-    private final Map<VBox, ScrollPane> mPlayerPanes = new HashMap<>();
+    private final Map<VBox, ScrollPane> playerPanes = new HashMap<>();
 
     // общий обработчик увеличения для обоих VBox Player[X]
     private void setVBoxScroller(final VBox box){
         box.setSpacing(3);
         box.heightProperty().addListener((ChangeListener<Object>) (observable, oldValue, newValue) -> {
             if((Double)oldValue > 0){
-                mPlayerPanes.get(box).setVvalue(1.0);
+                playerPanes.get(box).setVvalue(1.0);
             }
         });
     }
@@ -561,7 +562,7 @@ public class MainController implements Initializable{
         // заполнение массива цифр и его отображение
         for(int i = 0; i < 4; i++){
             this.digitsForShow[i] = i + 1;
-            aQuad1.get(i).setText(Integer.toString(this.digitsForShow[i]));
+            quad1User.get(i).setText(Integer.toString(this.digitsForShow[i]));
         }
     }
 
@@ -572,16 +573,16 @@ public class MainController implements Initializable{
         getImages();
         // добавление обработчика изменения размера панели на ScrollPane
         // для прокрутки до упора вниз
-        mPlayerPanes.put(vbPlayer1, spPlayer1);
-        mPlayerPanes.put(vbPlayer2, spPlayer2);
-        setVBoxScroller(this.vbPlayer1);
-        setVBoxScroller(this.vbPlayer2);
+        playerPanes.put(player1VBox, player1ScrollPane);
+        playerPanes.put(player2VBox, player2ScrollPane);
+        setVBoxScroller(this.player1VBox);
+        setVBoxScroller(this.player2VBox);
 
         setControlMaps();   // для групповой обработки кнопок
         this.digitsReset();
 
         // установка обработчика переключения режима игры
-        tgMode.selectedToggleProperty().addListener(
+        modeToggleGroup.selectedToggleProperty().addListener(
                 (ov, old_toggle, new_toggle) -> {
                     if (old_toggle != new_toggle) {
                         onModeToggle();
@@ -601,10 +602,10 @@ public class MainController implements Initializable{
         refl.setFraction(0.5);
         ds.setInput(refl);
         for(int i = 0; i < 4; i++){
-            this.aQuad2.get(i).setEffect(ds);
+            this.quad2.get(i).setEffect(ds);
         }
         for(int i = 0; i < 10; i++){
-            this.aAidDigits.get(i).setEffect(ds);
+            this.aidDigits.get(i).setEffect(ds);
         }
 
         DropShadow ds2 = new DropShadow();
@@ -612,145 +613,145 @@ public class MainController implements Initializable{
         ds2.setOffsetY(4.0);
         ds2.setColor(Color.GRAY);
         ds2.setWidth(5.0);
-        this.lPlayer1.setEffect(ds2);
-        this.lPlayer2.setEffect(ds2);
+        this.player1Label.setEffect(ds2);
+        this.player2Label.setEffect(ds2);
         for(int i = 0; i < 4; i++){
-            this.aQuad1.get(i).setEffect(ds2);
+            this.quad1User.get(i).setEffect(ds2);
         }
     }
 
     private void setControlMaps(){
         // заполнение карты соответствия кнопок их номерам
-        mapButtonDigit.put(btUp_1, 0);
-        mapButtonDigit.put(btDown_1, 0);
-        mapButtonDigit.put(btUp_2, 1);
-        mapButtonDigit.put(btDown_2, 1);
-        mapButtonDigit.put(btUp_3, 2);
-        mapButtonDigit.put(btDown_3, 2);
-        mapButtonDigit.put(btUp_4, 3);
-        mapButtonDigit.put(btDown_4, 3);
+        buttonToDigitMap.put(up1Button, 0);
+        buttonToDigitMap.put(down1Button, 0);
+        buttonToDigitMap.put(up2Button, 1);
+        buttonToDigitMap.put(down2Button, 1);
+        buttonToDigitMap.put(up3Button, 2);
+        buttonToDigitMap.put(down3Button, 2);
+        buttonToDigitMap.put(up4Button, 3);
+        buttonToDigitMap.put(down4Button, 3);
         // множество кнопок "вверх"
-        sUp.add(btUp_1);
-        sUp.add(btUp_2);
-        sUp.add(btUp_3);
-        sUp.add(btUp_4);
+        upButtonsSet.add(up1Button);
+        upButtonsSet.add(up2Button);
+        upButtonsSet.add(up3Button);
+        upButtonsSet.add(up4Button);
         // множество знакомест для цифр
-        aQuad1.add(charsell_1_1);
-        aQuad1.add(charsell_1_2);
-        aQuad1.add(charsell_1_3);
-        aQuad1.add(charsell_1_4);
+        quad1User.add(charSell11Label);
+        quad1User.add(charSell12Label);
+        quad1User.add(charSell13Label);
+        quad1User.add(charSell14Label);
         // множество знакомест для загаданных цифр
-        aQuad2.add(charsell_2_1);
-        aQuad2.add(charsell_2_2);
-        aQuad2.add(charsell_2_3);
-        aQuad2.add(charsell_2_4);
+        quad2.add(charSell2_1Label);
+        quad2.add(charSell22Label);
+        quad2.add(charSell23Label);
+        quad2.add(charSell24Label);
         // множество радиокнопок - переключатель режима
-        aRbMode.add(rbMode0);
-        aRbMode.add(rbMode1);
-        aRbMode.add(rbMode2);
-        aRbMode.add(rbMode3);
+        modeRadioButtons.add(mode0RadioButton);
+        modeRadioButtons.add(mode1RadioButton);
+        modeRadioButtons.add(mode2RadioButton);
+        modeRadioButtons.add(mode3RadioButton);
     }
 
     private void getImages(){
-        Image iTest = new Image(this.getClass().getResourceAsStream(
+        Image testImage = new Image(this.getClass().getResourceAsStream(
                                                         "/res/img/test.png"));
-        this.btTest.setGraphic(new ImageView(iTest));
+        this.testButton.setGraphic(new ImageView(testImage));
 
-        Image iUp = new Image(this.getClass().getResourceAsStream(
+        Image upImage = new Image(this.getClass().getResourceAsStream(
                                                             "/res/img/up.png"));
-        Image iDown = new Image(this.getClass().getResourceAsStream(
+        Image downImage = new Image(this.getClass().getResourceAsStream(
                                                         "/res/img/down.png"));
-        this.btUp_1.setGraphic(new ImageView(iUp));
-        this.btUp_2.setGraphic(new ImageView(iUp));
-        this.btUp_3.setGraphic(new ImageView(iUp));
-        this.btUp_4.setGraphic(new ImageView(iUp));
-        this.btDown_1.setGraphic(new ImageView(iDown));
-        this.btDown_2.setGraphic(new ImageView(iDown));
-        this.btDown_3.setGraphic(new ImageView(iDown));
-        this.btDown_4.setGraphic(new ImageView(iDown));
+        this.up1Button.setGraphic(new ImageView(upImage));
+        this.up2Button.setGraphic(new ImageView(upImage));
+        this.up3Button.setGraphic(new ImageView(upImage));
+        this.up4Button.setGraphic(new ImageView(upImage));
+        this.down1Button.setGraphic(new ImageView(downImage));
+        this.down2Button.setGraphic(new ImageView(downImage));
+        this.down3Button.setGraphic(new ImageView(downImage));
+        this.down4Button.setGraphic(new ImageView(downImage));
 
-        DropShadow ds = new DropShadow();
-        ds.setOffsetX(5.0);
-        ds.setOffsetY(5.0);
-        ds.setColor(Color.GRAY);
-        ds.setWidth(5.0);
-        ImageView iv;
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setOffsetX(5.0);
+        dropShadow.setOffsetY(5.0);
+        dropShadow.setColor(Color.GRAY);
+        dropShadow.setWidth(5.0);
+        ImageView imageView;
 
-        Image iMode0 = new Image(this.getClass().getResourceAsStream(
+        Image mode0Image = new Image(this.getClass().getResourceAsStream(
                                                     "/res/img/user-comp.png"));
-        iv = new ImageView(iMode0);
-        iv.setEffect(ds);
-        this.rbMode0.setGraphic(iv);
-        this.rbMode0.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        imageView = new ImageView(mode0Image);
+        imageView.setEffect(dropShadow);
+        this.mode0RadioButton.setGraphic(imageView);
+        this.mode0RadioButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
-        Image iMode1 = new Image(this.getClass().getResourceAsStream(
+        Image mode1Image = new Image(this.getClass().getResourceAsStream(
                                                 "/res/img/user vs comp.png"));
-        iv = new ImageView(iMode1);
-        iv.setEffect(ds);
-        this.rbMode1.setGraphic(iv);
-        this.rbMode1.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        imageView = new ImageView(mode1Image);
+        imageView.setEffect(dropShadow);
+        this.mode1RadioButton.setGraphic(imageView);
+        this.mode1RadioButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
-        Image iMode2 = new Image(this.getClass().getResourceAsStream(
+        Image mode2Image = new Image(this.getClass().getResourceAsStream(
                                                 "/res/img/user,comp-comp.png"));
-        iv = new ImageView(iMode2);
-        iv.setEffect(ds);
-        this.rbMode2.setGraphic(iv);
-        this.rbMode2.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        imageView = new ImageView(mode2Image);
+        imageView.setEffect(dropShadow);
+        this.mode2RadioButton.setGraphic(imageView);
+        this.mode2RadioButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
-        Image iMode3 = new Image(this.getClass().getResourceAsStream(
+        Image mode3Image = new Image(this.getClass().getResourceAsStream(
                                                     "/res/img/comp-comp.png"));
-        iv = new ImageView(iMode3);
-        iv.setEffect(ds);
-        this.rbMode3.setGraphic(iv);
-        this.rbMode3.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        imageView = new ImageView(mode3Image);
+        imageView.setEffect(dropShadow);
+        this.mode3RadioButton.setGraphic(imageView);
+        this.mode3RadioButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
-        Image iShot = new Image(this.getClass().getResourceAsStream(
+        Image shotImage = new Image(this.getClass().getResourceAsStream(
                                                     "/res/img/check.png"));
-        this.btShot.setGraphic(new ImageView(iShot));
-        this.btShot.setGraphicTextGap(10);
+        this.shotButton.setGraphic(new ImageView(shotImage));
+        this.shotButton.setGraphicTextGap(10);
 
-        Image iGenerate = new Image(this.getClass().getResourceAsStream(
+        Image generatingImage = new Image(this.getClass().getResourceAsStream(
                                                     "/res/img/dice.png"));
-        this.btGenerateQuad.setGraphic(new ImageView(iGenerate));
+        this.generatingQuadButton.setGraphic(new ImageView(generatingImage));
 
-        Image iSetQuad = new Image(this.getClass().getResourceAsStream(
+        Image settingQuadImage = new Image(this.getClass().getResourceAsStream(
                                                     "/res/img/touch.png"));
-        this.btSetQuad.setGraphic(new ImageView(iSetQuad));
+        this.settingQuadButton.setGraphic(new ImageView(settingQuadImage));
 
-        Image iReset = new Image(this.getClass().getResourceAsStream(
+        Image resettingImage = new Image(this.getClass().getResourceAsStream(
                                                     "/res/img/refresh.png"));
-        this.btReset.setGraphic(new ImageView(iReset));
+        this.resettingButton.setGraphic(new ImageView(resettingImage));
 
-        Image iSettings = new Image(this.getClass().getResourceAsStream(
+        Image settingsImage = new Image(this.getClass().getResourceAsStream(
                                                 "/res/img/configuration.png"));
-        this.btSettings.setGraphic(new ImageView(iSettings));
+        this.settingsButton.setGraphic(new ImageView(settingsImage));
 
-        Image iHelp = new Image(this.getClass().getResourceAsStream(
+        Image helpImage = new Image(this.getClass().getResourceAsStream(
                                                 "/res/img/help.png"));
-        this.btHelp.setGraphic(new ImageView(iHelp));
+        this.helpButton.setGraphic(new ImageView(helpImage));
     }
 
     // массив меток для вспомогательных цифр и массив кодов цвета для них
-    private final ArrayList<Label> aAidDigits = new ArrayList<>();
-    private final ArrayList<Integer> aAidDigitsColor = new ArrayList<>();
+    private final ArrayList<Label> aidDigits = new ArrayList<>();
+    private final ArrayList<Integer> aidDigitsColor = new ArrayList<>();
     // заполнение массивов меток и цвета, установка обработчика клика меток
     private void setAidDigitsMap(){
-        for(int i = 0; i < hbBottom.getChildren().size(); i++){
-            if(hbBottom.getChildren().get(i).getClass() == Label.class){
-                final Label l = (Label)hbBottom.getChildren().get(i);
-                l.setText(Integer.toString(i));
-                aAidDigits.add(l);
-                aAidDigitsColor.add(1);
-                l.setOnMouseClicked(this::onAidDigitClick);
+        for(int i = 0; i < bottomHBox.getChildren().size(); i++){
+            if(bottomHBox.getChildren().get(i).getClass() == Label.class){
+                final Label label = (Label) bottomHBox.getChildren().get(i);
+                label.setText(Integer.toString(i));
+                aidDigits.add(label);
+                aidDigitsColor.add(1);
+                label.setOnMouseClicked(this::onAidDigitClick);
             }
         }
     }
 
     // обработка клика мышью по метке - циклическое изменение трех цветов
     private void onAidDigitClick(MouseEvent e) {
-        Label l = (Label)e.getSource();
-        int num = this.aAidDigits.indexOf(l);
-        int colorNum = this.aAidDigitsColor.get(num);
+        Label label = (Label)e.getSource();
+        int num = this.aidDigits.indexOf(label);
+        int colorNum = this.aidDigitsColor.get(num);
         if(e.getButton() == MouseButton.PRIMARY){
             colorNum++;
         }
@@ -767,67 +768,67 @@ public class MainController implements Initializable{
         if(colorNum < 1){
             colorNum = 3;
         }
-        this.aAidDigitsColor.set(num, colorNum);
+        this.aidDigitsColor.set(num, colorNum);
         switch(colorNum){
         case 2:
-            l.setStyle("-fx-text-fill: #FF0000;");
+            label.setStyle("-fx-text-fill: #FF0000;");
             break;
         case 3:
-            l.setStyle("-fx-text-fill: #00AFFF;");
+            label.setStyle("-fx-text-fill: #00AFFF;");
             break;
         default:
-            l.setStyle("-fx-text-fill: #000000;");
+            label.setStyle("-fx-text-fill: #000000;");
         }
     }
 
     // обработчик кнопки сброса цвета меток вспомогательных цифр на черный
     @FXML protected void onAidDigitsReset(ActionEvent e) {
-        for(int i = 0; i < this.aAidDigits.size(); i++){
-            aAidDigitsColor.set(i, 1);
-            aAidDigits.get(i).setStyle("-fx-text-fill: #000000;");
+        for(int i = 0; i < this.aidDigits.size(); i++){
+            aidDigitsColor.set(i, 1);
+            aidDigits.get(i).setStyle("-fx-text-fill: #000000;");
         }
     }
     // ================ конец инициализации интерфейса =========================
 
     // вывод строки текста в ScrollPane - информация о шаге игры
     private void showStepInfo(String s, boolean Player1, int img) {
-        HBox hb = new HBox();
-        hb.setAlignment(Pos.CENTER_LEFT);
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER_LEFT);
         if(img == 0){
-            hb.setPadding(new Insets(0, 0, 0, 30));
+            hBox.setPadding(new Insets(0, 0, 0, 30));
         }
         Text t = new Text(s);
         t.setFont(Font.font("Tahoma", FontWeight.NORMAL, 15));
-        hb.getChildren().add(t);
+        hBox.getChildren().add(t);
         //hb.setStyle("-fx-background-color: #33FFFF;");
-        hb.setStyle("-fx-background-color: #CCFF99;");
+        hBox.setStyle("-fx-background-color: #CCFF99;");
 
         // при игре в одиночку (режим 0) можно добавить флажок определенного
         //   цвета в зависимости от числа попыток
-        Image iFlag = null;
+        Image flagImage = null;
         switch(img){
         case 1:
-            iFlag = new Image(this.getClass().getResourceAsStream(
+            flagImage = new Image(this.getClass().getResourceAsStream(
                                                 "/res/img/ball2_green.png"));
             break;
         case 2:
-            iFlag = new Image(this.getClass().getResourceAsStream(
+            flagImage = new Image(this.getClass().getResourceAsStream(
                                             "/res/img/ball2_yellow.png"));
             break;
         case 3:
-            iFlag = new Image(this.getClass().getResourceAsStream(
+            flagImage = new Image(this.getClass().getResourceAsStream(
                                             "/res/img/ball2_red.png"));
             break;
         }
-        if (iFlag != null){
-            hb.getChildren().add(0, new ImageView(iFlag));
-            hb.setSpacing(20);
+        if (flagImage != null){
+            hBox.getChildren().add(0, new ImageView(flagImage));
+            hBox.setSpacing(20);
         }
 
         if (Player1) {
-            vbPlayer1.getChildren().add(hb);
+            player1VBox.getChildren().add(hBox);
         } else {
-            vbPlayer2.getChildren().add(hb);
+            player2VBox.getChildren().add(hBox);
         }
     }
 
@@ -855,18 +856,18 @@ public class MainController implements Initializable{
             digits = solver.toFindDigits();
             Integer[] TmpBufI = new Integer[4];
             System.arraycopy(digits, 0, TmpBufI, 0, 4);
-            ShotData shot_data = curator.checkQuad(digits, 2);
-            bulls = shot_data.getBulls();
-            cows = shot_data.getCows();
-            solver.addShotData(shot_data);
+            ShotData shotData = curator.checkQuad(digits, 2);
+            bulls = shotData.getBulls();
+            cows = shotData.getCows();
+            solver.addShotData(shotData);
             showNextShot(solver.getNumberOfShots(), false, 0);  // отображение
         }
         while(bulls < 4) {
             solver.toFindBulls(digits);
-            ShotData shot_data = curator.checkQuad(digits, 2);
-            bulls = shot_data.getBulls();
-            cows = shot_data.getCows();
-            solver.addShotData(shot_data);
+            ShotData shotData = curator.checkQuad(digits, 2);
+            bulls = shotData.getBulls();
+            cows = shotData.getCows();
+            solver.addShotData(shotData);
             showNextShot(solver.getNumberOfShots(), false, 0);  // отображение
         }
         solver.clearShotsData();
@@ -878,10 +879,10 @@ public class MainController implements Initializable{
     private void shotMode0(){
         if (!this.isEqualDigits()){
             player1ShotNum++;
-            ShotData shot_data = curator.checkQuad(this.digitsForShow, 1);
+            ShotData shotData = curator.checkQuad(this.digitsForShow, 1);
             String s = Arrays.toString(digitsForShow);
             s = player1ShotNum + ": " + s;
-            s = s + " -   " + shot_data.getBulls() + " Б, " + shot_data.getCows() + " К";
+            s = s + " -   " + shotData.getBulls() + " Б, " + shotData.getCows() + " К";
             int img = 0;
             if (player1ShotNum > 0){
                 img = 1;
@@ -893,7 +894,7 @@ public class MainController implements Initializable{
                 img = 3;
             }
             showStepInfo(s, true, img);
-            if (shot_data.getBulls() == 4){
+            if (shotData.getBulls() == 4){
                 this.doEndOfGame(0);
             }
         }
@@ -902,29 +903,29 @@ public class MainController implements Initializable{
     private Boolean tryPlayer1(){
         boolean result = false;
         player1ShotNum++;
-        ShotData shot_data = curator.checkQuad(this.digitsForShow, 1);
+        ShotData shotData = curator.checkQuad(this.digitsForShow, 1);
         String s = Arrays.toString(digitsForShow);
         s = player1ShotNum + ": " + s;
-        s = s + " -   " + shot_data.getBulls() + " Б, " + shot_data.getCows() + " К";
+        s = s + " -   " + shotData.getBulls() + " Б, " + shotData.getCows() + " К";
         showStepInfo(s, true, 0);
-        if (shot_data.getBulls() == 4){
+        if (shotData.getBulls() == 4){
             result = true;
         }
         return result;
     }
 
-    private Boolean tryPlayer2(int QuadNum){
+    private Boolean tryPlayer2(int quadNum){
         boolean result = false;
 
         digits = solver.toFindDigits();
         Integer[] TmpBufI = new Integer[4];
         System.arraycopy(digits, 0, TmpBufI, 0, 4);
-        ShotData shot_data2 = curator.checkQuad(digits, QuadNum);
-        bulls = shot_data2.getBulls();
-        cows = shot_data2.getCows();
-        solver.addShotData(shot_data2);
+        ShotData shotData = curator.checkQuad(digits, quadNum);
+        bulls = shotData.getBulls();
+        cows = shotData.getCows();
+        solver.addShotData(shotData);
 
-        if(QuadNum == 2){
+        if(quadNum == 2){
             showNextShot(solver.getNumberOfShots(), false, 0);  // отображение
         } else {
             String s2 = Integer.toString(solver.getNumberOfShots());
@@ -961,16 +962,16 @@ public class MainController implements Initializable{
 
     // человек <-> машина
     private void shotMode1(){
-        if(this.isFirstPlayer1()){
+        if(this.getIsFirstStepPlayer1()){
             if (!this.isEqualDigits()){
                 isPlayer1End = this.tryPlayer1();
                 isPlayer2End = this.tryPlayer2(2);
                 this.whoWin(isPlayer1End, isPlayer2End);
             }
         } else {
-            if(this.player2firstStep){
-                player2firstStep = false;
-                this.btShot.setText("Попытка");
+            if(this.isFirstSrepPlayer2){
+                isFirstSrepPlayer2 = false;
+                this.shotButton.setText("Попытка");
                 isPlayer2End = this.tryPlayer2(2);
             } else {
                 if (!this.isEqualDigits()){
@@ -985,16 +986,16 @@ public class MainController implements Initializable{
 
     // человек, машина -> машина
     private void shotMode2(){
-        if(this.isFirstPlayer1()){
+        if(this.getIsFirstStepPlayer1()){
             if (!this.isEqualDigits()){
                 isPlayer1End = this.tryPlayer1();
                 isPlayer2End = this.tryPlayer2(1);
                 this.whoWin(isPlayer1End, isPlayer2End);
             }
         } else {
-            if(this.player2firstStep){
-                player2firstStep = false;
-                this.btShot.setText("Попытка");
+            if(this.isFirstSrepPlayer2){
+                isFirstSrepPlayer2 = false;
+                this.shotButton.setText("Попытка");
                 isPlayer2End = this.tryPlayer2(1);
             } else {
                 if (!this.isEqualDigits()){
@@ -1009,63 +1010,63 @@ public class MainController implements Initializable{
 
     // действия при окончании игры - когда кто-то угадал
     private void doEndOfGame(int player){
-        this.btShot.setDisable(true);
+        this.shotButton.setDisable(true);
         Integer wins;
         switch(player){
         case 0:
             this.showStepInfo("Победа!", true, 0);
-            sdm.setMode0Total(sdm.getMode0Total() + 1);
-            Integer max = sdm.getMode0Max();
-            Integer min = sdm.getMode0Min();
+            storedDataManager.setMode0Total(storedDataManager.getMode0Total() + 1);
+            Integer max = storedDataManager.getMode0Max();
+            Integer min = storedDataManager.getMode0Min();
             if(this.player1ShotNum > max){
-                sdm.setMode0Max(player1ShotNum);
+                storedDataManager.setMode0Max(player1ShotNum);
             }
             if((this.player1ShotNum < min) || (min <= 0)){
-                sdm.setMode0Min(player1ShotNum);
+                storedDataManager.setMode0Min(player1ShotNum);
             }
             break;
         case 1:
             this.showStepInfo("Победа игрока 1!", true, 0);
             this.showStepInfo("Победа игрока 1!", false, 0);
             if(this.getMode() == 1){
-                wins = sdm.getMode1Player1Win();
-                sdm.setMode1Player1Win(wins + 1);
+                wins = storedDataManager.getMode1Player1Win();
+                storedDataManager.setMode1Player1Win(wins + 1);
             } else {
-                wins = sdm.getMode2Player1Win();
-                sdm.setMode2Player1Win(wins + 1);
+                wins = storedDataManager.getMode2Player1Win();
+                storedDataManager.setMode2Player1Win(wins + 1);
             }
             break;
         case 2:
             this.showStepInfo("Победа игрока 2!", true, 0);
             this.showStepInfo("Победа игрока 2!", false, 0);
             if(this.getMode() == 1){
-                wins = sdm.getMode1Player2Win();
-                sdm.setMode1Player2Win(wins + 1);
+                wins = storedDataManager.getMode1Player2Win();
+                storedDataManager.setMode1Player2Win(wins + 1);
             } else {
-                wins = sdm.getMode2Player2Win();
-                sdm.setMode2Player2Win(wins + 1);
+                wins = storedDataManager.getMode2Player2Win();
+                storedDataManager.setMode2Player2Win(wins + 1);
             }
             break;
         case 3:
             this.showStepInfo("Ничья!", true, 0);
             this.showStepInfo("Ничья!", false, 0);
             if(this.getMode() == 1){
-                wins = sdm.getMode1Tie();
-                sdm.setMode1Tie(wins++);
+                wins = storedDataManager.getMode1Tie();
+                storedDataManager.setMode1Tie(wins++);
             } else {
-                wins = sdm.getMode2Tie();
-                sdm.setMode2Tie(wins + 1);
+                wins = storedDataManager.getMode2Tie();
+                storedDataManager.setMode2Tie(wins + 1);
             }
             break;
         }
-        this.setDisableBt(false);
+        this.setDisableButtons(false);
         this.drawStatLabels();
     }
 
     // заполнение знакомест игрока 2 крестиками
     private void setXToPlayer2(){
         for(int i = 0; i < 4; i++){
-            aQuad2.get(i).setText("X");
+            quad2.get(i).setText("X");
         }
     }
 
@@ -1076,17 +1077,17 @@ public class MainController implements Initializable{
     // для гистограммы
     private final CategoryAxis xAxis = new CategoryAxis();
     private final NumberAxis yAxis = new NumberAxis();
-    private BarChart<String, Number> bcHistogram;
-    private XYChart.Series<String, Number> series1;
+    private BarChart<String, Number> histogramBarChart;
+    private XYChart.Series<String, Number> series;
 
     // тестовая четверка для перебора
     private final Integer[] testQuad = {0, 0, 0, 0};
     // постоянный набор цифр для отгадывания
     private final Integer[] testDecade = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     // учет количества попыток на вариант для подсчета статистики
-    private final ArrayList<Integer> alShotNum = new ArrayList<>();
+    private final ArrayList<Integer> shotNumbers = new ArrayList<>();
     // учет количества попыток на вариант для гистограммы
-    private final Map<Integer, Integer> hmShotNum = new HashMap<>();
+    private final Map<Integer, Integer> shotNumMap = new HashMap<>();
     // счетчик для перебора вариантов
     private int variantCounter = 0;
     // тест запущен?
@@ -1095,25 +1096,25 @@ public class MainController implements Initializable{
     // метод для вызова из AnimationTimer.handle
     private void animatedTestOfAlgorithm(){
         // если графика гистограммы еще не существует - создать
-        if(bcHistogram == null){
-            bcHistogram = new BarChart<>(xAxis, yAxis);
-            series1 = new XYChart.Series<>();
-            bcHistogram.getData().add(series1);
-            bcHistogram.setMaxHeight(200);
-            bcHistogram.setPadding(new Insets(0,0,0,0));
-            bcHistogram.setLegendVisible(false);
-            bcHistogram.setBarGap(0);
-            bcHistogram.setCategoryGap(0);
-            bcHistogram.setAnimated(false);
-            bcHistogram.setMaxHeight(pInfo.getHeight());
-            bcHistogram.setMaxWidth(pInfo.getWidth());
-            pInfo.getChildren().removeAll(pInfo.getChildren());
-            pInfo.getChildren().add(bcHistogram);
+        if(histogramBarChart == null){
+            histogramBarChart = new BarChart<>(xAxis, yAxis);
+            series = new XYChart.Series<>();
+            histogramBarChart.getData().add(series);
+            histogramBarChart.setMaxHeight(200);
+            histogramBarChart.setPadding(new Insets(0,0,0,0));
+            histogramBarChart.setLegendVisible(false);
+            histogramBarChart.setBarGap(0);
+            histogramBarChart.setCategoryGap(0);
+            histogramBarChart.setAnimated(false);
+            histogramBarChart.setMaxHeight(infoPane.getHeight());
+            histogramBarChart.setMaxWidth(infoPane.getWidth());
+            infoPane.getChildren().removeAll(infoPane.getChildren());
+            infoPane.getChildren().add(histogramBarChart);
         } else {    // иначе - добавить на панель и очистить данные
-            if(!pInfo.getChildren().contains(bcHistogram)){
-                pInfo.getChildren().removeAll(pInfo.getChildren());
-                pInfo.getChildren().add(bcHistogram);
-                this.series1.getData().clear();
+            if(!infoPane.getChildren().contains(histogramBarChart)){
+                infoPane.getChildren().removeAll(infoPane.getChildren());
+                infoPane.getChildren().add(histogramBarChart);
+                this.series.getData().clear();
             }
         }
 
@@ -1142,7 +1143,7 @@ public class MainController implements Initializable{
             this.solver.Init(testDecade);
             // отображение подготовленной четверки
             for(int i = 0; i < 4; i++){
-                aQuad2.get(i).setText(testQuad[i].toString());
+                quad2.get(i).setText(testQuad[i].toString());
             }
 
             // решение
@@ -1167,11 +1168,11 @@ public class MainController implements Initializable{
 
             // заполнение коллекций для статистического учета
             int size = solver.getNumberOfShots();
-            alShotNum.add(size);
-            if(hmShotNum.containsKey(size)){
-                hmShotNum.put(size, hmShotNum.get(size) + 1);
+            shotNumbers.add(size);
+            if(shotNumMap.containsKey(size)){
+                shotNumMap.put(size, shotNumMap.get(size) + 1);
             } else {
-                hmShotNum.put(size, 1);
+                shotNumMap.put(size, 1);
             }
             // подчистка для следующего решения
             solver.clearShotsData();
@@ -1180,19 +1181,19 @@ public class MainController implements Initializable{
 
             // работа с гистограммой
             boolean isData;
-            if(bcHistogram != null){
-                // проверка существования столбика для элемента hmShotNum
-                for(int i = 0; i < hmShotNum.keySet().size(); i++){
+            if(histogramBarChart != null){
+                // проверка существования столбика для элемента shotNumMap
+                for(int i = 0; i < shotNumMap.keySet().size(); i++){
                     isData = false;
-                    Integer key = (Integer)hmShotNum.keySet().toArray()[i];
-                    for(int j = 0; 
-                                j < bcHistogram.getData().get(0).getData().size(); j++){
+                    Integer key = (Integer) shotNumMap.keySet().toArray()[i];
+                    for(int j = 0;
+                        j < histogramBarChart.getData().get(0).getData().size(); j++){
                         // если есть - изменить данные столбика
                         String xv = 
-                            bcHistogram.getData().get(0).getData().get(j).getXValue();
-                        Integer yv = hmShotNum.get(key);
+                            histogramBarChart.getData().get(0).getData().get(j).getXValue();
+                        Integer yv = shotNumMap.get(key);
                         if(xv.equals(Integer.toString(key))){
-                            bcHistogram.getData().get(0).getData().get(j).setYValue(yv);
+                            histogramBarChart.getData().get(0).getData().get(j).setYValue(yv);
                             isData = true;
                             break;
                         }
@@ -1202,11 +1203,11 @@ public class MainController implements Initializable{
                     //   (если просто вставлять в нужную позицию -
                     //    может быть несортированное отображение - баг JavaFX)
                     if(!isData){
-                        this.series1.getData().clear();
-                        int size2 = hmShotNum.keySet().size();
+                        this.series.getData().clear();
+                        int size2 = shotNumMap.keySet().size();
                         Integer[] buf = new Integer[size2];
                         for(int k = 0; k < size2; k++){
-                            buf[k] = (Integer)hmShotNum.keySet().toArray()[k];
+                            buf[k] = (Integer) shotNumMap.keySet().toArray()[k];
                         }
                         Arrays.sort(buf);
 
@@ -1214,7 +1215,7 @@ public class MainController implements Initializable{
                         //   заполнить промежуток нулевыми столбцами
                         if(buf[0] > 1){
                             for(int n = 1; n < buf[0]; n++){
-                                hmShotNum.put(n, 0);
+                                shotNumMap.put(n, 0);
                             }
                         }
 
@@ -1224,7 +1225,7 @@ public class MainController implements Initializable{
                                         (buf[size2 - 1] - buf[size2 - 2] > 1)){
                             for(int n = buf[size2 - 2]; 
                                                     n < buf[size2 - 1]; n++){
-                                hmShotNum.put(n, 0);
+                                shotNumMap.put(n, 0);
                             }
                         }
 
@@ -1232,23 +1233,23 @@ public class MainController implements Initializable{
                         //   заполнить промежуток нулевыми столбцами
                         if((size2 > 1) && (buf[1] - buf[0] > 1)){
                             for(int n = buf[0]; n < buf[1]; n++){
-                                hmShotNum.put(n, 0);
+                                shotNumMap.put(n, 0);
                             }
                         }
 
                         // заново формируем сортированный массив ключей
-                        int size3 = hmShotNum.keySet().size();
+                        int size3 = shotNumMap.keySet().size();
                         Integer[] buf2 = new Integer[size3];
                         for(int k = 0; k < size3; k++){
-                            buf2[k] = (Integer)hmShotNum.keySet().toArray()[k];
+                            buf2[k] = (Integer) shotNumMap.keySet().toArray()[k];
                         }
                         Arrays.sort(buf2);
 
                         // заполнение гистограммы
                         for(int k = 0; k < size3; k++){
                             Integer key2 = buf2[k];
-                            this.series1.getData().add(new Data<>(Integer.toString(key2),
-                                    hmShotNum.get(key2)));
+                            this.series.getData().add(new Data<>(Integer.toString(key2),
+                                    shotNumMap.get(key2)));
                         }
                     }
                 }
@@ -1258,12 +1259,12 @@ public class MainController implements Initializable{
         // перебор вариантов закончен
         if(variantCounter >= 9999){
             // остановка AnimationTimer, сброс отображения
-            this.atAlgorithmTest.stop();
+            this.algorithmTestAnimationTimer.stop();
             this.reset(false);
             // подсчет статистики
             Double sum = 0.0;
             int max = 0;
-            for (Integer integer : alShotNum) {
+            for (Integer integer : shotNumbers) {
                 sum = sum + integer;
                 if (max < integer) {
                     max = integer;
@@ -1272,27 +1273,27 @@ public class MainController implements Initializable{
 
             // отображение результатов
             this.showStepInfo("Перебор всех вариантов:", false, 0);
-            this.showStepInfo("всего - " + alShotNum.size(),
+            this.showStepInfo("всего - " + shotNumbers.size(),
                                                                     false, 0);
             this.showStepInfo("Максимум попыток - " + max, false, 0);
-            Double aver = sum / alShotNum.size();
+            Double aver = sum / shotNumbers.size();
             NumberFormat nf = NumberFormat.getNumberInstance();
             nf.setMaximumFractionDigits(2);
             this.showStepInfo("В среднем - " + nf.format(aver), false, 0);
             this.showStepInfo("[Попыток]: [вариантов]", true, 0);
             for(int i = 1; i <= max; i++){
-                this.showStepInfo(i + ": " + hmShotNum.get(i), true, 0);
+                this.showStepInfo(i + ": " + shotNumMap.get(i), true, 0);
             }
             // подчистка данных для нового вызова
-            alShotNum.clear();
-            hmShotNum.clear();
+            shotNumbers.clear();
+            shotNumMap.clear();
             variantCounter = 0;
             this.isTestRun = false;
         }
     }
 
     // экземпляр AnimationTimer для анимации процесса проверки алгоритма
-    private final AnimationTimer atAlgorithmTest = new AnimationTimer(){
+    private final AnimationTimer algorithmTestAnimationTimer = new AnimationTimer(){
         @Override
         public void handle(long now) {
             animatedTestOfAlgorithm();

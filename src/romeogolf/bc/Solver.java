@@ -7,15 +7,15 @@ import java.util.Set;
 
 class Solver {
     // массив данных попыток
-    private final ArrayList<ShotData> shots_data = new ArrayList<>();
+    private final ArrayList<ShotData> shotsData = new ArrayList<>();
     void addShotData(ShotData sd){
-        this.shots_data.add(sd);
+        this.shotsData.add(sd);
     }
     void clearShotsData(){
-        this.shots_data.clear();
+        this.shotsData.clear();
     }
     Integer getNumberOfShots(){
-        return this.shots_data.size();
+        return this.shotsData.size();
     }
     // набор цифр для отгадки
     private final ArrayList<Integer> digitsForAnswer = new ArrayList<>();
@@ -26,13 +26,13 @@ class Solver {
     // проверка допустимости подмассива по результатам предыдущих попыток
     private boolean isSuitable(Integer[] a, int length){
         int BullCow;    // сумма быков и коров попытки
-        for (int i = 0; i <= (shots_data.size() - 1); i++){
+        for (int i = 0; i <= (shotsData.size() - 1); i++){
             int Intersection = 0;   // мощность пересечения цифр старой попытки
                 //      и цифр подмассива очередной попытки
-            BullCow = shots_data.get(i).getBulls() + shots_data.get(i).getCows();
+            BullCow = shotsData.get(i).getBulls() + shotsData.get(i).getCows();
             for (int j = 0; j <= 3; j++){   // подсчет мощности пересечения
                 for (int k = 0; k <= length; k++){
-                    if (a[k].equals(shots_data.get(i).getQwad()[j])){
+                    if (a[k].equals(shotsData.get(i).getQwad()[j])){
                         Intersection++;
                     }
                 }
@@ -51,14 +51,14 @@ class Solver {
 
     // проверка на допустимость подмассива быков
     private boolean isSuitableBulls(int Max){
-        for (int i = 0; i <= (shots_data.size() - 1); i++){
+        for (int i = 0; i <= (shotsData.size() - 1); i++){
             int coincidence = 0;
             for(int j = 0; j <= Max; j++){
-                if (shotDigits.get(j).equals(shots_data.get(i).getQwad()[indices.get(j)])){
+                if (shotDigits.get(j).equals(shotsData.get(i).getQwad()[indices.get(j)])){
                     coincidence++;
                 }
             }
-            if (coincidence > shots_data.get(i).getBulls()){
+            if (coincidence > shotsData.get(i).getBulls()){
                 return false;
             }
         }
@@ -109,61 +109,61 @@ class Solver {
     // при ошибках в Б и К будет возвращать null, что может вызвать исключение
     Integer[] toFindDigits(){
         nextShot = new Integer[4];      // формирование очередной попытки
-        int ShotDigitIndex = 0;         // индекс массива цифр очередной попытки
-        int DigitsForAnswerIndex = 0;   // индекс в наборе цифр
-        while (ShotDigitIndex < 4){
+        int shotDigitIndex = 0;         // индекс массива цифр очередной попытки
+        int digitsForAnswerIndex = 0;   // индекс в наборе цифр
+        while (shotDigitIndex < 4){
             // подстановка очередной цифры
-            nextShot[ShotDigitIndex] = 
-                                    digitsForAnswer.get(DigitsForAnswerIndex);
+            nextShot[shotDigitIndex] =
+                                    digitsForAnswer.get(digitsForAnswerIndex);
             // запоминание индекса цифры в наборе
-            shotDigitInDigitsIndex[ShotDigitIndex] = DigitsForAnswerIndex;
+            shotDigitInDigitsIndex[shotDigitIndex] = digitsForAnswerIndex;
             // проверка набранного подмассива попытки на допустимость
-            if (!isSuitable(nextShot, ShotDigitIndex)){
+            if (!isSuitable(nextShot, shotDigitIndex)){
                 // если очередная цифра не подошла - берем следующую
-                DigitsForAnswerIndex++;
+                digitsForAnswerIndex++;
                 // проверка выхода за пределы набора
-                if (DigitsForAnswerIndex > (digitsForAnswer.size() - 1)){
+                if (digitsForAnswerIndex > (digitsForAnswer.size() - 1)){
                     // если вышли - возврат в попытке на одну цифру назад
-                    ShotDigitIndex--;
+                    shotDigitIndex--;
                     // если слишком назад - ошибка в быках и коровах
-                    if (ShotDigitIndex < 0){
+                    if (shotDigitIndex < 0){
                         // есть ошибка в переданных ранее быках и коровах 
                         // Info("Error");
                         return null;
                     }
                     // для первого элемента отгадки берем следующую цифру 
                     //   из набора
-                    DigitsForAnswerIndex = 
-                                    shotDigitInDigitsIndex[ShotDigitIndex] + 1;
+                    digitsForAnswerIndex =
+                                    shotDigitInDigitsIndex[shotDigitIndex] + 1;
                 }
                 // если вернулись к младшему элементу - 
                 //   младшая цифра точно не верна,
-                if (ShotDigitIndex == 0){
+                if (shotDigitIndex == 0){
                     digitsForAnswer.remove(0);  // ее нужно выкинуть из набора
-                    DigitsForAnswerIndex = 0;   // и обнулить индексы
+                    digitsForAnswerIndex = 0;   // и обнулить индексы
                 }
                 continue;
             }
-            DigitsForAnswerIndex++;     // переход следующей цифре набора
+            digitsForAnswerIndex++;     // переход следующей цифре набора
             // если вышли за пределы набора, когда еще осталась цифра набора
-            if ((DigitsForAnswerIndex > digitsForAnswer.size() - 1) &&
-                    (ShotDigitIndex < 3)){
-                ShotDigitIndex--;       // надо опять вернуться назад
-                if (ShotDigitIndex < 0){
+            if ((digitsForAnswerIndex > digitsForAnswer.size() - 1) &&
+                    (shotDigitIndex < 3)){
+                shotDigitIndex--;       // надо опять вернуться назад
+                if (shotDigitIndex < 0){
                     // есть ошибка в ранее переданных быках и коровах 
                     // Info("Error");
                     return null;
                 }
                 // и подставить другую цифру на спорное место
-                DigitsForAnswerIndex = 
-                                    shotDigitInDigitsIndex[ShotDigitIndex] + 1;
-                if (ShotDigitIndex == 0){
+                digitsForAnswerIndex =
+                                    shotDigitInDigitsIndex[shotDigitIndex] + 1;
+                if (shotDigitIndex == 0){
                     digitsForAnswer.remove(0);
-                    DigitsForAnswerIndex = 0;
+                    digitsForAnswerIndex = 0;
                 }
                 continue;
             }
-            ShotDigitIndex++;       // переход к следующему элементу отгадки
+            shotDigitIndex++;       // переход к следующему элементу отгадки
         }
 
         for(int i = 0; i < 4; i++){
@@ -173,21 +173,21 @@ class Solver {
             indices.set(i, -1);
         }
 
-        Integer[] Dgt;
+        Integer[] digit;
         if(trySetBulls()){
-            Dgt = new Integer[4];
+            digit = new Integer[4];
             for(int n = 0; n < 4; n++){
-                Dgt[indices.get(n)] = shotDigits.get(n);
+                digit[indices.get(n)] = shotDigits.get(n);
             }
         } else {
             // есть несочетаемый вариант быков в цифрах 
             // ShowStepInfo("bull error");
-            Dgt = nextShot.clone();
+            digit = nextShot.clone();
         }
-        return Dgt;
+        return digit;
     }
 
-    void toFindBulls(Integer[] Dgt){
+    void toFindBulls(Integer[] digit){
         for(int i = 0; i < 4; i++){
             shotDigits.set(i, nextShot[i]);
         }
@@ -197,17 +197,17 @@ class Solver {
 
         if(trySetBulls()){
             for(int n = 0; n < 4; n++){
-                Dgt[indices.get(n)] = shotDigits.get(n);
+                digit[indices.get(n)] = shotDigits.get(n);
             }
         } else {
             // есть несочетаемый вариант быков в цифрах
             // ShowStepInfo("bull error");
-            Dgt = nextShot.clone();
+            digit = nextShot.clone();
         }
     }
 
     void Init(Integer[] InitArray){
-        this.shots_data.clear();
+        this.shotsData.clear();
         indices.clear();
         for(int i = 0; i < 4; i++){
             indices.add(i);

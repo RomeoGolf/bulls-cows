@@ -13,13 +13,11 @@ public class Main extends Application {
         }
         @Override
         public void start(Stage stage) throws Exception {
-            //Parent root = FXMLLoader.load(getClass().getResource("bc.fxml"));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("bc.fxml"));
             Parent root = loader.load();
             MainController controller = loader.getController();
             controller.setStage_Listener(stage); 
 
-            //Scene scene = new Scene(root, 400, 500);
             Scene scene = new Scene(root);
             stage.setTitle("Быки и коровы");
 
