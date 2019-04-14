@@ -16,7 +16,7 @@ public class Main extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("bc.fxml"));
             Parent root = loader.load();
             MainController controller = loader.getController();
-            controller.setStage_Listener(stage); 
+            controller.setStage_Listener(stage);
 
             Scene scene = new Scene(root);
             stage.setTitle("Быки и коровы");
