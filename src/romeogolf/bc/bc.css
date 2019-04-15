@@ -1,0 +1,49 @@
+
+.common_panel {
+    -fx-background-color: #CCFF99;
+    -fx-padding: 5;
+    -fx-border-color: rgb(49, 89, 23);
+    -fx-border-radius: 5;
+}
+
+.left_panel {
+    -fx-background-color: #CCFF99;
+    -fx-padding: 10;
+}
+
+.scroll_pane {
+    -fx-background-color: #CCFF99;
+    -fx-border-radius: 5;
+}
+
+.h_panel {
+    -fx-background-color: #CCFF00;
+    -fx-padding: 5;
+    -fx-border-color: rgb(49, 89, 23);
+    -fx-border-radius: 5;
+}
+
+.digit_sell {
+	-fx-padding: 5;
+    -fx-border-color: rgb(49, 89, 23);
+    -fx-border-radius: 5;
+}
+
+.bt_up_down {
+	-fx-padding: 3;
+	-fx-border-radius: 5;
+}
+
+.l_statistic_1 {
+	-fx-font-family: "Arial";
+	-fx-font-style: italic;
+	-fx-text-fill: black;
+	-fx-font-size: 16pt;
+}
+
+.l_statistic_2 {
+	-fx-font-family: "Arial";
+	-fx-font-weight: bold;
+	-fx-text-fill: black;
+	-fx-font-size: 22pt;
+}
