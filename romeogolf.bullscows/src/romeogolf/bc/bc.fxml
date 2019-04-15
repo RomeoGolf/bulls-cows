@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import java.net.URL?>
+<GridPane alignment="CENTER" minWidth="700.0" prefHeight="800.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1"
+          xmlns="http://javafx.com/javafx/2.2" fx:controller="romeogolf.bc.MainController">
+  <maxWidth>700.0</maxWidth>
+  <columnConstraints>
+    <ColumnConstraints hgrow="NEVER" maxWidth="200.0" minWidth="200.0" prefWidth="200.0"/>
+    <ColumnConstraints hgrow="NEVER" maxWidth="250.0" minWidth="250.0" prefWidth="250.0"/>
+    <ColumnConstraints hgrow="NEVER" maxWidth="250.0" minWidth="250.0" prefWidth="250.0"/>
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="120.0" minHeight="120.0" prefHeight="120.0" vgrow="NEVER"/>
+    <RowConstraints maxHeight="70.0" minHeight="70.0" prefHeight="70.0" vgrow="NEVER"/>
+    <RowConstraints maxHeight="1000.0" minHeight="10.0" prefHeight="464.0" vgrow="ALWAYS"/>
+    <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="NEVER"/>
+  </rowConstraints>
+  <stylesheets>
+    <URL value="@bc.css"/>
+  </stylesheets>
+  <ScrollPane id="ScrollPane" fitToWidth="true" pannable="true" prefHeight="675.0" prefViewportHeight="676.0"
+              prefViewportWidth="201.0" prefWidth="200.0" styleClass="scroll_pane" GridPane.columnIndex="0"
+              GridPane.columnSpan="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="0"
+              GridPane.rowSpan="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+    <VBox id="pLeft" alignment="TOP_CENTER" fillWidth="false" spacing="10.0" styleClass="left_panel">
+      <VBox maxWidth="188.0" prefHeight="191.0" prefWidth="168.0" spacing="2.0" styleClass="h_panel"
+            VBox.vgrow="NEVER">
+        <Label text="Режим:">
+          <font>
+            <Font size="18.0" fx:id="x4"/>
+          </font>
+        </Label>
+        <RadioButton fx:id="mode0RadioButton" mnemonicParsing="false" selected="true" text="ч -&gt; м" userData="0">
+          <toggleGroup>
+            <ToggleGroup fx:id="modeToggleGroup"/>
+          </toggleGroup>
+          <VBox.margin>
+            <Insets bottom="5.0" top="5.0" fx:id="x2"/>
+          </VBox.margin>
+        </RadioButton>
+        <RadioButton fx:id="mode1RadioButton" mnemonicParsing="false" text="ч &lt;-&gt; м" toggleGroup="$modeToggleGroup"
+                     userData="1" VBox.margin="$x2"/>
+        <RadioButton fx:id="mode2RadioButton" mnemonicParsing="false" text="ч, м -&gt; м" toggleGroup="$modeToggleGroup"
+                     userData="2" VBox.margin="$x2"/>
+        <RadioButton fx:id="mode3RadioButton" mnemonicParsing="false" text="м -&gt; м" toggleGroup="$modeToggleGroup" userData="3"
+                     VBox.margin="$x2"/>
+      </VBox>
+      <Button fx:id="settingQuadButton" mnemonicParsing="false" onAction="#onSetQwad" prefWidth="127.0" text="Загадать"/>
+      <Button fx:id="generatingQuadButton" mnemonicParsing="false" onAction="#onGenerateQwad" prefWidth="127.0"
+              text="Сгенерить"/>
+      <Button fx:id="resettingButton" mnemonicParsing="false" onAction="#onReset" prefWidth="127.0" text="Сброс"/>
+      <Button fx:id="testButton" mnemonicParsing="false" onAction="#onTest" prefWidth="127.00009999999747" text="Тест"/>
+      <Button fx:id="settingsButton" mnemonicParsing="false" onAction="#onSettings" prefWidth="127.00009999999747"
+              text="Настройки"/>
+      <Button fx:id="helpButton" mnemonicParsing="false" onAction="#onHelp" prefWidth="127.00009999999747"
+              text="Справка"/>
+    </VBox>
+  </ScrollPane>
+  <HBox id="pDigitsFor2" alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="10.0"
+        styleClass="common_panel" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="0"
+        GridPane.vgrow="NEVER">
+    <GridPane.margin>
+      <Insets/>
+    </GridPane.margin>
+    <Label fx:id="charSell2_1Label" styleClass="digit_sell" text="X">
+      <font>
+        <Font size="24.0" fx:id="x3"/>
+      </font>
+    </Label>
+    <Label fx:id="charSell22Label" font="$x3" styleClass="digit_sell" text="X"/>
+    <Label fx:id="charSell23Label" font="$x3" styleClass="digit_sell" text="X"/>
+    <Label fx:id="charSell24Label" font="$x3" styleClass="digit_sell" text="X"/>
+  </HBox>
+  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS"
+        GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+    <VBox alignment="CENTER" prefHeight="50.0" prefWidth="261.0" styleClass="common_panel">
+      <Label fx:id="player1Label" font="$x4" text="Игрок 1:"/>
+    </VBox>
+    <ScrollPane fx:id="player1ScrollPane" fitToHeight="true" fitToWidth="true" styleClass="scroll_pane" VBox.vgrow="ALWAYS">
+      <VBox fx:id="player1VBox" styleClass="common_panel"/>
+    </ScrollPane>
+  </VBox>
+  <HBox fx:id="bottomHBox" alignment="CENTER" minHeight="50.0" prefHeight="80.0" prefWidth="375.0" spacing="10.0"
+        styleClass="common_panel" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS"
+        GridPane.rowIndex="3" GridPane.vgrow="NEVER">
+    <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X"/>
+    <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X"/>
+    <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X"/>
+    <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X"/>
+    <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X"/>
+    <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X"/>
+    <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X"/>
+    <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X"/>
+    <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X"/>
+    <Label id="charsell_2_1" font="$x3" styleClass="digit_sell" text="X"/>
+    <Button fx:id="btAidDigitsReset" mnemonicParsing="false" onAction="#onAidDigitsReset" prefHeight="38.0"
+            prefWidth="26.0" text="X"/>
+  </HBox>
+  <VBox fx:id="vbRight" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.hgrow="NEVER"
+        GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS">
+    <VBox alignment="CENTER" prefHeight="46.0" prefWidth="101.0" styleClass="common_panel" VBox.vgrow="NEVER">
+      <Label fx:id="player2Label" font="$x4" text="Игрок 2:"/>
+    </VBox>
+    <ScrollPane fx:id="player2ScrollPane" fitToHeight="true" fitToWidth="true" styleClass="scroll_pane" VBox.vgrow="ALWAYS">
+      <VBox fx:id="player2VBox" prefHeight="267.0" prefWidth="196.0" styleClass="common_panel"/>
+    </ScrollPane>
+    <Pane fx:id="infoPane" prefHeight="158.0" prefWidth="250.0" styleClass="common_panel"/>
+  </VBox>
+  <HBox alignment="CENTER" minHeight="90.0" prefHeight="79.0" prefWidth="195.0" styleClass="common_panel"
+        GridPane.columnIndex="1" GridPane.rowIndex="0">
+    <VBox alignment="CENTER" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
+      <Button fx:id="up1Button" ellipsisString="" maxHeight="20.0" minHeight="24.0" minWidth="28.0"
+              mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0"
+              styleClass="bt_up_down">
+        <VBox.margin>
+          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+        </VBox.margin>
+      </Button>
+      <Label fx:id="charSell11Label" font="$x3" styleClass="digit_sell" text="X"/>
+      <Button fx:id="down1Button" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="24.0" minWidth="28.0"
+              mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0"
+              styleClass="bt_up_down"
+      >
+        <VBox.margin>
+          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+        </VBox.margin>
+      </Button>
+    </VBox>
+    <VBox alignment="CENTER" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
+      <Button fx:id="up2Button" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="24.0" minWidth="28.0"
+              mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0"
+              styleClass="bt_up_down">
+        <VBox.margin>
+          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+        </VBox.margin>
+      </Button>
+      <Label fx:id="charSell12Label" font="$x3" styleClass="digit_sell" text="X"/>
+      <Button fx:id="down2Button" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="24.0" minWidth="28.0"
+              mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0"
+              styleClass="bt_up_down"
+      >
+        <VBox.margin>
+          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+        </VBox.margin>
+      </Button>
+    </VBox>
+    <VBox alignment="CENTER" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
+      <Button fx:id="up3Button" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="24.0" minWidth="28.0"
+              mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0"
+              styleClass="bt_up_down"
+      >
+        <VBox.margin>
+          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+        </VBox.margin>
+      </Button>
+      <Label fx:id="charSell13Label" font="$x3" styleClass="digit_sell" text="X"/>
+      <Button fx:id="down3Button" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="24.0" minWidth="28.0"
+              mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0"
+              styleClass="bt_up_down"
+      >
+        <VBox.margin>
+          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+        </VBox.margin>
+      </Button>
+    </VBox>
+    <VBox alignment="CENTER" prefHeight="78.0" prefWidth="23.0" styleClass="h_panel">
+      <Button fx:id="up4Button" ellipsisString="" maxHeight="20.0" maxWidth="20.0" minHeight="24.0" minWidth="28.0"
+              mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0"
+              styleClass="bt_up_down"
+      >
+        <VBox.margin>
+          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+        </VBox.margin>
+      </Button>
+      <Label fx:id="charSell14Label" font="$x3" styleClass="digit_sell" text="X"/>
+      <Button fx:id="down4Button" ellipsisString="" maxHeight="2.0" maxWidth="20.0" minHeight="24.0" minWidth="28.0"
+              mnemonicParsing="false" onAction="#onUpDown" prefHeight="20.0" prefWidth="20.0"
+              styleClass="bt_up_down"
+      >
+        <VBox.margin>
+          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+        </VBox.margin>
+      </Button>
+    </VBox>
+  </HBox>
+  <VBox alignment="CENTER" prefHeight="70.0" prefWidth="250.0" styleClass="common_panel" GridPane.columnIndex="1"
+        GridPane.rowIndex="1">
+    <Button fx:id="shotButton" mnemonicParsing="false" onAction="#onShot" prefHeight="25.0" prefWidth="176.0"
+            text="Попытка"/>
+  </VBox>
+</GridPane>

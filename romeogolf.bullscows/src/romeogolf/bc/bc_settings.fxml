@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="148.5" prefWidth="296.0" styleClass="common_panel" xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/2.2" fx:controller="romeogolf.bc.SettingsController">
+  <stylesheets>
+    <URL value="@bc.css"/>
+  </stylesheets>
+  <VBox layoutX="16.0" layoutY="20.0" minHeight="78.0" prefHeight="109.0" prefWidth="101.0" spacing="5.0"
+        styleClass="common_panel">
+    <Label text="Первый ход:"/>
+    <RadioButton fx:id="firstStep0RadioButton" mnemonicParsing="false" selected="true" text="Игрок 1">
+      <toggleGroup>
+        <ToggleGroup fx:id="firstStepToggleGroup"/>
+      </toggleGroup>
+    </RadioButton>
+    <RadioButton fx:id="firstStep1RadioButton" mnemonicParsing="false" text="Игрок 2" toggleGroup="$firstStepToggleGroup"/>
+    <RadioButton fx:id="firstStep2RadioButton" mnemonicParsing="false" text="Поочередно" toggleGroup="$firstStepToggleGroup"/>
+    <RadioButton fx:id="firstStep3RadioButton" mnemonicParsing="false" text="Случайно" toggleGroup="$firstStepToggleGroup"/>
+  </VBox>
+  <CheckBox fx:id="digitsResetCheckBox" layoutX="128.0" layoutY="20.0" minWidth="101.0" mnemonicParsing="false"
+            prefHeight="44.0" prefWidth="127.0" text="сбрасывать цифры игрока 1 на 1234" textAlignment="JUSTIFY"
+            wrapText="true"/>
+  <Button layoutX="128.0" layoutY="110.0" mnemonicParsing="false" onAction="#onOK" text="Согласен"/>
+  <Button layoutX="208.0" layoutY="110.0" mnemonicParsing="false" onAction="#onCancel" text="Передумал"/>
+</AnchorPane>
