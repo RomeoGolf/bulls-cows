@@ -11,6 +11,10 @@
     -fx-padding: 10;
 }
 
+.scroll_pane > .viewport {
+    -fx-background-color: transparent;
+}
+
 .scroll_pane {
     -fx-background-color: #CCFF99;
     -fx-border-radius: 5;
